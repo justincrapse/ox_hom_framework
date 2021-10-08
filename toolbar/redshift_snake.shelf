@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="redshift_snake" label="RedshiftSnake">
+    <memberTool name="st_2_rs"/>
+    <memberTool name="Substance_2_RS"/>
+  </toolshelf>
+
+  <tool name="st_2_rs" label="ST_2_RS" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[# get file from user
+# scan folder content
+# unpack
+# mat net
+# get group names
+import copy
+import re
+from os import listdir
+from os.path import isfile, join
+
+from hou_helper import nodes
+from hou_helper.base_objects.hh_node import HHNode
+from hou_helper import constants as const
+from hou_helper.constants.texture_types import SpeedTree as texture_types
+
+texture_type_str_list = [
+    'AO',
+    'Gloss',
+    'Normal',
+    'Opacity',
+    'SubsurfaceAmount',
+    'SubsurfaceColor',
+    'Displacement'
+]
+texture_re_list = '|'.join(texture_type_str_list)
+
+
+def main():
+    matnet_name = 'rs_matnet'
+    obj_node = HHNode(node=hou.node('/obj'))
+    print(obj_node.node.name())
+    # get file from user
+    file_path = hou.ui.selectFile()
+    folder_path = '/'.join(file_path.split('/')[0: -1])
+    geo_node = nodes.obj_nodes.GeoNode(hh_parent_node=obj_node, node_name='speed_tree')
+    file_node = nodes.geo_nodes.FileNode(hh_parent_node=geo_node, node_name='speed_tree_file')
+    file_node.parm_file_menu = file_path
+
+    unpack_node = nodes.geo_nodes.UnpackNode(hh_parent_node=geo_node, node_name='unpack_tree')
+    unpack_node.node.setDisplayFlag(on=True)
+    unpack_node.connect_from(other_hh_node=file_node)
+    material_node = nodes.geo_nodes.MaterialNode(hh_parent_node=geo_node, node_name='tree_materials')
+    material_node.connect_from(other_hh_node=unpack_node)
+
+    transform_node = nodes.geo_nodes.TransformNode(hh_parent_node=geo_node)
+    transform_node.connect_from(other_hh_node=material_node)
+
+    transform_node.node.setDisplayFlag(on=True)
+    transform_node.node.setRenderFlag(on=True)
+    group_list = [i.name() for i in material_node.node.geometry().primGroups() if not i.name().startswith('_')]
+    # print(f'Group List: {group_list}')
+    # assign groups:
+    material_node.parm_num_materials = len(group_list)
+    for index, group in enumerate(group_list, start=1):
+        group_texture_str = f'{material_node.node.parent().path()}/{matnet_name}/{group}'
+        material_node.node.parm(f'group{index}').set(group)
+        material_node.node.parm(f'shop_materialpath{index}').set(group_texture_str)
+    matnet_node = nodes.obj_nodes.MatnetNode(hh_parent_node=geo_node, node_name=matnet_name)
+    create_materials(group_list=group_list, folder_path=folder_path, matnet_node=matnet_node)
+
+    # layout fix
+    geo_node.node.layoutChildren()
+    matnet_node.node.layoutChildren()
+    
+
+def get_file_list(folder_path):
+    files = [f for f in listdir(folder_path) if isfile(join(folder_path, f))]
+    return files
+
+# def connect_textures(matnet_node, texture_node, texture_type):
+#     if texture_type == '':
+#         rs_color_layer_node = matnet_node.createNode('RSColorLayer')
+
+
+def get_input_index_by_label(node, label):
+    return node.inputLabels().index(label)
+
+
+def get_node_by_name(parent_node, node_name):
+    node_list = parent_node.children()
+    for node in node_list:
+        if node_name == node.name():
+            return node
+
+
+def create_materials(group_list, folder_path, matnet_node):
+    files = get_file_list(folder_path=folder_path)
+    files_str = ' '.join(files)
+    for group_name in group_list:
+        print(f'group: {group_name}')
+        texture_group_name = group_name.replace('MatSG', '')
+        rs_mat_node = nodes.matnet_nodes.RedshiftVopnetNode(hh_parent_node=matnet_node, node_name=group_name)
+        rs_color_layer_node = nodes.redshift_nodes.RscolorlayerNode(hh_parent_node=rs_mat_node, node_name='RSColorLayer')
+        redshift_material_hou_node = get_node_by_name(rs_mat_node.node, 'redshift_material1')
+        redshift_material_node = nodes.redshift_nodes.RedshiftMaterialNode(node=redshift_material_hou_node)
+        # print(f'group: {group_name}')
+        regex = re.compile(fr'({texture_group_name}({texture_re_list})\.png|{texture_group_name[:-1]}\.png)')
+        results = regex.findall(files_str)
+        results_dict = dict([(i[1], i[0]) for i in results])
+
+        # handle version textures:
+        version_match = re.compile(r'_v\d(?=_)')
+        version = version_match.search(texture_group_name)
+
+        if version:
+            version_text = version.group()
+            print(version_text)
+            original_texture_group = texture_group_name.replace(version_text, '')
+            regex_original = re.compile(fr'({original_texture_group}({texture_re_list})\.png|{original_texture_group[:-1]}\.png)')
+            original_results = regex_original.findall(files_str)
+            original_results_dict = dict([(i[1], i[0]) for i in original_results])
+            print(f'original_results: {original_results_dict}')
+            original_results_dict.update(results_dict)
+            print(f'updated_texture_dict: {original_results_dict}')
+
+        texture_types_present_list = results_dict.keys()
+        main_mat_node = get_node_by_name(rs_mat_node.node, 'Material1')
+        mat_node = nodes.redshift_nodes.MaterialNode(node=main_mat_node)
+        final_dict = copy.deepcopy(original_results_dict) if version else copy.deepcopy(results_dict)
+        for texture_type, file_name in final_dict.items():
+            text_match = file_name
+            full_file_path = f'{folder_path}/{text_match}'
+            # print(result)
+            # print(f"name for texture node: {text_match, text_match.replace('.png', '')}")
+            texture_node = nodes.redshift_nodes.TexturesamplerNode(hh_parent_node=rs_mat_node, node_name=text_match.replace('.png', ''))
+            texture_node.parm_tex0_menu = full_file_path
+            if texture_type == texture_types.DIFFUSE and texture_types.AO in texture_types_present_list:
+                rs_color_layer_node.connect_from(other_hh_node=texture_node, input_index=rs_color_layer_node.input_base_color)
+                mat_node.connect_from(other_hh_node=rs_color_layer_node, input_index=mat_node.input_diffuse_color)
+                # rs_color_layer_node.parm_layer1_blend_mode.menu_select(index=rs_color_layer_node.parm_layer1_blend_mode.multiply)
+                rs_color_layer_node.parm_layer1_blend_mode_menu.multiply
+            elif texture_type == texture_types.DIFFUSE:
+                mat_node.connect_from(other_hh_node=texture_node, input_index=mat_node.input_diffuse_color)
+                rs_color_layer_node.connect_from(other_hh_node=texture_node, input_index=rs_color_layer_node.input_layer1_color)
+            elif texture_type == texture_types.AO:
+                rs_color_layer_node.connect_from(other_hh_node=texture_node, input_index=rs_color_layer_node.input_layer1_color)
+            elif texture_type == texture_types.GLOSS:
+                mat_node.connect_from(texture_node, mat_node.input_refl_weight)
+            elif texture_type == texture_types.SS_COLOR:
+                mat_node.connect_from(texture_node, mat_node.input_transl_color)
+            elif texture_type == texture_types.SS_AMOUNT:
+                mat_node.connect_from(texture_node, mat_node.input_transl_weight)
+            elif texture_type == texture_types.NORMAL:
+                bumpmap_node = nodes.redshift_nodes.BumpmapNode(hh_parent_node=rs_mat_node)
+                bumpmap_node.connect_from(texture_node, input_index=bumpmap_node.input_input)
+                redshift_material_node.connect_from(bumpmap_node, input_index=redshift_material_node.input_bump_map)
+                bumpmap_node.parm_inputtype_menu.tangent_space_normal
+                bumpmap_node.parm_newrange_min = -1
+            elif texture_type == texture_types.DISPLACEMENT:
+                displacement_node = nodes.redshift_nodes.DisplacementNode(hh_parent_node=rs_mat_node)
+                displacement_node.connect_from(texture_node, input_index=displacement_node.input_texmap)
+                redshift_material_node.connect_from(displacement_node, input_index=redshift_material_node.input_displacement)
+                displacement_node.parm_newrange_min = -1
+            elif texture_type == texture_types.OPACITY:
+                mat_node.connect_from(texture_node, mat_node.input_opacity_color)
+        print('\n')
+        rs_mat_node.node.layoutChildren()
+
+main()]]></script>
+  </tool>
+
+  <tool name="Substance_2_RS" label="SubD_2_RS" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[]]></script>
+  </tool>
+</shelfDocument>

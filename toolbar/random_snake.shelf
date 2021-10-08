@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+  <toolshelf name="random_snake" label="Random Snake">
+    <memberTool name="scatter_group0"/>
+    <memberTool name="tool_2"/>
+  </toolshelf>
+
+  <tool name="scatter_group0" label="Scatter Group" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[# ui: confirm selected
+# create geo node
+# object merge node for each selected
+# create names for each based on node selected
+# plug into a basic/default scatter atr from pieces
+# add in a transform for good measure (after merge)
+
+# R2:
+# promote weight attributes
+# promote other attrs
+import random
+
+import hou
+from hou_helper.base_objects import hh_node
+from hou_helper import nodes
+
+
+obj_node = hou.node('/obj')
+hh_obj_node = hh_node.HHNode(node=obj_node)
+print(f'obj node: {obj_node}')
+selected_nodes = hou.selectedNodes()
+node_names_string = '\n '.join([i.name() for i in selected_nodes])
+if not selected_nodes:
+    hou.ui.displayMessage(text='Must select nodes before generating scatter group instancing')
+response = hou.ui.displayConfirmation(f"Nodes selected for scattering: \n{node_names_string}", title="Verify Selected Nodes")
+if not response:
+    exit()
+
+parent_node = selected_nodes[0].parent()
+print(f'parent: {parent_node.name()}')
+scatter_group_node_name = f'scatter_group{parent_node.name()}'
+scatter_group_geo_node = nodes.obj_nodes.GeoNode(hh_parent_node=hh_obj_node, node_name=scatter_group_node_name)
+scatter_group_geo_node.parm_rs_objprop_inst_packedpriminstancing = True
+merge_node = nodes.geo_nodes.MergeNode(hh_parent_node=scatter_group_geo_node)
+for index, node in enumerate(selected_nodes):
+    node_path = node.path()
+    node_name = node.name()
+    piece_attribute = 'name'
+    merge_node_name = f'merge_{node_name}'
+    color_node_name = f'color_{node_name}'
+    name_node_name = f'name_{node_name}'
+    obj_merge_node = nodes.geo_nodes.ObjectMergeNode(hh_parent_node=scatter_group_geo_node, node_name=merge_node_name)
+    obj_merge_node.parm_objpath1 = node_path
+    name_node = nodes.geo_nodes.NameNode(hh_parent_node=scatter_group_geo_node)
+    name_node.parm_name1 = node_name
+    name_node.connect_from(other_hh_node=obj_merge_node)
+    color_node = nodes.geo_nodes.ColorNode(hh_parent_node=scatter_group_geo_node, node_name=color_node_name)
+    color_node.connect_from(other_hh_node=name_node)
+    color_node.parm_colorb = random.random()
+    color_node.parm_colorg = random.random()
+    color_node.parm_colorr = random.random()
+    merge_node.connect_from(other_hh_node=color_node, input_index=index)
+
+xform_node = nodes.geo_nodes.TransformNode(hh_parent_node=scatter_group_geo_node)
+xform_node.connect_from(other_hh_node=merge_node)
+copy2points_node = nodes.geo_nodes.CopytopointsNode(hh_parent_node=scatter_group_geo_node)
+copy2points_node.parm_useidattrib = True
+copy2points_node.parm_idattrib_menu = piece_attribute
+copy2points_node.connect_from(other_hh_node=xform_node)
+
+grid_node = nodes.geo_nodes.GridNode(hh_parent_node=scatter_group_geo_node)
+attrib_from_pieces_node = nodes.geo_nodes.AttribfrompiecesNode(hh_parent_node=scatter_group_geo_node)
+attrib_from_pieces_node.parm_pieceattrib_menu = piece_attribute
+attrib_from_pieces_node.connect_from(other_hh_node=grid_node)
+attrib_from_pieces_node.connect_from(other_hh_node=xform_node, input_index=1)
+copy2points_node.connect_from(other_hh_node=attrib_from_pieces_node, input_index=1)
+copy2points_node.parm_pack = True
+copy2points_node.node.setDisplayFlag(on=True)
+copy2points_node.node.setRenderFlag(on=True)
+]]></script>
+  </tool>
+
+  <tool name="tool_2" label="New Tool" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+from hou_helper.base_objects import hh_node
+from hou_helper import nodes
+from hou_helper.utils.gen_classes import gen_node_classes
+
+obj_node = hou.node('\obj')
+hh_obj_node = hh_node.HHNode(node=obj_node)
+selected_nodes = hou.selectedNodes()
+print(selected_nodes)
+
+node_folder_list = [
+    'obj_nodes',
+    'geo_nodes',
+    'matnet_nodes',
+    'redshift_nodes',
+]
+node_selected = hou.ui.selectFromList(node_folder_list)
+node_context = node_folder_list[node_selected[0]]
+print(f'node context = {node_context}')
+for node in selected_nodes:
+    print(f'generating: {node.name()}')
+    gen_node_classes.generate_node_class(node=node, sub_dir=node_context, debug=True)
+]]></script>
+  </tool>
+</shelfDocument>

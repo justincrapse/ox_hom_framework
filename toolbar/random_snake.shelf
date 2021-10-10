@@ -4,12 +4,13 @@
  It should not be hand-edited when it is being used by the application.
  Note, that two definitions of the same element are not allowed in
  a single file. -->
+
   <toolshelf name="random_snake" label="Random Snake">
     <memberTool name="scatter_group0"/>
-    <memberTool name="tool_2"/>
+    <memberTool name="node_class_generator"/>
   </toolshelf>
 
-  <tool name="scatter_group0" label="Scatter Group" icon="PLASMA_App">
+  <tool name="scatter_group0" label="Scatter Group" icon="sunflower_icon.png">
     <script scriptType="python"><![CDATA[# ui: confirm selected
 # create geo node
 # object merge node for each selected
@@ -71,9 +72,13 @@ copy2points_node.parm_idattrib_menu = piece_attribute
 copy2points_node.connect_from(other_hh_node=xform_node)
 
 grid_node = nodes.geo_nodes.GridNode(hh_parent_node=scatter_group_geo_node)
+scatter_node = nodes.geo_nodes.ScatterNode(hh_parent_node=scatter_group_geo_node)
+scatter_node.connect_from(other_hh_node=grid_node)
+scatter_node.parm_npts = 100
+
 attrib_from_pieces_node = nodes.geo_nodes.AttribfrompiecesNode(hh_parent_node=scatter_group_geo_node)
 attrib_from_pieces_node.parm_pieceattrib_menu = piece_attribute
-attrib_from_pieces_node.connect_from(other_hh_node=grid_node)
+attrib_from_pieces_node.connect_from(other_hh_node=scatter_node)
 attrib_from_pieces_node.connect_from(other_hh_node=xform_node, input_index=1)
 copy2points_node.connect_from(other_hh_node=attrib_from_pieces_node, input_index=1)
 copy2points_node.parm_pack = True
@@ -82,7 +87,7 @@ copy2points_node.node.setRenderFlag(on=True)
 ]]></script>
   </tool>
 
-  <tool name="tool_2" label="New Tool" icon="PLASMA_App">
+  <tool name="node_class_generator" label="Node Class Generator" icon="cat_icon">
     <script scriptType="python"><![CDATA[import hou
 from hou_helper.base_objects import hh_node
 from hou_helper import nodes

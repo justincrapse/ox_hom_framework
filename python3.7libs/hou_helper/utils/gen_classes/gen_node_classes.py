@@ -45,6 +45,9 @@ def generate_node_class(node, sub_dir, debug=False):
     file_name_ext = f'{file_name_node}.py'
     full_file_path = nodes_path.joinpath(sub_dir, file_name_ext)
 
+    # folders
+    parm_template_group = node.parmTemplateGroup()
+
     class_string = f"""from hou_helper.base_objects.hh_node import HHNode
 from hou_helper.base_objects.parameter import Parameter
 from hou_helper.base_objects.menu import Menu

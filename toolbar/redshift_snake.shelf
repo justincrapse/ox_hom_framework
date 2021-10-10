@@ -6,11 +6,15 @@
  a single file. -->
 
   <toolshelf name="redshift_snake" label="RedshiftSnake">
-    <memberTool name="st_2_rs"/>
+    <memberTool name="st2rs"/>
     <memberTool name="Substance_2_RS"/>
   </toolshelf>
 
-  <tool name="st_2_rs" label="ST_2_RS" icon="PLASMA_App">
+  <tool name="Substance_2_RS" label="SubD_2_RS" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[]]></script>
+  </tool>
+
+  <tool name="st2rs" label="SpeedTree -&gt; RS" icon="tree_icon.png">
     <script scriptType="python"><![CDATA[# get file from user
 # scan folder content
 # unpack
@@ -170,9 +174,5 @@ def create_materials(group_list, folder_path, matnet_node):
         rs_mat_node.node.layoutChildren()
 
 main()]]></script>
-  </tool>
-
-  <tool name="Substance_2_RS" label="SubD_2_RS" icon="PLASMA_App">
-    <script scriptType="python"><![CDATA[]]></script>
   </tool>
 </shelfDocument>

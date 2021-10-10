@@ -12,3 +12,4 @@ from .scatter_node import ScatterNode
 from .grid_node import GridNode
 from .connectivity_node import ConnectivityNode
 from .color_node import ColorNode
+from .switch_node import SwitchNode

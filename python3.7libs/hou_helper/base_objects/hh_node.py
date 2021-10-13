@@ -14,9 +14,9 @@ class HHNode:
     def __setattr__(self, name, value):
         skip_list = ['node']
         clean_key = self.clean_parm_key(raw_key=name)
-        print(f'accessing setattr with {name, value}')
+        # print(f'accessing setattr with {name, value}')
         if clean_key in self.parm_lookup_dict and clean_key not in skip_list and hasattr(self, name):
-            print(f'in setattr with: {clean_key}, {value}')
+            # print(f'in setattr with: {clean_key}, {value}')
             hou_parm_string = self.parm_lookup_dict[clean_key]
             parm = self.node.parm(hou_parm_string)
             parm.set(value)
@@ -38,6 +38,7 @@ class HHNode:
         other_hh_node_list = [other_hh_node] if not isinstance(other_hh_node, list) else other_hh_node
         for hh_other_node in other_hh_node_list:
             other_node = hh_other_node.node
+            print(f'connecting from {self.node.name()} to {other_hh_node.node.name()} in: {input_index}, out: {out_index}')
             self.node.setInput(input_index=input_index, item_to_become_input=other_node, output_index=out_index)
 
     def get_child_by_name(self, child_name):

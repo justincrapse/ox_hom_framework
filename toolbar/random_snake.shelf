@@ -8,6 +8,9 @@
   <toolshelf name="random_snake" label="Random Snake">
     <memberTool name="scatter_group0"/>
     <memberTool name="node_class_generator"/>
+    <memberTool name="terrain_scatter"/>
+    <memberTool name="mask_visualizer"/>
+    <memberTool name="new_mask_by_feature"/>
   </toolshelf>
 
   <tool name="scatter_group0" label="Scatter Group" icon="sunflower_icon.png">
@@ -93,7 +96,7 @@ from hou_helper.base_objects import hh_node
 from hou_helper import nodes
 from hou_helper.utils.gen_classes import gen_node_classes
 
-obj_node = hou.node('\obj')
+obj_node = hou.node('/obj')
 hh_obj_node = hh_node.HHNode(node=obj_node)
 selected_nodes = hou.selectedNodes()
 print(selected_nodes)

@@ -13,3 +13,7 @@ from .grid_node import GridNode
 from .connectivity_node import ConnectivityNode
 from .color_node import ColorNode
 from .switch_node import SwitchNode
+
+from .heightfield_copylayer_node import HeightfieldCopylayerNode
+from .heightfield_visualize_node import HeightfieldVisualizeNode
+from .heightfield_maskbyfeature_node import HeightfieldMaskbyfeatureNode

@@ -1,18 +1,19 @@
 from hou_helper.base_objects.hh_node import HHNode
 from hou_helper.base_objects.parameter import Parameter
 from hou_helper.base_objects.menu import Menu
+# node class version: 0.1
 
 
 class GridNode(HHNode):
     node_type = 'grid'
     parm_lookup_dict = {'type': 'type', 'surftype': 'surftype', 'orient': 'orient', 'sizex': 'sizex', 'sizey': 'sizey', 'tx': 'tx', 'ty': 'ty', 'tz': 'tz', 'rx': 'rx', 'ry': 'ry', 'rz': 'rz', 'rows': 'rows', 'cols': 'cols', 'orderu': 'orderu', 'orderv': 'orderv', 'interpu': 'interpu', 'interpv': 'interpv'}
 
-    def __init__(self, node=None, hh_parent_node=None, node_name=None):
-        self.hh_parent_node = hh_parent_node
+    def __init__(self, node=None, hh_parent=None, node_name=None):
+        self.hh_parent = hh_parent
         if node:
             self.node = node
         else:
-            self.node = self.hh_parent_node.create_node(node_type_name=self.node_type, node_name=node_name)
+            self.node = self.hh_parent.create_node(node_type_name=self.node_type, node_name=node_name)
         self.node_name = self.node.name()
         super().__init__(node=self.node)
         

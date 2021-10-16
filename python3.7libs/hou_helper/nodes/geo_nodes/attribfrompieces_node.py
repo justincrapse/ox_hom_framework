@@ -1,22 +1,25 @@
 from hou_helper.base_objects.hh_node import HHNode
 from hou_helper.base_objects.parameter import Parameter
 from hou_helper.base_objects.menu import Menu
+# node class version: 0.1
 
 
 class AttribfrompiecesNode(HHNode):
     node_type = 'attribfrompieces'
     parm_lookup_dict = {'pieceattrib': 'pieceattrib', 'piecefilter': 'piecefilter', 'mode': 'mode', 'piecesfolder': 'piecesfolder', 'shuffle': 'shuffle', 'seed': 'seed', 'offset': 'offset', 'sourcepointsfolder': 'sourcepointsfolder', 'overrideptnum': 'overrideptnum', 'ptnumattrib': 'ptnumattrib', 'locattrib': 'locattrib', 'patchesfolder': 'patchesfolder', 'patchsize': 'patchsize', 'patchscalex': 'patchscalex', 'patchscaley': 'patchscaley', 'patchscalez': 'patchscalez', 'patchoffsetx': 'patchoffsetx', 'patchoffsety': 'patchoffsety', 'patchoffsetz': 'patchoffsetz', 'worleydistortion': 'worleydistortion', 'distortstrength': 'distortstrength', 'distortsize': 'distortsize', 'worleyrough': 'worleyrough', 'distortoffsetx': 'distortoffsetx', 'distortoffsety': 'distortoffsety', 'distortoffsetz': 'distortoffsetz', 'noisefolder2': 'noisefolder2', 'noisebasis': 'noisebasis', 'noiseelementsize': 'noiseelementsize', 'noiseelementscalex': 'noiseelementscalex', 'noiseelementscaley': 'noiseelementscaley', 'noiseelementscalez': 'noiseelementscalez', 'offset2x': 'offset2x', 'offset2y': 'offset2y', 'offset2z': 'offset2z', 'noiseoct': 'noiseoct', 'noiserough': 'noiserough', 'noisedistortion': 'noisedistortion', 'disp': 'disp', 'dispfreq': 'dispfreq', 'gflow': 'gflow', 'noiseremap': 'noiseremap', 'randomfolder': 'randomfolder', 'weightmethod': 'weightmethod', 'randomseed': 'randomseed', 'autofillnamernd': 'autofillnamernd', 'numval': 'numval', 'weightattrib': 'weightattrib', 'folder0': 'folder0', 'attrib': 'attrib', 'attribtype': 'attribtype', 'mappiecesfrom': 'mappiecesfrom', 'autofillnamestring': 'autofillnamestring', 'nummaps': 'nummaps', 'autofillnamenumeric': 'autofillnamenumeric', 'numranges': 'numranges', 'attribunmatchedpiece': 'attribunmatchedpiece', 'useattribunmatchedgroup': 'useattribunmatchedgroup', 'attribunmatchedgroup': 'attribunmatchedgroup', 'seedmapattrib': 'seedmapattrib', 'vexfolder': 'vexfolder', 'autofillnamevex': 'autofillnamevex', 'numvex': 'numvex', 'vexunmatchedpiece': 'vexunmatchedpiece', 'usevexunmatchedgroup': 'usevexunmatchedgroup', 'vexunmatchedgroup': 'vexunmatchedgroup', 'seedvex': 'seedvex', 'noiseremap1pos': 'noiseremap1pos', 'noiseremap1value': 'noiseremap1value', 'noiseremap1interp': 'noiseremap1interp', 'noiseremap2pos': 'noiseremap2pos', 'noiseremap2value': 'noiseremap2value', 'noiseremap2interp': 'noiseremap2interp'}
 
-    def __init__(self, node=None, hh_parent_node=None, node_name=None):
-        self.hh_parent_node = hh_parent_node
+    def __init__(self, node=None, hh_parent=None, node_name=None):
+        self.hh_parent = hh_parent
         if node:
             self.node = node
         else:
-            self.node = self.hh_parent_node.create_node(node_type_name=self.node_type, node_name=node_name)
+            self.node = self.hh_parent.create_node(node_type_name=self.node_type, node_name=node_name)
         self.node_name = self.node.name()
         super().__init__(node=self.node)
         
         # parm vars:
+        self.parm_pieceattrib = Parameter(parm=self.node.parm('pieceattrib'))
+        self.parm_piecefilter = Parameter(parm=self.node.parm('piecefilter'))
         self.parm_piecesfolder = Parameter(parm=self.node.parm('piecesfolder'))
         self.parm_shuffle = Parameter(parm=self.node.parm('shuffle'))
         self.parm_seed = Parameter(parm=self.node.parm('seed'))
@@ -59,18 +62,21 @@ class AttribfrompiecesNode(HHNode):
         self.parm_randomseed = Parameter(parm=self.node.parm('randomseed'))
         self.parm_autofillnamernd = Parameter(parm=self.node.parm('autofillnamernd'))
         self.parm_numval = Parameter(parm=self.node.parm('numval'))
+        self.parm_weightattrib = Parameter(parm=self.node.parm('weightattrib'))
         self.parm_folder0 = Parameter(parm=self.node.parm('folder0'))
         self.parm_attrib = Parameter(parm=self.node.parm('attrib'))
         self.parm_autofillnamestring = Parameter(parm=self.node.parm('autofillnamestring'))
         self.parm_nummaps = Parameter(parm=self.node.parm('nummaps'))
         self.parm_autofillnamenumeric = Parameter(parm=self.node.parm('autofillnamenumeric'))
         self.parm_numranges = Parameter(parm=self.node.parm('numranges'))
+        self.parm_attribunmatchedpiece = Parameter(parm=self.node.parm('attribunmatchedpiece'))
         self.parm_useattribunmatchedgroup = Parameter(parm=self.node.parm('useattribunmatchedgroup'))
         self.parm_attribunmatchedgroup = Parameter(parm=self.node.parm('attribunmatchedgroup'))
         self.parm_seedmapattrib = Parameter(parm=self.node.parm('seedmapattrib'))
         self.parm_vexfolder = Parameter(parm=self.node.parm('vexfolder'))
         self.parm_autofillnamevex = Parameter(parm=self.node.parm('autofillnamevex'))
         self.parm_numvex = Parameter(parm=self.node.parm('numvex'))
+        self.parm_vexunmatchedpiece = Parameter(parm=self.node.parm('vexunmatchedpiece'))
         self.parm_usevexunmatchedgroup = Parameter(parm=self.node.parm('usevexunmatchedgroup'))
         self.parm_vexunmatchedgroup = Parameter(parm=self.node.parm('vexunmatchedgroup'))
         self.parm_seedvex = Parameter(parm=self.node.parm('seedvex'))
@@ -81,16 +87,11 @@ class AttribfrompiecesNode(HHNode):
 
         
         # parm menu vars:
-        self.parm_pieceattrib_menu = PieceattribMenu(parm=self.node.parm('pieceattrib'))
-        self.parm_piecefilter_menu = PiecefilterMenu(parm=self.node.parm('piecefilter'))
         self.parm_mode_menu = ModeMenu(parm=self.node.parm('mode'))
         self.parm_noisebasis_menu = NoisebasisMenu(parm=self.node.parm('noisebasis'))
         self.parm_weightmethod_menu = WeightmethodMenu(parm=self.node.parm('weightmethod'))
-        self.parm_weightattrib_menu = WeightattribMenu(parm=self.node.parm('weightattrib'))
         self.parm_attribtype_menu = AttribtypeMenu(parm=self.node.parm('attribtype'))
         self.parm_mappiecesfrom_menu = MappiecesfromMenu(parm=self.node.parm('mappiecesfrom'))
-        self.parm_attribunmatchedpiece_menu = AttribunmatchedpieceMenu(parm=self.node.parm('attribunmatchedpiece'))
-        self.parm_vexunmatchedpiece_menu = VexunmatchedpieceMenu(parm=self.node.parm('vexunmatchedpiece'))
         self.parm_noiseremap1interp_menu = Noiseremap1InterpMenu(parm=self.node.parm('noiseremap1interp'))
         self.parm_noiseremap2interp_menu = Noiseremap2InterpMenu(parm=self.node.parm('noiseremap2interp'))
 
@@ -101,22 +102,6 @@ class AttribfrompiecesNode(HHNode):
 
 
 # parm menu classes:
-class PieceattribMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.name = 1
-        self.shop_materialpath = 2
-
-
-class PiecefilterMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.tree_one = 0
-        self.tree_two = 1
-
-
 class ModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
@@ -156,12 +141,6 @@ class WeightmethodMenu(Menu):
         self.weight_attribute = 2
 
 
-class WeightattribMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-
-
 class AttribtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
@@ -176,22 +155,6 @@ class MappiecesfromMenu(Menu):
         super().__init__(parm=parm)
         self.automatic_ranges = 0
         self.explicit_range = 1
-
-
-class AttribunmatchedpieceMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.tree_one = 0
-        self.tree_two = 1
-
-
-class VexunmatchedpieceMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.tree_one = 0
-        self.tree_two = 1
 
 
 class Noiseremap1InterpMenu(Menu):

@@ -32,5 +32,7 @@ def move_first_digit(string_in: str):
     if string_in[0].isdigit():
         first_pass = re.sub(r'(^\d*)(.*)', r'\2_\1', string_in)
         second_pass = re.sub(r'^_*', '', first_pass)
+        if second_pass[0].isdigit():
+            second_pass = f'_{second_pass}'
         return second_pass
     return string_in

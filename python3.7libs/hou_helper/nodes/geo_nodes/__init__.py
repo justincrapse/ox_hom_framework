@@ -17,3 +17,8 @@ from .switch_node import SwitchNode
 from .heightfield_copylayer_node import HeightfieldCopylayerNode
 from .heightfield_visualize_node import HeightfieldVisualizeNode
 from .heightfield_maskbyfeature_node import HeightfieldMaskbyfeatureNode
+from .null_node import NullNode
+from .heightfield_scatter_node import HeightfieldScatterNode
+from .heightfield_maskbyobject_node import HeightfieldMaskbyobjectNode
+from .hf_combine_masks_node import HfCombineMasksNode
+from .volumewrangle_node import VolumewrangleNode

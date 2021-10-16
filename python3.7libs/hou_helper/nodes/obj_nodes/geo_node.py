@@ -1,18 +1,19 @@
 from hou_helper.base_objects.hh_node import HHNode
 from hou_helper.base_objects.parameter import Parameter
 from hou_helper.base_objects.menu import Menu
+# node class version: 0.1
 
 
 class GeoNode(HHNode):
     node_type = 'geo'
     parm_lookup_dict = {'stdswitcher1': 'stdswitcher1', 'xord': 'xOrd', 'rord': 'rOrd', 'tx': 'tx', 'ty': 'ty', 'tz': 'tz', 'rx': 'rx', 'ry': 'ry', 'rz': 'rz', 'sx': 'sx', 'sy': 'sy', 'sz': 'sz', 'px': 'px', 'py': 'py', 'pz': 'pz', 'prx': 'prx', 'pry': 'pry', 'prz': 'prz', 'scale': 'scale', 'pre_xform': 'pre_xform', 'keeppos': 'keeppos', 'childcomp': 'childcomp', 'constraints_on': 'constraints_on', 'constraints_path': 'constraints_path', 'lookatpath': 'lookatpath', 'lookupobjpath': 'lookupobjpath', 'lookup': 'lookup', 'pathobjpath': 'pathobjpath', 'roll': 'roll', 'pos': 'pos', 'uparmtype': 'uparmtype', 'pathorient': 'pathorient', 'upx': 'upx', 'upy': 'upy', 'upz': 'upz', 'bank': 'bank', 'shop_materialpath': 'shop_materialpath', 'shop_materialopts': 'shop_materialopts', 'tdisplay': 'tdisplay', 'display': 'display', 'use_dcolor': 'use_dcolor', 'dcolorr': 'dcolorr', 'dcolorg': 'dcolorg', 'dcolorb': 'dcolorb', 'picking': 'picking', 'pickscript': 'pickscript', 'caching': 'caching', 'vport_shadeopen': 'vport_shadeopen', 'vport_displayassubdiv': 'vport_displayassubdiv', 'vport_onionskin': 'vport_onionskin', 'stdswitcher41': 'stdswitcher41', 'viewportlod': 'viewportlod', 'vm_rendervisibility': 'vm_rendervisibility', 'vm_rendersubd': 'vm_rendersubd', 'vm_subdstyle': 'vm_subdstyle', 'vm_subdgroup': 'vm_subdgroup', 'vm_osd_quality': 'vm_osd_quality', 'vm_osd_vtxinterp': 'vm_osd_vtxinterp', 'vm_osd_fvarinterp': 'vm_osd_fvarinterp', 'folder01': 'folder01', 'categories': 'categories', 'reflectmask': 'reflectmask', 'refractmask': 'refractmask', 'lightmask': 'lightmask', 'lightcategories': 'lightcategories', 'vm_lpetag': 'vm_lpetag', 'vm_volumefilter': 'vm_volumefilter', 'vm_volumefilterwidth': 'vm_volumefilterwidth', 'vm_matte': 'vm_matte', 'vm_rayshade': 'vm_rayshade', 'geo_velocityblur': 'geo_velocityblur', 'geo_accelattribute': 'geo_accelattribute', 'vm_shadingquality': 'vm_shadingquality', 'vm_flatness': 'vm_flatness', 'vm_raypredice': 'vm_raypredice', 'vm_curvesurface': 'vm_curvesurface', 'vm_rmbackface': 'vm_rmbackface', 'shop_geometrypath': 'shop_geometrypath', 'vm_forcegeometry': 'vm_forcegeometry', 'vm_rendersubdcurves': 'vm_rendersubdcurves', 'vm_renderpoints': 'vm_renderpoints', 'vm_renderpointsas': 'vm_renderpointsas', 'vm_usenforpoints': 'vm_usenforpoints', 'vm_pointscale': 'vm_pointscale', 'vm_pscalediameter': 'vm_pscalediameter', 'vm_metavolume': 'vm_metavolume', 'vm_coving': 'vm_coving', 'vm_materialoverride': 'vm_materialoverride', 'vm_overridedetail': 'vm_overridedetail', 'vm_procuseroottransform': 'vm_procuseroottransform', 'rs_objprop_switcher1': 'RS_objprop_switcher1', 'rs_objpro_first': 'RS_objpro_first', 'rs_campropshapes_switcher1': 'RS_campropshapes_switcher1', 'rs_objprop_id': 'RS_objprop_ID', 'rs_objprop_cryptoid': 'RS_objprop_CryptoID', 'rs_objprop_cryptomatid_allmat': 'RS_objprop_CryptoMatID_AllMat', 'rs_objprop_ngons_enable': 'RS_objprop_ngons_enable', 'rs_objprop_ngons_tessmode': 'RS_objprop_ngons_tessMode', 'rs_objprop_ngons_avoiddegen': 'RS_objprop_ngons_avoidDegen', 'rs_objprop_normals_normalize': 'RS_objprop_normals_normalize', 'rs_objprop_renderashair': 'RS_objprop_renderAsHair', 'rs_objprop_defaulthairwidth': 'RS_objprop_defaultHairWidth', 'rs_objprop_hairhalfthickness': 'RS_objprop_hairHalfThickness', 'rs_objprop_mb_trans': 'RS_objprop_mb_trans', 'rs_objprop_mb_def': 'RS_objprop_mb_def', 'rs_objprop_mb_points': 'RS_objprop_mb_points', 'rs_objprop_mb_def_use_v': 'RS_objprop_mb_def_use_v', 'rs_objprop_mb_v_attr': 'RS_objprop_mb_v_attr', 'rs_objprop_mb_deformsteps': 'RS_objprop_mb_deformSteps', 'rs_objprop_mb_fd_scale': 'RS_objprop_mb_fd_scale', 'rs_objprop_mb_offset': 'RS_objprop_mb_offset', 'rs_objprop_rendersopsubnets': 'RS_objprop_renderSOPsubnets', 'rs_objprop_tess_enable': 'RS_objprop_tess_enable', 'rs_objprop_tess_u': 'RS_objprop_tess_u', 'rs_objprop_tess_v': 'RS_objprop_tess_v', 'rs_objprop_tess_trim': 'RS_objprop_tess_trim', 'rs_objprop_inst_mode': 'RS_objprop_inst_mode', 'rs_objprop_inst_mb': 'RS_objprop_inst_mb', 'rs_objprop_inst_lightshader': 'RS_objprop_inst_lightShader', 'rs_objprop_inst_universalif': 'RS_objprop_inst_universalIF', 'rs_objprop_inst_ignorepivot': 'RS_objprop_inst_ignorePivot', 'rs_objprop_inst_fileoverride': 'RS_objprop_inst_fileOverride', 'rs_objprop_inst_packed': 'RS_objprop_inst_packed', 'rs_objprop_inst_packedpriminstancing': 'RS_objprop_inst_PackedPrimInstancing', 'rs_objprop_inst_subnetinstancing': 'RS_objprop_inst_subnetInstancing', 'rs_objprop_attr_auto': 'RS_objprop_attr_auto', 'rs_objprop_attr_vertex': 'RS_objprop_attr_vertex', 'rs_objprop_attr_points': 'RS_objprop_attr_points', 'rs_objprop_attr_primitives': 'RS_objprop_attr_primitives', 'rs_objprop_attr_detail': 'RS_objprop_attr_detail', 'rs_objprop_pckattr_promotion': 'RS_objprop_pckattr_promotion', 'rs_objprop_pckattr_replace': 'RS_objprop_pckattr_replace', 'rs_objprop_pckattr_mult': 'RS_objprop_pckattr_mult', 'rs_objprop_pckattr_add': 'RS_objprop_pckattr_add', 'rs_objprop_tracesets_enabled': 'RS_objprop_tracesets_enabled', 'rs_objprop_tracesets_reflection': 'RS_objprop_tracesets_reflection', 'rs_objprop_tracesets_refraction': 'RS_objprop_tracesets_refraction', 'rs_objprop_tracesets_sss': 'RS_objprop_tracesets_sss', 'rs_objprop_ipr_forcemeshupdate': 'RS_objprop_ipr_forceMeshUpdate', 'rs_objpro_label5': 'RS_objpro_label5', 'rs_objprop_proxy_enable': 'RS_objprop_proxy_enable', 'rs_objprop_proxy_file': 'RS_objprop_proxy_file', 'rs_objprop_proxy_preview': 'RS_objprop_proxy_preview', 'rs_objprop_proxy_prevpercent': 'RS_objprop_proxy_prevPercent', 'rs_objprop_proxy_prevlines': 'RS_objprop_proxy_prevLines', 'rs_objprop_proxy_prevanimated': 'RS_objprop_proxy_prevAnimated', 'rs_objprop_proxy_materials': 'RS_objprop_proxy_materials', 'rs_objprop_proxy_override': 'RS_objprop_proxy_override', 'rs_objprop_proxy_overridelist': 'RS_objprop_proxy_overrideList', 'rs_objprop_proxy_elements_mesh': 'RS_objprop_proxy_elements_mesh', 'rs_objprop_proxy_elements_volume': 'RS_objprop_proxy_elements_volume', 'rs_objprop_proxy_elements_light': 'RS_objprop_proxy_elements_light', 'rs_objprop_proxy_elements_proxy': 'RS_objprop_proxy_elements_proxy', 'rs_objprop_proxy_ovrid': 'RS_objprop_proxy_ovrID', 'rs_objprop_proxy_ovrvis': 'RS_objprop_proxy_ovrVis', 'rs_objprop_proxy_ovrtess': 'RS_objprop_proxy_ovrTess', 'rs_objprop_proxy_ovrtraces': 'RS_objprop_proxy_ovrTraceS', 'rs_objprop_proxy_ovruserdata': 'RS_objprop_proxy_ovrUserData', 'rs_objpro_label1o': 'RS_objpro_label1o', 'meshflag_primaryrayvisible': 'MESHFLAG_PRIMARYRAYVISIBLE', 'meshflag_secondaryrayvisible': 'MESHFLAG_SECONDARYRAYVISIBLE', 'meshflag_shadowcaster': 'MESHFLAG_SHADOWCASTER', 'meshflag_shadowreceiver': 'MESHFLAG_SHADOWRECEIVER', 'meshflag_noselfshadow': 'MESHFLAG_NOSELFSHADOW', 'meshflag_aocaster': 'MESHFLAG_AOCASTER', 'meshflag_reflectionvisible': 'MESHFLAG_REFLECTIONVISIBLE', 'meshflag_refractionvisible': 'MESHFLAG_REFRACTIONVISIBLE', 'meshflag_reflectioncaster': 'MESHFLAG_REFLECTIONCASTER', 'meshflag_refractioncaster': 'MESHFLAG_REFRACTIONCASTER', 'meshflag_fgvisible': 'MESHFLAG_FGVISIBLE', 'meshflag_givisible': 'MESHFLAG_GIVISIBLE', 'meshflag_causticvisible': 'MESHFLAG_CAUSTICVISIBLE', 'meshflag_fgcaster': 'MESHFLAG_FGCASTER', 'meshflag_forcebruteforcegi': 'MESHFLAG_FORCEBRUTEFORCEGI', 'meshflag_gicaster': 'MESHFLAG_GICASTER', 'meshflag_causticcaster': 'MESHFLAG_CAUSTICCASTER', 'rs_objpro_label2': 'RS_objpro_label2', 'rs_objprop_rstess_enable': 'RS_objprop_rstess_enable', 'rs_objprop_rstess_rule': 'RS_objprop_rstess_rule', 'rs_objprop_rstess_ssadaptive': 'RS_objprop_rstess_ssadaptive', 'rs_objprop_rstess_smoothsub': 'RS_objprop_rstess_smoothsub', 'rs_objprop_rstess_triquads': 'RS_objprop_rstess_triQuads', 'rs_objprop_rstess_melenght': 'RS_objprop_rstess_melenght', 'rs_objprop_rstess_maxsubd': 'RS_objprop_rstess_maxsubd', 'rs_objprop_rstess_ooftf': 'RS_objprop_rstess_ooftf', 'rs_objprop_rstess_looft': 'RS_objprop_rstess_looft', 'rs_objprop_rstess_looftsubd': 'RS_objprop_rstess_looftSubd', 'rs_objprop_rstess_smooth': 'RS_objprop_rstess_smooth', 'rs_objprop_rstess_smoothbound': 'RS_objprop_rstess_smoothBound', 'rs_objpro_label3': 'RS_objpro_label3', 'rs_objprop_displace_enable': 'RS_objprop_displace_enable', 'rs_objprop_displace_max': 'RS_objprop_displace_max', 'rs_objprop_displace_scale': 'RS_objprop_displace_scale', 'rs_objprop_displace_autob': 'RS_objprop_displace_autob', 'rs_objpro_label4': 'RS_objpro_label4', 'rs_objprop_matte_enable': 'RS_objprop_matte_enable', 'rs_objprop_matte_showbackg': 'RS_objprop_matte_showbackg', 'rs_objprop_matte_applysec': 'RS_objprop_matte_applysec', 'rs_objprop_matte_abyml': 'RS_objprop_matte_abyml', 'rs_objprop_matte_includepm': 'RS_objprop_matte_includePM', 'rs_objprop_matte_alpha': 'RS_objprop_matte_alpha', 'rs_objprop_matte_reflscale': 'RS_objprop_matte_reflscale', 'rs_objprop_matte_refrscale': 'RS_objprop_matte_refrscale', 'rs_objprop_matte_diffscale': 'RS_objprop_matte_diffscale', 'rs_objprop_matte_shadowenable': 'RS_objprop_matte_shadowenable', 'rs_objprop_matte_shadowsfromm': 'RS_objprop_matte_shadowsFromM', 'rs_objprop_matte_shadowalpha': 'RS_objprop_matte_shadowalpha', 'rs_objprop_matte_shadowcolorr': 'RS_objprop_matte_shadowcolorr', 'rs_objprop_matte_shadowcolorg': 'RS_objprop_matte_shadowcolorg', 'rs_objprop_matte_shadowcolorb': 'RS_objprop_matte_shadowcolorb', 'rs_objprop_matte_shadowtrans': 'RS_objprop_matte_shadowtrans', 'rs_objpro_label6': 'RS_objpro_label6', 'rs_objprop_strands_enable': 'RS_objprop_strands_enable', 'rs_objprop_strands_type': 'RS_objprop_strands_type', 'rs_objprop_strands_maxsubd': 'RS_objprop_strands_maxSubd', 'rs_objprop_strands_scale': 'RS_objprop_strands_scale', 'rs_objprop_strands_scalemult': 'RS_objprop_strands_scaleMult', 'rs_objprop_strands_ignorepscale': 'RS_objprop_strands_ignorePScale', 'rs_objprop_strands_usecamera': 'RS_objprop_strands_useCamera', 'rs_objpro_label10': 'RS_objpro_label10', 'rs_objprop_particles_enable': 'RS_objprop_particles_enable', 'rs_objprop_particles_ignorescale': 'RS_objprop_particles_ignoreScale', 'rs_objprop_particles_scale': 'RS_objprop_particles_scale', 'rs_objprop_particles_scalemult': 'RS_objprop_particles_scaleMult', 'rs_objpro_label7': 'RS_objpro_label7', 'rs_objprop_volume_enable': 'RS_objprop_volume_enable', 'rs_objprop_volume_type': 'RS_objprop_volume_type', 'rs_objprop_volume_filtern': 'RS_objprop_volume_filterN', 'rs_objprop_volume_filterdeg': 'RS_objprop_volume_filterDeg', 'rs_objprop_volume_filterdegthr': 'RS_objprop_volume_filterDegThr', 'rs_objprop_volume_cleanbackg': 'RS_objprop_volume_cleanBackg', 'rs_objprop_volume_v': 'RS_objprop_volume_v', 'rs_objprop_volume_vx': 'RS_objprop_volume_vx', 'rs_objprop_volume_vy': 'RS_objprop_volume_vy', 'rs_objprop_volume_vz': 'RS_objprop_volume_vz', 'rs_objprop_volume_vs': 'RS_objprop_volume_vs', 'rs_objpro_last': 'RS_objpro_last'}
 
-    def __init__(self, node=None, hh_parent_node=None, node_name=None):
-        self.hh_parent_node = hh_parent_node
+    def __init__(self, node=None, hh_parent=None, node_name=None):
+        self.hh_parent = hh_parent
         if node:
             self.node = node
         else:
-            self.node = self.hh_parent_node.create_node(node_type_name=self.node_type, node_name=node_name)
+            self.node = self.hh_parent.create_node(node_type_name=self.node_type, node_name=node_name)
         self.node_name = self.node.name()
         super().__init__(node=self.node)
         
@@ -335,18 +336,18 @@ class PickscriptMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.c__programdata_r____portra_800_cube = 0
-        self._hip_grasses_grass_card_001_fbx = 1
-        self.e__art_projects____rock_stone_sbsar = 2
-        self.e__art_projects____mud_ground_sbsar = 3
-        self.e__art_projects____u_sugi_ban_sbsar = 4
-        self.e__art_projects_____facade_02_sbsar = 5
-        self.e__art_projects____and_smooth_sbsar = 6
-        self._hip_crystallize___ice_nugget_sbsar = 7
-        self._hip_chromatic_glass_gradient_sbsar = 8
-        self._hip_acid_etched_glass_rough_sbsar = 9
-        self.e__art_projects____agon_tiles_sbsar = 10
-        self.e__art_projects____ice_nugget_sbsar = 11
+        self._hip_my_first_tree_prox_rs = 0
+        self.c__programdata_r____portra_800_cube = 1
+        self._hip_grasses_grass_card_001_fbx = 2
+        self.e__art_projects____rock_stone_sbsar = 3
+        self.e__art_projects____mud_ground_sbsar = 4
+        self.e__art_projects____u_sugi_ban_sbsar = 5
+        self.e__art_projects_____facade_02_sbsar = 6
+        self.e__art_projects____and_smooth_sbsar = 7
+        self._hip_crystallize___ice_nugget_sbsar = 8
+        self._hip_chromatic_glass_gradient_sbsar = 9
+        self._hip_acid_etched_glass_rough_sbsar = 10
+        self.e__art_projects____agon_tiles_sbsar = 11
 
 
 class VportOnionskinMenu(Menu):
@@ -534,18 +535,18 @@ class RsObjpropProxyFileMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.c__programdata_r____portra_800_cube = 0
-        self._hip_grasses_grass_card_001_fbx = 1
-        self.e__art_projects____rock_stone_sbsar = 2
-        self.e__art_projects____mud_ground_sbsar = 3
-        self.e__art_projects____u_sugi_ban_sbsar = 4
-        self.e__art_projects_____facade_02_sbsar = 5
-        self.e__art_projects____and_smooth_sbsar = 6
-        self._hip_crystallize___ice_nugget_sbsar = 7
-        self._hip_chromatic_glass_gradient_sbsar = 8
-        self._hip_acid_etched_glass_rough_sbsar = 9
-        self.e__art_projects____agon_tiles_sbsar = 10
-        self.e__art_projects____ice_nugget_sbsar = 11
+        self._hip_my_first_tree_prox_rs = 0
+        self.c__programdata_r____portra_800_cube = 1
+        self._hip_grasses_grass_card_001_fbx = 2
+        self.e__art_projects____rock_stone_sbsar = 3
+        self.e__art_projects____mud_ground_sbsar = 4
+        self.e__art_projects____u_sugi_ban_sbsar = 5
+        self.e__art_projects_____facade_02_sbsar = 6
+        self.e__art_projects____and_smooth_sbsar = 7
+        self._hip_crystallize___ice_nugget_sbsar = 8
+        self._hip_chromatic_glass_gradient_sbsar = 9
+        self._hip_acid_etched_glass_rough_sbsar = 10
+        self.e__art_projects____agon_tiles_sbsar = 11
 
 
 class RsObjpropProxyPreviewMenu(Menu):

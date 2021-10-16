@@ -1,18 +1,19 @@
 from hou_helper.base_objects.hh_node import HHNode
 from hou_helper.base_objects.parameter import Parameter
 from hou_helper.base_objects.menu import Menu
+# node class version: 0.1
 
 
 class HeightfieldMaskbyfeatureNode(HHNode):
     node_type = 'heightfield_maskbyfeature'
     parm_lookup_dict = {'folder31': 'folder31', 'smooth_radius': 'smooth_radius', 'combine': 'combine', 'blend': 'blend', 'invertmask': 'invertmask', 'folder1': 'folder1', 'maskbyslope': 'maskbyslope', 'min_slopeangle': 'min_slopeangle', 'max_slopeangle': 'max_slopeangle', 'sloperamp': 'sloperamp', 'folder2': 'folder2', 'maskbyheight': 'maskbyheight', 'computerange': 'computerange', 'minheight': 'minheight', 'maxheight': 'maxheight', 'heightramp': 'heightramp', 'folder4': 'folder4', 'maskbycurvature': 'maskbycurvature', 'computercurvature': 'computercurvature', 'max_curvature': 'max_curvature', 'curvatureramp': 'curvatureramp', 'folder0': 'folder0', 'maskbydir': 'maskbydir', 'goal_angle': 'goal_angle', 'angle_spread': 'angle_spread', 'dirramp': 'dirramp', 'folder5': 'folder5', 'maskbyocclusion': 'maskbyocclusion', 'minexposure': 'minexposure', 'maxexposure': 'maxexposure', 'ramp': 'ramp', 'folder6': 'folder6', 'viewdistance': 'viewdistance', 'stepscale': 'stepscale', 'numsearches': 'numsearches', 'heightlayer': 'heightlayer', 'masklayer': 'masklayer', 'sloperamp1pos': 'sloperamp1pos', 'sloperamp1value': 'sloperamp1value', 'sloperamp1interp': 'sloperamp1interp', 'sloperamp2pos': 'sloperamp2pos', 'sloperamp2value': 'sloperamp2value', 'sloperamp2interp': 'sloperamp2interp', 'sloperamp3pos': 'sloperamp3pos', 'sloperamp3value': 'sloperamp3value', 'sloperamp3interp': 'sloperamp3interp', 'sloperamp4pos': 'sloperamp4pos', 'sloperamp4value': 'sloperamp4value', 'sloperamp4interp': 'sloperamp4interp', 'heightramp1pos': 'heightramp1pos', 'heightramp1value': 'heightramp1value', 'heightramp1interp': 'heightramp1interp', 'heightramp2pos': 'heightramp2pos', 'heightramp2value': 'heightramp2value', 'heightramp2interp': 'heightramp2interp', 'heightramp3pos': 'heightramp3pos', 'heightramp3value': 'heightramp3value', 'heightramp3interp': 'heightramp3interp', 'heightramp4pos': 'heightramp4pos', 'heightramp4value': 'heightramp4value', 'heightramp4interp': 'heightramp4interp', 'curvatureramp1pos': 'curvatureramp1pos', 'curvatureramp1value': 'curvatureramp1value', 'curvatureramp1interp': 'curvatureramp1interp', 'curvatureramp2pos': 'curvatureramp2pos', 'curvatureramp2value': 'curvatureramp2value', 'curvatureramp2interp': 'curvatureramp2interp', 'curvatureramp3pos': 'curvatureramp3pos', 'curvatureramp3value': 'curvatureramp3value', 'curvatureramp3interp': 'curvatureramp3interp', 'curvatureramp4pos': 'curvatureramp4pos', 'curvatureramp4value': 'curvatureramp4value', 'curvatureramp4interp': 'curvatureramp4interp', 'dirramp1pos': 'dirramp1pos', 'dirramp1value': 'dirramp1value', 'dirramp1interp': 'dirramp1interp', 'dirramp2pos': 'dirramp2pos', 'dirramp2value': 'dirramp2value', 'dirramp2interp': 'dirramp2interp', 'dirramp3pos': 'dirramp3pos', 'dirramp3value': 'dirramp3value', 'dirramp3interp': 'dirramp3interp', 'dirramp4pos': 'dirramp4pos', 'dirramp4value': 'dirramp4value', 'dirramp4interp': 'dirramp4interp', 'ramp1pos': 'ramp1pos', 'ramp1value': 'ramp1value', 'ramp1interp': 'ramp1interp', 'ramp2pos': 'ramp2pos', 'ramp2value': 'ramp2value', 'ramp2interp': 'ramp2interp'}
 
-    def __init__(self, node=None, hh_parent_node=None, node_name=None):
-        self.hh_parent_node = hh_parent_node
+    def __init__(self, node=None, hh_parent=None, node_name=None):
+        self.hh_parent = hh_parent
         if node:
             self.node = node
         else:
-            self.node = self.hh_parent_node.create_node(node_type_name=self.node_type, node_name=node_name)
+            self.node = self.hh_parent.create_node(node_type_name=self.node_type, node_name=node_name)
         self.node_name = self.node.name()
         super().__init__(node=self.node)
         
@@ -51,6 +52,8 @@ class HeightfieldMaskbyfeatureNode(HHNode):
         self.parm_viewdistance = Parameter(parm=self.node.parm('viewdistance'))
         self.parm_stepscale = Parameter(parm=self.node.parm('stepscale'))
         self.parm_numsearches = Parameter(parm=self.node.parm('numsearches'))
+        self.parm_heightlayer = Parameter(parm=self.node.parm('heightlayer'))
+        self.parm_masklayer = Parameter(parm=self.node.parm('masklayer'))
         self.parm_sloperamp1pos = Parameter(parm=self.node.parm('sloperamp1pos'))
         self.parm_sloperamp1value = Parameter(parm=self.node.parm('sloperamp1value'))
         self.parm_sloperamp2pos = Parameter(parm=self.node.parm('sloperamp2pos'))
@@ -91,8 +94,6 @@ class HeightfieldMaskbyfeatureNode(HHNode):
         
         # parm menu vars:
         self.parm_combine_menu = CombineMenu(parm=self.node.parm('combine'))
-        self.parm_heightlayer_menu = HeightlayerMenu(parm=self.node.parm('heightlayer'))
-        self.parm_masklayer_menu = MasklayerMenu(parm=self.node.parm('masklayer'))
         self.parm_sloperamp1interp_menu = Sloperamp1InterpMenu(parm=self.node.parm('sloperamp1interp'))
         self.parm_sloperamp2interp_menu = Sloperamp2InterpMenu(parm=self.node.parm('sloperamp2interp'))
         self.parm_sloperamp3interp_menu = Sloperamp3InterpMenu(parm=self.node.parm('sloperamp3interp'))
@@ -130,22 +131,6 @@ class CombineMenu(Menu):
         self.maximum = 5
         self.minimum = 6
         self.blend = 7
-
-
-class HeightlayerMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.height = 0
-        self.mask = 1
-
-
-class MasklayerMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.height = 0
-        self.mask = 1
 
 
 class Sloperamp1InterpMenu(Menu):

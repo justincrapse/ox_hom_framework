@@ -1,18 +1,19 @@
 from hou_helper.base_objects.hh_node import HHNode
 from hou_helper.base_objects.parameter import Parameter
 from hou_helper.base_objects.menu import Menu
+# node class version: 0.1
 
 
 class TexturesamplerNode(HHNode):
     node_type = 'redshift::TextureSampler'
     parm_lookup_dict = {'rs_shadernodemainswitcher1': 'RS_shaderNodeMainSwitcher1', 'image_0': 'Image_0', 'tex0': 'tex0', 'tex0_layername': 'tex0_layername', 'tex0_colorspace': 'tex0_colorSpace', 'tex0_gamma': 'tex0_gamma', 'uv_1': 'UV_1', 'tspace_id': 'tspace_id', 'mirroru': 'mirrorU', 'mirrorv': 'mirrorV', 'wrapu': 'wrapU', 'wrapv': 'wrapV', 'remap_2': 'Remap_2', 'scale1': 'scale1', 'scale2': 'scale2', 'offset1': 'offset1', 'offset2': 'offset2', 'rotate': 'rotate', 'color_multiplierr': 'color_multiplierr', 'color_multiplierg': 'color_multiplierg', 'color_multiplierb': 'color_multiplierb', 'color_offsetr': 'color_offsetr', 'color_offsetg': 'color_offsetg', 'color_offsetb': 'color_offsetb', 'alpha_multiplier': 'alpha_multiplier', 'alpha_offset': 'alpha_offset', 'alpha_is_luminance': 'alpha_is_luminance', 'invalid_colorr': 'invalid_colorr', 'invalid_colorg': 'invalid_colorg', 'invalid_colorb': 'invalid_colorb', 'invalid_colora': 'invalid_colora', 'filter_enable_type': 'filter_enable_type', 'filter_bicubic': 'filter_bicubic', 'prefer_sharp': 'prefer_sharp', 'mip_bias': 'mip_bias'}
 
-    def __init__(self, node=None, hh_parent_node=None, node_name=None):
-        self.hh_parent_node = hh_parent_node
+    def __init__(self, node=None, hh_parent=None, node_name=None):
+        self.hh_parent = hh_parent
         if node:
             self.node = node
         else:
-            self.node = self.hh_parent_node.create_node(node_type_name=self.node_type, node_name=node_name)
+            self.node = self.hh_parent.create_node(node_type_name=self.node_type, node_name=node_name)
         self.node_name = self.node.name()
         super().__init__(node=self.node)
         

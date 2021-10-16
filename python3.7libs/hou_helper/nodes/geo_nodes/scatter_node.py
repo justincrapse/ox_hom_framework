@@ -1,18 +1,19 @@
 from hou_helper.base_objects.hh_node import HHNode
 from hou_helper.base_objects.parameter import Parameter
 from hou_helper.base_objects.menu import Menu
+# node class version: 0.1
 
 
 class ScatterNode(HHNode):
     node_type = 'scatter::2.0'
     parm_lookup_dict = {'group': 'group', 'stdswitcher1': 'stdswitcher1', 'generateby': 'generateby', 'densityscale': 'densityscale', 'usedensityattrib': 'usedensityattrib', 'densityattrib': 'densityattrib', 'useareaattrib': 'useareaattrib', 'areaattrib': 'areaattrib', 'indepvoxel': 'indepvoxel', 'useareaforvolumes': 'useareaforvolumes', 'forcetotal': 'forcetotal', 'npts': 'npts', 'usedensitytexture': 'usedensitytexture', 'densitytexture': 'densitytexture', 'primcountattrib': 'primcountattrib', 'useemergencylimit': 'useemergencylimit', 'emergencylimit': 'emergencylimit', 'seed': 'seed', 'overrideprimseed': 'overrideprimseed', 'primseedattrib': 'primseedattrib', 'randomizeorder': 'randomizeorder', 'relaxpoints': 'relaxpoints', 'relaxiterations': 'relaxiterations', 'scaleradiiby': 'scaleradiiby', 'usemaxradius': 'usemaxradius', 'maxradius': 'maxradius', 'useprimnumattrib': 'useprimnumattrib', 'primnumattrib': 'primnumattrib', 'useprimuvwattrib': 'useprimuvwattrib', 'primuvwattrib': 'primuvwattrib', 'useoutputdensityattrib': 'useoutputdensityattrib', 'outputdensityattrib': 'outputdensityattrib', 'useoutputradiusattrib': 'useoutputradiusattrib', 'outputradiusattrib': 'outputradiusattrib', 'radiusintexturespace': 'radiusintexturespace', 'pointattribs': 'pointattribs', 'vertattribs': 'vertattribs', 'primattribs': 'primattribs', 'detailattribs': 'detailattribs'}
 
-    def __init__(self, node=None, hh_parent_node=None, node_name=None):
-        self.hh_parent_node = hh_parent_node
+    def __init__(self, node=None, hh_parent=None, node_name=None):
+        self.hh_parent = hh_parent
         if node:
             self.node = node
         else:
-            self.node = self.hh_parent_node.create_node(node_type_name=self.node_type, node_name=node_name)
+            self.node = self.hh_parent.create_node(node_type_name=self.node_type, node_name=node_name)
         self.node_name = self.node.name()
         super().__init__(node=self.node)
         
@@ -21,6 +22,7 @@ class ScatterNode(HHNode):
         self.parm_stdswitcher1 = Parameter(parm=self.node.parm('stdswitcher1'))
         self.parm_densityscale = Parameter(parm=self.node.parm('densityscale'))
         self.parm_usedensityattrib = Parameter(parm=self.node.parm('usedensityattrib'))
+        self.parm_densityattrib = Parameter(parm=self.node.parm('densityattrib'))
         self.parm_useareaattrib = Parameter(parm=self.node.parm('useareaattrib'))
         self.parm_areaattrib = Parameter(parm=self.node.parm('areaattrib'))
         self.parm_indepvoxel = Parameter(parm=self.node.parm('indepvoxel'))
@@ -49,6 +51,7 @@ class ScatterNode(HHNode):
         self.parm_useoutputradiusattrib = Parameter(parm=self.node.parm('useoutputradiusattrib'))
         self.parm_outputradiusattrib = Parameter(parm=self.node.parm('outputradiusattrib'))
         self.parm_radiusintexturespace = Parameter(parm=self.node.parm('radiusintexturespace'))
+        self.parm_pointattribs = Parameter(parm=self.node.parm('pointattribs'))
         self.parm_vertattribs = Parameter(parm=self.node.parm('vertattribs'))
         self.parm_primattribs = Parameter(parm=self.node.parm('primattribs'))
         self.parm_detailattribs = Parameter(parm=self.node.parm('detailattribs'))
@@ -56,9 +59,7 @@ class ScatterNode(HHNode):
         
         # parm menu vars:
         self.parm_generateby_menu = GeneratebyMenu(parm=self.node.parm('generateby'))
-        self.parm_densityattrib_menu = DensityattribMenu(parm=self.node.parm('densityattrib'))
         self.parm_densitytexture_menu = DensitytextureMenu(parm=self.node.parm('densitytexture'))
-        self.parm_pointattribs_menu = PointattribsMenu(parm=self.node.parm('pointattribs'))
 
 
         # input vars:
@@ -73,13 +74,6 @@ class GeneratebyMenu(Menu):
         self.by_density = 0
         self.count_per_primitive = 1
         self.in_texture_space = 2
-
-
-class DensityattribMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.position____p_ = 0
 
 
 class DensitytextureMenu(Menu):
@@ -98,13 +92,6 @@ class DensitytextureMenu(Menu):
         self._hip_chromatic_glass_gradient_sbsar = 9
         self._hip_acid_etched_glass_rough_sbsar = 10
         self.e__art_projects____agon_tiles_sbsar = 11
-
-
-class PointattribsMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.position____p_ = 0
 
 
 

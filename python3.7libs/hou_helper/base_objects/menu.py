@@ -1,4 +1,5 @@
 from .parameter import Parameter
+from hou import OperationFailed
 
 
 class Menu(Parameter, object):
@@ -11,4 +12,10 @@ class Menu(Parameter, object):
             return object.__getattribute__(self, item)
         else:
             attr_val = object.__getattribute__(self, item)
-            self.parm.set(str(attr_val))
+            msg = f'Setting {self.parm.name()} menu parameter to {attr_val}'
+            # print(msg)
+            # print(f'menu items: {self.parm.menuItems()}')
+            try:
+                self.parm.set(str(attr_val))
+            except OperationFailed:
+                self.parm.set(attr_val)

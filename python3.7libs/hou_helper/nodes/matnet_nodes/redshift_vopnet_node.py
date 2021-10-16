@@ -1,18 +1,19 @@
 from hou_helper.base_objects.hh_node import HHNode
 from hou_helper.base_objects.parameter import Parameter
 from hou_helper.base_objects.menu import Menu
+# node class version: 0.1
 
 
 class RedshiftVopnetNode(HHNode):
     node_type = 'redshift_vopnet'
     parm_lookup_dict = {'redshift_shop_parmswitcher1': 'Redshift_SHOP_parmSwitcher1', 'rs_matprop_id': 'RS_matprop_ID', 'ogl_diffr': 'ogl_diffr', 'ogl_diffg': 'ogl_diffg', 'ogl_diffb': 'ogl_diffb', 'ogl_emitr': 'ogl_emitr', 'ogl_emitg': 'ogl_emitg', 'ogl_emitb': 'ogl_emitb', 'ogl_specr': 'ogl_specr', 'ogl_specg': 'ogl_specg', 'ogl_specb': 'ogl_specb', 'ogl_rough': 'ogl_rough', 'ogl_alpha': 'ogl_alpha', 'ogl_light': 'ogl_light'}
 
-    def __init__(self, node=None, hh_parent_node=None, node_name=None):
-        self.hh_parent_node = hh_parent_node
+    def __init__(self, node=None, hh_parent=None, node_name=None):
+        self.hh_parent = hh_parent
         if node:
             self.node = node
         else:
-            self.node = self.hh_parent_node.create_node(node_type_name=self.node_type, node_name=node_name)
+            self.node = self.hh_parent.create_node(node_type_name=self.node_type, node_name=node_name)
         self.node_name = self.node.name()
         super().__init__(node=self.node)
         

@@ -1,29 +1,22 @@
 from hou_helper.base_objects.hh_node import HHNode
 from hou_helper.base_objects.parameter import Parameter
 from hou_helper.base_objects.menu import Menu
+# node class version: 0.1
 
 
 class SubnetNode(HHNode):
     node_type = 'subnet'
-    parm_lookup_dict = {'stdswitcher1': 'stdswitcher1', 'xord': 'xOrd', 'rord': 'rOrd', 'tx': 'tx', 'ty': 'ty', 'tz': 'tz', 'rx': 'rx', 'ry': 'ry',
-                        'rz': 'rz', 'sx': 'sx', 'sy': 'sy', 'sz': 'sz', 'px': 'px', 'py': 'py', 'pz': 'pz', 'prx': 'prx', 'pry': 'pry', 'prz': 'prz',
-                        'scale': 'scale', 'pre_xform': 'pre_xform', 'keeppos': 'keeppos', 'childcomp': 'childcomp',
-                        'constraints_on': 'constraints_on', 'constraints_path': 'constraints_path', 'lookatpath': 'lookatpath',
-                        'lookupobjpath': 'lookupobjpath', 'lookup': 'lookup', 'pathobjpath': 'pathobjpath', 'roll': 'roll', 'pos': 'pos',
-                        'uparmtype': 'uparmtype', 'pathorient': 'pathorient', 'upx': 'upx', 'upy': 'upy', 'upz': 'upz', 'bank': 'bank',
-                        'label1': 'label1', 'label2': 'label2', 'label3': 'label3', 'label4': 'label4', 'tdisplay': 'tdisplay', 'display': 'display',
-                        'outputobj': 'outputobj', 'visibleobjects': 'visibleobjects', 'picking': 'picking', 'pickscript': 'pickscript',
-                        'caching': 'caching', 'use_dcolor': 'use_dcolor', 'dcolorr': 'dcolorr', 'dcolorg': 'dcolorg', 'dcolorb': 'dcolorb'}
+    parm_lookup_dict = {'stdswitcher1': 'stdswitcher1', 'xord': 'xOrd', 'rord': 'rOrd', 'tx': 'tx', 'ty': 'ty', 'tz': 'tz', 'rx': 'rx', 'ry': 'ry', 'rz': 'rz', 'sx': 'sx', 'sy': 'sy', 'sz': 'sz', 'px': 'px', 'py': 'py', 'pz': 'pz', 'prx': 'prx', 'pry': 'pry', 'prz': 'prz', 'scale': 'scale', 'pre_xform': 'pre_xform', 'keeppos': 'keeppos', 'childcomp': 'childcomp', 'constraints_on': 'constraints_on', 'constraints_path': 'constraints_path', 'lookatpath': 'lookatpath', 'lookupobjpath': 'lookupobjpath', 'lookup': 'lookup', 'pathobjpath': 'pathobjpath', 'roll': 'roll', 'pos': 'pos', 'uparmtype': 'uparmtype', 'pathorient': 'pathorient', 'upx': 'upx', 'upy': 'upy', 'upz': 'upz', 'bank': 'bank', 'label1': 'label1', 'label2': 'label2', 'label3': 'label3', 'label4': 'label4', 'tdisplay': 'tdisplay', 'display': 'display', 'outputobj': 'outputobj', 'visibleobjects': 'visibleobjects', 'picking': 'picking', 'pickscript': 'pickscript', 'caching': 'caching', 'use_dcolor': 'use_dcolor', 'dcolorr': 'dcolorr', 'dcolorg': 'dcolorg', 'dcolorb': 'dcolorb'}
 
-    def __init__(self, node=None, hh_parent_node=None, node_name=None):
-        self.hh_parent_node = hh_parent_node
+    def __init__(self, node=None, hh_parent=None, node_name=None):
+        self.hh_parent = hh_parent
         if node:
             self.node = node
         else:
-            self.node = self.hh_parent_node.create_node(node_type_name=self.node_type, node_name=node_name)
+            self.node = self.hh_parent.create_node(node_type_name=self.node_type, node_name=node_name)
         self.node_name = self.node.name()
         super().__init__(node=self.node)
-
+        
         # parm vars:
         self.parm_stdswitcher1 = Parameter(parm=self.node.parm('stdswitcher1'))
         self.parm_tx = Parameter(parm=self.node.parm('tx'))
@@ -69,6 +62,7 @@ class SubnetNode(HHNode):
         self.parm_dcolorg = Parameter(parm=self.node.parm('dcolorg'))
         self.parm_dcolorb = Parameter(parm=self.node.parm('dcolorb'))
 
+        
         # parm menu vars:
         self.parm_xord_menu = XordMenu(parm=self.node.parm('xOrd'))
         self.parm_rord_menu = RordMenu(parm=self.node.parm('rOrd'))
@@ -78,6 +72,7 @@ class SubnetNode(HHNode):
         self.parm_outputobj_menu = OutputobjMenu(parm=self.node.parm('outputobj'))
         self.parm_visibleobjects_menu = VisibleobjectsMenu(parm=self.node.parm('visibleobjects'))
         self.parm_pickscript_menu = PickscriptMenu(parm=self.node.parm('pickscript'))
+
 
         # input vars:
         self.input_sub_network_input__1 = 0
@@ -177,3 +172,6 @@ class PickscriptMenu(Menu):
         self._hip_chromatic_glass_gradient_sbsar = 9
         self._hip_acid_etched_glass_rough_sbsar = 10
         self.e__art_projects____agon_tiles_sbsar = 11
+
+
+

@@ -1,18 +1,19 @@
 from hou_helper.base_objects.hh_node import HHNode
 from hou_helper.base_objects.parameter import Parameter
 from hou_helper.base_objects.menu import Menu
+# node class version: 0.1
 
 
 class BumpmapNode(HHNode):
     node_type = 'redshift::BumpMap'
     parm_lookup_dict = {'texture_0': 'Texture_0', 'inuse': 'inuse', 'inputtype': 'inputType', 'inputr': 'inputr', 'inputg': 'inputg', 'inputb': 'inputb', 'scale': 'scale', 'factorinobjscale': 'factorInObjScale', 'remap_1': 'Remap_1', 'oldrange_min': 'oldrange_min', 'oldrange_max': 'oldrange_max', 'newrange_min': 'newrange_min', 'newrange_max': 'newrange_max', 'unbiasednormalmap': 'unbiasedNormalMap', 'flipy': 'flipY'}
 
-    def __init__(self, node=None, hh_parent_node=None, node_name=None):
-        self.hh_parent_node = hh_parent_node
+    def __init__(self, node=None, hh_parent=None, node_name=None):
+        self.hh_parent = hh_parent
         if node:
             self.node = node
         else:
-            self.node = self.hh_parent_node.create_node(node_type_name=self.node_type, node_name=node_name)
+            self.node = self.hh_parent.create_node(node_type_name=self.node_type, node_name=node_name)
         self.node_name = self.node.name()
         super().__init__(node=self.node)
         

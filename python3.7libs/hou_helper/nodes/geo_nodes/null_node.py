@@ -4,9 +4,9 @@ from hou_helper.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class SwitchNode(HHNode):
-    node_type = 'switch'
-    parm_lookup_dict = {'input': 'input'}
+class NullNode(HHNode):
+    node_type = 'null'
+    parm_lookup_dict = {'copyinput': 'copyinput', 'cacheinput': 'cacheinput'}
 
     def __init__(self, node=None, hh_parent=None, node_name=None):
         self.hh_parent = hh_parent
@@ -18,7 +18,8 @@ class SwitchNode(HHNode):
         super().__init__(node=self.node)
         
         # parm vars:
-        self.parm_input = Parameter(parm=self.node.parm('input'))
+        self.parm_copyinput = Parameter(parm=self.node.parm('copyinput'))
+        self.parm_cacheinput = Parameter(parm=self.node.parm('cacheinput'))
 
         
         # parm menu vars:

@@ -11,6 +11,7 @@
     <memberTool name="terrain_scatter"/>
     <memberTool name="mask_visualizer"/>
     <memberTool name="new_mask_by_feature"/>
+    <memberTool name="class_regen"/>
   </toolshelf>
 
   <tool name="scatter_group0" label="Scatter Group" icon="sunflower_icon.png">

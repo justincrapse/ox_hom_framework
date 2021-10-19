@@ -18,7 +18,7 @@ class RedshiftMaterialNode(HHNode):
         super().__init__(node=self.node)
         
         # parm vars:
-        self.parm_rs_matprop_id = Parameter(parm=self.node.parm('rs_matprop_id'))
+        self.parm_rs_matprop_id = Parameter(parm=self.node.parm('RS_matprop_ID'))
 
         
         # parm menu vars:

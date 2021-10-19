@@ -18,7 +18,7 @@ class HfCombineMasksNode(HHNode):
         super().__init__(node=self.node)
         
         # parm vars:
-        self.parm_bflood = Parameter(parm=self.node.parm('bflood'))
+        self.parm_bflood = Parameter(parm=self.node.parm('bFlood'))
         self.parm_srcname1 = Parameter(parm=self.node.parm('srcname1'))
         self.parm_folder0 = Parameter(parm=self.node.parm('folder0'))
         self.parm_folder1 = Parameter(parm=self.node.parm('folder1'))

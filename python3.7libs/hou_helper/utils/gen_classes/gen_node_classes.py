@@ -22,9 +22,11 @@ def generate_node_class(node, sub_dir, debug=False):
     if debug:
         print(f'parms names list: {parms_list}')
     parm_vars_list = [data_lover.get_str_as_py_var(i) for i in parms_list]
-    parm_vars_no_menu_list = [data_lover.get_str_as_py_var(i) for i in parms_list if not get_parm_menu_labels(node.parm(i))]
+    parm_no_menu_list = [i for i in parms_list if not get_parm_menu_labels(node.parm(i))]
+    parm_vars_no_menu_list = [data_lover.get_str_as_py_var(i) for i in parm_no_menu_list]
     parm_lookup_dict = dict(zip(parm_vars_list, parms_list))
-    parm_var_lines_list = ''.join([f"\t\tself.parm_{i} = Parameter(parm=self.node.parm('{i}'))\n" for i in parm_vars_no_menu_list])
+    parm_var_lines_list = ''.join([f"\t\tself.parm_{i} = Parameter(parm=self.node.parm('{j}'))\n"
+                                   for i, j in zip(parm_vars_no_menu_list, parm_no_menu_list)])
 
     # menu parm lines:
     menu_list = [i for i in parms_list if get_parm_menu_labels(node.parm(i))]

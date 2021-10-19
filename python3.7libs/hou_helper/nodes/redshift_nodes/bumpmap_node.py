@@ -18,20 +18,20 @@ class BumpmapNode(HHNode):
         super().__init__(node=self.node)
         
         # parm vars:
-        self.parm_texture_0 = Parameter(parm=self.node.parm('texture_0'))
+        self.parm_texture_0 = Parameter(parm=self.node.parm('Texture_0'))
         self.parm_inuse = Parameter(parm=self.node.parm('inuse'))
         self.parm_inputr = Parameter(parm=self.node.parm('inputr'))
         self.parm_inputg = Parameter(parm=self.node.parm('inputg'))
         self.parm_inputb = Parameter(parm=self.node.parm('inputb'))
         self.parm_scale = Parameter(parm=self.node.parm('scale'))
-        self.parm_factorinobjscale = Parameter(parm=self.node.parm('factorinobjscale'))
-        self.parm_remap_1 = Parameter(parm=self.node.parm('remap_1'))
+        self.parm_factorinobjscale = Parameter(parm=self.node.parm('factorInObjScale'))
+        self.parm_remap_1 = Parameter(parm=self.node.parm('Remap_1'))
         self.parm_oldrange_min = Parameter(parm=self.node.parm('oldrange_min'))
         self.parm_oldrange_max = Parameter(parm=self.node.parm('oldrange_max'))
         self.parm_newrange_min = Parameter(parm=self.node.parm('newrange_min'))
         self.parm_newrange_max = Parameter(parm=self.node.parm('newrange_max'))
-        self.parm_unbiasednormalmap = Parameter(parm=self.node.parm('unbiasednormalmap'))
-        self.parm_flipy = Parameter(parm=self.node.parm('flipy'))
+        self.parm_unbiasednormalmap = Parameter(parm=self.node.parm('unbiasedNormalMap'))
+        self.parm_flipy = Parameter(parm=self.node.parm('flipY'))
 
         
         # parm menu vars:

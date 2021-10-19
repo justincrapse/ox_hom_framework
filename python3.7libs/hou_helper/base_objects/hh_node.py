@@ -71,3 +71,5 @@ class HHNode:
         vector = hou.Vector2(r_x + x * unit_multiplier, r_y + y * unit_multiplier)
         self.node.setPosition(vector)
 
+    def unlock_node(self):
+        self.node.allowEditingOfContents()

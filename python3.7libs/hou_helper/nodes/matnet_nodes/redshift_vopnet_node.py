@@ -18,8 +18,8 @@ class RedshiftVopnetNode(HHNode):
         super().__init__(node=self.node)
         
         # parm vars:
-        self.parm_redshift_shop_parmswitcher1 = Parameter(parm=self.node.parm('redshift_shop_parmswitcher1'))
-        self.parm_rs_matprop_id = Parameter(parm=self.node.parm('rs_matprop_id'))
+        self.parm_redshift_shop_parmswitcher1 = Parameter(parm=self.node.parm('Redshift_SHOP_parmSwitcher1'))
+        self.parm_rs_matprop_id = Parameter(parm=self.node.parm('RS_matprop_ID'))
         self.parm_ogl_diffr = Parameter(parm=self.node.parm('ogl_diffr'))
         self.parm_ogl_diffg = Parameter(parm=self.node.parm('ogl_diffg'))
         self.parm_ogl_diffb = Parameter(parm=self.node.parm('ogl_diffb'))

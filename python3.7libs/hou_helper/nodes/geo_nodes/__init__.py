@@ -22,3 +22,4 @@ from .heightfield_scatter_node import HeightfieldScatterNode
 from .heightfield_maskbyobject_node import HeightfieldMaskbyobjectNode
 from .hf_combine_masks_node import HfCombineMasksNode
 from .volumewrangle_node import VolumewrangleNode
+from .attribwrangle_node import AttribwrangleNode

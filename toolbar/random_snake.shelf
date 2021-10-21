@@ -12,6 +12,8 @@
     <memberTool name="mask_visualizer"/>
     <memberTool name="new_mask_by_feature"/>
     <memberTool name="class_regen"/>
+    <memberTool name="sandbox"/>
+    <memberTool name="add_2_controller"/>
   </toolshelf>
 
   <tool name="scatter_group0" label="Scatter Group" icon="sunflower_icon.png">
@@ -46,9 +48,9 @@ if not response:
 parent_node = selected_nodes[0].parent()
 print(f'parent: {parent_node.name()}')
 scatter_group_node_name = f'scatter_group{parent_node.name()}'
-scatter_group_geo_node = nodes.obj_nodes.GeoNode(hh_parent_node=hh_obj_node, node_name=scatter_group_node_name)
+scatter_group_geo_node = nodes.obj_nodes.GeoNode(hh_parent=hh_obj_node, node_name=scatter_group_node_name)
 scatter_group_geo_node.parm_rs_objprop_inst_packedpriminstancing = True
-merge_node = nodes.geo_nodes.MergeNode(hh_parent_node=scatter_group_geo_node)
+merge_node = nodes.geo_nodes.MergeNode(hh_parent=scatter_group_geo_node)
 for index, node in enumerate(selected_nodes):
     node_path = node.path()
     node_name = node.name()
@@ -56,35 +58,35 @@ for index, node in enumerate(selected_nodes):
     merge_node_name = f'merge_{node_name}'
     color_node_name = f'color_{node_name}'
     name_node_name = f'name_{node_name}'
-    obj_merge_node = nodes.geo_nodes.ObjectMergeNode(hh_parent_node=scatter_group_geo_node, node_name=merge_node_name)
+    obj_merge_node = nodes.geo_nodes.ObjectMergeNode(hh_parent=scatter_group_geo_node, node_name=merge_node_name)
     obj_merge_node.parm_objpath1 = node_path
-    name_node = nodes.geo_nodes.NameNode(hh_parent_node=scatter_group_geo_node)
+    name_node = nodes.geo_nodes.NameNode(hh_parent=scatter_group_geo_node)
     name_node.parm_name1 = node_name
-    name_node.connect_from(other_hh_node=obj_merge_node)
-    color_node = nodes.geo_nodes.ColorNode(hh_parent_node=scatter_group_geo_node, node_name=color_node_name)
-    color_node.connect_from(other_hh_node=name_node)
+    name_node.connect_from(hh_node=obj_merge_node)
+    color_node = nodes.geo_nodes.ColorNode(hh_parent=scatter_group_geo_node, node_name=color_node_name)
+    color_node.connect_from(hh_node=name_node)
     color_node.parm_colorb = random.random()
     color_node.parm_colorg = random.random()
     color_node.parm_colorr = random.random()
-    merge_node.connect_from(other_hh_node=color_node, input_index=index)
+    merge_node.connect_from(hh_node=color_node, input_index=index)
 
-xform_node = nodes.geo_nodes.TransformNode(hh_parent_node=scatter_group_geo_node)
-xform_node.connect_from(other_hh_node=merge_node)
-copy2points_node = nodes.geo_nodes.CopytopointsNode(hh_parent_node=scatter_group_geo_node)
+xform_node = nodes.geo_nodes.TransformNode(hh_parent=scatter_group_geo_node)
+xform_node.connect_from(hh_node=merge_node)
+copy2points_node = nodes.geo_nodes.CopytopointsNode(hh_parent=scatter_group_geo_node)
 copy2points_node.parm_useidattrib = True
 copy2points_node.parm_idattrib_menu = piece_attribute
-copy2points_node.connect_from(other_hh_node=xform_node)
+copy2points_node.connect_from(hh_node=xform_node)
 
-grid_node = nodes.geo_nodes.GridNode(hh_parent_node=scatter_group_geo_node)
-scatter_node = nodes.geo_nodes.ScatterNode(hh_parent_node=scatter_group_geo_node)
-scatter_node.connect_from(other_hh_node=grid_node)
+grid_node = nodes.geo_nodes.GridNode(hh_parent=scatter_group_geo_node)
+scatter_node = nodes.geo_nodes.ScatterNode(hh_parent=scatter_group_geo_node)
+scatter_node.connect_from(hh_node=grid_node)
 scatter_node.parm_npts = 100
 
-attrib_from_pieces_node = nodes.geo_nodes.AttribfrompiecesNode(hh_parent_node=scatter_group_geo_node)
+attrib_from_pieces_node = nodes.geo_nodes.AttribfrompiecesNode(hh_parent=scatter_group_geo_node)
 attrib_from_pieces_node.parm_pieceattrib_menu = piece_attribute
-attrib_from_pieces_node.connect_from(other_hh_node=scatter_node)
-attrib_from_pieces_node.connect_from(other_hh_node=xform_node, input_index=1)
-copy2points_node.connect_from(other_hh_node=attrib_from_pieces_node, input_index=1)
+attrib_from_pieces_node.connect_from(hh_node=scatter_node)
+attrib_from_pieces_node.connect_from(hh_node=xform_node, input_index=1)
+copy2points_node.connect_from(hh_node=attrib_from_pieces_node, input_index=1)
 copy2points_node.parm_pack = True
 copy2points_node.node.setDisplayFlag(on=True)
 copy2points_node.node.setRenderFlag(on=True)

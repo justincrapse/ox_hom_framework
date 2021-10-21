@@ -4,16 +4,21 @@ import hou
 
 
 from hou_helper.base_objects.parm_templates import ParmTemplate
+from hou_helper.utils.node_color_lookup import color_lookup_dict
 
 
-class HHNode:
+class HHNode(ParmTemplate):  # mixin
     # these are for child class lookups:
     parm_lookup_dict = {}
 
     def __init__(self, node=None):
+        super().__init__(node=node)
         self.node = node
         self.parm_template = ParmTemplate(node=self.node)
         self.path = node.path()
+        self.type = node.type().name()
+        if self.type in color_lookup_dict:
+            self.set_color(color_lookup_dict[self.type])
 
     def __setattr__(self, name, value):
         skip_list = ['node']
@@ -73,3 +78,7 @@ class HHNode:
 
     def unlock_node(self):
         self.node.allowEditingOfContents()
+
+    def get_folder_labels(self):
+        labels = self.parm_template.get_entry_labels()
+        return labels

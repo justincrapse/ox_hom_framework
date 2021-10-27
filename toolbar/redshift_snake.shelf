@@ -15,20 +15,17 @@
   </tool>
 
   <tool name="st2rs" label="SpeedTree -&gt; RS" icon="tree_icon.png">
-    <script scriptType="python"><![CDATA[# get file from user
-# scan folder content
-# unpack
-# mat net
-# get group names
-import copy
+    <script scriptType="python"><![CDATA[import copy
 import re
-from os import listdir
-from os.path import isfile, join
+from collections import defaultdict
 
-from hou_helper import nodes
-from hou_helper.base_objects.hh_node import HHNode
-from hou_helper import constants as const
-from hou_helper.constants.texture_types import SpeedTree as texture_types
+import hou
+
+from ox import nodes
+from ox.base_objects.ox_node import HHNode
+from ox.constants.texture_types import SpeedTree as texture_types
+from ox.utils import ui
+from ox.utils import file_utils
 
 texture_type_str_list = [
     'AO',
@@ -37,7 +34,8 @@ texture_type_str_list = [
     'Opacity',
     'SubsurfaceAmount',
     'SubsurfaceColor',
-    'Displacement'
+    'Displacement',
+    'Height'
 ]
 texture_re_list = '|'.join(texture_type_str_list)
 
@@ -45,72 +43,88 @@ texture_re_list = '|'.join(texture_type_str_list)
 def main():
     matnet_name = 'rs_matnet'
     obj_node = HHNode(node=hou.node('/obj'))
-    print(obj_node.node.name())
-    # get file from user
-    file_path = hou.ui.selectFile()
-    folder_path = '/'.join(file_path.split('/')[0: -1])
-    geo_node = nodes.obj_nodes.GeoNode(hh_parent_node=obj_node, node_name='speed_tree')
-    file_node = nodes.geo_nodes.FileNode(hh_parent_node=geo_node, node_name='speed_tree_file')
-    file_node.parm_file_menu = file_path
 
-    unpack_node = nodes.geo_nodes.UnpackNode(hh_parent_node=geo_node, node_name='unpack_tree')
-    unpack_node.node.setDisplayFlag(on=True)
-    unpack_node.connect_from(other_hh_node=file_node)
-    material_node = nodes.geo_nodes.MaterialNode(hh_parent_node=geo_node, node_name='tree_materials')
-    material_node.connect_from(other_hh_node=unpack_node)
+    # get user info
+    file_path = ui.user_select_file()  # type:str
+    if file_path.endswith('.abc'):
+        file_type = 'alembic'
+    elif file_path.endswith('.fbx'):
+        file_type = 'fbx'
+    else:
+        raise ValueError(f'file is not .fbx or .abc: {file_path}')
+    folder_path = ui.get_parent_path_from_file_path(file_path=file_path)
+    geo_node = nodes.obj_nodes.GeoNode(ox_parent=obj_node, node_name='speed_tree')
+    file_node = nodes.geo_nodes.FileNode(ox_parent=geo_node, node_name='speed_tree_file')
+    file_node.parm_file = file_path
+    user_substring_raw = ui.prompt_for_string_input(message='Specify substrings CSV style to match for grouping materials together for HSL controls',
+                                                    title='Define Material Groups for Quick HSL controls', default_text='Leaf,Bark,Petal')
+    user_substring_list = [i.strip() for i in user_substring_raw.split(',')]
 
-    transform_node = nodes.geo_nodes.TransformNode(hh_parent_node=geo_node)
-    transform_node.connect_from(other_hh_node=material_node)
+    # alembic:
+    if file_type == 'alembic':
+        unpack_node = nodes.geo_nodes.UnpackNode(ox_parent=geo_node, node_name='unpack_tree')
+        unpack_node.set_display_flag()
+        unpack_node.connect_from(ox_node=file_node)
+        last_file_node = unpack_node
+    elif file_type == 'fbx':
+        clean_node = nodes.geo_nodes.CleanNode(ox_parent=geo_node)
+        clean_node.connect_from(ox_node=file_node)
+        clean_node.parm_deldegengeo = False
+        clean_node.parm_dodelgroups = True
+        partition_node = nodes.geo_nodes.PartitionNode(ox_parent=geo_node)
+        partition_node.connect_from(clean_node)
+        partition_node.parm_rule = '$MAT'
+        partition_node.set_display_flag()
+        last_file_node = partition_node
+    else:
+        raise ValueError('you need to select a .fbx or .abc file')
 
-    transform_node.node.setDisplayFlag(on=True)
-    transform_node.node.setRenderFlag(on=True)
-    group_list = [i.name() for i in material_node.node.geometry().primGroups() if not i.name().startswith('_')]
-    # print(f'Group List: {group_list}')
+    material_node = nodes.geo_nodes.MaterialNode(ox_parent=geo_node, node_name='tree_materials')
+    material_node.connect_from(ox_node=last_file_node)
+    transform_node = nodes.geo_nodes.TransformNode(ox_parent=geo_node)
+    transform_node.connect_from(ox_node=material_node)
+
+    transform_node.set_display_flag()  # need to cook
+
+    group_list = [i for i in material_node.get_prim_groups() if not i.startswith('_')]
     # assign groups:
     material_node.parm_num_materials = len(group_list)
     for index, group in enumerate(group_list, start=1):
         group_texture_str = f'{material_node.node.parent().path()}/{matnet_name}/{group}'
         material_node.node.parm(f'group{index}').set(group)
         material_node.node.parm(f'shop_materialpath{index}').set(group_texture_str)
-    matnet_node = nodes.obj_nodes.MatnetNode(hh_parent_node=geo_node, node_name=matnet_name)
-    create_materials(group_list=group_list, folder_path=folder_path, matnet_node=matnet_node)
+    matnet_node = nodes.obj_nodes.MatnetNode(ox_parent=geo_node, node_name=matnet_name)
+    create_materials(group_list=group_list, folder_path=folder_path, matnet_node=matnet_node, user_substring_list=user_substring_list)
 
     # layout fix
     geo_node.node.layoutChildren()
     matnet_node.node.layoutChildren()
-    
-
-def get_file_list(folder_path):
-    files = [f for f in listdir(folder_path) if isfile(join(folder_path, f))]
-    return files
-
-# def connect_textures(matnet_node, texture_node, texture_type):
-#     if texture_type == '':
-#         rs_color_layer_node = matnet_node.createNode('RSColorLayer')
 
 
 def get_input_index_by_label(node, label):
     return node.inputLabels().index(label)
 
 
-def get_node_by_name(parent_node, node_name):
-    node_list = parent_node.children()
-    for node in node_list:
-        if node_name == node.name():
-            return node
-
-
-def create_materials(group_list, folder_path, matnet_node):
-    files = get_file_list(folder_path=folder_path)
+def create_materials(group_list, folder_path, matnet_node, user_substring_list):
+    files = file_utils.get_file_list(folder_path=folder_path)
     files_str = ' '.join(files)
+    material_groups_dict = defaultdict(list)  # for substring node grouping
     for group_name in group_list:
-        print(f'group: {group_name}')
-        texture_group_name = group_name.replace('MatSG', '')
-        rs_mat_node = nodes.matnet_nodes.RedshiftVopnetNode(hh_parent_node=matnet_node, node_name=group_name)
-        rs_color_layer_node = nodes.redshift_nodes.RscolorlayerNode(hh_parent_node=rs_mat_node, node_name='RSColorLayer')
-        redshift_material_hou_node = get_node_by_name(rs_mat_node.node, 'redshift_material1')
+        texture_group_name = group_name.replace('MatSG', '').replace('Mat', '')  # clean name
+        rs_mat_node = nodes.matnet_nodes.RedshiftVopnetNode(ox_parent=matnet_node, node_name=group_name)
+        rs_color_layer_node = nodes.redshift_nodes.RscolorlayerNode(ox_parent=rs_mat_node, node_name='RSColorLayer')
+        redshift_material_hou_node = rs_mat_node.get_child_by_name('redshift_material1')
         redshift_material_node = nodes.redshift_nodes.RedshiftMaterialNode(node=redshift_material_hou_node)
-        # print(f'group: {group_name}')
+        hsl_node = nodes.redshift_nodes.GolaemhslNode(ox_parent=rs_mat_node)
+
+        # add to controller if in defined group set:
+        if user_substring_list:
+            for i in user_substring_list:
+                if i in texture_group_name:
+                    material_groups_dict[i].append(hsl_node)
+                    break
+
+        # regex file matching
         regex = re.compile(fr'({texture_group_name}({texture_re_list})\.png|{texture_group_name[:-1]}\.png)')
         results = regex.findall(files_str)
         results_dict = dict([(i[1], i[0]) for i in results])
@@ -119,38 +133,34 @@ def create_materials(group_list, folder_path, matnet_node):
         version_match = re.compile(r'_v\d(?=_)')
         version = version_match.search(texture_group_name)
 
+        # some files are versioned. only updating differences and including original version for the rest
         if version:
             version_text = version.group()
-            print(version_text)
             original_texture_group = texture_group_name.replace(version_text, '')
             regex_original = re.compile(fr'({original_texture_group}({texture_re_list})\.png|{original_texture_group[:-1]}\.png)')
             original_results = regex_original.findall(files_str)
             original_results_dict = dict([(i[1], i[0]) for i in original_results])
-            print(f'original_results: {original_results_dict}')
             original_results_dict.update(results_dict)
-            print(f'updated_texture_dict: {original_results_dict}')
 
         texture_types_present_list = results_dict.keys()
-        main_mat_node = get_node_by_name(rs_mat_node.node, 'Material1')
+        main_mat_node = rs_mat_node.get_child_by_name('Material1')
         mat_node = nodes.redshift_nodes.MaterialNode(node=main_mat_node)
         final_dict = copy.deepcopy(original_results_dict) if version else copy.deepcopy(results_dict)
         for texture_type, file_name in final_dict.items():
             text_match = file_name
             full_file_path = f'{folder_path}/{text_match}'
-            # print(result)
-            # print(f"name for texture node: {text_match, text_match.replace('.png', '')}")
-            texture_node = nodes.redshift_nodes.TexturesamplerNode(hh_parent_node=rs_mat_node, node_name=text_match.replace('.png', ''))
-            texture_node.parm_tex0_menu = full_file_path
+            texture_node = nodes.redshift_nodes.TexturesamplerNode(ox_parent=rs_mat_node, node_name=text_match.replace('.png', ''))
+            texture_node.parm_tex0 = full_file_path
             if texture_type == texture_types.DIFFUSE and texture_types.AO in texture_types_present_list:
-                rs_color_layer_node.connect_from(other_hh_node=texture_node, input_index=rs_color_layer_node.input_base_color)
-                mat_node.connect_from(other_hh_node=rs_color_layer_node, input_index=mat_node.input_diffuse_color)
-                # rs_color_layer_node.parm_layer1_blend_mode.menu_select(index=rs_color_layer_node.parm_layer1_blend_mode.multiply)
-                rs_color_layer_node.parm_layer1_blend_mode_menu.multiply
+                rs_color_layer_node.connect_from(ox_node=texture_node, input_index=rs_color_layer_node.input_base_color)
+                hsl_node.connect_from(ox_node=rs_color_layer_node, input_index=hsl_node.input_incolor)
+                mat_node.connect_from(ox_node=hsl_node, input_index=mat_node.input_diffuse_color)
+                rs_color_layer_node.parm_layer1_blend_mode.menu_multiply
             elif texture_type == texture_types.DIFFUSE:
-                mat_node.connect_from(other_hh_node=texture_node, input_index=mat_node.input_diffuse_color)
-                rs_color_layer_node.connect_from(other_hh_node=texture_node, input_index=rs_color_layer_node.input_layer1_color)
+                hsl_node.connect_from(ox_node=texture_node, input_index=hsl_node.input_incolor)
+                mat_node.connect_from(ox_node=hsl_node, input_index=mat_node.input_diffuse_color)
             elif texture_type == texture_types.AO:
-                rs_color_layer_node.connect_from(other_hh_node=texture_node, input_index=rs_color_layer_node.input_layer1_color)
+                rs_color_layer_node.connect_from(ox_node=texture_node, input_index=rs_color_layer_node.input_layer1_color)
             elif texture_type == texture_types.GLOSS:
                 mat_node.connect_from(texture_node, mat_node.input_refl_weight)
             elif texture_type == texture_types.SS_COLOR:
@@ -158,21 +168,38 @@ def create_materials(group_list, folder_path, matnet_node):
             elif texture_type == texture_types.SS_AMOUNT:
                 mat_node.connect_from(texture_node, mat_node.input_transl_weight)
             elif texture_type == texture_types.NORMAL:
-                bumpmap_node = nodes.redshift_nodes.BumpmapNode(hh_parent_node=rs_mat_node)
+                bumpmap_node = nodes.redshift_nodes.BumpmapNode(ox_parent=rs_mat_node)
                 bumpmap_node.connect_from(texture_node, input_index=bumpmap_node.input_input)
                 redshift_material_node.connect_from(bumpmap_node, input_index=redshift_material_node.input_bump_map)
-                bumpmap_node.parm_inputtype_menu.tangent_space_normal
+                bumpmap_node.parm_inputtype.menu_tangent_space_normal
                 bumpmap_node.parm_newrange_min = -1
-            elif texture_type == texture_types.DISPLACEMENT:
-                displacement_node = nodes.redshift_nodes.DisplacementNode(hh_parent_node=rs_mat_node)
+            elif texture_type == texture_types.DISPLACEMENT or texture_type == texture_types.Height:
+                displacement_node = nodes.redshift_nodes.DisplacementNode(ox_parent=rs_mat_node)
                 displacement_node.connect_from(texture_node, input_index=displacement_node.input_texmap)
                 redshift_material_node.connect_from(displacement_node, input_index=redshift_material_node.input_displacement)
                 displacement_node.parm_newrange_min = -1
             elif texture_type == texture_types.OPACITY:
                 mat_node.connect_from(texture_node, mat_node.input_opacity_color)
-        print('\n')
         rs_mat_node.node.layoutChildren()
 
-main()]]></script>
+    # add promoted controlls
+    folder_label = 'Group Controls'
+    i: nodes.redshift_nodes.GolaemhslNode
+    matnet_node.add_folder(folder_name='group_controls', folder_label=folder_label)
+    for group_key, value_list in material_groups_dict.items():
+        hue_parm = matnet_node.add_float_parameter(name=f'{group_key}_hue', label=f'{group_key} Hue', min_f=-1, max_f=1,
+                                                   min_is_strict=True, max_is_strict=True, folder_label=folder_label)
+        sat_parm = matnet_node.add_float_parameter(name=f'{group_key}_sat', label=f'{group_key} Saturation', min_f=-1, max_f=1,
+                                                   min_is_strict=True, max_is_strict=True, folder_label=folder_label)
+        light_parm = matnet_node.add_float_parameter(name=f'{group_key}_light', label=f'{group_key} Lightness', min_f=-1, max_f=1,
+                                                     min_is_strict=True, max_is_strict=True, folder_label=folder_label)
+        for i in value_list:
+            i.parm_l = light_parm
+            i.parm_h = hue_parm
+            i.parm_s = sat_parm
+
+
+main()
+]]></script>
   </tool>
 </shelfDocument>

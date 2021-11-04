@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class NullNode(HHNode):
+class NullNode(OXNode):
     node_type = 'null'
     parm_lookup_dict = {'copyinput': 'copyinput', 'cacheinput': 'cacheinput'}
 

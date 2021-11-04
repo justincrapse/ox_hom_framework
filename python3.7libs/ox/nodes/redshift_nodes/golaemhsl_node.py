@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class GolaemhslNode(HHNode):
+class GolaemhslNode(OXNode):
     node_type = 'redshift::GolaemHSL'
     parm_lookup_dict = {'incolorr': 'inColorr', 'incolorg': 'inColorg', 'incolorb': 'inColorb', 'h': 'h', 's': 's', 'l': 'l'}
 

@@ -1,0 +1,14 @@
+{
+  "path": "",
+  "env": [
+    {
+      "tool_path": "C:/Users/justi/PycharmProjects/hython_snake"
+    },
+    {
+      "HOUDINI_UI_ICON_PATH": "$tool_path/icons"
+    },
+    {
+      "HOUDINI_PATH": "$tool_path"
+    }
+  ]
+}

@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class HeightfieldCopylayerNode(HHNode):
+class HeightfieldCopylayerNode(OXNode):
     node_type = 'heightfield_copylayer'
     parm_lookup_dict = {'numcopy': 'numcopy', 'srcname1': 'srcname1', 'dstname1': 'dstname1', 'copysrc1': 'copysrc1', 'replacedst1': 'replacedst1'}
 

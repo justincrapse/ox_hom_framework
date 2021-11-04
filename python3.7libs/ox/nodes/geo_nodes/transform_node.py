@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class TransformNode(HHNode):
+class TransformNode(OXNode):
     node_type = 'xform'
     parm_lookup_dict = {'group': 'group', 'grouptype': 'grouptype', 'xord': 'xOrd', 'rord': 'rOrd', 'tx': 'tx', 'ty': 'ty', 'tz': 'tz', 'rx': 'rx', 'ry': 'ry', 'rz': 'rz', 'sx': 'sx', 'sy': 'sy', 'sz': 'sz', 'shear1': 'shear1', 'shear2': 'shear2', 'shear3': 'shear3', 'scale': 'scale', 'parmgroup_pivotxform': 'parmgroup_pivotxform', 'px': 'px', 'py': 'py', 'pz': 'pz', 'prx': 'prx', 'pry': 'pry', 'prz': 'prz', 'parmgroup_prexform': 'parmgroup_prexform', 'prexform_xord': 'prexform_xOrd', 'prexform_rord': 'prexform_rOrd', 'prexform_tx': 'prexform_tx', 'prexform_ty': 'prexform_ty', 'prexform_tz': 'prexform_tz', 'prexform_rx': 'prexform_rx', 'prexform_ry': 'prexform_ry', 'prexform_rz': 'prexform_rz', 'prexform_sx': 'prexform_sx', 'prexform_sy': 'prexform_sy', 'prexform_sz': 'prexform_sz', 'prexform_shear1': 'prexform_shear1', 'prexform_shear2': 'prexform_shear2', 'prexform_shear3': 'prexform_shear3', 'movecentroid': 'movecentroid', 'attribs': 'attribs', 'updatenmls': 'updatenmls', 'updateaffectednmls': 'updateaffectednmls', 'vlength': 'vlength', 'invertxform': 'invertxform', 'addattrib': 'addattrib', 'outputattrib': 'outputattrib', 'outputmerge': 'outputmerge'}
 

@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class AttribwrangleNode(HHNode):
+class AttribwrangleNode(OXNode):
     node_type = 'attribwrangle'
     parm_lookup_dict = {'folder01': 'folder01', 'group': 'group', 'grouptype': 'grouptype', 'class_alt': 'class', 'vex_numcount': 'vex_numcount', 'vex_threadjobsize': 'vex_threadjobsize', 'snippet': 'snippet', 'exportlist': 'exportlist', 'vex_strict': 'vex_strict', 'autobind': 'autobind', 'bindings': 'bindings', 'groupautobind': 'groupautobind', 'groupbindings': 'groupbindings', 'vex_cwdpath': 'vex_cwdpath', 'vex_outputmask': 'vex_outputmask', 'vex_updatenmls': 'vex_updatenmls', 'vex_matchattrib': 'vex_matchattrib', 'vex_inplace': 'vex_inplace', 'vex_selectiongroup': 'vex_selectiongroup', 'vex_precision': 'vex_precision'}
 

@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class UnpackNode(HHNode):
+class UnpackNode(OXNode):
     node_type = 'unpack'
     parm_lookup_dict = {'group': 'group', 'limit_iterations': 'limit_iterations', 'iterations': 'iterations', 'detail_attributes': 'detail_attributes', 'transfer_attributes': 'transfer_attributes', 'transfer_groups': 'transfer_groups', 'apply_style_sheets': 'apply_style_sheets', 'scene_style_sheet': 'scene_style_sheet', 'obj_style_sheet': 'obj_style_sheet'}
 

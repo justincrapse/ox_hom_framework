@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class RedshiftMaterialNode(HHNode):
+class RedshiftMaterialNode(OXNode):
     node_type = 'redshift_material'
     parm_lookup_dict = {'rs_matprop_id': 'RS_matprop_ID'}
 

@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class ConnectivityNode(HHNode):
+class ConnectivityNode(OXNode):
     node_type = 'connectivity'
     parm_lookup_dict = {'connecttype': 'connecttype', 'attribname': 'attribname', 'attribtype': 'attribtype', 'prefix': 'prefix', 'createvarmap': 'createvarmap', 'varname': 'varname', 'seamgroup': 'seamgroup', 'byuv': 'byuv', 'uvattrib': 'uvattrib'}
 

@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class BumpmapNode(HHNode):
+class BumpmapNode(OXNode):
     node_type = 'redshift::BumpMap'
     parm_lookup_dict = {'texture_0': 'Texture_0', 'inuse': 'inuse', 'inputtype': 'inputType', 'inputr': 'inputr', 'inputg': 'inputg', 'inputb': 'inputb', 'scale': 'scale', 'factorinobjscale': 'factorInObjScale', 'remap_1': 'Remap_1', 'oldrange_min': 'oldrange_min', 'oldrange_max': 'oldrange_max', 'newrange_min': 'newrange_min', 'newrange_max': 'newrange_max', 'unbiasednormalmap': 'unbiasedNormalMap', 'flipy': 'flipY'}
 

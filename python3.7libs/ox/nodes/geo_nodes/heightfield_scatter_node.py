@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class HeightfieldScatterNode(HHNode):
+class HeightfieldScatterNode(OXNode):
     node_type = 'heightfield_scatter::2.0'
     parm_lookup_dict = {'tag': 'tag', 'scattermethod': 'scattermethod', 'folder1': 'folder1', 'layer': 'layer', 'coverage': 'coverage', 'density': 'density', 'totalpointcount': 'totalpointcount', 'sourcetag': 'sourcetag', 'perpointcount_method': 'perpointcount_method', 'perpointcount_exactnumber': 'perpointcount_exactnumber', 'perpointcount_poissonrangemin': 'perpointcount_poissonrangemin', 'perpointcount_poissonrangemax': 'perpointcount_poissonrangemax', 'positioning_method': 'positioning_method', 'positioning_originmin': 'positioning_originmin', 'positioning_originmax': 'positioning_originmax', 'positioning_offsetmin': 'positioning_offsetmin', 'positioning_offsetmax': 'positioning_offsetmax', 'positioning_ratiomin': 'positioning_ratiomin', 'positioning_ratiomax': 'positioning_ratiomax', 'outerradius': 'outerradius', 'falloff': 'falloff', 'folder2': 'folder2', 'variability_method': 'variability_method', 'variability_exactscale': 'variability_exactscale', 'variability_unifromrangemin': 'variability_unifromrangemin', 'variability_unifromrangemax': 'variability_unifromrangemax', 'variability_normalrangemin': 'variability_normalrangemin', 'variability_normalrangemax': 'variability_normalrangemax', 'variability_normalspread': 'variability_normalspread', 'folder0': 'folder0', 'relax_points': 'relax_points', 'relax_selfoverlap': 'relax_selfoverlap', 'relax_avoidtag': 'relax_avoidtag', 'relax_maskcutoff': 'relax_maskcutoff', 'relax_iterations': 'relax_iterations', 'relax_removingrate': 'relax_removingrate', 'relax_stepratio': 'relax_stepratio', 'relax_allowoutofbounds': 'relax_allowoutofbounds', 'relax_pointremovalmethod': 'relax_pointremovalmethod', 'keepscatterpoints': 'keepscatterpoints', 'keepterrain': 'keepterrain', 'matchnormalterrain': 'matchnormalterrain', 'matchslopeterrain': 'matchslopeterrain', 'randomup': 'randomup', 'randomyaw': 'randomyaw', 'instancenewpoints': 'instancenewpoints', 'piecemode': 'piecemode', 'pieceattrib': 'pieceattrib', 'quant': 'quant', 'seed': 'seed', 'useemergencylimit': 'useemergencylimit', 'emergencylimit': 'emergencylimit'}
 

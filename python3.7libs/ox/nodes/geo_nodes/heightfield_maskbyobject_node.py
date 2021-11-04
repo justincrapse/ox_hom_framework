@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class HeightfieldMaskbyobjectNode(HHNode):
+class HeightfieldMaskbyobjectNode(OXNode):
     node_type = 'heightfield_maskbyobject'
     parm_lookup_dict = {'folder01': 'folder01', 'combine': 'combine', 'blend': 'blend', 'method': 'method', 'maskdir': 'maskdir', 'invertmask': 'invertmask', 'maxdist': 'maxdist', 'value': 'value', 'blurmethod': 'blurmethod', 'blurradius': 'blurradius', 'dojitter': 'dojitter', 'sample': 'sample', 'jitter': 'jitter', 'jittercombine': 'jittercombine', 'seed': 'seed', 'masklayer': 'masklayer', 'heightlayer': 'heightlayer'}
 

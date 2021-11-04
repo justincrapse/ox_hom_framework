@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class CleanNode(HHNode):
+class CleanNode(OXNode):
     node_type = 'clean'
     parm_lookup_dict = {'fusepts': 'fusepts', 'deldegengeo': 'deldegengeo', 'orientpoly': 'orientpoly', 'reversewinding': 'reversewinding', 'fixoverlap': 'fixoverlap', 'deleteoverlap': 'deleteoverlap', 'delunusedpts': 'delunusedpts', 'dodelattribs': 'dodelattribs', 'delattribs': 'delattribs', 'dodelgroups': 'dodelgroups', 'delgroups': 'delgroups', 'delnans': 'delnans', 'make_manifold': 'make_manifold', 'delete_small': 'delete_small', 'prim_count': 'prim_count'}
 

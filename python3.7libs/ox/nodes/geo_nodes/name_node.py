@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class NameNode(HHNode):
+class NameNode(OXNode):
     node_type = 'name'
     parm_lookup_dict = {'attribname': 'attribname', 'class_alt': 'class', 'donamefromgroup': 'donamefromgroup', 'namefromgroupmask': 'namefromgroupmask', 'numnames': 'numnames', 'numrenames': 'numrenames', 'group1': 'group1', 'name1': 'name1'}
 

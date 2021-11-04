@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class DisplacementNode(HHNode):
+class DisplacementNode(OXNode):
     node_type = 'redshift::Displacement'
     parm_lookup_dict = {'texture_0': 'Texture_0', 'texmapr': 'texMapr', 'texmapg': 'texMapg', 'texmapb': 'texMapb', 'scale': 'scale', 'map_encoding': 'map_encoding', 'space_type': 'space_type', 'tangents_1': 'Tangents_1', 'tangents': 'tangents', 'change_range_2': 'Change_Range_2', 'oldrange_min': 'oldrange_min', 'oldrange_max': 'oldrange_max', 'newrange_min': 'newrange_min', 'newrange_max': 'newrange_max'}
 

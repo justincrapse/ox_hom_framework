@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class ObjectMergeNode(HHNode):
+class ObjectMergeNode(OXNode):
     node_type = 'object_merge'
     parm_lookup_dict = {'numobj': 'numobj', 'xformtype': 'xformtype', 'xformpath': 'xformpath', 'invertxform': 'invertxform', 'createptgroups': 'createptgroups', 'ptgroupprefix': 'ptgroupprefix', 'createprimgroups': 'createprimgroups', 'primgroupprefix': 'primgroupprefix', 'verbosegroups': 'verbosegroups', 'suffixfirstgroup': 'suffixfirstgroup', 'createptstring': 'createptstring', 'createprimstring': 'createprimstring', 'pathattrib': 'pathattrib', 'pack': 'pack', 'pivot': 'pivot', 'viewportlod': 'viewportlod', 'addpath': 'addpath', 'enable1': 'enable1', 'objpath1': 'objpath1', 'group1': 'group1', 'expand1': 'expand1'}
 

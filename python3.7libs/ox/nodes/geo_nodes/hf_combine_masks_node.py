@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class HfCombineMasksNode(HHNode):
+class HfCombineMasksNode(OXNode):
     node_type = 'labs::hf_combine_masks'
     parm_lookup_dict = {'bflood': 'bFlood', 'srcname1': 'srcname1', 'folder0': 'folder0', 'folder1': 'folder1', 'clampmin': 'clampmin', 'clampmax': 'clampmax', 'remap': 'remap', 'remap1pos': 'remap1pos', 'remap1value': 'remap1value', 'remap1interp': 'remap1interp', 'remap2pos': 'remap2pos', 'remap2value': 'remap2value', 'remap2interp': 'remap2interp', 'layername_1': 'layername_1', 'clamp_1': 'clamp_1', 'blend_1': 'blend_1', 'method_1': 'method_1', 'radius_1': 'radius_1', 'mode_1': 'mode_1', 'layername_2': 'layername_2', 'clamp_2': 'clamp_2', 'blend_2': 'blend_2', 'method_2': 'method_2', 'radius_2': 'radius_2', 'mode_2': 'mode_2', 'layername_3': 'layername_3', 'clamp_3': 'clamp_3', 'blend_3': 'blend_3', 'method_3': 'method_3', 'radius_3': 'radius_3', 'mode_3': 'mode_3', 'layername_4': 'layername_4', 'clamp_4': 'clamp_4', 'blend_4': 'blend_4', 'method_4': 'method_4', 'radius_4': 'radius_4', 'mode_4': 'mode_4', 'layername_5': 'layername_5', 'clamp_5': 'clamp_5', 'blend_5': 'blend_5', 'method_5': 'method_5', 'radius_5': 'radius_5', 'mode_5': 'mode_5'}
 

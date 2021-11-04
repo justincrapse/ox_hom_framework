@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class ColorNode(HHNode):
+class ColorNode(OXNode):
     node_type = 'color'
     parm_lookup_dict = {'group': 'group', 'grouptype': 'grouptype', 'deleteallcolorattribs': 'deleteallcolorattribs', 'class_alt': 'class', 'colortype': 'colortype', 'colorr': 'colorr', 'colorg': 'colorg', 'colorb': 'colorb', 'seed': 'seed', 'rampattribute': 'rampattribute', 'ramprange1': 'ramprange1', 'ramprange2': 'ramprange2', 'ramp': 'ramp', 'ramp1pos': 'ramp1pos', 'ramp1cr': 'ramp1cr', 'ramp1cg': 'ramp1cg', 'ramp1cb': 'ramp1cb', 'ramp1interp': 'ramp1interp', 'ramp2pos': 'ramp2pos', 'ramp2cr': 'ramp2cr', 'ramp2cg': 'ramp2cg', 'ramp2cb': 'ramp2cb', 'ramp2interp': 'ramp2interp'}
 

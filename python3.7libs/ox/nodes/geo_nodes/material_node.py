@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class MaterialNode(HHNode):
+class MaterialNode(OXNode):
     node_type = 'material'
     parm_lookup_dict = {'style': 'style', 'uselabels': 'uselabels', 'createstylesheets': 'createstylesheets', 'fullpath': 'fullpath', 'num_materials': 'num_materials', 'group1': 'group1', 'shop_materialpath1': 'shop_materialpath1', 'localvar1': 'localvar1', 'mergeoverride1': 'mergeoverride1', 'num_local1': 'num_local1'}
 

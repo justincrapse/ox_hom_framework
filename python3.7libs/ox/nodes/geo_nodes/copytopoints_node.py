@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class CopytopointsNode(HHNode):
+class CopytopointsNode(OXNode):
     node_type = 'copytopoints::2.0'
     parm_lookup_dict = {'sourcegroup': 'sourcegroup', 'sourcegrouptype': 'sourcegrouptype', 'targetgroup': 'targetgroup', 'useidattrib': 'useidattrib', 'idattrib': 'idattrib', 'pack': 'pack', 'pivot': 'pivot', 'viewportlod': 'viewportlod', 'transform': 'transform', 'useimplicitn': 'useimplicitn', 'resettargetattribs': 'resettargetattribs', 'targetattribs': 'targetattribs'}
 

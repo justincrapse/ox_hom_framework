@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class VolumewrangleNode(HHNode):
+class VolumewrangleNode(OXNode):
     node_type = 'volumewrangle'
     parm_lookup_dict = {'folder01': 'folder01', 'group': 'group', 'bindeach': 'bindeach', 'snippet': 'snippet', 'exportlist': 'exportlist', 'vex_strict': 'vex_strict', 'autobind': 'autobind', 'bindings': 'bindings', 'vex_geometrygenerator': 'vex_geometrygenerator', 'vdb_signedflood': 'vdb_signedflood', 'vex_cwdpath': 'vex_cwdpath', 'vex_outputmask': 'vex_outputmask', 'vex_precision': 'vex_precision'}
 

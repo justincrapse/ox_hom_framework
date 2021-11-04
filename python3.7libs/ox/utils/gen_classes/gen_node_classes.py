@@ -50,13 +50,13 @@ def generate_node_class(node, sub_dir, debug=False):
     # folders
     parm_template_group = node.parmTemplateGroup()
 
-    class_string = f"""from ox.base_objects.ox_node import HHNode
+    class_string = f"""from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class {class_name}(HHNode):
+class {class_name}(OXNode):
     node_type = '{node_type}'
     parm_lookup_dict = {parm_lookup_dict}
 

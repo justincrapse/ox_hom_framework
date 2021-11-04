@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class AttribcreateNode(HHNode):
+class AttribcreateNode(OXNode):
     node_type = 'attribcreate::2.0'
     parm_lookup_dict = {'group': 'group', 'grouptype': 'grouptype', 'encodenames': 'encodenames', 'numattr': 'numattr', 'enable1': 'enable1', 'name1': 'name1', 'existing1': 'existing1', 'createvarmap1': 'createvarmap1', 'varname1': 'varname1', 'class1': 'class1', 'savetoinfo1': 'savetoinfo1', 'type1': 'type1', 'typeinfo1': 'typeinfo1', 'precision1': 'precision1', 'size1': 'size1', 'default1v1': 'default1v1', 'default1v2': 'default1v2', 'default1v3': 'default1v3', 'default1v4': 'default1v4', 'writevalues1': 'writevalues1', 'uselocal1': 'uselocal1', 'value1v1': 'value1v1', 'value1v2': 'value1v2', 'value1v3': 'value1v3', 'value1v4': 'value1v4', 'string1': 'string1'}
 

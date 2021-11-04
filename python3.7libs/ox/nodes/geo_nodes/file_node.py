@@ -1,10 +1,10 @@
-from ox.base_objects.ox_node import HHNode
+from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class FileNode(HHNode):
+class FileNode(OXNode):
     node_type = 'file'
     parm_lookup_dict = {'filemode': 'filemode', 'file': 'file', 'reload': 'reload', 'objpattern': 'objpattern', 'geodatapath': 'geodatapath', 'missingframe': 'missingframe', 'loadtype': 'loadtype', 'packedviewedit': 'packedviewedit', 'viewportlod': 'viewportlod', 'packexpanded': 'packexpanded', 'delayload': 'delayload', 'mkpath': 'mkpath', 'cachesize': 'cachesize', 'prefetch': 'prefetch', 'f1': 'f1', 'f2': 'f2', 'index': 'index', 'wrap': 'wrap', 'retry': 'retry'}
 

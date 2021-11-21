@@ -97,8 +97,8 @@ class AttribfrompiecesNode(OXNode):
 
 
         # input vars:
-        self.input_point_cloud = 0
-        self.input_geometry_library = 1
+        self.input_point_cloud = 'Point Cloud'
+        self.input_geometry_library = 'Geometry Library'
 
 
 # parm menu classes:

@@ -92,7 +92,7 @@ class HeightfieldVisualizeNode(OXNode):
 
 
         # input vars:
-        self.input_terrain = 0
+        self.input_terrain = 'Terrain'
 
 
 # parm menu classes:

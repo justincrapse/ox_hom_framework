@@ -261,7 +261,7 @@ class GeoNode(OXNode):
 
 
         # input vars:
-        self.input_parent = 0
+        self.input_parent = 'parent'
 
 
 # parm menu classes:

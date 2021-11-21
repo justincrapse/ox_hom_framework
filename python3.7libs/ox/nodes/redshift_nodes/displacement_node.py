@@ -38,12 +38,12 @@ class DisplacementNode(OXNode):
 
 
         # input vars:
-        self.input_texmap = 0
-        self.input_scale = 1
-        self.input_oldrange_min = 2
-        self.input_oldrange_max = 3
-        self.input_newrange_min = 4
-        self.input_newrange_max = 5
+        self.input_texmap = 'texMap'
+        self.input_scale = 'scale'
+        self.input_oldrange_min = 'oldrange_min'
+        self.input_oldrange_max = 'oldrange_max'
+        self.input_newrange_min = 'newrange_min'
+        self.input_newrange_max = 'newrange_max'
 
 
 # parm menu classes:

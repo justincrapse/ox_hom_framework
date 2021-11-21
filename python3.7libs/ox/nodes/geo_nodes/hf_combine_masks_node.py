@@ -67,7 +67,7 @@ class HfCombineMasksNode(OXNode):
 
 
         # input vars:
-        self.input_heightfield = 0
+        self.input_heightfield = 'Heightfield'
 
 
 # parm menu classes:

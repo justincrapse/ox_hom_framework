@@ -29,7 +29,7 @@ class HeightfieldCopylayerNode(OXNode):
 
 
         # input vars:
-        self.input_terrain_to_copy_layers_within = 0
+        self.input_terrain_to_copy_layers_within = 'Terrain to Copy Layers within'
 
 
 # parm menu classes:

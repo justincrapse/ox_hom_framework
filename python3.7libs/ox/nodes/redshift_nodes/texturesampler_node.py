@@ -59,14 +59,14 @@ class TexturesamplerNode(OXNode):
 
 
         # input vars:
-        self.input_scale = 0
-        self.input_offset = 1
-        self.input_rotate = 2
-        self.input_color_multiplier = 3
-        self.input_color_offset = 4
-        self.input_alpha_multiplier = 5
-        self.input_alpha_offset = 6
-        self.input_invalid_color = 7
+        self.input_scale = 'scale'
+        self.input_offset = 'offset'
+        self.input_rotate = 'rotate'
+        self.input_color_multiplier = 'color_multiplier'
+        self.input_color_offset = 'color_offset'
+        self.input_alpha_multiplier = 'alpha_multiplier'
+        self.input_alpha_offset = 'alpha_offset'
+        self.input_invalid_color = 'invalid_color'
 
 
 # parm menu classes:
@@ -74,18 +74,18 @@ class Tex0Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_e__art_3d_eucaly___ark_3_height_png = 0
-        self.menu_e__art_projects____quarry_02_4k_exr = 1
-        self.menu_e__art_projects____a_sunrise_4k_exr = 2
-        self.menu_e__art_projects____in_cellar_4k_exr = 3
-        self.menu_e__art_projects____oon_grass_4k_exr = 4
-        self.menu_e__art_3d_from_t___urfaceamount_png = 5
-        self.menu_e__art_3d_from_t___rfaceamount2_png = 6
-        self.menu_e__art_3d_from_t___surfacecolor_png = 7
-        self.menu_e__art_3d_from_t___af_1_opacity_png = 8
-        self.menu_e__art_3d_from_t___eaf_1_normal_png = 9
-        self.menu_e__art_3d_from_t___leaf_1_gloss_png = 10
-        self.menu_e__art_3d_from_t___te_leaf_1_ao_png = 11
+        self.menu_e__art_projects____anga_veld_4k_exr = 0
+        self.menu_e__art_3d_00_my____ring_opacity_png = 1
+        self.menu_e__art_projects____ly_cloudy_4k_exr = 2
+        self.menu_e__art_projects_____1d_clear_4k_exr = 3
+        self.menu_op__opfullpath______gen_displace___ = 4
+        self.menu_op__opfullpath__________ocean_s____ = 5
+        self.menu_op__opfullpath_____ean_interior____ = 6
+        self.menu_e__art_3d_eucaly___ark_3_height_png = 7
+        self.menu_e__art_projects____quarry_02_4k_exr = 8
+        self.menu_e__art_projects____a_sunrise_4k_exr = 9
+        self.menu_e__art_projects____in_cellar_4k_exr = 10
+        self.menu_e__art_projects____oon_grass_4k_exr = 11
 
 
 class Tex0ColorspaceMenu(Menu):

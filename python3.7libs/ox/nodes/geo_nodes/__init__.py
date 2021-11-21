@@ -26,3 +26,8 @@ from .attribwrangle_node import AttribwrangleNode
 from .attribcreate_node import AttribcreateNode
 from .partition_node import PartitionNode
 from .clean_node import CleanNode
+from .heightfield_masknoise_node import HeightfieldMasknoiseNode
+from .heightfield_noise_node import HeightfieldNoiseNode
+from .chopnet_node import ChopnetNode
+from .box_node import BoxNode
+from .normal_node import NormalNode

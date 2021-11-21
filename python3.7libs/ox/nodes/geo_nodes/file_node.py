@@ -43,7 +43,7 @@ class FileNode(OXNode):
 
 
         # input vars:
-        self.input_input_1 = 0
+        self.input_input_1 = 'Input 1'
 
 
 # parm menu classes:
@@ -61,18 +61,18 @@ class FileMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_e__art_projects_____1_erf_tall3_abc = 0
-        self.menu__chs__file___ = 1
-        self.menu_e__art_3d_00_my____las_4_forest_fbx = 2
-        self.menu_e__art_3d_00_my____las_4_forest_abc = 3
-        self.menu_e__art_3d_from_t___e_first_wind_abc = 4
-        self.menu_e__art_projects____dgum_field_2_fbx = 5
-        self.menu_e__art_projects____dgum_field_1_fbx = 6
-        self.menu_e__art_3d_from_t____first_wind3_abc = 7
-        self.menu_e__art_3d_from_t____wind_groups_abc = 8
-        self.menu_e__art_3d_from_t___ind_particle_abc = 9
-        self.menu_e__art_projects____s_spline_01_bgeo = 10
-        self.menu_e__art_projects____dgum_field_2_fbx = 11
+        self.menu_e__art_projects_____with_wind_1_abc = 0
+        self.menu_e__art_projects____bx_erf_tall2_fbx = 1
+        self.menu_e__art_projects____dgum_field_2_fbx = 2
+        self.menu_e__art_projects_____1_erf_tall3_abc = 3
+        self.menu__chs__file___ = 4
+        self.menu_e__art_3d_00_my____las_4_forest_fbx = 5
+        self.menu_e__art_3d_00_my____las_4_forest_abc = 6
+        self.menu_e__art_3d_from_t___e_first_wind_abc = 7
+        self.menu_e__art_projects____dgum_field_1_fbx = 8
+        self.menu_e__art_3d_from_t____first_wind3_abc = 9
+        self.menu_e__art_3d_from_t____wind_groups_abc = 10
+        self.menu_e__art_3d_from_t___ind_particle_abc = 11
 
 
 class MissingframeMenu(Menu):

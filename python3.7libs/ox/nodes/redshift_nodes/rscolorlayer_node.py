@@ -101,21 +101,21 @@ class RscolorlayerNode(OXNode):
 
 
         # input vars:
-        self.input_base_color = 0
-        self.input_layer1_color = 1
-        self.input_layer1_mask = 2
-        self.input_layer2_color = 3
-        self.input_layer2_mask = 4
-        self.input_layer3_color = 5
-        self.input_layer3_mask = 6
-        self.input_layer4_color = 7
-        self.input_layer4_mask = 8
-        self.input_layer5_color = 9
-        self.input_layer5_mask = 10
-        self.input_layer6_color = 11
-        self.input_layer6_mask = 12
-        self.input_layer7_color = 13
-        self.input_layer7_mask = 14
+        self.input_base_color = 'base_color'
+        self.input_layer1_color = 'layer1_color'
+        self.input_layer1_mask = 'layer1_mask'
+        self.input_layer2_color = 'layer2_color'
+        self.input_layer2_mask = 'layer2_mask'
+        self.input_layer3_color = 'layer3_color'
+        self.input_layer3_mask = 'layer3_mask'
+        self.input_layer4_color = 'layer4_color'
+        self.input_layer4_mask = 'layer4_mask'
+        self.input_layer5_color = 'layer5_color'
+        self.input_layer5_mask = 'layer5_mask'
+        self.input_layer6_color = 'layer6_color'
+        self.input_layer6_mask = 'layer6_mask'
+        self.input_layer7_color = 'layer7_color'
+        self.input_layer7_mask = 'layer7_mask'
 
 
 # parm menu classes:

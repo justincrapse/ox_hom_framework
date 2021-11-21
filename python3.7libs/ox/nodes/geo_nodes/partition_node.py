@@ -28,7 +28,7 @@ class PartitionNode(OXNode):
 
 
         # input vars:
-        self.input_input_geometry = 0
+        self.input_input_geometry = 'Input geometry'
 
 
 # parm menu classes:

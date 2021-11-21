@@ -47,7 +47,7 @@ class ColorNode(OXNode):
 
 
         # input vars:
-        self.input_geometry_to_color = 0
+        self.input_geometry_to_color = 'Geometry to Color'
 
 
 # parm menu classes:

@@ -63,7 +63,7 @@ class ScatterNode(OXNode):
 
 
         # input vars:
-        self.input_geometry_to_scatter_points_onto = 0
+        self.input_geometry_to_scatter_points_onto = 'Geometry to scatter points onto'
 
 
 # parm menu classes:

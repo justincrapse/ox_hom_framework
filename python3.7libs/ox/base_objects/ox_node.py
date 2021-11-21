@@ -12,6 +12,7 @@ class OXNode(ParmTemplate):  # mixin
 
     def __init__(self, node=None):
         super().__init__(node=node)
+        self.name = node.name()
         self.node = node
         self.path = node.path()
         self.type = node.type().name()
@@ -24,6 +25,7 @@ class OXNode(ParmTemplate):  # mixin
         if clean_key in self.parm_lookup_dict and clean_key not in skip_list and hasattr(self, name):
             hou_parm_string = self.parm_lookup_dict[clean_key]
             parm = self.node.parm(hou_parm_string)
+            parm.deleteAllKeyframes()
             parm.set(value)
         else:
             super().__setattr__(name, value)
@@ -34,18 +36,43 @@ class OXNode(ParmTemplate):  # mixin
         clean_key = re.sub(r"{}".format('|'.join(del_list)), '', raw_key)
         return clean_key
 
+    def get_input_labels(self):
+        labels = self.node.inputLabels()
+        return list(labels)
+
+    def get_label_index(self, label):
+        labels = self.get_input_labels()
+        try:
+            index = labels.index(label)
+            return index
+        except ValueError as e:
+            ValueError(f'Label: {label}. Was not found in node: {self.path}')
+
     def create_node(self, node_type_name, node_name=None):
         new_node = self.node.createNode(node_type_name, node_name)
         return new_node
 
-    def connect_from(self, ox_node, input_index=0, out_index=0):
+    def create_node_if_not_exist(self, ox_node_class, node_name=None):
+        node_type_name = ox_node_class.node_type
+        child_node = self.get_child_by_name(child_name=node_name)
+        if not child_node:
+            child_node = self.create_node(node_type_name=node_type_name, node_name=node_name)
+        return ox_node_class(node=child_node)
+
+    def connect_from(self, ox_node, input_index=0, out_index=0, input_label=None):
+        """ use input_label over input_index whenever possible """
         other_hou_node = ox_node.node
+        if input_label:
+            input_index = self.get_label_index(label=input_label)
         self.node.setInput(input_index=input_index, item_to_become_input=other_hou_node, output_index=out_index)
 
     def get_child_by_name(self, child_name):
         for child in self.node.children():
             if child.name() == child_name:
                 return child
+
+    def has_child_with_name(self, child_name):
+        return bool(self.get_child_by_name(child_name=child_name))
 
     def get_children_paths_by_partial_name(self, substring):
         path_list = []
@@ -54,12 +81,23 @@ class OXNode(ParmTemplate):  # mixin
                 path_list.append(node.path())
         return path_list
 
+    def get_children_hou_nodes_by_partial_name(self, substring):
+        node_list = []
+        for node in self.node.children():
+            if substring in node.name():
+                node_list.append(node)
+        return node_list
+
     def set_color(self, color):
         self.node.setColor(color)
 
     def get_prim_values(self, field):
         value_list = [i.attribValue(field) for i in self.node.geometry().prims()]
         return value_list
+
+    def get_planes(self):
+        planes = self.node.planes()
+        return planes
 
     def get_displayed_child_node(self, ):
         for node in self.node.children():
@@ -80,7 +118,8 @@ class OXNode(ParmTemplate):  # mixin
         self.node.allowEditingOfContents()
 
     def get_folder_labels(self):
-        labels = self.get_entry_labels()
+        templates = self.get_parm_templates_of_folder_type()
+        labels = [i.label() for i in templates]
         return labels
 
     def set_display_flag(self, on=True, include_render_flag=True):
@@ -88,6 +127,21 @@ class OXNode(ParmTemplate):  # mixin
         if include_render_flag:
             self.node.setRenderFlag(on=on)
 
+    def set_bypass_flag(self, on):
+        self.node.bypass(on=on)
+
     def get_prim_groups(self):
         group_list = [i.name() for i in self.node.geometry().primGroups()]
         return group_list
+
+    def load_preset(self, preset_name):
+        script = f'oppresetload {self.path} {preset_name}'
+        result = hou.hscript(script)
+
+    def select_node(self, on=True):
+        self.node.setSelected(on=on)
+
+    def layout_children(self):
+        self.node.layoutChildren()
+
+

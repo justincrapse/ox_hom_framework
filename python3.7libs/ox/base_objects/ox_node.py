@@ -127,6 +127,9 @@ class OXNode(ParmTemplate):  # mixin
         if include_render_flag:
             self.node.setRenderFlag(on=on)
 
+    def set_render_flag(self, on=True):
+        self.node.setRenderFlag(on=on)
+
     def set_bypass_flag(self, on):
         self.node.bypass(on=on)
 
@@ -140,8 +143,3 @@ class OXNode(ParmTemplate):  # mixin
 
     def select_node(self, on=True):
         self.node.setSelected(on=on)
-
-    def layout_children(self):
-        self.node.layoutChildren()
-
-

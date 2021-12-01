@@ -1,0 +1,2 @@
+PROXY_CTRL_LABEL = 'Proxy'
+LOD_CTRL_LABEL = 'LOD'

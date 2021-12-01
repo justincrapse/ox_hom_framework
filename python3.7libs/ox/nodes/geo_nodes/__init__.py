@@ -31,3 +31,5 @@ from .heightfield_noise_node import HeightfieldNoiseNode
 from .chopnet_node import ChopnetNode
 from .box_node import BoxNode
 from .normal_node import NormalNode
+from .attribtransfer_node import AttribtransferNode
+from .matchsize_node import MatchsizeNode

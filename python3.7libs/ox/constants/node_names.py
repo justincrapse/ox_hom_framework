@@ -1,0 +1,4 @@
+SCATTER_BRIDGE = 'Scatter_Bridge'
+SOP_IMPORT = 'sopimport1'
+PARM_CONTROLL_CENTER = 'PARM_CONTROL_CENTER'
+PROXY_SWITCH = 'proxy_switch'

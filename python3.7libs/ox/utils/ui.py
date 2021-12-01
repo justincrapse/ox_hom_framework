@@ -1,8 +1,10 @@
 import hou
 
 
-def select_node(title=None):
+def select_node(title=None, expect_selection=True):
     node_path = hou.ui.selectNode(title=title)
+    if not node_path and expect_selection:
+        exit()
     hou_node = hou.node(node_path)
     return hou_node
 

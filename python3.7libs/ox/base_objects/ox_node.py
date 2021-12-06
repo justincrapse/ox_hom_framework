@@ -36,6 +36,14 @@ class OXNode(ParmTemplate):  # mixin
         clean_key = re.sub(r"{}".format('|'.join(del_list)), '', raw_key)
         return clean_key
 
+    def delete_node(self):
+        self.node.destroy()
+
+    def delete_child_node(self, child_name):
+        child_hou_node = self.get_child_by_name(child_name=child_name)
+        if child_hou_node:
+            child_hou_node.destroy()
+
     def get_input_labels(self):
         labels = self.node.inputLabels()
         return list(labels)
@@ -140,6 +148,7 @@ class OXNode(ParmTemplate):  # mixin
     def load_preset(self, preset_name):
         script = f'oppresetload {self.path} {preset_name}'
         result = hou.hscript(script)
+        print(result)
 
     def select_node(self, on=True):
         self.node.setSelected(on=on)

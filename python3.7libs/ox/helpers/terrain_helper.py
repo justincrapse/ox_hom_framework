@@ -7,14 +7,15 @@ from ox.constants import colors
 
 
 class TerrainHelper:
-    def __init__(self, terrain_node: nodes.obj_nodes.GeoNode, hf_node: OXNode):
+    def __init__(self, terrain_node: nodes.obj_nodes.GeoNode, scatter_anchor_node: OXNode):
         self.obj_node = OXNode(node=hou.node('/obj'))
         self.terrain_node = terrain_node
-        self.hf_node = hf_node
+        self.hf_node = scatter_anchor_node
         # scatter bridge setup:
         self.scatter_bridge_node = self.obj_node.create_node_if_not_exist(
             ox_node_class=nodes.obj_nodes.GeoNode, node_name=node_names.SCATTER_BRIDGE)  # type: nodes.obj_nodes.GeoNode
         self.scatter_bridge_node.set_color(colors.cerulean_blue)
+        self.scatter_bridge_node.set_display_flag(on=False, include_render_flag=False)
         self.geo_import_node_tup_list = []  # we need a count, so a dict doesn't work
         self.mask_null_node_dict = {}
         self.prev_hf_node = None
@@ -96,16 +97,20 @@ class TerrainHelper:
         self.mask_null_node_dict[mask_name] = null_node
 
     def create_scatter_node(self, user_mask, user_source_points, prev_hf_node, next_mask=None, is_first_mask=False, is_last_mask=False,
-                            simple_scatter=False, scatter_node=None):
+                            simple_scatter=False, scatter_node=None, preset_lookup_dict=None):
+        """
+        Make sure we don't have any defaults AFTER a node preset is loaded.
+        """
         prev_hf_node = self.prev_hf_node if self.prev_hf_node else prev_hf_node
         name_only = user_mask.replace('_mask', '')
+        preset_name = preset_lookup_dict.get(name_only, name_only)
         if not scatter_node:
             scatter_node = nodes.geo_nodes.HeightfieldScatterNode(ox_parent=self.terrain_node, node_name=f'{user_mask}_hf_scatter')
             scatter_node.unlock_node()
             scatter_node.parm_keepterrain = False
             scatter_node.parm_keepscatterpoints = False
             scatter_node.parm_randomyaw = 180
-            scatter_node.load_preset(preset_name=name_only)
+            scatter_node.load_preset(preset_name=preset_name)
             new_vex_hou_parm = scatter_node.add_string_parameter(name=f'{user_mask}_scat_vex', label=f'{user_mask}_Scatter Point Vex', multiline=True)
             scatter_node.add_float_parameter(name='falloff_scalar', label=f'Vex Falloff Scalar', min_f=1, max_f=10)
             scatter_node.add_float_parameter(name='pluck_scalar', label=f'Vex Pluck Scalar', min_f=0, max_f=1)
@@ -117,14 +122,14 @@ class TerrainHelper:
                     source_scatter_node.parm_layer = user_mask
                 source_scatter_node.connect_from(ox_node=prev_hf_node)
                 source_scatter_node.connect_from(ox_node=prev_hf_node, input_label=source_scatter_node.input_mask_or_scatter_points)
-                source_scatter_node.parm_coverage = 0.13
-                source_scatter_node.load_preset(preset_name=f'{name_only}_source')
+                source_scatter_node.parm_coverage = 0.13  # just in case, but will be overridden by load_preset if exists
+                # now load presets specific to source-point scattering.
+                source_scatter_node.load_preset(preset_name=f'{preset_name}_source')
+                scatter_node.load_preset(preset_name=f'{preset_name}_point')
                 scatter_node.connect_from(ox_node=source_scatter_node)
                 scatter_node.connect_from(ox_node=source_scatter_node, input_label=scatter_node.input_mask_or_scatter_points)
                 scatter_node.parm_scattermethod.menu_per_point_count_using_source_points
                 scatter_node.parm_sourcetag = source_tag
-                scatter_node.parm_outerradius = 0.2
-                scatter_node.parm_positioning_offsetmax = 2
             else:
                 if is_first_mask or simple_scatter:
                     scatter_node.parm_layer = user_mask
@@ -155,6 +160,7 @@ class TerrainHelper:
             mask_by_obj_node.parm_maskdir.menu_below_heightfield
             mask_by_obj_node.parm_value = 2
             mask_by_obj_node.parm_blurradius = 2
+            mask_by_obj_node.load_preset(preset_name=preset_name)
 
             if not is_first_mask:
                 hf_combine_prev_node = nodes.geo_nodes.HfCombineMasksNode(ox_parent=self.terrain_node, node_name=f'{user_mask}_hf_prev_combine')
@@ -197,7 +203,7 @@ class TerrainHelper:
     #     scatter_node.parm_keepterrain = False
     #     scatter_node.parm_keepscatterpoints = False
     #     scatter_node.parm_randomyaw = 180
-    #     scatter_node.load_preset(preset_name=name_only)
+    #     scatter_node.load_preset(preset_name=preset_name)
     #     new_vex_hou_parm = scatter_node.add_string_parameter(name=f'{user_mask}_scat_vex', label=f'{user_mask}_Scatter Point Vex', multiline=True)
     #     scatter_node.add_float_parameter(name='falloff_scalar', label=f'Vex Falloff Scalar', min_f=1, max_f=10)
     #     scatter_node.add_float_parameter(name='pluck_scalar', label=f'Vex Pluck Scalar', min_f=0, max_f=1)
@@ -210,7 +216,7 @@ class TerrainHelper:
     #         source_scatter_node.connect_from(ox_node=prev_hf_node)
     #         source_scatter_node.connect_from(ox_node=prev_hf_node, input_label=source_scatter_node.input_mask_or_scatter_points)
     #         source_scatter_node.parm_coverage = 0.13
-    #         source_scatter_node.load_preset(preset_name=f'{name_only}_source')
+    #         source_scatter_node.load_preset(preset_name=f'{preset_name}_source')
     #         scatter_node.connect_from(ox_node=source_scatter_node)
     #         scatter_node.connect_from(ox_node=source_scatter_node, input_label=scatter_node.input_mask_or_scatter_points)
     #         scatter_node.parm_scattermethod.menu_per_point_count_using_source_points
@@ -237,14 +243,19 @@ class TerrainHelper:
     #     import_node.parm_objpath1 = f'{self.scatter_bridge_node.path}/{f"OUT_{user_mask}"}'
     #     scatter_node.connect_from(ox_node=import_node, input_label=scatter_node.input_primitives_to_instance)
 
-    def create_render_controller(self, user_mask, index):
+    def create_render_controller(self, user_mask, index, force_override=False, preset_lookup_dict=None):
         scatter_set_name = user_mask.replace('_mask', '')
+        preset_name = preset_lookup_dict.get(scatter_set_name, scatter_set_name) if preset_lookup_dict else scatter_set_name
+        if force_override:
+            self.obj_node.delete_child_node(child_name=f'{user_mask}_controller')
         user_mask_controller_node = self.obj_node.create_node_if_not_exist(
             ox_node_class=nodes.obj_nodes.GeoNode, node_name=f'{user_mask}_controller')  # type: nodes.obj_nodes.GeoNode
         user_mask_controller_node.move_node_relative_to(relative_node=self.terrain_node, y=-(1 + index))
         user_mask_controller_node.parm_rs_objprop_inst_packedpriminstancing = True
-        scatter_import_node = user_mask_controller_node.create_node_if_not_exist(
-            ox_node_class=nodes.geo_nodes.ObjectMergeNode, node_name=f'{user_mask}_scatter_import')  # type: nodes.geo_nodes.ObjectMergeNode
+        scatter_import_hou_node = user_mask_controller_node.get_child_by_name(child_name=f'{user_mask}_scatter_import')
+        if scatter_import_hou_node:
+            return
+        scatter_import_node = nodes.geo_nodes.ObjectMergeNode(ox_parent=user_mask_controller_node)
         scatter_node_path = f'{self.terrain_node.path}/{user_mask}_hf_scatter'
         scatter_import_node.parm_objpath1 = scatter_node_path
         scatter_import_node.set_render_flag()
@@ -274,9 +285,13 @@ class TerrainHelper:
                 match_size_node.parm_doscale = True
                 match_size_node.connect_from(attr_transfer_node)
                 match_size_node.connect_from(obj_merge_node, input_label=match_size_node.input_geometry_whose_bounding_box_is_to_be_matched)
+                match_size_node.parm_justify_y.menu_none
+                transform_node = nodes.geo_nodes.TransformNode(ox_parent=user_mask_controller_node)
+                transform_node.connect_from(match_size_node)
+                transform_node.load_preset(preset_name=preset_name)
                 attr_create = nodes.geo_nodes.AttribcreateNode(ox_parent=user_mask_controller_node)
                 attr_create.parm_name1 = 'variant'
                 attr_create.parm_value1v1 = index
-                attr_create.connect_from(match_size_node)
+                attr_create.connect_from(transform_node)
                 merge_node.connect_from(attr_create, input_index=index)
 

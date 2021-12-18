@@ -58,8 +58,10 @@ def display_message(message, title='Display Dialogue'):
     return result
 
 
-def display_confirmation(message, title='Confirmation Display'):
+def display_confirmation(message, title='Confirmation Display', require_confirmation=False):
     result = hou.ui.displayConfirmation(text=message, title=title)
+    if require_confirmation and not result:
+        exit()
     return result
 
 

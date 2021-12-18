@@ -252,11 +252,11 @@ class TerrainHelper:
             ox_node_class=nodes.obj_nodes.GeoNode, node_name=f'{user_mask}_controller')  # type: nodes.obj_nodes.GeoNode
         user_mask_controller_node.move_node_relative_to(relative_node=self.terrain_node, y=-(1 + index))
         user_mask_controller_node.parm_rs_objprop_inst_packedpriminstancing = True
-        scatter_import_hou_node = user_mask_controller_node.get_child_by_name(child_name=f'{user_mask}_scatter_import')
+        scatter_import_hou_node = user_mask_controller_node.get_child_by_name(child_name=f'{scatter_set_name}_scatter_import')
         if scatter_import_hou_node:
             return
         scatter_import_node = nodes.geo_nodes.ObjectMergeNode(ox_parent=user_mask_controller_node)
-        scatter_node_path = f'{self.terrain_node.path}/{user_mask}_hf_scatter'
+        scatter_node_path = f'{self.terrain_node.path}/{user_mask}_mask_hf_scatter'
         scatter_import_node.parm_objpath1 = scatter_node_path
         scatter_import_node.set_render_flag()
 

@@ -14,11 +14,23 @@ def get_clipboard_parm_path():
     return parm_path
 
 
-def select_one_from_list(options_list, message=None, title='Select One'):
+def select_one_from_list(options_list, message=None, title='Select One', expect_selection=True):
     selected = hou.ui.selectFromList(options_list, exclusive=True, message=message, title=title)
     if selected:
         selected_text = options_list[selected[0]]
         return selected_text
+    elif expect_selection:
+        exit()
+
+
+def select_many_from_list(options_list, message=None, title='Select One or More', expect_selection=True):
+    selected_indexes = hou.ui.selectFromList(options_list, exclusive=True, message=message, title=title)
+    selected_items = [options_list[i] for i in selected_indexes]
+    if selected_items:
+        return selected_items
+    if not selected_items and expect_selection:
+        display_message('Expected Selection. Exiting script')
+        exit()
 
 
 def select_parm(message=None, title='Select Parm'):

@@ -99,6 +99,9 @@ class OXNode(ParmTemplate):  # mixin
     def set_color(self, color):
         self.node.setColor(color)
 
+    def set_name(self, new_name):
+        self.node.setName(new_name)
+
     def get_prim_values(self, field):
         value_list = [i.attribValue(field) for i in self.node.geometry().prims()]
         return value_list

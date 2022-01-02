@@ -24,7 +24,7 @@ def select_one_from_list(options_list, message=None, title='Select One', expect_
 
 
 def select_many_from_list(options_list, message=None, title='Select One or More', expect_selection=True):
-    selected_indexes = hou.ui.selectFromList(options_list, exclusive=True, message=message, title=title)
+    selected_indexes = hou.ui.selectFromList(options_list, exclusive=False, message=message, title=title)
     selected_items = [options_list[i] for i in selected_indexes]
     if selected_items:
         return selected_items

@@ -36,6 +36,13 @@ class TerrainHelper:
         scatter_nodes_names_list = [i.name() for i in scatter_nodes]
         return scatter_nodes_names_list
 
+    def get_scatter_node_names_ordered_by_user_mask(self):
+        user_masks = self.get_user_masks()
+        scatter_node_names_list = self.get_scatter_node_names()
+        scatter_node_mask_names = [i.replace('_hf_scatter', '') for i in scatter_node_names_list]
+        return_list = [f'{i}_hf_scatter' for i in user_masks if i in scatter_node_mask_names]
+        return return_list
+
     def get_used_mask_names_from_scatter_nodes(self):
         user_masks = self.get_user_masks()
         scatter_nodes = self.get_scatter_nodes()
@@ -44,10 +51,10 @@ class TerrainHelper:
         return sorted_used_masks
 
     def get_unused_user_mask_names(self):
-        used_mask_names = set(self.get_used_mask_names_from_scatter_nodes())
-        user_masks = set(self.get_user_masks())
-        available_masks = user_masks - used_mask_names
-        return list(available_masks)
+        used_mask_names_list = self.get_used_mask_names_from_scatter_nodes()
+        user_mask_list = self.get_user_masks()
+        available_masks_list = [mask for mask in user_mask_list if mask not in used_mask_names_list]
+        return available_masks_list
 
     def get_scatter_set_nodes(self):
         scatter_set_nodes = self.obj_node.get_children_hou_nodes_by_partial_name('scatter_set')

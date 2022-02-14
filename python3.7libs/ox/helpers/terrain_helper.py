@@ -3,11 +3,13 @@ import hou
 from ox.base_objects.ox_node import OXNode
 from ox import nodes
 from ox.constants import node_names
+from ox.constants.ox_conf import sesh_vars
 from ox.constants import colors
+from ox.utils import session_utils
 
 
 class TerrainHelper:
-    def __init__(self, terrain_node: nodes.obj_nodes.GeoNode, scatter_anchor_node: OXNode, use_redshift=False):
+    def __init__(self, terrain_node: nodes.obj_nodes.GeoNode, scatter_anchor_node: OXNode):
         self.obj_node = OXNode(node=hou.node('/obj'))
         self.terrain_node = terrain_node
         self.hf_node = scatter_anchor_node
@@ -20,7 +22,7 @@ class TerrainHelper:
         self.mask_null_node_dict = {}
         self.prev_hf_node = None
         self.new_obj_mask_name = None  # name of the following hf mask
-        self.use_redshift = use_redshift
+        self.use_redshift = session_utils.get_session_variable(var_name=sesh_vars.USE_REDSHIFT)
 
     def get_user_masks(self, mask_suffix='_mask'):
         prim_names = self.hf_node.get_prim_values(field='name')
@@ -234,11 +236,12 @@ class TerrainHelper:
     def create_render_controller(self, user_mask, index, force_override=False, preset_lookup_dict=None):
         """ be mindful of the difference between a scatter set node name and a scatter set name"""
         scatter_set_name = user_mask.replace('_mask', '')
+        mask_name = user_mask if '_mask' in user_mask else f'{user_mask}_mask'
         preset_name = preset_lookup_dict.get(scatter_set_name, scatter_set_name) if preset_lookup_dict else scatter_set_name
         if force_override:
-            self.obj_node.delete_child_node(child_name=f'{user_mask}_controller')
+            self.obj_node.delete_child_node(child_name=f'{mask_name}_controller')
         user_mask_controller_node = self.obj_node.create_node_if_not_exist(
-            ox_node_class=nodes.obj_nodes.GeoNode, node_name=f'{user_mask}_controller')  # type: nodes.obj_nodes.GeoNode
+            ox_node_class=nodes.obj_nodes.GeoNode, node_name=f'{mask_name}_controller')  # type: nodes.obj_nodes.GeoNode
         user_mask_controller_node.move_node_relative_to(relative_node=self.terrain_node, y=-(1 + index))
 
         # for redshift
@@ -263,6 +266,7 @@ class TerrainHelper:
         master_transform_node = nodes.geo_nodes.TransformNode(ox_parent=user_mask_controller_node, node_name='Master_Transform')
         master_transform_node.load_preset(preset_name=preset_name)
         master_transform_node.connect_from(master_merge_node)
+        master_transform_node.set_color(color=colors.red)
         master_merge_node.connect_from(master_merge_node)
         copy_2_points_node = nodes.geo_nodes.CopytopointsNode(ox_parent=user_mask_controller_node)
         copy_2_points_node.parm_useidattrib = True
@@ -297,6 +301,7 @@ class TerrainHelper:
                     attr_transfer_node.connect_from(obj_merge_node, input_label=attr_transfer_node.input_geometry_to_transfer_attributes_from)
                     match_size_node = nodes.geo_nodes.MatchsizeNode(ox_parent=user_mask_controller_node)
                     match_size_node.parm_doscale = True
+                    match_size_node.parm_uniformscale = False
                     match_size_node.connect_from(attr_transfer_node)
                     match_size_node.connect_from(obj_merge_node, input_label=match_size_node.input_geometry_whose_bounding_box_is_to_be_matched)
                     match_size_node.parm_justify_y.menu_none

@@ -4,6 +4,8 @@ import hou
 
 from ox.base_objects.parm_templates import ParmTemplate
 from ox.utils.node_color_lookup import color_lookup_dict
+from ox.utils import session_utils
+from ox.constants.ox_conf import sesh_vars, logging_levels
 
 
 class OXNode(ParmTemplate):  # mixin
@@ -149,9 +151,17 @@ class OXNode(ParmTemplate):  # mixin
         return group_list
 
     def load_preset(self, preset_name):
-        script = f'oppresetload {self.path} {preset_name}'
-        result = hou.hscript(script)
-        print(result)
+        load_user_presets = session_utils.get_session_variable(sesh_vars.LOAD_USER_PRESETS)
+        log_level = session_utils.get_session_variable(sesh_vars.DEBUG_LEVEL)
+        if load_user_presets:
+            script = f'oppresetload {self.path} {preset_name}'
+            result = hou.hscript(script)
+            if log_level in [logging_levels.INFO, logging_levels.DEBUG]:
+                if 'Invalid preset name' not in result[1]:
+                    print(f'Successfully Loaded Preset Name "{preset_name}" for node type {self.type}')
+            if log_level == logging_levels.DEBUG:
+                if 'Invalid preset name' in result[1]:
+                    print(f'Preset Name "{preset_name}" Not Found for node type {self.type}. Result: {result}')
 
     def select_node(self, on=True):
         self.node.setSelected(on=on)

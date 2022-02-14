@@ -1,3 +1,5 @@
+from typing import List
+
 import hou
 
 
@@ -57,6 +59,7 @@ def user_select_file():
     file_path = hou.ui.selectFile()
     file_path = file_path.replace('$JOB', hou.getenv('JOB'))
     file_path = file_path.replace('$HIP', hou.getenv('HIP'))
+    file_path = file_path.replace('$HOME', hou.getenv('HOME'))
     return file_path
 
 
@@ -77,8 +80,8 @@ def display_confirmation(message, title='Confirmation Display', require_confirma
     return result
 
 
-def get_selected_nodes(expect_selected=True, expected_message='Tool Expected Node Selection', only_one=False):
-    hou_node_list = hou.selectedNodes()
+def get_selected_nodes(expect_selected=True, expected_message='Tool Expected Node Selection', only_one=False) -> List:
+    hou_node_list = [i for i in hou.selectedNodes()]
     if not hou_node_list and expect_selected:
         display_message(message=f'{expected_message}')
         exit()

@@ -7,3 +7,4 @@ from .displacement_node import DisplacementNode
 
 from .golaemhsl_node import GolaemhslNode
 from .sprite_node import SpriteNode
+from .standardmaterial_node import StandardmaterialNode

@@ -83,6 +83,7 @@ class {class_name}(OXNode):
 {menu_class_lines_list}
 """.replace('\t', '    ')
     with open(full_file_path, 'w') as file:
+        print(f'writing file: {full_file_path}')
         file.write(class_string)
 
     import_line = f'from .{file_name_node} import {class_name}'
@@ -92,4 +93,5 @@ class {class_name}(OXNode):
             if import_line in line:
                 break
         else:  # not found, we are at the eof
+            print(f'registering node in file: {init_file_path}')
             file.write(f'\n{import_line}')  # append missing data

@@ -25,7 +25,7 @@ class SwitchNode(OXNode):
 
 
         # input vars:
-        self.input_input_1 = 0
+        self.input_input_1 = 'Input 1'
 
 
 # parm menu classes:

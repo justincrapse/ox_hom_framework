@@ -30,10 +30,10 @@ class GolaemhslNode(OXNode):
 
 
         # input vars:
-        self.input_incolor = 0
-        self.input_h = 1
-        self.input_s = 2
-        self.input_l = 3
+        self.input_incolor = 'inColor'
+        self.input_h = 'h'
+        self.input_s = 's'
+        self.input_l = 'l'
 
 
 # parm menu classes:

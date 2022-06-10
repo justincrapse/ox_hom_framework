@@ -38,7 +38,8 @@ def generate_node_class(node, sub_dir, debug=False):
     # inputs:
     input_list = node.inputLabels()
     input_vars_list = [data_lover.get_str_as_py_var(i) for i in input_list]
-    input_lines_list = ''.join([f'\t\tself.input_{label} = {index}\n' for index, label in enumerate(input_vars_list)])
+    # input_lines_list = ''.join([f'\t\tself.input_{label} = {index}\n' for index, label in enumerate(input_vars_list)]) #  delete soon (11/30/21)
+    input_lines_list = ''.join([f"\t\tself.input_{label_var} = '{label}'\n" for label_var, label in zip(input_vars_list, input_list)])
 
     # for class string:
     class_name = data_lover.get_str_as_class(node_name=node_name, del_digit=True) + 'Node'
@@ -82,6 +83,7 @@ class {class_name}(OXNode):
 {menu_class_lines_list}
 """.replace('\t', '    ')
     with open(full_file_path, 'w') as file:
+        print(f'writing file: {full_file_path}')
         file.write(class_string)
 
     import_line = f'from .{file_name_node} import {class_name}'
@@ -91,4 +93,5 @@ class {class_name}(OXNode):
             if import_line in line:
                 break
         else:  # not found, we are at the eof
+            print(f'registering node in file: {init_file_path}')
             file.write(f'\n{import_line}')  # append missing data

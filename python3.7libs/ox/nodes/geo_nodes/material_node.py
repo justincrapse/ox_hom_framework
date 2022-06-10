@@ -34,7 +34,7 @@ class MaterialNode(OXNode):
 
 
         # input vars:
-        self.input_source = 0
+        self.input_source = 'Source'
 
 
 # parm menu classes:

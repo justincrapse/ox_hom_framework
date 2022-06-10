@@ -115,7 +115,7 @@ class HeightfieldMaskbyfeatureNode(OXNode):
 
 
         # input vars:
-        self.input_terrain_to_create_mask_on = 0
+        self.input_terrain_to_create_mask_on = 'Terrain to Create Mask on'
 
 
 # parm menu classes:

@@ -25,13 +25,13 @@ class RedshiftMaterialNode(OXNode):
 
 
         # input vars:
-        self.input_surface = 0
-        self.input_displacement = 1
-        self.input_bump_map = 2
-        self.input_environment = 3
-        self.input_volume = 4
-        self.input_shadow = 5
-        self.input_photon = 6
+        self.input_surface = 'Surface'
+        self.input_displacement = 'Displacement'
+        self.input_bump_map = 'Bump Map'
+        self.input_environment = 'Environment'
+        self.input_volume = 'Volume'
+        self.input_shadow = 'Shadow'
+        self.input_photon = 'Photon'
 
 
 # parm menu classes:

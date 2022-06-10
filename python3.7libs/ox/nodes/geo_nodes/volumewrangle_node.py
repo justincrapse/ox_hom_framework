@@ -37,10 +37,10 @@ class VolumewrangleNode(OXNode):
 
 
         # input vars:
-        self.input_volumes_to_process_with_wrangle = 0
-        self.input_auxillary_input_1__access_with_volumesample_1______ = 1
-        self.input_auxillary_input_2__access_with_volumesample_2______ = 2
-        self.input_auxillary_input_3__access_with_volumesample_3______ = 3
+        self.input_volumes_to_process_with_wrangle = 'Volumes to Process with Wrangle'
+        self.input_auxillary_input_1__access_with_volumesample_1______ = 'Auxillary Input 1, access with volumesample(1, ...)'
+        self.input_auxillary_input_2__access_with_volumesample_2______ = 'Auxillary Input 2, access with volumesample(2, ...)'
+        self.input_auxillary_input_3__access_with_volumesample_3______ = 'Auxillary Input 3, access with volumesample(3, ...)'
 
 
 # parm menu classes:

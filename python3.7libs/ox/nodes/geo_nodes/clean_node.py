@@ -39,7 +39,7 @@ class CleanNode(OXNode):
 
 
         # input vars:
-        self.input_geometry_to_clean = 0
+        self.input_geometry_to_clean = 'Geometry to Clean'
 
 
 # parm menu classes:

@@ -72,7 +72,7 @@ class TransformNode(OXNode):
 
 
         # input vars:
-        self.input_transform_geometry = 0
+        self.input_transform_geometry = 'Transform geometry'
 
 
 # parm menu classes:

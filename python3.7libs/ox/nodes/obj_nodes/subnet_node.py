@@ -75,10 +75,10 @@ class SubnetNode(OXNode):
 
 
         # input vars:
-        self.input_sub_network_input__1 = 0
-        self.input_sub_network_input__2 = 1
-        self.input_sub_network_input__3 = 2
-        self.input_sub_network_input__4 = 3
+        self.input_sub_network_input__1 = 'Sub-Network Input #1'
+        self.input_sub_network_input__2 = 'Sub-Network Input #2'
+        self.input_sub_network_input__3 = 'Sub-Network Input #3'
+        self.input_sub_network_input__4 = 'Sub-Network Input #4'
 
 
 # parm menu classes:

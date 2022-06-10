@@ -27,7 +27,7 @@ if not response:
 
 parent_node = selected_nodes[0].parent()
 subnetwork_node = nodes.obj_nodes.SubnetNode(node=parent_node)
-master_parm = subnetwork_node.parm_template.add_int_parameter(folder_label='Transform', name='master_lod', label='Master_LOD', num_components=1)
+master_parm = subnetwork_node.add_int_parameter(folder_label='Transform', name='master_lod', label='Master_LOD', num_components=1)
 
 for index, hh_node in enumerate(hh_selected_nodes):
     lod_node_name = 'LOD_Switch'

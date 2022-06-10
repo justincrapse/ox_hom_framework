@@ -76,9 +76,9 @@ class HeightfieldScatterNode(OXNode):
 
 
         # input vars:
-        self.input_terrain = 0
-        self.input_mask_or_scatter_points = 1
-        self.input_primitives_to_instance = 2
+        self.input_terrain = 'Terrain'
+        self.input_mask_or_scatter_points = 'Mask or Scatter Points'
+        self.input_primitives_to_instance = 'Primitives to Instance'
 
 
 # parm menu classes:

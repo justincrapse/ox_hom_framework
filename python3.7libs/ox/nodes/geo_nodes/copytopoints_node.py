@@ -36,8 +36,8 @@ class CopytopointsNode(OXNode):
 
 
         # input vars:
-        self.input_geometry_to_copy = 0
-        self.input_target_points_to_copy_to = 1
+        self.input_geometry_to_copy = 'Geometry to Copy'
+        self.input_target_points_to_copy_to = 'Target Points to Copy to'
 
 
 # parm menu classes:

@@ -44,10 +44,10 @@ class AttribwrangleNode(OXNode):
 
 
         # input vars:
-        self.input_geometry_to_process_with_wrangle = 0
-        self.input_ancillary_input__point_1_______to_access = 1
-        self.input_ancillary_input__point_2_______to_access = 2
-        self.input_ancillary_input__point_3_______to_access = 3
+        self.input_geometry_to_process_with_wrangle = 'Geometry to Process with Wrangle'
+        self.input_ancillary_input__point_1_______to_access = 'Ancillary Input, point(1, ...) to Access'
+        self.input_ancillary_input__point_2_______to_access = 'Ancillary Input, point(2, ...) to Access'
+        self.input_ancillary_input__point_3_______to_access = 'Ancillary Input, point(3, ...) to Access'
 
 
 # parm menu classes:

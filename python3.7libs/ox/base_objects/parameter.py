@@ -19,10 +19,21 @@ class Parameter:
         parm_tup = self.__get_parm_tuple()
         return parm_tup.parmTemplate()
 
+    def get_raw_value(self):
+        raw_value = self.parm.rawValue()
+        return raw_value
+
     def get_parm_template_type(self):
-        print('sdfds')
         return self.__get_parm_template().type().name()
 
     def get_parm_template_label(self):
         return self.__get_parm_template().label()
 
+    def press_button(self):
+        self.parm.pressButton()
+
+    def click(self):
+        self.press_button()
+
+    def lock_parm(self, on=True):
+        self.parm.lock(on=on)

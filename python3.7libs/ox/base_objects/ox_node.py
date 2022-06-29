@@ -1,5 +1,6 @@
 import re
 import logging
+from typing import List
 
 import hou
 
@@ -11,14 +12,14 @@ from ox.constants.ox_conf import sesh_vars, logging_levels
 ox_logger = logging.getLogger("ox_logger")
 
 
-class OXNode(ParmTemplate):  # mixin
+class OXNode(ParmTemplate):  # mixins
     # these are for child class lookups:
     parm_lookup_dict = {}
 
     def __init__(self, node=None):
         super().__init__(node=node)
         self.name = node.name()
-        self.node = node
+        self.node = node  # type: hou.Node
         self.path = node.path()
         self.type = node.type().name()
         if self.type in color_lookup_dict:
@@ -48,6 +49,14 @@ class OXNode(ParmTemplate):  # mixin
         child_hou_node = self.get_child_by_name(child_name=child_name)
         if child_hou_node:
             child_hou_node.destroy()
+
+    def delete_all_children(self):
+        for child_node in self.get_children_hou_nodes():
+            child_node.destroy()
+
+    def delete_all_items(self):
+        all_items = self.node.allItems()
+        self.node.deleteItems(all_items)
 
     def get_input_labels(self):
         labels = self.node.inputLabels()
@@ -101,7 +110,7 @@ class OXNode(ParmTemplate):  # mixin
                 node_list.append(node)
         return node_list
 
-    def get_children_hou_nodes(self):
+    def get_children_hou_nodes(self) -> List[hou.Node]:
         children_node_list = self.node.children()
         return children_node_list
 
@@ -190,3 +199,39 @@ class OXNode(ParmTemplate):  # mixin
 
     def select_node(self, on=True):
         self.node.setSelected(on=on)
+
+    def rename_node(self, new_name):
+        result = self.node.setName(name=new_name)
+        self.name = new_name
+        ox_logger.debug(f'rename node result: {result}')
+
+    ##################################################################################################################################################
+    # parm methods
+    def get_parms(self) -> List[hou.Parm]:
+        parameters = self.node.parms()
+        return parameters
+
+    def get_parms_by_name_substring(self, substring, ends_with=False):
+        parameters = self.get_parms()
+        if not ends_with:
+            parm_sublist = [i for i in parameters if substring in i.name()]
+        else:
+            parm_sublist = [i for i in parameters if i.name().endswith(substring)]
+        return parm_sublist
+
+    def get_parm_labels(self):
+        parameters = self.get_parms()
+        parm_label_list = [i.label() for i in parameters]
+        return parm_label_list
+
+    def get_parm_names(self):
+        parameters = self.get_parms()
+        parm_name_list = [i.name() for i in parameters]
+        return parm_name_list
+
+    def get_parm_names_by_substring(self, substring):
+        parm_names = self.get_parm_names()
+        parm_sublist = [i for i in parm_names if substring in i]
+        return parm_sublist
+        
+    ##################################################################################################################################################

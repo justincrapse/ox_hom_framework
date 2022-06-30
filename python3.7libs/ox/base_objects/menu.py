@@ -2,11 +2,12 @@ import logging
 
 from .parameter import Parameter
 from hou import OperationFailed
+import hou
 
 
 class Menu(Parameter, object):
     def __init__(self, parm):
-        self.parm = parm
+        self.parm: hou.Parm = parm
         super().__init__(parm=parm)
 
     def __getattribute__(self, item):

@@ -21,7 +21,7 @@ class ParmTemplate:
             self.parm_template_group = self.node.parmTemplateGroup()
         except OperationFailed as e:
             if supress_error:
-                print(e)
+                ox_logger.debug(f'Supressed Error:{e}')
             else:
                 raise e
 
@@ -48,10 +48,9 @@ class ParmTemplate:
             first_pt = self.__get_parm_templates()[0]
             self.parm_template_group.insertBefore(first_pt, parm_template)
         elif insert_after_parm:
-            print(f'Node: {self.node}')
             parm_to_follow = self.node.parm(insert_after_parm)
             ptf_pt = parm_to_follow.parmTemplate()
-            print(f"Adding parm insert after: {parm_to_follow.name()}")
+            ox_logger.debug(f"Adding parm insert after: {parm_to_follow.name()}")
             self.parm_template_group.insertAfter(ptf_pt, parm_template)
         else:
             self.parm_template_group.append(parm_template)

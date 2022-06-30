@@ -233,5 +233,10 @@ class OXNode(ParmTemplate):  # mixins
         parm_names = self.get_parm_names()
         parm_sublist = [i for i in parm_names if substring in i]
         return parm_sublist
+
+    def parms_to_dict(self, parm_list: List[hou.Parm], substring=None):
+        parm_list = self.get_parms_by_name_substring(substring=substring) if substring else self.get_parms()
+        parm_dict = {i.name(): i.eval() for i in parm_list}
+        return parm_dict
         
     ##################################################################################################################################################

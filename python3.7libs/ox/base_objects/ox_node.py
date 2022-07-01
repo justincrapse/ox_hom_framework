@@ -43,7 +43,8 @@ class OXNode(ParmTemplate):  # mixins
         return clean_key
 
     def delete_node(self):
-        self.node.destroy()
+        result = self.node.destroy()
+        ox_logger.debug(f'Result for delete node "{self.name}": {result}')
 
     def delete_child_node(self, child_name):
         child_hou_node = self.get_child_by_name(child_name=child_name)

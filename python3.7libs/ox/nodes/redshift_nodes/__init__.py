@@ -7,3 +7,7 @@ from .displacement_node import DisplacementNode
 from .golaemhsl_node import GolaemhslNode
 from .sprite_node import SpriteNode
 from .standardmaterial_node import StandardmaterialNode
+
+from .rsmathmul_node import RsmathmulNode
+from .rsuserdatascalar_node import RsuserdatascalarNode
+from .rsmathinv_node import RsmathinvNode

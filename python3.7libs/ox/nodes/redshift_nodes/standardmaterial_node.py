@@ -184,40 +184,40 @@ class DiffuseModelMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_oren_nayar = 0
-        self.menu_d_eon_lambertian_spheres = 1
+        self.menu_oren_nayar = '0'
+        self.menu_d_eon_lambertian_spheres = '1'
 
 
 class MsModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_point_based_diffusion = 0
-        self.menu_ray_traced_diffusion = 1
+        self.menu_point_based_diffusion = '0'
+        self.menu_ray_traced_diffusion = '1'
 
 
 class MsIncludeModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_all_objects = 0
-        self.menu_only_self = 1
+        self.menu_all_objects = '0'
+        self.menu_only_self = '1'
 
 
 class ReflEndmodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_environment = 0
-        self.menu_diffuse = 1
+        self.menu_environment = '0'
+        self.menu_diffuse = '1'
 
 
 class AnisotropyOrientationMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_none = 0
-        self.menu_from_tangent_channel = 1
+        self.menu_none = '2'
+        self.menu_from_tangent_channel = '1'
 
 
 

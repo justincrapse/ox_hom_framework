@@ -5,7 +5,7 @@ from ox.base_objects.ox_node import OXNode
 ox_logger = logging.getLogger("ox_logger")
 
 
-def delete_nodes_by_name_list(self, ox_parent_node: OXNode, node_name_list, debug=False):
+def delete_nodes_by_name_list(ox_parent_node: OXNode, node_name_list, debug=False):
     hou_nodes_list = {name: ox_parent_node.get_child_by_name(name) for name in node_name_list}
     for name, node in hou_nodes_list.items():
         if debug:
@@ -14,10 +14,10 @@ def delete_nodes_by_name_list(self, ox_parent_node: OXNode, node_name_list, debu
             node.destroy()
 
 
-def delete_all_connected_nodes_upward(self, hou_node):
+def delete_all_connected_nodes_upward(hou_node):
     for conn in hou_node.inputConnections():
         conn_hou_node = conn.inputNode()
-        self.delete_all_connected_nodes_upward(hou_node=conn_hou_node)
+        delete_all_connected_nodes_upward(hou_node=conn_hou_node)
     hou_node.destroy()
 
 

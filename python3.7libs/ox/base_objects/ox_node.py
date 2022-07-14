@@ -115,6 +115,11 @@ class OXNode(ParmTemplate):  # mixins
         children_node_list = self.node.children()
         return children_node_list
 
+    def get_child_by_node_type(self, node_type):
+        for child in self.get_children_hou_nodes():
+            if child.type().name() == node_type:
+                return child
+
     def set_color(self, color):
         self.node.setColor(color)
 

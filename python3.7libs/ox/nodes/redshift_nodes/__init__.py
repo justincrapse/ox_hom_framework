@@ -11,3 +11,7 @@ from .standardmaterial_node import StandardmaterialNode
 from .rsmathmul_node import RsmathmulNode
 from .rsuserdatascalar_node import RsuserdatascalarNode
 from .rsmathinv_node import RsmathinvNode
+from .displacementblender_node import DisplacementblenderNode
+from .bumpblender_node import BumpblenderNode
+from .materialblender_node import MaterialblenderNode
+from .material_node import MaterialNode

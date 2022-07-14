@@ -30,6 +30,17 @@ class ParmTemplate:
         ox_logger.debug(f'Remove "{parm_name}" parm template result: {result}')
         self.__save_template_group()
 
+    def get_folder_name_by_label(self, label):
+        folder_parm_templates = self.get_parm_templates_of_folder_type()
+        for folder_pt in folder_parm_templates:
+            if folder_pt.label() == label:
+                return folder_pt.name()
+
+
+    def remove_folder_by_label(self, label):
+        folder_name = self.get_folder_name_by_label(label=label)
+        self.remove_parm_template_by_name(parm_name=folder_name)
+
     def __add_parm_template_to_node_folder(self, folder_label, parm_template):
         self.__create_folder_if_not_exist(folder_label=folder_label)
         folder = self.parm_template_group.findFolder(folder_label)

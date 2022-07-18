@@ -1,14 +1,17 @@
+"""
+THIS MODULE IS SLATED FOR DELETION. DO NOT USE. 
+"""
+
 from ox import nodes
-from ox.base_objects.base_helper import BaseHelper
-from ox.constants import node_names
 from ox.constants import parm_template_types as pt_types
 
 
-class CTRLHelper(BaseHelper):
-    def __init__(self, ):
+class CTRLHelper:
+    def __init__(
+        self,
+    ):
         super().__init__()
-        self.parm_ctrl_node = self.obj_node.create_node_if_not_exist(
-            ox_node_class=nodes.obj_nodes.GeoNode, node_name=node_names.PARM_CONTROLL_CENTER)  # type: nodes.obj_nodes.GeoNode
+        self.parm_ctrl_node = self.obj_node.create_node_if_not_exists(ox_node_class=nodes.obj_nodes.GeoNode)  # type: nodes.obj_nodes.GeoNode
         self.folder_labels = self.parm_ctrl_node.get_folder_labels()
 
     def get_folder_parms(self, folder_label):
@@ -20,7 +23,7 @@ class CTRLHelper(BaseHelper):
         return parms
 
     def add_folder(self, folder_name, as_first=False):
-        self.parm_ctrl_node.add_folder(folder_label=folder_name, folder_name=folder_name.replace(' ', '_').lower(), as_first=as_first)
+        self.parm_ctrl_node.add_folder(folder_label=folder_name, folder_name=folder_name.replace(" ", "_").lower(), as_first=as_first)
 
     def add_to_folder(self, parm_type, folder_label, name, label, **kwargs):
         if parm_type == pt_types.FLOAT:

@@ -12,3 +12,4 @@ from .mtlxinvert_node import MtlxinvertNode
 from .mtlxtiledimage_node import MtlxtiledimageNode
 from .mtlxconstant_node import MtlxconstantNode
 from .mtlxmix_node import MtlxmixNode
+from .mtlxhsvadjust_node import MtlxhsvadjustNode

@@ -14,14 +14,13 @@ class ParmTemplate:
         self.node: hou.Node = node
         self.parm_template_group = self.node.parmTemplateGroup()  # type: hou.Node.parmTemplateGroup
 
-
     def __save_template_group(self, supress_error=True):
         try:
             self.node.setParmTemplateGroup(parm_template_group=self.parm_template_group)
             self.parm_template_group = self.node.parmTemplateGroup()
         except OperationFailed as e:
             if supress_error:
-                ox_logger.debug(f'Supressed Error:{e}')
+                ox_logger.debug(f"Supressed Error:{e}")
             else:
                 raise e
 
@@ -31,11 +30,10 @@ class ParmTemplate:
         self.__save_template_group()
 
     def get_folder_name_by_label(self, label):
-        folder_parm_templates = self.get_parm_templates_of_folder_type()
+        folder_parm_templates = self.get_parm_templates_by_type(template_type=parm_template_types.FOLDER)
         for folder_pt in folder_parm_templates:
             if folder_pt.label() == label:
                 return folder_pt.name()
-
 
     def remove_folder_by_label(self, label):
         folder_name = self.get_folder_name_by_label(label=label)
@@ -49,7 +47,7 @@ class ParmTemplate:
 
     def __create_folder_if_not_exist(self, folder_label):
         folder_name = folder_label.replace(" ", "_").lower()
-        folder_templates = self.get_parm_templates_of_folder_type()
+        folder_templates = self.get_parm_templates_by_type(template_type=parm_template_types.FOLDER)
         folder_labels = [i.label() for i in folder_templates]
         if folder_label not in folder_labels:
             self.add_folder(folder_label=folder_label, folder_name=folder_name, as_first=True)
@@ -72,12 +70,13 @@ class ParmTemplate:
 
     def __get_parm_templates(self):
         parm_templates = self.parm_template_group.parmTemplates()
-        ox_logger.debug(f'{self.node.name()} parmTemplates: {parm_templates}')
+        ox_logger.debug(f"{self.node.name()} parmTemplates: {parm_templates}")
         return parm_templates
 
-    def get_parm_templates_of_folder_type(self):
+    def get_parm_templates_by_type(self, template_type):
+        """template types can be found in ox.constants.parm_template_types"""
         parm_templates = self.__get_parm_templates()
-        folder_parm_templates = [i for i in parm_templates if i.type().name() == parm_template_types.FOLDER]
+        folder_parm_templates = [i for i in parm_templates if i.type().name() == template_type]
         return folder_parm_templates
 
     def get_folder_parm_labels(self, folder_label, return_parm_labels=False):
@@ -97,7 +96,7 @@ class ParmTemplate:
                 return template
 
     def get_parm_template_names_by_substring(self, substring):
-        match_list = [i for i in self.__get_parm_templates() if substring in i.name()] 
+        match_list = [i for i in self.__get_parm_templates() if substring in i.name()]
         return match_list
 
     def get_entry_labels(self):
@@ -117,7 +116,6 @@ class ParmTemplate:
                 self.parm_template_group.remove(pt)
                 self.__save_template_group()
                 break
-
 
     def delete_all_folders(self):
         parm_templates = self.__get_parm_templates()

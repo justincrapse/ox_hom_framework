@@ -27,16 +27,16 @@ class CTRLHelper:
 
     def add_to_folder(self, parm_type, folder_label, name, label, **kwargs):
         if parm_type == pt_types.FLOAT:
-            self.parm_ctrl_node.add_float_parameter(name=name, label=label, folder_label=folder_label, **kwargs)
+            self.parm_ctrl_node.create_float_parm_template(name=name, label=label, folder_label=folder_label, **kwargs)
         elif parm_type == pt_types.BUTTON:
-            self.parm_ctrl_node.add_button_parameter(name=name, label=label, folder_label=folder_label, **kwargs)
+            self.parm_ctrl_node.create_button_parm_template(name=name, label=label, folder_label=folder_label, **kwargs)
         elif parm_type == pt_types.INT:
-            self.parm_ctrl_node.add_int_parameter(name=name, label=label, folder_label=folder_label, **kwargs)
+            self.parm_ctrl_node.create_int_parm_template(name=name, label=label, folder_label=folder_label, **kwargs)
         elif parm_type == pt_types.STRING:
-            self.parm_ctrl_node.add_string_parameter(name=name, label=label, folder_label=folder_label, **kwargs)
+            self.parm_ctrl_node.create_string_parm_template(name=name, label=label, folder_label=folder_label, **kwargs)
         elif parm_type == pt_types.MENU:
-            self.parm_ctrl_node.add_menu_parameter(name=name, label=label, folder_label=folder_label, **kwargs)
+            self.parm_ctrl_node.create_menu_parm_template(name=name, label=label, folder_label=folder_label, **kwargs)
         elif parm_type == pt_types.RAMP:
-            self.parm_ctrl_node.add_ramp_parameter(name=name, label=label, folder_label=folder_label, **kwargs)
+            self.parm_ctrl_node.create_ramp_parm_template(name=name, label=label, folder_label=folder_label, **kwargs)
         elif parm_type == pt_types.SEPARATOR:
             self.parm_ctrl_node.add_separator_parameter(name=name, label=label, folder_label=folder_label, **kwargs)

@@ -8,7 +8,6 @@ will let the coder know that there is an overlap and that this particular attrib
 from multiprocessing.sharedctypes import Value
 import re
 import logging
-from signal import raise_signal
 from typing import List
 from unittest.loader import VALID_MODULE_NAME
 

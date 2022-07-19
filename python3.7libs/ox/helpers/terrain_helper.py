@@ -162,11 +162,13 @@ class TerrainHelper:
             scatter_node.parm_randomyaw = 180
             scatter_node.load_preset(preset_name=preset_name)
             # add a vex parm for easy access to the scatter node guts (applied right before copy to points in the node)
-            new_vex_hou_parm = scatter_node.add_string_parameter(name=f"{user_mask}_scat_vex", label=f"{user_mask}_Scatter Point Vex", multiline=True)
+            new_vex_hou_parm = scatter_node.create_string_parm_template(
+                name=f"{user_mask}_scat_vex", label=f"{user_mask}_Scatter Point Vex", multiline=True
+            )
             # add a few extra parms to use in our new vex node
-            scatter_node.add_float_parameter(name="falloff_scalar", label=f"Vex Falloff Scalar", min_f=1, max_f=10)
-            scatter_node.add_float_parameter(name="pluck_scalar", label=f"Vex Pluck Scalar", min_f=0, max_f=1)
-            scatter_node.add_float_parameter(name="extra_scalar", label=f"Vex Extra Scalar", min_f=0, max_f=10)
+            scatter_node.create_float_parm_template(name="falloff_scalar", label=f"Vex Falloff Scalar", min_f=1, max_f=10)
+            scatter_node.create_float_parm_template(name="pluck_scalar", label=f"Vex Pluck Scalar", min_f=0, max_f=1)
+            scatter_node.create_float_parm_template(name="extra_scalar", label=f"Vex Extra Scalar", min_f=0, max_f=10)
             if user_source_points:
                 source_tag = f"{user_mask}_source_scatter"
                 source_scatter_node = nodes.geo_nodes.HeightfieldScatterNode(ox_parent=self.terrain_node, node_name=f"{user_mask}_source_scatter")

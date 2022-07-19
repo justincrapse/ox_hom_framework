@@ -1,4 +1,9 @@
-from cgitb import reset
+"""
+This is a mix-in class. Meaning: While all this could be written for the OXNode class, we break it out into this other module so that we can easily
+group related code which makes it easier to maintain. 
+"""
+
+
 import logging
 
 import hou
@@ -12,48 +17,42 @@ ox_logger = logging.getLogger("ox_logger")
 class ParmTemplate:
     def __init__(self, node):
         self.node: hou.Node = node
-        self.parm_template_group = self.node.parmTemplateGroup()  # type: hou.Node.parmTemplateGroup
+        self.parm_template_group: hou.Node.parmTemplateGroup = self.node.parmTemplateGroup()
 
     def __save_template_group(self, supress_error=True):
+        # TODO: supress_error needs an explanation!
         try:
             self.node.setParmTemplateGroup(parm_template_group=self.parm_template_group)
             self.parm_template_group = self.node.parmTemplateGroup()
         except OperationFailed as e:
             if supress_error:
-                ox_logger.debug(f"Supressed Error:{e}")
+                ox_logger.info(f"Supressed Error:{e}")
             else:
                 raise e
 
-    def remove_parm_template_by_name(self, parm_name):
-        result = self.parm_template_group.remove(parm_name)
-        ox_logger.debug(f'Remove "{parm_name}" parm template result: {result}')
-        self.__save_template_group()
-
-    def get_folder_name_by_label(self, label):
-        folder_parm_templates = self.get_parm_templates_by_type(template_type=parm_template_types.FOLDER)
-        for folder_pt in folder_parm_templates:
-            if folder_pt.label() == label:
-                return folder_pt.name()
-
-    def remove_folder_by_label(self, label):
-        folder_name = self.get_folder_name_by_label(label=label)
-        self.remove_parm_template_by_name(parm_name=folder_name)
-
-    def __add_parm_template_to_node_folder(self, folder_label, parm_template):
-        self.__create_folder_if_not_exist(folder_label=folder_label)
-        folder = self.parm_template_group.findFolder(folder_label)
-        self.parm_template_group.appendToFolder(folder, parm_template)
-        self.__save_template_group()
-
-    def __create_folder_if_not_exist(self, folder_label):
-        folder_name = folder_label.replace(" ", "_").lower()
+    def __create_folder_if_not_exist(self, folder_label, folder_name=None):
+        folder_name = folder_name if folder_name else folder_label.replace(" ", "_").lower()
         folder_templates = self.get_parm_templates_by_type(template_type=parm_template_types.FOLDER)
         folder_labels = [i.label() for i in folder_templates]
         if folder_label not in folder_labels:
             self.add_folder(folder_label=folder_label, folder_name=folder_name, as_first=True)
 
-    def __add_parm_template(self, parm_template, as_first=False, insert_after_parm=None):
-        if as_first:
+    def __get_entries(self):
+        return self.parm_template_group.entries()
+
+    def __get_parm_templates(self):
+        parm_templates = self.parm_template_group.parmTemplates()
+        ox_logger.debug(f'Getting all parm templates for "{self.node.name()}" parmTemplates: {parm_templates}')
+        return parm_templates
+
+    def add_parm_template(self, parm_template, folder_label=None, as_first=False, insert_after_parm=None, insert_before_parm=None):
+        """if folder_label is specified, as_first, insert_after_parm, and insert_before_parm are not relavant as those will dictate which
+        folder a parm template is added to."""
+        if folder_label:
+            self.__create_folder_if_not_exist(folder_label=folder_label)
+            folder = self.parm_template_group.findFolder(folder_label)
+            self.parm_template_group.appendToFolder(folder, parm_template)
+        elif as_first:
             first_pt = self.__get_parm_templates()[0]
             self.parm_template_group.insertBefore(first_pt, parm_template)
         elif insert_after_parm:
@@ -61,17 +60,29 @@ class ParmTemplate:
             ptf_pt = parm_to_follow.parmTemplate()
             ox_logger.debug(f"Adding parm insert after: {parm_to_follow.name()}")
             self.parm_template_group.insertAfter(ptf_pt, parm_template)
+        elif insert_before_parm:
+            parm_to_preceed = self.node.parm(insert_after_parm)
+            ptf_pt = parm_to_preceed.parmTemplate()
+            ox_logger.debug(f"Adding parm insert before: {parm_to_preceed.name()}")
+            self.parm_template_group.insertBefore(ptf_pt, parm_template)
         else:
             self.parm_template_group.append(parm_template)
         self.__save_template_group()
 
-    def __get_entries(self):
-        return self.parm_template_group.entries()
+    def remove_parm_template_by_name(self, parm_name):
+        result = self.parm_template_group.remove(parm_name)
+        ox_logger.debug(f'Remove "{parm_name}" parm template result: {result}')
+        self.__save_template_group()
 
-    def __get_parm_templates(self):
-        parm_templates = self.parm_template_group.parmTemplates()
-        ox_logger.debug(f"{self.node.name()} parmTemplates: {parm_templates}")
-        return parm_templates
+    def remove_folder_by_label(self, label):
+        folder_name = self.get_folder_name_by_label(label=label)
+        self.remove_parm_template_by_name(parm_name=folder_name)
+
+    def get_folder_name_by_label(self, label):
+        folder_parm_templates = self.get_parm_templates_by_type(template_type=parm_template_types.FOLDER)
+        for folder_pt in folder_parm_templates:
+            if folder_pt.label() == label:
+                return folder_pt.name()
 
     def get_parm_templates_by_type(self, template_type):
         """template types can be found in ox.constants.parm_template_types"""
@@ -105,7 +116,7 @@ class ParmTemplate:
 
     def add_folder(self, folder_label, folder_name, as_first=False):
         folder_template = hou.FolderParmTemplate(folder_name, folder_label)
-        self.__add_parm_template(parm_template=folder_template, as_first=as_first)
+        self.add_parm_template(parm_template=folder_template, as_first=as_first)
         self.__save_template_group()
         return folder_label
 
@@ -118,25 +129,20 @@ class ParmTemplate:
                 break
 
     def delete_all_folders(self):
+        """TODO: Looks like this is just deleting all parm templates. Need to review and provide good docstring"""
         parm_templates = self.__get_parm_templates()
         for pt in parm_templates:
             self.parm_template_group.remove(pt)
             self.__save_template_group()
 
-    def add_int_parameter(self, name, label, num_components=1, folder_label=None, return_as_path=False, insert_after_parm=None, **kwargs):
-        new_parm_template = hou.IntParmTemplate(name=name, label=label, num_components=num_components, **kwargs)
-        if folder_label:
-            self.__add_parm_template_to_node_folder(folder_label=folder_label, parm_template=new_parm_template)
-        else:
-            self.__add_parm_template(parm_template=new_parm_template, insert_after_parm=insert_after_parm)
-        return_parm = self.node.parm(name)
-        if return_as_path:
-            return return_parm.path()
-        return return_parm
+    ##################################################################################################################################################
+    # creating parm templates
 
-    def add_float_parameter(
-        self, name, label, num_components=1, min_f=0.0, max_f=10.0, min_is_strict=False, max_is_strict=False, folder_label=None, **kwargs
-    ):
+    def create_int_parm_template(self, name, label, num_components=1, **kwargs):
+        new_parm_template = hou.IntParmTemplate(name=name, label=label, num_components=num_components, **kwargs)
+        return new_parm_template
+
+    def create_float_parm_template(self, name, label, num_components=1, min_f=0.0, max_f=10.0, min_is_strict=False, max_is_strict=False, **kwargs):
         new_parm_template = hou.FloatParmTemplate(
             name=name,
             label=label,
@@ -147,22 +153,14 @@ class ParmTemplate:
             max_is_strict=max_is_strict,
             **kwargs,
         )
-        if folder_label:
-            self.__add_parm_template_to_node_folder(folder_label=folder_label, parm_template=new_parm_template)
-        else:
-            self.__add_parm_template(parm_template=new_parm_template)
-        return self.node.parm(name)
+        return new_parm_template
 
-    def add_toggle_parameter(self, name, label, folder_label=None, **kwargs):
+    def create_toggle_parm_template(self, name, label, **kwargs):
         new_parm_template = hou.ToggleParmTemplate(name=name, label=label, **kwargs)
-        if folder_label:
-            self.__add_parm_template_to_node_folder(folder_label=folder_label, parm_template=new_parm_template)
-        else:
-            self.__add_parm_template(parm_template=new_parm_template)
-        return self.node.parm(name)
+        return new_parm_template
 
-    def add_button_parameter(
-        self, name, label, folder_label=None, join_with_next=False, script_callback=None, script_callback_language=hou.scriptLanguage.Python, **kwargs
+    def create_button_parm_template(
+        self, name, label, join_with_next=False, script_callback=None, script_callback_language=hou.scriptLanguage.Python, **kwargs
     ):
         new_parm_template = hou.ButtonParmTemplate(
             name=name,
@@ -172,18 +170,13 @@ class ParmTemplate:
             script_callback_language=script_callback_language,
             **kwargs,
         )
-        if folder_label:
-            self.__add_parm_template_to_node_folder(folder_label=folder_label, parm_template=new_parm_template)
-        else:
-            self.__add_parm_template(parm_template=new_parm_template)
-        return self.node.parm(name)
+        return new_parm_template
 
-    def add_string_parameter(
+    def create_string_parm_template(
         self,
         name,
         label,
         num_components=1,
-        folder_label=None,
         multiline=False,
         join_with_next=False,
         script_callback=None,
@@ -204,37 +197,21 @@ class ParmTemplate:
             tags=tags,
             **kwargs,
         )
-        if folder_label:
-            self.__add_parm_template_to_node_folder(folder_label=folder_label, parm_template=new_parm_template)
-        else:
-            self.__add_parm_template(parm_template=new_parm_template)
-        return self.node.parm(name)
+        return new_parm_template
 
-    def add_menu_parameter(self, name, label, menu_items, menu_labels=(), folder_label=None, **kwargs):
+    def create_menu_parm_template(self, name, label, menu_items, menu_labels=(), **kwargs):
         new_parm_template = hou.MenuParmTemplate(name=name, label=label, menu_items=menu_items, menu_labels=menu_labels, **kwargs)
-        if folder_label:
-            self.__add_parm_template_to_node_folder(folder_label=folder_label, parm_template=new_parm_template)
-        else:
-            self.__add_parm_template(parm_template=new_parm_template)
-        return self.node.parm(name)
+        return new_parm_template
 
-    def add_ramp_parameter(self, name, label, ramp_parm_type=hou.rampParmType.Float, folder_label=None, **kwargs):
+    def create_ramp_parm_template(self, name, label, ramp_parm_type=hou.rampParmType.Float, **kwargs):
         new_parm_template = hou.RampParmTemplate(name=name, label=label, ramp_parm_type=ramp_parm_type, **kwargs)
-        if folder_label:
-            self.__add_parm_template_to_node_folder(folder_label=folder_label, parm_template=new_parm_template)
-        else:
-            self.__add_parm_template(parm_template=new_parm_template)
-        return self.node.parm(name)
+        return new_parm_template
 
-    def add_separator_parameter(self, name, folder_label=None, **kwargs):
+    def add_separator_parameter(self, name, **kwargs):
         new_parm_template = hou.SeparatorParmTemplate(name=name, **kwargs)
-        if folder_label:
-            self.__add_parm_template_to_node_folder(folder_label=folder_label, parm_template=new_parm_template)
-        else:
-            self.__add_parm_template(parm_template=new_parm_template)
-        return self.node.parm(name)
+        return new_parm_template
 
-    def add_operator_path_parameter(self, name, label=None, num_components=1, folder_label=None, insert_after_parm=None, **kwargs):
+    def add_operator_path_parameter(self, name, label=None, num_components=1, **kwargs):
         label = label if label else name.replace(" ", "_")
         new_parm_template = hou.StringParmTemplate(
             name=name,
@@ -245,8 +222,4 @@ class ParmTemplate:
             menu_type=hou.menuType.Normal,
             **kwargs,
         )
-        if folder_label:
-            self.__add_parm_template_to_node_folder(folder_label=folder_label, parm_template=new_parm_template)
-        else:
-            self.__add_parm_template(parm_template=new_parm_template, insert_after_parm=insert_after_parm)
-        return self.node.parm(name)
+        return new_parm_template

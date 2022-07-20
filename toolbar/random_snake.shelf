@@ -6,15 +6,8 @@
  a single file. -->
 
   <toolshelf name="random_snake" label="Random Snake">
-    <memberTool name="biome_scatter"/>
-    <memberTool name="scatter_group0"/>
     <memberTool name="node_class_generator"/>
-    <memberTool name="terrain_scatter"/>
-    <memberTool name="mask_visualizer"/>
-    <memberTool name="new_mask_by_feature"/>
-    <memberTool name="class_regen"/>
-    <memberTool name="sandbox"/>
-    <memberTool name="add_2_controller"/>
+    <memberTool name="regenerate_node_classes"/>
   </toolshelf>
 
   <tool name="scatter_group0" label="Scatter Group" icon="sunflower_icon.png">

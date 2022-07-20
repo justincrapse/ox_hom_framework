@@ -69,214 +69,172 @@ class MaskplaneMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_mask_input = 0
+        self.menu_no_mask_input = 'none'
 
 
 class SizemenuMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_x_480_640 = 0
-        self.menu_hdtv_720 = 1
-        self.menu_hdtv_1080 = 2
-        self.menu_hdtv_2160__4k_ = 3
-        self.menu__________ = 4
-        self.menu_ntsc = 5
-        self.menu_ntsc_d1 = 6
-        self.menu_pal = 7
-        self.menu_pal_d1 = 8
-        self.menu_pal_16_9_anamorphic = 9
-        self.menu_pal_16_9__1_to_1_ = 10
-        self.menu__________ = 11
-        self.menu_full_ap_4k = 12
-        self.menu_full_ap_2k = 13
-        self.menu_acad_4k = 14
-        self.menu_acad_2k = 15
-        self.menu_scope_4k = 16
-        self.menu_scope_2k = 17
-        self.menu_vista_4k = 18
-        self.menu_vista_2k = 19
-        self.menu__________ = 20
-        self.menu__2_256 = 21
-        self.menu__2_512 = 22
-        self.menu__2_1024 = 23
-        self.menu__2_2048 = 24
-        self.menu__2_4096 = 25
-        self.menu__2_8192 = 26
-        self.menu_x_480_640 = 27
-        self.menu_hdtv_720 = 28
-        self.menu_hdtv_1080 = 29
-        self.menu_hdtv_2160__4k_ = 30
-        self.menu__________ = 31
-        self.menu_ntsc = 32
-        self.menu_ntsc_d1 = 33
-        self.menu_pal = 34
-        self.menu_pal_d1 = 35
-        self.menu_pal_16_9_anamorphic = 36
-        self.menu_pal_16_9__1_to_1_ = 37
-        self.menu__________ = 38
-        self.menu_full_ap_4k = 39
-        self.menu_full_ap_2k = 40
-        self.menu_acad_4k = 41
-        self.menu_acad_2k = 42
-        self.menu_scope_4k = 43
-        self.menu_scope_2k = 44
-        self.menu_vista_4k = 45
-        self.menu_vista_2k = 46
-        self.menu__________ = 47
-        self.menu__2_256 = 48
-        self.menu__2_512 = 49
-        self.menu__2_1024 = 50
-        self.menu__2_2048 = 51
-        self.menu__2_4096 = 52
-        self.menu__2_8192 = 53
+        self.menu_x_480_640 = '640 480 1'
+        self.menu_hdtv_720 = '1280 720 1'
+        self.menu_hdtv_1080 = '1920 1080 1'
+        self.menu_hdtv_2160__4k_ = '3840 2160 1'
+        self.menu__________ = '_separator_'
+        self.menu_ntsc = '640 486 1'
+        self.menu_ntsc_d1 = '720 486 0.9'
+        self.menu_pal = '768 576 1'
+        self.menu_pal_d1 = '720 576 1.067'
+        self.menu_pal_16_9_anamorphic = '720 576 1.422'
+        self.menu_pal_16_9__1_to_1_ = '1024 576 1'
+        self.menu__________ = '_separator_'
+        self.menu_full_ap_4k = '4096 3112 1'
+        self.menu_full_ap_2k = '2048 1556 1'
+        self.menu_acad_4k = '3656 2664 1'
+        self.menu_acad_2k = '1828 1332 1'
+        self.menu_scope_4k = '3656 3112 1'
+        self.menu_scope_2k = '1828 1556 1'
+        self.menu_vista_4k = '6144 4096 1'
+        self.menu_vista_2k = '3072 2048 1'
+        self.menu__________ = '_separator_'
+        self.menu__2_256 = '256 256 1'
+        self.menu__2_512 = '512 512 1'
+        self.menu__2_1024 = '1024 1024 1'
+        self.menu__2_2048 = '2048 2048 1'
+        self.menu__2_4096 = '4096 4096 1'
+        self.menu__2_8192 = '8192 8192 1'
 
 
 class PlanesMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_c__a__c_rgb_a_ = 0
-        self.menu_c__a__c_rgb_a_rgb_ = 1
-        self.menu_c_____rgb_ = 2
-        self.menu_a = 3
-        self.menu_a_____rgb_ = 4
-        self.menu_m = 5
-        self.menu_m_____rgb_ = 6
-        self.menu_z = 7
-        self.menu_l = 8
-        self.menu_b_____uv_ = 9
-        self.menu_p_____xyz_ = 10
-        self.menu_n_____xyz_ = 11
-        self.menu_v_____xyz_ = 12
-        self.menu_terrain__height = 13
-        self.menu_none = 14
+        self.menu_c__a__c_rgb_a_ = 'rgba'
+        self.menu_c__a__c_rgb_a_rgb_ = 'rgba3'
+        self.menu_c_____rgb_ = 'rgb'
+        self.menu_a = 'a'
+        self.menu_a_____rgb_ = 'a3'
+        self.menu_m = 'm'
+        self.menu_m_____rgb_ = 'm3'
+        self.menu_z = 'z'
+        self.menu_l = 'l'
+        self.menu_b_____uv_ = 'b'
+        self.menu_p_____xyz_ = 'p'
+        self.menu_n_____xyz_ = 'n'
+        self.menu_v_____xyz_ = 'v'
+        self.menu_terrain__height = 'terrain_height'
+        self.menu_none = 'none'
 
 
 class AddplanesMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_c__a__c_rgb_a_ = 0
-        self.menu_c__a__c_rgb_a_rgb_ = 1
-        self.menu_c_____rgb_ = 2
-        self.menu_a = 3
-        self.menu_a_____rgb_ = 4
-        self.menu_m = 5
-        self.menu_m_____rgb_ = 6
-        self.menu_z = 7
-        self.menu_l = 8
-        self.menu_b_____uv_ = 9
-        self.menu_p_____xyz_ = 10
-        self.menu_n_____xyz_ = 11
-        self.menu_v_____xyz_ = 12
-        self.menu_terrain__height = 13
-        self.menu_none = 14
+        self.menu_c__a__c_rgb_a_ = 'rgba'
+        self.menu_c__a__c_rgb_a_rgb_ = 'rgba3'
+        self.menu_c_____rgb_ = 'rgb'
+        self.menu_a = 'a'
+        self.menu_a_____rgb_ = 'a3'
+        self.menu_m = 'm'
+        self.menu_m_____rgb_ = 'm3'
+        self.menu_z = 'z'
+        self.menu_l = 'l'
+        self.menu_b_____uv_ = 'b'
+        self.menu_p_____xyz_ = 'p'
+        self.menu_n_____xyz_ = 'n'
+        self.menu_v_____xyz_ = 'v'
+        self.menu_terrain__height = 'terrain_height'
+        self.menu_none = 'none'
 
 
 class AddplaneopMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_replace = 0
-        self.menu_rename = 1
-        self.menu_add = 2
-        self.menu_screen = 3
-        self.menu_subtract = 4
-        self.menu_multiply = 5
-        self.menu_min = 6
-        self.menu_max = 7
-        self.menu_average = 8
+        self.menu_replace = 'replace'
+        self.menu_rename = 'rename'
+        self.menu_add = 'add'
+        self.menu_screen = 'screen'
+        self.menu_subtract = 'subtract'
+        self.menu_multiply = 'multiply'
+        self.menu_min = 'min'
+        self.menu_max = 'max'
+        self.menu_average = 'avg'
 
 
 class DepthMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_bit_integer_8 = 0
-        self.menu_bit_integer_16 = 1
-        self.menu_bit_integer_32 = 2
-        self.menu_bit_floating_point_16 = 3
-        self.menu_bit_floating_point_32 = 4
-        self.menu_default_depth = 5
+        self.menu_bit_integer_8 = 'int8'
+        self.menu_bit_integer_16 = 'int16'
+        self.menu_bit_integer_32 = 'int32'
+        self.menu_bit_floating_point_16 = 'float16'
+        self.menu_bit_floating_point_32 = 'float32'
+        self.menu_default_depth = 'default'
 
 
 class DepthmenuMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_bit_unsigned_8 = 0
-        self.menu_bit_signed_8 = 1
-        self.menu_bit_unsigned_with_5__head_foot_room_8 = 2
-        self.menu_bit_unsigned_with_25__head_foot_room_8 = 3
-        self.menu__separator_ = 4
-        self.menu_bit_unsigned_16 = 5
-        self.menu_bit_signed_16 = 6
-        self.menu_bit_unsigned_with_5__head_foot_room_16 = 7
-        self.menu_bit_unsigned_with_25__head_foot_room_16 = 8
-        self.menu_bit_extended_8 = 9
-        self.menu_bit_full_range_cineon_16 = 10
-        self.menu__separator_ = 11
-        self.menu_bit_unsigned_32 = 12
-        self.menu_bit_signed_32 = 13
-        self.menu_bit_extended_16 = 14
-        self.menu_bit_unsigned_8 = 15
-        self.menu_bit_signed_8 = 16
-        self.menu_bit_unsigned_with_5__head_foot_room_8 = 17
-        self.menu_bit_unsigned_with_25__head_foot_room_8 = 18
-        self.menu__separator_ = 19
-        self.menu_bit_unsigned_16 = 20
-        self.menu_bit_signed_16 = 21
-        self.menu_bit_unsigned_with_5__head_foot_room_16 = 22
-        self.menu_bit_unsigned_with_25__head_foot_room_16 = 23
-        self.menu_bit_extended_8 = 24
-        self.menu_bit_full_range_cineon_16 = 25
-        self.menu__separator_ = 26
-        self.menu_bit_unsigned_32 = 27
-        self.menu_bit_signed_32 = 28
-        self.menu_bit_extended_16 = 29
+        self.menu_bit_unsigned_8 = 'int8 0 255'
+        self.menu_bit_signed_8 = 'int8 128 255'
+        self.menu_bit_unsigned_with_5__head_foot_room_8 = 'int8 12 244'
+        self.menu_bit_unsigned_with_25__head_foot_room_8 = 'int8 64 192'
+        self.menu__separator_ = '_separator_'
+        self.menu_bit_unsigned_16 = 'int16 0 65535'
+        self.menu_bit_signed_16 = 'int16 32768 65535'
+        self.menu_bit_unsigned_with_5__head_foot_room_16 = 'int16 2980 62555'
+        self.menu_bit_unsigned_with_25__head_foot_room_16 = 'int16 16384 49152'
+        self.menu_bit_extended_8 = 'int16 32640 32895'
+        self.menu_bit_full_range_cineon_16 = 'int16 0 4096'
+        self.menu__separator_ = '_separator_'
+        self.menu_bit_unsigned_32 = 'int32 0 4294967295'
+        self.menu_bit_signed_32 = 'int32 2147483648 4294967295'
+        self.menu_bit_extended_16 = 'int32 2147450880 2147516415'
 
 
 class InterlaceMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_none = 0
-        self.menu_half_res_interlaced = 1
-        self.menu_black_interlaced = 2
-        self.menu_line_doubled = 3
+        self.menu_none = 'none'
+        self.menu_half_res_interlaced = 'inthalf'
+        self.menu_black_interlaced = 'intblack'
+        self.menu_line_doubled = 'intdouble'
 
 
 class IdominanceMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_odd_first = 0
-        self.menu_even_first = 1
-        self.menu_odd_only = 2
-        self.menu_even_only = 3
+        self.menu_odd_first = 'odd'
+        self.menu_even_first = 'even'
+        self.menu_odd_only = 'oddonly'
+        self.menu_even_only = 'evenonly'
 
 
 class PreextendMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_black_frames = 0
-        self.menu_cycle = 1
-        self.menu_mirror = 2
-        self.menu_hold = 3
-        self.menu_hold_n_frames = 4
+        self.menu_black_frames = 'black'
+        self.menu_cycle = 'cycle'
+        self.menu_mirror = 'mirror'
+        self.menu_hold = 'hold'
+        self.menu_hold_n_frames = 'holdn'
 
 
 class PostextendMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_black_frames = 0
-        self.menu_cycle = 1
-        self.menu_mirror = 2
-        self.menu_hold = 3
-        self.menu_hold_n_frames = 4
+        self.menu_black_frames = 'black'
+        self.menu_cycle = 'cycle'
+        self.menu_mirror = 'mirror'
+        self.menu_hold = 'hold'
+        self.menu_hold_n_frames = 'holdn'
 
 
 

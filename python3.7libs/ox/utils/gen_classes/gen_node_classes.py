@@ -2,6 +2,10 @@ from ox.utils import data_lover
 from ox.utils.gen_classes import gen_menu_classes
 
 import pathlib
+import logging 
+
+ox_logger = logging.getLogger("ox_logger")
+
 current_path = pathlib.Path(__file__).parent.resolve()
 nodes_path = current_path.parent.parent.joinpath('nodes')
 
@@ -20,6 +24,7 @@ def generate_node_class(node, sub_dir, debug=False):
     # parms:
     parms_list = [i.name() for i in node.parms()]
     if debug:
+        ox_logger.debug('debugging class generation')
         print(f'parms names list: {parms_list}')
     parm_vars_list = [data_lover.get_str_as_py_var(i) for i in parms_list]
     parm_no_menu_list = [i for i in parms_list if not get_parm_menu_labels(node.parm(i))]

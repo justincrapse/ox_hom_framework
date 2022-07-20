@@ -1,3 +1,9 @@
+"""
+This entire module does not belong here. This will be ported over to a biom scatter HDA.
+Until then, use/create a heightfield helper for assisting with all things reguarding terrains. 
+"""
+
+
 import hou
 
 from ox.base_objects.ox_node import OXNode

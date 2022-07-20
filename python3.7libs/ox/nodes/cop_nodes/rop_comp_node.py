@@ -194,7 +194,6 @@ class ColorMenu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__none_ = '(none)'
-        self.menu_c = 'C'
 
 
 class AlphaMenu(Menu):
@@ -202,7 +201,6 @@ class AlphaMenu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__none_ = '(none)'
-        self.menu_c = 'C'
 
 
 class ScopeplanesMenu(Menu):
@@ -210,7 +208,6 @@ class ScopeplanesMenu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__ = '*'
-        self.menu_c = 'C'
 
 
 class OutputareaMenu(Menu):
@@ -238,7 +235,6 @@ class Color1Menu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__none_ = '(none)'
-        self.menu_c = 'C'
 
 
 class Alpha1Menu(Menu):
@@ -246,7 +242,6 @@ class Alpha1Menu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__none_ = '(none)'
-        self.menu_c = 'C'
 
 
 class Scopeplanes1Menu(Menu):
@@ -254,7 +249,6 @@ class Scopeplanes1Menu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__ = '*'
-        self.menu_c = 'C'
 
 
 class Copaux2Menu(Menu):
@@ -273,7 +267,6 @@ class Color2Menu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__none_ = '(none)'
-        self.menu_c = 'C'
 
 
 class Alpha2Menu(Menu):
@@ -281,7 +274,6 @@ class Alpha2Menu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__none_ = '(none)'
-        self.menu_c = 'C'
 
 
 class Scopeplanes2Menu(Menu):
@@ -289,7 +281,6 @@ class Scopeplanes2Menu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__ = '*'
-        self.menu_c = 'C'
 
 
 class Copaux3Menu(Menu):
@@ -308,7 +299,6 @@ class Color3Menu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__none_ = '(none)'
-        self.menu_c = 'C'
 
 
 class Alpha3Menu(Menu):
@@ -316,7 +306,6 @@ class Alpha3Menu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__none_ = '(none)'
-        self.menu_c = 'C'
 
 
 class Scopeplanes3Menu(Menu):
@@ -324,7 +313,6 @@ class Scopeplanes3Menu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__ = '*'
-        self.menu_c = 'C'
 
 
 class Copaux4Menu(Menu):
@@ -343,7 +331,6 @@ class Color4Menu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__none_ = '(none)'
-        self.menu_c = 'C'
 
 
 class Alpha4Menu(Menu):
@@ -351,7 +338,6 @@ class Alpha4Menu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__none_ = '(none)'
-        self.menu_c = 'C'
 
 
 class Scopeplanes4Menu(Menu):
@@ -359,7 +345,6 @@ class Scopeplanes4Menu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__ = '*'
-        self.menu_c = 'C'
 
 
 class Copaux5Menu(Menu):
@@ -378,7 +363,6 @@ class Color5Menu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__none_ = '(none)'
-        self.menu_c = 'C'
 
 
 class Alpha5Menu(Menu):
@@ -386,7 +370,6 @@ class Alpha5Menu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__none_ = '(none)'
-        self.menu_c = 'C'
 
 
 class Scopeplanes5Menu(Menu):
@@ -394,7 +377,6 @@ class Scopeplanes5Menu(Menu):
         self.parm = parm
         super().__init__(parm=parm)
         self.menu__ = '*'
-        self.menu_c = 'C'
 
 
 class VmImageTiffCompressionMenu(Menu):
@@ -435,6 +417,8 @@ class PrerenderMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
+        self.menu__job_desktop_articulatcf_bold_otf = '$JOB/Desktop/ArticulatCF-Bold.otf'
+        self.menu__hip_desktop_articulatcf_bold_otf = '$HIP/Desktop/ArticulatCF-Bold.otf'
         self.menu_e__art_products_ox_mtlx_hf_test_out = 'E:/ART/PRODUCTS/OX-MTLX/hf_test_out'
         self.menu_d__minecraft_sub___ded_copper_sbsar = 'D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar'
         self.menu_d__minecraft_sub___dirt_field_sbsar = 'D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar'
@@ -445,8 +429,6 @@ class PrerenderMenu(Menu):
         self.menu_e__art_products____ers_lava_cpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg'
         self.menu_e__art_products____ers_lava_xpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg'
         self.menu_e__art_products____s_glazed_xpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg'
-        self.menu_e__art_products____s_glazed_cpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/glazed_cpu.jpg'
-        self.menu_e__art_products____s_copper_cpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/copper_cpu.jpg'
 
 
 class LprerenderMenu(Menu):
@@ -461,6 +443,8 @@ class PreframeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
+        self.menu__job_desktop_articulatcf_bold_otf = '$JOB/Desktop/ArticulatCF-Bold.otf'
+        self.menu__hip_desktop_articulatcf_bold_otf = '$HIP/Desktop/ArticulatCF-Bold.otf'
         self.menu_e__art_products_ox_mtlx_hf_test_out = 'E:/ART/PRODUCTS/OX-MTLX/hf_test_out'
         self.menu_d__minecraft_sub___ded_copper_sbsar = 'D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar'
         self.menu_d__minecraft_sub___dirt_field_sbsar = 'D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar'
@@ -471,8 +455,6 @@ class PreframeMenu(Menu):
         self.menu_e__art_products____ers_lava_cpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg'
         self.menu_e__art_products____ers_lava_xpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg'
         self.menu_e__art_products____s_glazed_xpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg'
-        self.menu_e__art_products____s_glazed_cpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/glazed_cpu.jpg'
-        self.menu_e__art_products____s_copper_cpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/copper_cpu.jpg'
 
 
 class LpreframeMenu(Menu):
@@ -487,6 +469,8 @@ class PostframeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
+        self.menu__job_desktop_articulatcf_bold_otf = '$JOB/Desktop/ArticulatCF-Bold.otf'
+        self.menu__hip_desktop_articulatcf_bold_otf = '$HIP/Desktop/ArticulatCF-Bold.otf'
         self.menu_e__art_products_ox_mtlx_hf_test_out = 'E:/ART/PRODUCTS/OX-MTLX/hf_test_out'
         self.menu_d__minecraft_sub___ded_copper_sbsar = 'D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar'
         self.menu_d__minecraft_sub___dirt_field_sbsar = 'D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar'
@@ -497,8 +481,6 @@ class PostframeMenu(Menu):
         self.menu_e__art_products____ers_lava_cpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg'
         self.menu_e__art_products____ers_lava_xpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg'
         self.menu_e__art_products____s_glazed_xpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg'
-        self.menu_e__art_products____s_glazed_cpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/glazed_cpu.jpg'
-        self.menu_e__art_products____s_copper_cpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/copper_cpu.jpg'
 
 
 class LpostframeMenu(Menu):
@@ -513,6 +495,8 @@ class PostrenderMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
+        self.menu__job_desktop_articulatcf_bold_otf = '$JOB/Desktop/ArticulatCF-Bold.otf'
+        self.menu__hip_desktop_articulatcf_bold_otf = '$HIP/Desktop/ArticulatCF-Bold.otf'
         self.menu_e__art_products_ox_mtlx_hf_test_out = 'E:/ART/PRODUCTS/OX-MTLX/hf_test_out'
         self.menu_d__minecraft_sub___ded_copper_sbsar = 'D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar'
         self.menu_d__minecraft_sub___dirt_field_sbsar = 'D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar'
@@ -523,8 +507,6 @@ class PostrenderMenu(Menu):
         self.menu_e__art_products____ers_lava_cpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg'
         self.menu_e__art_products____ers_lava_xpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg'
         self.menu_e__art_products____s_glazed_xpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg'
-        self.menu_e__art_products____s_glazed_cpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/glazed_cpu.jpg'
-        self.menu_e__art_products____s_copper_cpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/copper_cpu.jpg'
 
 
 class LpostrenderMenu(Menu):

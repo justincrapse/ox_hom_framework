@@ -1,5 +1,7 @@
 import logging
 
+import hou
+
 from ox.base_objects.ox_node import OXNode
 
 ox_logger = logging.getLogger("ox_logger")
@@ -14,11 +16,24 @@ def delete_nodes_by_name_list(ox_parent_node: OXNode, node_name_list, debug=Fals
             node.destroy()
 
 
-def delete_all_connected_nodes_upward(hou_node):
-    for conn in hou_node.inputConnections():
-        conn_hou_node = conn.inputNode()
-        delete_all_connected_nodes_upward(hou_node=conn_hou_node)
-    hou_node.destroy()
+def delete_all_connected_nodes_upward(node: hou.Node):
+    ox_logger.debug(f"Starting delete all upstream nodes for {node.name()} node")
+    for conn in node.inputConnections():
+        conn_node = conn.inputNode()
+        ox_logger.debug(f'Found output node "{conn_node.name()}" for node: {node}')
+        delete_all_connected_nodes_upward(node=conn_node)
+    ox_logger.debug(f"Destroying node: {node.name()}")
+    node.destroy()
+
+
+def delete_all_downstream_nodes(node: hou.Node):
+    ox_logger.debug(f"Starting delete all downstream nodes for {node.name()} node")
+    for conn in node.outputConnections():
+        conn_node = conn.outputNode()
+        ox_logger.debug(f'Found output node "{conn_node.name()}" for node: {node}')
+        delete_all_downstream_nodes(node=conn_node)
+    ox_logger.debug(f"Destroying node: {node.name()}")
+    node.destroy()
 
 
 def reference_copy_nodes_to_source(source_hou_nodes, copied_hou_nodes):

@@ -71,57 +71,57 @@ class SignatureMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_float = 'default'
-        self.menu_color = 'color3'
-        self.menu_color_4 = 'color4'
-        self.menu_vector_2 = 'vector2'
-        self.menu_vector_3 = 'vector3'
-        self.menu_vector_4 = 'vector4'
+        self.menu_float = "default"
+        self.menu_color = "color3"
+        self.menu_color_4 = "color4"
+        self.menu_vector_2 = "vector2"
+        self.menu_vector_3 = "vector3"
+        self.menu_vector_4 = "vector4"
 
 
 class FilecolorspaceMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_linear___rec_709 = 'lin_rec709'
-        self.menu_linear_texture___srgb = 'srgb_texture'
+        self.menu_linear___rec_709 = "lin_rec709"
+        self.menu_linear_texture___srgb = "srgb_texture"
 
 
 class FileMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_e__art_products____ic_basecolor_jpg = 'E:/ART/PRODUCTS/OX-MTLX/palmcube_quilted_moleskin_fabric/palmcube_quilted_moleskin_fabric_basecolor.jpg'
-        self.menu__hip_hf_rendered___s_grass_mask_jpg = '$HIP/hf_rendered_layers/grass_mask.jpg'
-        self.menu__hip_hf_rendered_layers_grass_mask = 'E:/ART/PRODUCTS/OX-Terrain_Textuers/hf_rendered_layers/grass_mask'
-        self.menu_op__obj_hf_cop2n___ort1_grass_mask_ = 'op:/obj/hf/cop2net1/sopimport1{grass_mask}'
-        self.menu_op__obj_cop2net1___ive1_base_color_ = 'op:/obj/cop2net1/sbs_archive1{Base Color}'
-        self.menu_e__art_projects____oon_grass_4k_exr = 'E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr'
-        self.menu_e__art_projects____quarry_02_4k_exr = 'E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr'
-        self.menu_e__art_projects____anga_veld_4k_exr = 'E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr'
-        self.menu_e__art_projects____enheim_05_4k_exr = 'E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr'
-        self.menu_e__art_projects____ly_cloudy_4k_exr = 'E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr'
-        self.menu_e__art_projects____in_cellar_4k_exr = 'E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr'
-        self.menu_e__art_projects_____1d_clear_4k_exr = 'E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr'
+        self.menu_e__art_projects____a_sunrise_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr"
+        self.menu_e__art_projects____anga_veld_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr"
+        self.menu_e__art_projects____s_on_fire_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr"
+        self.menu_e__art_projects____ly_cloudy_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr"
+        self.menu_e__art_projects____enheim_05_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr"
+        self.menu_e__art_projects____quarry_02_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr"
+        self.menu_e__art_projects_____1d_clear_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr"
+        self.menu_e__art_projects____oon_grass_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr"
+        self.menu_e__art_projects____in_cellar_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr"
+        self.menu_e__art_products____ers_tip_mask_jpg = "E:/ART/PRODUCTS/OX-Terrain_Textuers/tip_mask.jpg"
+        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/multi_texture_folder/green_tiles/wall_tile_unstuck_basecolor.jpg"
+        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/glazed_terracotta/wall_tile_unstuck_basecolor.jpg"
 
 
 class FiltertypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_closest = 'closest'
-        self.menu_linear = 'linear'
-        self.menu_cubic = 'cubic'
+        self.menu_closest = "closest"
+        self.menu_linear = "linear"
+        self.menu_cubic = "cubic"
 
 
 class FrameendactionMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = 'constant'
-        self.menu_clamp = 'clamp'
-        self.menu_periodic = 'periodic'
-        self.menu_mirror = 'mirror'
+        self.menu_constant = "constant"
+        self.menu_clamp = "clamp"
+        self.menu_periodic = "periodic"
+        self.menu_mirror = "mirror"
 
 
 

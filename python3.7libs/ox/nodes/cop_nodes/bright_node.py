@@ -70,67 +70,67 @@ class QuantizeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_where_optimal = 'optimal'
-        self.menu_quantize_at_this_node = 'here'
+        self.menu_where_optimal = "optimal"
+        self.menu_quantize_at_this_node = "here"
 
 
 class MaskinputMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_first_input = 'first'
-        self.menu_mask_input = 'mask'
-        self.menu_off = 'off'
+        self.menu_first_input = "first"
+        self.menu_mask_input = "mask"
+        self.menu_off = "off"
 
 
 class MaskplaneMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_mask_input = 'none'
+        self.menu_no_mask_input = "none"
 
 
 class PscopeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__ = '*'
+        self.menu__ = "*"
 
 
 class FscopeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_all_frames = 'all'
-        self.menu_inside_range = 'inside'
-        self.menu_outside_range = 'outside'
-        self.menu_even_frames = 'even'
-        self.menu_odd_frames = 'odd'
-        self.menu_specific_frames = 'specific'
+        self.menu_all_frames = "all"
+        self.menu_inside_range = "inside"
+        self.menu_outside_range = "outside"
+        self.menu_even_frames = "even"
+        self.menu_odd_frames = "odd"
+        self.menu_specific_frames = "specific"
 
 
 class FdropfuncMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_linear = 'linear'
-        self.menu_ease_in = 'easein'
-        self.menu_ease_out = 'easeout'
-        self.menu_ease_in_ease_out = 'easeinout'
+        self.menu_linear = "linear"
+        self.menu_ease_in = "easein"
+        self.menu_ease_out = "easeout"
+        self.menu_ease_in_ease_out = "easeinout"
 
 
 class FmenuMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_scope_all_frames = 'scopeall'
-        self.menu_scope_current_frame = 'scopecur'
-        self.menu_scope_from_start_to_current = 'scopetocur'
-        self.menu_scope_from_current_to_end = 'scopefromcur'
-        self.menu_unscope_all_frames = 'unscopeall'
-        self.menu_unscope_current_frame = 'unscopecur'
-        self.menu_unscope_from_start_to_current = 'unscopetocur'
-        self.menu_unscope_from_current_to_end = 'unscopefromcur'
+        self.menu_scope_all_frames = "scopeall"
+        self.menu_scope_current_frame = "scopecur"
+        self.menu_scope_from_start_to_current = "scopetocur"
+        self.menu_scope_from_current_to_end = "scopefromcur"
+        self.menu_unscope_all_frames = "unscopeall"
+        self.menu_unscope_current_frame = "unscopecur"
+        self.menu_unscope_from_start_to_current = "unscopetocur"
+        self.menu_unscope_from_current_to_end = "unscopefromcur"
 
 
 

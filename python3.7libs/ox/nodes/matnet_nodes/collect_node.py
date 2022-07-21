@@ -6,7 +6,7 @@ from ox.base_objects.menu import Menu
 
 class CollectNode(OXNode):
     node_type = 'collect'
-    parm_lookup_dict = {'inputnum': 'inputnum', 'inputname1': 'inputname1', 'inputlabel1': 'inputlabel1'}
+    parm_lookup_dict = {'inputnum': 'inputnum'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -19,8 +19,6 @@ class CollectNode(OXNode):
         
         # parm vars:
         self.parm_inputnum = Parameter(parm=self.node.parm('inputnum'))
-        self.parm_inputname1 = Parameter(parm=self.node.parm('inputname1'))
-        self.parm_inputlabel1 = Parameter(parm=self.node.parm('inputlabel1'))
 
         
         # parm menu vars:
@@ -28,7 +26,6 @@ class CollectNode(OXNode):
 
         # input vars:
         self.input_input_1 = 'Input 1'
-        self.input_input_2 = 'Input 2'
 
 
 # parm menu classes:

@@ -6,7 +6,7 @@ from ox.base_objects.menu import Menu
 
 class GeoNode(OXNode):
     node_type = 'geo'
-    parm_lookup_dict = {'stdswitcher1': 'stdswitcher1', 'xord': 'xOrd', 'rord': 'rOrd', 'tx': 'tx', 'ty': 'ty', 'tz': 'tz', 'rx': 'rx', 'ry': 'ry', 'rz': 'rz', 'sx': 'sx', 'sy': 'sy', 'sz': 'sz', 'px': 'px', 'py': 'py', 'pz': 'pz', 'prx': 'prx', 'pry': 'pry', 'prz': 'prz', 'scale': 'scale', 'pre_xform': 'pre_xform', 'keeppos': 'keeppos', 'childcomp': 'childcomp', 'constraints_on': 'constraints_on', 'constraints_path': 'constraints_path', 'lookatpath': 'lookatpath', 'lookupobjpath': 'lookupobjpath', 'lookup': 'lookup', 'pathobjpath': 'pathobjpath', 'roll': 'roll', 'pos': 'pos', 'uparmtype': 'uparmtype', 'pathorient': 'pathorient', 'upx': 'upx', 'upy': 'upy', 'upz': 'upz', 'bank': 'bank', 'shop_materialpath': 'shop_materialpath', 'shop_materialopts': 'shop_materialopts', 'tdisplay': 'tdisplay', 'display': 'display', 'use_dcolor': 'use_dcolor', 'dcolorr': 'dcolorr', 'dcolorg': 'dcolorg', 'dcolorb': 'dcolorb', 'picking': 'picking', 'pickscript': 'pickscript', 'caching': 'caching', 'vport_shadeopen': 'vport_shadeopen', 'vport_displayassubdiv': 'vport_displayassubdiv', 'vport_onionskin': 'vport_onionskin', 'stdswitcher41': 'stdswitcher41', 'viewportlod': 'viewportlod', 'vm_rendervisibility': 'vm_rendervisibility', 'vm_rendersubd': 'vm_rendersubd', 'vm_subdstyle': 'vm_subdstyle', 'vm_subdgroup': 'vm_subdgroup', 'vm_osd_quality': 'vm_osd_quality', 'vm_osd_vtxinterp': 'vm_osd_vtxinterp', 'vm_osd_fvarinterp': 'vm_osd_fvarinterp', 'folder01': 'folder01', 'categories': 'categories', 'reflectmask': 'reflectmask', 'refractmask': 'refractmask', 'lightmask': 'lightmask', 'lightcategories': 'lightcategories', 'vm_lpetag': 'vm_lpetag', 'vm_volumefilter': 'vm_volumefilter', 'vm_volumefilterwidth': 'vm_volumefilterwidth', 'vm_matte': 'vm_matte', 'vm_rayshade': 'vm_rayshade', 'geo_velocityblur': 'geo_velocityblur', 'geo_accelattribute': 'geo_accelattribute', 'vm_shadingquality': 'vm_shadingquality', 'vm_flatness': 'vm_flatness', 'vm_raypredice': 'vm_raypredice', 'vm_curvesurface': 'vm_curvesurface', 'vm_rmbackface': 'vm_rmbackface', 'shop_geometrypath': 'shop_geometrypath', 'vm_forcegeometry': 'vm_forcegeometry', 'vm_rendersubdcurves': 'vm_rendersubdcurves', 'vm_renderpoints': 'vm_renderpoints', 'vm_renderpointsas': 'vm_renderpointsas', 'vm_usenforpoints': 'vm_usenforpoints', 'vm_pointscale': 'vm_pointscale', 'vm_pscalediameter': 'vm_pscalediameter', 'vm_metavolume': 'vm_metavolume', 'vm_coving': 'vm_coving', 'vm_materialoverride': 'vm_materialoverride', 'vm_overridedetail': 'vm_overridedetail', 'vm_procuseroottransform': 'vm_procuseroottransform', 'rs_objprop_switcher1': 'RS_objprop_switcher1', 'rs_objpro_first': 'RS_objpro_first', 'rs_campropshapes_switcher1': 'RS_campropshapes_switcher1', 'rs_objprop_id': 'RS_objprop_ID', 'rs_objprop_cryptoid': 'RS_objprop_CryptoID', 'rs_objprop_cryptomatid_allmat': 'RS_objprop_CryptoMatID_AllMat', 'rs_objprop_ngons_enable': 'RS_objprop_ngons_enable', 'rs_objprop_ngons_tessmode': 'RS_objprop_ngons_tessMode', 'rs_objprop_ngons_avoiddegen': 'RS_objprop_ngons_avoidDegen', 'rs_objprop_normals_normalize': 'RS_objprop_normals_normalize', 'rs_objprop_renderashair': 'RS_objprop_renderAsHair', 'rs_objprop_defaulthairwidth': 'RS_objprop_defaultHairWidth', 'rs_objprop_hairhalfthickness': 'RS_objprop_hairHalfThickness', 'rs_objprop_mb_trans': 'RS_objprop_mb_trans', 'rs_objprop_mb_def': 'RS_objprop_mb_def', 'rs_objprop_mb_points': 'RS_objprop_mb_points', 'rs_objprop_mb_def_use_v': 'RS_objprop_mb_def_use_v', 'rs_objprop_mb_v_attr': 'RS_objprop_mb_v_attr', 'rs_objprop_mb_deformsteps': 'RS_objprop_mb_deformSteps', 'rs_objprop_mb_fd_scale': 'RS_objprop_mb_fd_scale', 'rs_objprop_mb_offset': 'RS_objprop_mb_offset', 'rs_objprop_rendersopsubnets': 'RS_objprop_renderSOPsubnets', 'rs_objprop_tess_enable': 'RS_objprop_tess_enable', 'rs_objprop_tess_u': 'RS_objprop_tess_u', 'rs_objprop_tess_v': 'RS_objprop_tess_v', 'rs_objprop_tess_trim': 'RS_objprop_tess_trim', 'rs_objprop_inst_mode': 'RS_objprop_inst_mode', 'rs_objprop_inst_mb': 'RS_objprop_inst_mb', 'rs_objprop_inst_lightshader': 'RS_objprop_inst_lightShader', 'rs_objprop_inst_universalif': 'RS_objprop_inst_universalIF', 'rs_objprop_inst_ignorepivot': 'RS_objprop_inst_ignorePivot', 'rs_objprop_inst_fileoverride': 'RS_objprop_inst_fileOverride', 'rs_objprop_inst_packed': 'RS_objprop_inst_packed', 'rs_objprop_inst_packedpriminstancing': 'RS_objprop_inst_PackedPrimInstancing', 'rs_objprop_inst_subnetinstancing': 'RS_objprop_inst_subnetInstancing', 'rs_objprop_attr_auto': 'RS_objprop_attr_auto', 'rs_objprop_attr_vertex': 'RS_objprop_attr_vertex', 'rs_objprop_attr_points': 'RS_objprop_attr_points', 'rs_objprop_attr_primitives': 'RS_objprop_attr_primitives', 'rs_objprop_attr_detail': 'RS_objprop_attr_detail', 'rs_objprop_pckattr_promotion': 'RS_objprop_pckattr_promotion', 'rs_objprop_pckattr_replace': 'RS_objprop_pckattr_replace', 'rs_objprop_pckattr_mult': 'RS_objprop_pckattr_mult', 'rs_objprop_pckattr_add': 'RS_objprop_pckattr_add', 'rs_objprop_tracesets_enabled': 'RS_objprop_tracesets_enabled', 'rs_objprop_tracesets_reflection': 'RS_objprop_tracesets_reflection', 'rs_objprop_tracesets_refraction': 'RS_objprop_tracesets_refraction', 'rs_objprop_tracesets_sss': 'RS_objprop_tracesets_sss', 'rs_objprop_ipr_forcemeshupdate': 'RS_objprop_ipr_forceMeshUpdate', 'rs_objpro_label5': 'RS_objpro_label5', 'rs_objprop_proxy_enable': 'RS_objprop_proxy_enable', 'rs_objprop_proxy_file': 'RS_objprop_proxy_file', 'rs_objprop_proxy_preview': 'RS_objprop_proxy_preview', 'rs_objprop_proxy_prevpercent': 'RS_objprop_proxy_prevPercent', 'rs_objprop_proxy_prevlines': 'RS_objprop_proxy_prevLines', 'rs_objprop_proxy_prevanimated': 'RS_objprop_proxy_prevAnimated', 'rs_objprop_proxy_materials': 'RS_objprop_proxy_materials', 'rs_objprop_proxy_override': 'RS_objprop_proxy_override', 'rs_objprop_proxy_overridelist': 'RS_objprop_proxy_overrideList', 'rs_objprop_proxy_elements_mesh': 'RS_objprop_proxy_elements_mesh', 'rs_objprop_proxy_elements_volume': 'RS_objprop_proxy_elements_volume', 'rs_objprop_proxy_elements_light': 'RS_objprop_proxy_elements_light', 'rs_objprop_proxy_elements_proxy': 'RS_objprop_proxy_elements_proxy', 'rs_objprop_proxy_ovrid': 'RS_objprop_proxy_ovrID', 'rs_objprop_proxy_ovrvis': 'RS_objprop_proxy_ovrVis', 'rs_objprop_proxy_ovrtess': 'RS_objprop_proxy_ovrTess', 'rs_objprop_proxy_ovrtraces': 'RS_objprop_proxy_ovrTraceS', 'rs_objprop_proxy_ovruserdata': 'RS_objprop_proxy_ovrUserData', 'rs_objpro_label1o': 'RS_objpro_label1o', 'meshflag_primaryrayvisible': 'MESHFLAG_PRIMARYRAYVISIBLE', 'meshflag_secondaryrayvisible': 'MESHFLAG_SECONDARYRAYVISIBLE', 'meshflag_shadowcaster': 'MESHFLAG_SHADOWCASTER', 'meshflag_shadowreceiver': 'MESHFLAG_SHADOWRECEIVER', 'meshflag_noselfshadow': 'MESHFLAG_NOSELFSHADOW', 'meshflag_aocaster': 'MESHFLAG_AOCASTER', 'meshflag_reflectionvisible': 'MESHFLAG_REFLECTIONVISIBLE', 'meshflag_refractionvisible': 'MESHFLAG_REFRACTIONVISIBLE', 'meshflag_reflectioncaster': 'MESHFLAG_REFLECTIONCASTER', 'meshflag_refractioncaster': 'MESHFLAG_REFRACTIONCASTER', 'meshflag_fgvisible': 'MESHFLAG_FGVISIBLE', 'meshflag_givisible': 'MESHFLAG_GIVISIBLE', 'meshflag_causticvisible': 'MESHFLAG_CAUSTICVISIBLE', 'meshflag_fgcaster': 'MESHFLAG_FGCASTER', 'meshflag_forcebruteforcegi': 'MESHFLAG_FORCEBRUTEFORCEGI', 'meshflag_gicaster': 'MESHFLAG_GICASTER', 'meshflag_causticcaster': 'MESHFLAG_CAUSTICCASTER', 'rs_objpro_label2': 'RS_objpro_label2', 'rs_objprop_rstess_enable': 'RS_objprop_rstess_enable', 'rs_objprop_rstess_rule': 'RS_objprop_rstess_rule', 'rs_objprop_rstess_ssadaptive': 'RS_objprop_rstess_ssadaptive', 'rs_objprop_rstess_smoothsub': 'RS_objprop_rstess_smoothsub', 'rs_objprop_rstess_triquads': 'RS_objprop_rstess_triQuads', 'rs_objprop_rstess_melenght': 'RS_objprop_rstess_melenght', 'rs_objprop_rstess_maxsubd': 'RS_objprop_rstess_maxsubd', 'rs_objprop_rstess_ooftf': 'RS_objprop_rstess_ooftf', 'rs_objprop_rstess_looft': 'RS_objprop_rstess_looft', 'rs_objprop_rstess_looftsubd': 'RS_objprop_rstess_looftSubd', 'rs_objprop_rstess_smooth': 'RS_objprop_rstess_smooth', 'rs_objprop_rstess_smoothbound': 'RS_objprop_rstess_smoothBound', 'rs_objpro_label3': 'RS_objpro_label3', 'rs_objprop_displace_enable': 'RS_objprop_displace_enable', 'rs_objprop_displace_max': 'RS_objprop_displace_max', 'rs_objprop_displace_scale': 'RS_objprop_displace_scale', 'rs_objprop_displace_autob': 'RS_objprop_displace_autob', 'rs_objpro_label4': 'RS_objpro_label4', 'rs_objprop_matte_enable': 'RS_objprop_matte_enable', 'rs_objprop_matte_showbackg': 'RS_objprop_matte_showbackg', 'rs_objprop_matte_applysec': 'RS_objprop_matte_applysec', 'rs_objprop_matte_abyml': 'RS_objprop_matte_abyml', 'rs_objprop_matte_includepm': 'RS_objprop_matte_includePM', 'rs_objprop_matte_alpha': 'RS_objprop_matte_alpha', 'rs_objprop_matte_reflscale': 'RS_objprop_matte_reflscale', 'rs_objprop_matte_refrscale': 'RS_objprop_matte_refrscale', 'rs_objprop_matte_diffscale': 'RS_objprop_matte_diffscale', 'rs_objprop_matte_shadowenable': 'RS_objprop_matte_shadowenable', 'rs_objprop_matte_shadowsfromm': 'RS_objprop_matte_shadowsFromM', 'rs_objprop_matte_shadowalpha': 'RS_objprop_matte_shadowalpha', 'rs_objprop_matte_shadowcolorr': 'RS_objprop_matte_shadowcolorr', 'rs_objprop_matte_shadowcolorg': 'RS_objprop_matte_shadowcolorg', 'rs_objprop_matte_shadowcolorb': 'RS_objprop_matte_shadowcolorb', 'rs_objprop_matte_shadowtrans': 'RS_objprop_matte_shadowtrans', 'rs_objpro_label6': 'RS_objpro_label6', 'rs_objprop_strands_enable': 'RS_objprop_strands_enable', 'rs_objprop_strands_type': 'RS_objprop_strands_type', 'rs_objprop_strands_maxsubd': 'RS_objprop_strands_maxSubd', 'rs_objprop_strands_scale': 'RS_objprop_strands_scale', 'rs_objprop_strands_scalemult': 'RS_objprop_strands_scaleMult', 'rs_objprop_strands_ignorepscale': 'RS_objprop_strands_ignorePScale', 'rs_objprop_strands_usecamera': 'RS_objprop_strands_useCamera', 'rs_objpro_label10': 'RS_objpro_label10', 'rs_objprop_particles_enable': 'RS_objprop_particles_enable', 'rs_objprop_particles_ignorescale': 'RS_objprop_particles_ignoreScale', 'rs_objprop_particles_scale': 'RS_objprop_particles_scale', 'rs_objprop_particles_scalemult': 'RS_objprop_particles_scaleMult', 'rs_objpro_label7': 'RS_objpro_label7', 'rs_objprop_volume_enable': 'RS_objprop_volume_enable', 'rs_objprop_volume_type': 'RS_objprop_volume_type', 'rs_objprop_volume_filtern': 'RS_objprop_volume_filterN', 'rs_objprop_volume_filterdeg': 'RS_objprop_volume_filterDeg', 'rs_objprop_volume_filterdegthr': 'RS_objprop_volume_filterDegThr', 'rs_objprop_volume_cleanbackg': 'RS_objprop_volume_cleanBackg', 'rs_objprop_volume_v': 'RS_objprop_volume_v', 'rs_objprop_volume_vx': 'RS_objprop_volume_vx', 'rs_objprop_volume_vy': 'RS_objprop_volume_vy', 'rs_objprop_volume_vz': 'RS_objprop_volume_vz', 'rs_objprop_volume_vs': 'RS_objprop_volume_vs', 'rs_objpro_last': 'RS_objpro_last'}
+    parm_lookup_dict = {'stdswitcher1': 'stdswitcher1', 'xord': 'xOrd', 'rord': 'rOrd', 'tx': 'tx', 'ty': 'ty', 'tz': 'tz', 'rx': 'rx', 'ry': 'ry', 'rz': 'rz', 'sx': 'sx', 'sy': 'sy', 'sz': 'sz', 'px': 'px', 'py': 'py', 'pz': 'pz', 'prx': 'prx', 'pry': 'pry', 'prz': 'prz', 'scale': 'scale', 'pre_xform': 'pre_xform', 'keeppos': 'keeppos', 'childcomp': 'childcomp', 'constraints_on': 'constraints_on', 'constraints_path': 'constraints_path', 'lookatpath': 'lookatpath', 'lookupobjpath': 'lookupobjpath', 'lookup': 'lookup', 'pathobjpath': 'pathobjpath', 'roll': 'roll', 'pos': 'pos', 'uparmtype': 'uparmtype', 'pathorient': 'pathorient', 'upx': 'upx', 'upy': 'upy', 'upz': 'upz', 'bank': 'bank', 'shop_materialpath': 'shop_materialpath', 'shop_materialopts': 'shop_materialopts', 'tdisplay': 'tdisplay', 'display': 'display', 'use_dcolor': 'use_dcolor', 'dcolorr': 'dcolorr', 'dcolorg': 'dcolorg', 'dcolorb': 'dcolorb', 'picking': 'picking', 'pickscript': 'pickscript', 'caching': 'caching', 'vport_shadeopen': 'vport_shadeopen', 'vport_displayassubdiv': 'vport_displayassubdiv', 'vport_onionskin': 'vport_onionskin', 'stdswitcher41': 'stdswitcher41', 'viewportlod': 'viewportlod', 'vm_rendervisibility': 'vm_rendervisibility', 'vm_rendersubd': 'vm_rendersubd', 'vm_subdstyle': 'vm_subdstyle', 'vm_subdgroup': 'vm_subdgroup', 'vm_osd_quality': 'vm_osd_quality', 'vm_osd_vtxinterp': 'vm_osd_vtxinterp', 'vm_osd_fvarinterp': 'vm_osd_fvarinterp', 'folder01': 'folder01', 'categories': 'categories', 'reflectmask': 'reflectmask', 'refractmask': 'refractmask', 'lightmask': 'lightmask', 'lightcategories': 'lightcategories', 'vm_lpetag': 'vm_lpetag', 'vm_volumefilter': 'vm_volumefilter', 'vm_volumefilterwidth': 'vm_volumefilterwidth', 'vm_matte': 'vm_matte', 'vm_rayshade': 'vm_rayshade', 'geo_velocityblur': 'geo_velocityblur', 'geo_accelattribute': 'geo_accelattribute', 'vm_shadingquality': 'vm_shadingquality', 'vm_flatness': 'vm_flatness', 'vm_raypredice': 'vm_raypredice', 'vm_curvesurface': 'vm_curvesurface', 'vm_rmbackface': 'vm_rmbackface', 'shop_geometrypath': 'shop_geometrypath', 'vm_forcegeometry': 'vm_forcegeometry', 'vm_rendersubdcurves': 'vm_rendersubdcurves', 'vm_renderpoints': 'vm_renderpoints', 'vm_renderpointsas': 'vm_renderpointsas', 'vm_usenforpoints': 'vm_usenforpoints', 'vm_pointscale': 'vm_pointscale', 'vm_pscalediameter': 'vm_pscalediameter', 'vm_metavolume': 'vm_metavolume', 'vm_coving': 'vm_coving', 'vm_materialoverride': 'vm_materialoverride', 'vm_overridedetail': 'vm_overridedetail', 'vm_procuseroottransform': 'vm_procuseroottransform', 'rs_objprop_switcher1': 'RS_objprop_switcher1', 'rs_objpro_first': 'RS_objpro_first', 'rs_campropshapes_switcher1': 'RS_campropshapes_switcher1', 'rs_objprop_id': 'RS_objprop_ID', 'rs_objprop_cryptoid': 'RS_objprop_CryptoID', 'rs_objprop_cryptomatid_allmat': 'RS_objprop_CryptoMatID_AllMat', 'rs_objprop_ngons_enable': 'RS_objprop_ngons_enable', 'rs_objprop_ngons_tessmode': 'RS_objprop_ngons_tessMode', 'rs_objprop_ngons_avoiddegen': 'RS_objprop_ngons_avoidDegen', 'rs_objprop_normals_normalize': 'RS_objprop_normals_normalize', 'rs_objprop_renderashair': 'RS_objprop_renderAsHair', 'rs_objprop_defaulthairwidth': 'RS_objprop_defaultHairWidth', 'rs_objprop_hairhalfthickness': 'RS_objprop_hairHalfThickness', 'rs_objprop_mb_trans': 'RS_objprop_mb_trans', 'rs_objprop_mb_def': 'RS_objprop_mb_def', 'rs_objprop_mb_points': 'RS_objprop_mb_points', 'rs_objprop_mb_def_use_v': 'RS_objprop_mb_def_use_v', 'rs_objprop_mb_v_attr': 'RS_objprop_mb_v_attr', 'rs_objprop_mb_deformsteps': 'RS_objprop_mb_deformSteps', 'rs_objprop_mb_fd_scale': 'RS_objprop_mb_fd_scale', 'rs_objprop_mb_offset': 'RS_objprop_mb_offset', 'rs_objprop_rendersopsubnets': 'RS_objprop_renderSOPsubnets', 'rs_objprop_tess_enable': 'RS_objprop_tess_enable', 'rs_objprop_tess_u': 'RS_objprop_tess_u', 'rs_objprop_tess_v': 'RS_objprop_tess_v', 'rs_objprop_tess_trim': 'RS_objprop_tess_trim', 'rs_objprop_inst_mode': 'RS_objprop_inst_mode', 'rs_objprop_inst_mb': 'RS_objprop_inst_mb', 'rs_objprop_inst_lightshader': 'RS_objprop_inst_lightShader', 'rs_objprop_inst_universalif': 'RS_objprop_inst_universalIF', 'rs_objprop_inst_ignorepivot': 'RS_objprop_inst_ignorePivot', 'rs_objprop_inst_fileoverride': 'RS_objprop_inst_fileOverride', 'rs_objprop_inst_packed': 'RS_objprop_inst_packed', 'rs_objprop_inst_packedpriminstancing': 'RS_objprop_inst_PackedPrimInstancing', 'rs_objprop_inst_subnetinstancing': 'RS_objprop_inst_subnetInstancing', 'rs_objprop_attr_auto': 'RS_objprop_attr_auto', 'rs_objprop_attr_vertex': 'RS_objprop_attr_vertex', 'rs_objprop_attr_points': 'RS_objprop_attr_points', 'rs_objprop_attr_primitives': 'RS_objprop_attr_primitives', 'rs_objprop_attr_detail': 'RS_objprop_attr_detail', 'rs_objprop_pckattr_promotion': 'RS_objprop_pckattr_promotion', 'rs_objprop_pckattr_replace': 'RS_objprop_pckattr_replace', 'rs_objprop_pckattr_mult': 'RS_objprop_pckattr_mult', 'rs_objprop_pckattr_add': 'RS_objprop_pckattr_add', 'rs_objprop_tracesets_enabled': 'RS_objprop_tracesets_enabled', 'rs_objprop_tracesets_reflection': 'RS_objprop_tracesets_reflection', 'rs_objprop_tracesets_refraction': 'RS_objprop_tracesets_refraction', 'rs_objprop_tracesets_sss': 'RS_objprop_tracesets_sss', 'rs_objprop_ipr_forcemeshupdate': 'RS_objprop_ipr_forceMeshUpdate', 'rs_objpro_label5': 'RS_objpro_label5', 'rs_objprop_proxy_enable': 'RS_objprop_proxy_enable', 'rs_objprop_proxy_file': 'RS_objprop_proxy_file', 'rs_objprop_proxy_preview': 'RS_objprop_proxy_preview', 'rs_objprop_proxy_prevpercent': 'RS_objprop_proxy_prevPercent', 'rs_objprop_proxy_prevlines': 'RS_objprop_proxy_prevLines', 'rs_objprop_proxy_prevanimated': 'RS_objprop_proxy_prevAnimated', 'rs_objprop_proxy_materials': 'RS_objprop_proxy_materials', 'rs_objprop_proxy_override': 'RS_objprop_proxy_override', 'rs_objprop_proxy_overridelist': 'RS_objprop_proxy_overrideList', 'rs_objprop_proxy_elements_mesh': 'RS_objprop_proxy_elements_mesh', 'rs_objprop_proxy_elements_volume': 'RS_objprop_proxy_elements_volume', 'rs_objprop_proxy_elements_light': 'RS_objprop_proxy_elements_light', 'rs_objprop_proxy_elements_proxy': 'RS_objprop_proxy_elements_proxy', 'rs_objprop_proxy_ovrid': 'RS_objprop_proxy_ovrID', 'rs_objprop_proxy_ovrvis': 'RS_objprop_proxy_ovrVis', 'rs_objprop_proxy_ovrtess': 'RS_objprop_proxy_ovrTess', 'rs_objprop_proxy_ovrtraces': 'RS_objprop_proxy_ovrTraceS', 'rs_objprop_proxy_ovruserdata': 'RS_objprop_proxy_ovrUserData', 'rs_objpro_label1o': 'RS_objpro_label1o', 'meshflag_primaryrayvisible': 'MESHFLAG_PRIMARYRAYVISIBLE', 'meshflag_secondaryrayvisible': 'MESHFLAG_SECONDARYRAYVISIBLE', 'meshflag_shadowcaster': 'MESHFLAG_SHADOWCASTER', 'meshflag_shadowreceiver': 'MESHFLAG_SHADOWRECEIVER', 'meshflag_noselfshadow': 'MESHFLAG_NOSELFSHADOW', 'meshflag_aocaster': 'MESHFLAG_AOCASTER', 'meshflag_reflectionvisible': 'MESHFLAG_REFLECTIONVISIBLE', 'meshflag_refractionvisible': 'MESHFLAG_REFRACTIONVISIBLE', 'meshflag_reflectioncaster': 'MESHFLAG_REFLECTIONCASTER', 'meshflag_refractioncaster': 'MESHFLAG_REFRACTIONCASTER', 'meshflag_fgvisible': 'MESHFLAG_FGVISIBLE', 'meshflag_givisible': 'MESHFLAG_GIVISIBLE', 'meshflag_causticvisible': 'MESHFLAG_CAUSTICVISIBLE', 'meshflag_fgcaster': 'MESHFLAG_FGCASTER', 'meshflag_forcebruteforcegi': 'MESHFLAG_FORCEBRUTEFORCEGI', 'meshflag_gicaster': 'MESHFLAG_GICASTER', 'meshflag_causticcaster': 'MESHFLAG_CAUSTICCASTER', 'meshflag_causticsreceiver': 'MESHFLAG_CAUSTICSRECEIVER', 'rs_objpro_label2': 'RS_objpro_label2', 'rs_objprop_rstess_enable': 'RS_objprop_rstess_enable', 'rs_objprop_rstess_rule': 'RS_objprop_rstess_rule', 'rs_objprop_rstess_ssadaptive': 'RS_objprop_rstess_ssadaptive', 'rs_objprop_rstess_smoothsub': 'RS_objprop_rstess_smoothsub', 'rs_objprop_rstess_triquads': 'RS_objprop_rstess_triQuads', 'rs_objprop_rstess_melenght': 'RS_objprop_rstess_melenght', 'rs_objprop_rstess_maxsubd': 'RS_objprop_rstess_maxsubd', 'rs_objprop_rstess_ooftf': 'RS_objprop_rstess_ooftf', 'rs_objprop_rstess_looft': 'RS_objprop_rstess_looft', 'rs_objprop_rstess_looftsubd': 'RS_objprop_rstess_looftSubd', 'rs_objprop_rstess_smooth': 'RS_objprop_rstess_smooth', 'rs_objprop_rstess_smoothbound': 'RS_objprop_rstess_smoothBound', 'rs_objpro_label3': 'RS_objpro_label3', 'rs_objprop_displace_enable': 'RS_objprop_displace_enable', 'rs_objprop_displace_max': 'RS_objprop_displace_max', 'rs_objprop_displace_scale': 'RS_objprop_displace_scale', 'rs_objprop_displace_autob': 'RS_objprop_displace_autob', 'rs_objpro_label4': 'RS_objpro_label4', 'rs_objprop_matte_enable': 'RS_objprop_matte_enable', 'rs_objprop_matte_showbackg': 'RS_objprop_matte_showbackg', 'rs_objprop_matte_applysec': 'RS_objprop_matte_applysec', 'rs_objprop_matte_abyml': 'RS_objprop_matte_abyml', 'rs_objprop_matte_includepm': 'RS_objprop_matte_includePM', 'rs_objprop_matte_alpha': 'RS_objprop_matte_alpha', 'rs_objprop_matte_reflscale': 'RS_objprop_matte_reflscale', 'rs_objprop_matte_refrscale': 'RS_objprop_matte_refrscale', 'rs_objprop_matte_diffscale': 'RS_objprop_matte_diffscale', 'rs_objprop_matte_shadowenable': 'RS_objprop_matte_shadowenable', 'rs_objprop_matte_shadowsfromm': 'RS_objprop_matte_shadowsFromM', 'rs_objprop_matte_shadowalpha': 'RS_objprop_matte_shadowalpha', 'rs_objprop_matte_shadowcolorr': 'RS_objprop_matte_shadowcolorr', 'rs_objprop_matte_shadowcolorg': 'RS_objprop_matte_shadowcolorg', 'rs_objprop_matte_shadowcolorb': 'RS_objprop_matte_shadowcolorb', 'rs_objprop_matte_shadowtrans': 'RS_objprop_matte_shadowtrans', 'rs_objpro_label6': 'RS_objpro_label6', 'rs_objprop_strands_enable': 'RS_objprop_strands_enable', 'rs_objprop_strands_type': 'RS_objprop_strands_type', 'rs_objprop_strands_maxsubd': 'RS_objprop_strands_maxSubd', 'rs_objprop_strands_scale': 'RS_objprop_strands_scale', 'rs_objprop_strands_scalemult': 'RS_objprop_strands_scaleMult', 'rs_objprop_strands_ignorepscale': 'RS_objprop_strands_ignorePScale', 'rs_objprop_strands_usecamera': 'RS_objprop_strands_useCamera', 'rs_objpro_label10': 'RS_objpro_label10', 'rs_objprop_particles_enable': 'RS_objprop_particles_enable', 'rs_objprop_particles_ignorescale': 'RS_objprop_particles_ignoreScale', 'rs_objprop_particles_scale': 'RS_objprop_particles_scale', 'rs_objprop_particles_scalemult': 'RS_objprop_particles_scaleMult', 'rs_objpro_label7': 'RS_objpro_label7', 'rs_objprop_volume_enable': 'RS_objprop_volume_enable', 'rs_objprop_volume_type': 'RS_objprop_volume_type', 'rs_objprop_volume_filtern': 'RS_objprop_volume_filterN', 'rs_objprop_volume_filterdeg': 'RS_objprop_volume_filterDeg', 'rs_objprop_volume_filterdegthr': 'RS_objprop_volume_filterDegThr', 'rs_objprop_volume_cleanbackg': 'RS_objprop_volume_cleanBackg', 'rs_objprop_volume_v': 'RS_objprop_volume_v', 'rs_objprop_volume_vx': 'RS_objprop_volume_vx', 'rs_objprop_volume_vy': 'RS_objprop_volume_vy', 'rs_objprop_volume_vz': 'RS_objprop_volume_vz', 'rs_objprop_volume_vs': 'RS_objprop_volume_vs', 'rs_objpro_last': 'RS_objpro_last'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -165,6 +165,7 @@ class GeoNode(OXNode):
         self.parm_meshflag_forcebruteforcegi = Parameter(parm=self.node.parm('MESHFLAG_FORCEBRUTEFORCEGI'))
         self.parm_meshflag_gicaster = Parameter(parm=self.node.parm('MESHFLAG_GICASTER'))
         self.parm_meshflag_causticcaster = Parameter(parm=self.node.parm('MESHFLAG_CAUSTICCASTER'))
+        self.parm_meshflag_causticsreceiver = Parameter(parm=self.node.parm('MESHFLAG_CAUSTICSRECEIVER'))
         self.parm_rs_objpro_label2 = Parameter(parm=self.node.parm('RS_objpro_label2'))
         self.parm_rs_objprop_rstess_enable = Parameter(parm=self.node.parm('RS_objprop_rstess_enable'))
         self.parm_rs_objprop_rstess_ssadaptive = Parameter(parm=self.node.parm('RS_objprop_rstess_ssadaptive'))
@@ -269,332 +270,332 @@ class XordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_scale_rot_trans = 0
-        self.menu_scale_trans_rot = 1
-        self.menu_rot_scale_trans = 2
-        self.menu_rot_trans_scale = 3
-        self.menu_trans_scale_rot = 4
-        self.menu_trans_rot_scale = 5
+        self.menu_scale_rot_trans = "srt"
+        self.menu_scale_trans_rot = "str"
+        self.menu_rot_scale_trans = "rst"
+        self.menu_rot_trans_scale = "rts"
+        self.menu_trans_scale_rot = "tsr"
+        self.menu_trans_rot_scale = "trs"
 
 
 class RordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_rx_ry_rz = 0
-        self.menu_rx_rz_ry = 1
-        self.menu_ry_rx_rz = 2
-        self.menu_ry_rz_rx = 3
-        self.menu_rz_rx_ry = 4
-        self.menu_rz_ry_rx = 5
+        self.menu_rx_ry_rz = "xyz"
+        self.menu_rx_rz_ry = "xzy"
+        self.menu_ry_rx_rz = "yxz"
+        self.menu_ry_rz_rx = "yzx"
+        self.menu_rz_rx_ry = "zxy"
+        self.menu_rz_ry_rx = "zyx"
 
 
 class PreXformMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_clean_transform = 0
-        self.menu_clean_translates = 1
-        self.menu_clean_rotates = 2
-        self.menu_clean_scales = 3
-        self.menu_extract_pre_transform = 4
-        self.menu_reset_pre_transform = 5
+        self.menu_clean_transform = "clean"
+        self.menu_clean_translates = "cleantrans"
+        self.menu_clean_rotates = "cleanrot"
+        self.menu_clean_scales = "cleanscales"
+        self.menu_extract_pre_transform = "extract"
+        self.menu_reset_pre_transform = "reset"
 
 
 class LookupMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_don_t_use_up_vector = 0
-        self.menu_use_up_vector = 1
-        self.menu_use_quaternions = 2
-        self.menu_use_global_position = 3
-        self.menu_use_up_object = 4
+        self.menu_don_t_use_up_vector = "off"
+        self.menu_use_up_vector = "on"
+        self.menu_use_quaternions = "quat"
+        self.menu_use_global_position = "pos"
+        self.menu_use_up_object = "obj"
 
 
 class UparmtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_uniform = 0
-        self.menu_arc_length = 1
+        self.menu_uniform = "uniform"
+        self.menu_arc_length = "arc"
 
 
 class ShopMaterialoptsMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_create_all_local_material_parameters = 0
-        self.menu_select_and_create_local_material_parameters = 1
-        self.menu_remove_all_local_material_parameters = 2
-        self.menu_remove_unchanged_local_material_parameters = 3
-        self.menu_synchronize_with_global_material_parameters = 4
-        self.menu_revert_to_global_material_parameter_values = 5
+        self.menu_create_all_local_material_parameters = "override"
+        self.menu_select_and_create_local_material_parameters = "select"
+        self.menu_remove_all_local_material_parameters = "remove"
+        self.menu_remove_unchanged_local_material_parameters = "rmdefault"
+        self.menu_synchronize_with_global_material_parameters = "sync"
+        self.menu_revert_to_global_material_parameter_values = "revert"
 
 
 class PickscriptMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__hip_my_first_tree_prox_rs = 0
-        self.menu_c__programdata_r____portra_800_cube = 1
-        self.menu__hip_grasses_grass_card_001_fbx = 2
-        self.menu_e__art_projects____rock_stone_sbsar = 3
-        self.menu_e__art_projects____mud_ground_sbsar = 4
-        self.menu_e__art_projects____u_sugi_ban_sbsar = 5
-        self.menu_e__art_projects_____facade_02_sbsar = 6
-        self.menu_e__art_projects____and_smooth_sbsar = 7
-        self.menu__hip_crystallize___ice_nugget_sbsar = 8
-        self.menu__hip_chromatic_glass_gradient_sbsar = 9
-        self.menu__hip_acid_etched_glass_rough_sbsar = 10
-        self.menu_e__art_projects____agon_tiles_sbsar = 11
+        self.menu__job_desktop_articulatcf_bold_otf = "$JOB/Desktop/ArticulatCF-Bold.otf"
+        self.menu__hip_desktop_articulatcf_bold_otf = "$HIP/Desktop/ArticulatCF-Bold.otf"
+        self.menu_e__art_products_ox_mtlx_hf_test_out = "E:/ART/PRODUCTS/OX-MTLX/hf_test_out"
+        self.menu_d__minecraft_sub___ded_copper_sbsar = "D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar"
+        self.menu_d__minecraft_sub___dirt_field_sbsar = "D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar"
+        self.menu_e__art_products____ers_rock_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_cpu.jpg"
+        self.menu_e__art_products____ers_rock_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_xpu.jpg"
+        self.menu_e__art_products____rs_quilt_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_xpu.jpg"
+        self.menu_e__art_products____rs_quilt_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_cpu.jpg"
+        self.menu_e__art_products____ers_lava_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg"
+        self.menu_e__art_products____ers_lava_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg"
+        self.menu_e__art_products____s_glazed_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg"
 
 
 class VportOnionskinMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_off = 0
-        self.menu_transform_only = 1
-        self.menu_full_deformation = 2
+        self.menu_off = "off"
+        self.menu_transform_only = "xform"
+        self.menu_full_deformation = "on"
 
 
 class ViewportlodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_full_geometry = 0
-        self.menu_point_cloud = 1
-        self.menu_bounding_box = 2
-        self.menu_centroid = 3
-        self.menu_hidden = 4
-        self.menu_subdivision_surface___curves = 5
+        self.menu_full_geometry = "full"
+        self.menu_point_cloud = "points"
+        self.menu_bounding_box = "box"
+        self.menu_centroid = "centroid"
+        self.menu_hidden = "hidden"
+        self.menu_subdivision_surface___curves = "subd"
 
 
 class VmRendervisibilityMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_visible_to_all = 0
-        self.menu_visible_only_to_primary_rays = 1
-        self.menu_visible_only_to_primary_and_shadow_rays = 2
-        self.menu_invisible_to_primary_rays__phantom_ = 3
-        self.menu_invisible_to_diffuse_rays = 4
-        self.menu_invisible_to_secondary_rays = 5
-        self.menu_invisible__unrenderable_ = 6
+        self.menu_visible_to_all = "*"
+        self.menu_visible_only_to_primary_rays = "primary"
+        self.menu_visible_only_to_primary_and_shadow_rays = "primary|shadow"
+        self.menu_invisible_to_primary_rays__phantom_ = "-primary"
+        self.menu_invisible_to_diffuse_rays = "-diffuse"
+        self.menu_invisible_to_secondary_rays = "-diffuse&-reflect&-refract"
+        self.menu_invisible__unrenderable_ = ""
 
 
 class VmSubdstyleMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_mantra_catmull_clark = 0
-        self.menu_opensubdiv_catmull_clark = 1
+        self.menu_mantra_catmull_clark = "mantra_catclark"
+        self.menu_opensubdiv_catmull_clark = "osd_catclark"
 
 
 class VmOsdVtxinterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_vertex_interpolation = 0
-        self.menu_edges_only = 1
-        self.menu_edges_and_corners = 2
+        self.menu_no_vertex_interpolation = "0"
+        self.menu_edges_only = "1"
+        self.menu_edges_and_corners = "2"
 
 
 class VmOsdFvarinterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_smooth_everywhere = 0
-        self.menu_sharpen_corners_only = 1
-        self.menu_sharpen_edges_and_corners = 2
-        self.menu_sharpen_edges_and_propagated_corners = 3
-        self.menu_sharpen_all_boundaries = 4
-        self.menu_bilinear_interpolation = 5
+        self.menu_smooth_everywhere = "0"
+        self.menu_sharpen_corners_only = "1"
+        self.menu_sharpen_edges_and_corners = "2"
+        self.menu_sharpen_edges_and_propagated_corners = "3"
+        self.menu_sharpen_all_boundaries = "4"
+        self.menu_bilinear_interpolation = "5"
 
 
 class VmVolumefilterMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_box_filter = 0
-        self.menu_gaussian = 1
-        self.menu_bartlett__triangle_ = 2
-        self.menu_catmull_rom = 3
-        self.menu_hanning = 4
-        self.menu_blackman = 5
-        self.menu_sinc__sharpening_ = 6
+        self.menu_box_filter = "box"
+        self.menu_gaussian = "gaussian"
+        self.menu_bartlett__triangle_ = "bartlett"
+        self.menu_catmull_rom = "catrom"
+        self.menu_hanning = "hanning"
+        self.menu_blackman = "blackman"
+        self.menu_sinc__sharpening_ = "sinc"
 
 
 class GeoVelocityblurMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_velocity_blur = 0
-        self.menu_velocity_blur = 1
-        self.menu_acceleration_blur = 2
+        self.menu_no_velocity_blur = "off"
+        self.menu_velocity_blur = "on"
+        self.menu_acceleration_blur = "accelblur"
 
 
 class VmRayprediceMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_disable_predicing = 0
-        self.menu_full_predicing = 1
-        self.menu_precompute_bounds = 2
+        self.menu_disable_predicing = "0"
+        self.menu_full_predicing = "1"
+        self.menu_precompute_bounds = "2"
 
 
 class VmRenderpointsMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_point_rendering = 0
-        self.menu_render_only_points = 1
-        self.menu_render_unconnected_points = 2
+        self.menu_no_point_rendering = "0"
+        self.menu_render_only_points = "1"
+        self.menu_render_unconnected_points = "2"
 
 
 class VmRenderpointsasMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_spheres = 0
-        self.menu_circles = 1
+        self.menu_spheres = "0"
+        self.menu_circles = "1"
 
 
 class VmCovingMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_disable_coving = 0
-        self.menu_coving_for_displacement_sub_d = 1
-        self.menu_coving_for_all_primitives = 2
+        self.menu_disable_coving = "0"
+        self.menu_coving_for_displacement_sub_d = "1"
+        self.menu_coving_for_all_primitives = "2"
 
 
 class VmMaterialoverrideMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_disabled = 0
-        self.menu_evaluate_for_each_primitve_point = 1
-        self.menu_evaluate_once = 2
+        self.menu_disabled = "none"
+        self.menu_evaluate_for_each_primitve_point = "full"
+        self.menu_evaluate_once = "compact"
 
 
 class RsObjpropNgonsTessmodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_to_quads = 0
-        self.menu_to_triangles = 1
+        self.menu_to_quads = "0"
+        self.menu_to_triangles = "1"
 
 
 class RsObjpropMbDeformstepsMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_auto = 0
-        self.menu_steps_2 = 1
-        self.menu_steps_3 = 2
-        self.menu_steps_5 = 3
-        self.menu_steps_9 = 4
-        self.menu_steps_17 = 5
+        self.menu_auto = "-1"
+        self.menu_steps_2 = "2"
+        self.menu_steps_3 = "3"
+        self.menu_steps_5 = "5"
+        self.menu_steps_9 = "9"
+        self.menu_steps_17 = "17"
 
 
 class RsObjpropInstModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_redshift_instances = 0
-        self.menu_redshift_point_clouds = 1
+        self.menu_redshift_instances = "insInstances"
+        self.menu_redshift_point_clouds = "insPointClouds"
 
 
 class RsObjpropInstMbMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_compute_sub_frame_geometry__deformation_ = 0
-        self.menu_use_point_velocity_attribute = 1
+        self.menu_compute_sub_frame_geometry__deformation_ = "insMBVectors"
+        self.menu_use_point_velocity_attribute = "insMBFull"
 
 
 class RsObjpropInstLightshaderMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_attributes_support_using_individual_shaders = 0
-        self.menu_using_a_common_shared_shader = 1
+        self.menu_attributes_support_using_individual_shaders = "insLightsNotShared"
+        self.menu_using_a_common_shared_shader = "insLightsShared"
 
 
 class RsObjpropInstUniversalifMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_instance_redshift_proxy_objects = 0
-        self.menu_instance_houdini_compatible_objects = 1
+        self.menu_instance_redshift_proxy_objects = "0"
+        self.menu_instance_houdini_compatible_objects = "1"
 
 
 class RsObjpropProxyFileMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__hip_my_first_tree_prox_rs = 0
-        self.menu_c__programdata_r____portra_800_cube = 1
-        self.menu__hip_grasses_grass_card_001_fbx = 2
-        self.menu_e__art_projects____rock_stone_sbsar = 3
-        self.menu_e__art_projects____mud_ground_sbsar = 4
-        self.menu_e__art_projects____u_sugi_ban_sbsar = 5
-        self.menu_e__art_projects_____facade_02_sbsar = 6
-        self.menu_e__art_projects____and_smooth_sbsar = 7
-        self.menu__hip_crystallize___ice_nugget_sbsar = 8
-        self.menu__hip_chromatic_glass_gradient_sbsar = 9
-        self.menu__hip_acid_etched_glass_rough_sbsar = 10
-        self.menu_e__art_projects____agon_tiles_sbsar = 11
+        self.menu__job_desktop_articulatcf_bold_otf = "$JOB/Desktop/ArticulatCF-Bold.otf"
+        self.menu__hip_desktop_articulatcf_bold_otf = "$HIP/Desktop/ArticulatCF-Bold.otf"
+        self.menu_e__art_products_ox_mtlx_hf_test_out = "E:/ART/PRODUCTS/OX-MTLX/hf_test_out"
+        self.menu_d__minecraft_sub___ded_copper_sbsar = "D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar"
+        self.menu_d__minecraft_sub___dirt_field_sbsar = "D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar"
+        self.menu_e__art_products____ers_rock_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_cpu.jpg"
+        self.menu_e__art_products____ers_rock_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_xpu.jpg"
+        self.menu_e__art_products____rs_quilt_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_xpu.jpg"
+        self.menu_e__art_products____rs_quilt_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_cpu.jpg"
+        self.menu_e__art_products____ers_lava_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg"
+        self.menu_e__art_products____ers_lava_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg"
+        self.menu_e__art_products____s_glazed_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg"
 
 
 class RsObjpropProxyPreviewMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_none = 0
-        self.menu_bounding_box = 1
-        self.menu_mesh = 2
-        self.menu_points = 3
+        self.menu_none = "proxyPrevNone"
+        self.menu_bounding_box = "proxyPrevBB"
+        self.menu_mesh = "proxyPrevSolid"
+        self.menu_points = "proxyPrevPoints"
 
 
 class RsObjpropProxyMaterialsMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_from_proxy = 0
-        self.menu_from_obj_node = 1
-        self.menu_full_override = 2
-        self.menu_list_override = 3
-        self.menu_from_scene_materials = 4
+        self.menu_from_proxy = "proxyMatProxy"
+        self.menu_from_obj_node = "proxyMatObject"
+        self.menu_full_override = "proxyMatOverride"
+        self.menu_list_override = "proxyMatOvrList"
+        self.menu_from_scene_materials = "proxyMatOvrScene"
 
 
 class RsObjpropRstessRuleMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_catmull_clark___loop = 0
-        self.menu_catmull_clark_only = 1
+        self.menu_catmull_clark___loop = "ccLoop"
+        self.menu_catmull_clark_only = "ccOnly"
 
 
 class RsObjpropStrandsTypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_box = 0
-        self.menu_cylinder = 1
-        self.menu_capsule = 2
-        self.menu_cone = 3
-        self.menu_strip = 4
+        self.menu_box = "RS_STRAND_SHAPE_BOX"
+        self.menu_cylinder = "RS_STRAND_SHAPE_CYLINDER"
+        self.menu_capsule = "RS_STRAND_SHAPE_CAPSULE"
+        self.menu_cone = "RS_STRAND_SHAPE_CONE"
+        self.menu_strip = "RS_STRAND_SHAPE_STRIP"
 
 
 class RsObjpropVolumeTypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_openvdb_file = 0
-        self.menu_volume_vdb_houdini_primitive = 1
+        self.menu_openvdb_file = "vOpenVDB"
+        self.menu_volume_vdb_houdini_primitive = "vHoudiniVolume"
 
 
 

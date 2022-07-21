@@ -86,53 +86,53 @@ class ScattermethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_by_coverage_using_mask_layer = 0
-        self.menu_by_density_using_mask_layer = 1
-        self.menu_total_point_count_using_mask_layer = 2
-        self.menu_per_point_count_using_source_points = 3
+        self.menu_by_coverage_using_mask_layer = "coverage"
+        self.menu_by_density_using_mask_layer = "density"
+        self.menu_total_point_count_using_mask_layer = "totalpointcount"
+        self.menu_per_point_count_using_source_points = "perpointcount"
 
 
 class PerpointcountMethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_poisson_distribution = 0
-        self.menu_exact_number = 1
+        self.menu_poisson_distribution = "poissondist"
+        self.menu_exact_number = "exactnumber"
 
 
 class PositioningMethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_offset = 0
-        self.menu_origin = 1
-        self.menu_ratio = 2
+        self.menu_offset = "offset"
+        self.menu_origin = "origin"
+        self.menu_ratio = "ratio"
 
 
 class VariabilityMethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_uniform_distribution = 0
-        self.menu_normal_distribution = 1
-        self.menu_exact_scale = 2
+        self.menu_uniform_distribution = "uniformdist"
+        self.menu_normal_distribution = "normaldist"
+        self.menu_exact_scale = "exactscale"
 
 
 class RelaxPointremovalmethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_only_flag = 0
-        self.menu_remove = 1
+        self.menu_only_flag = "onlyflag"
+        self.menu_remove = "remove"
 
 
 class PiecemodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_from_attribute = 0
-        self.menu_from_connectivity = 1
-        self.menu_single_piece = 2
+        self.menu_from_attribute = "attribute"
+        self.menu_from_connectivity = "connectivity"
+        self.menu_single_piece = "single"
 
 
 

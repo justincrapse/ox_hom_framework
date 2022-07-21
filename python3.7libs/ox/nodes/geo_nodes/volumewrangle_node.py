@@ -48,16 +48,24 @@ class SnippetMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_create_points_where_positive = 0
+        self.menu_create_points_where_positive = """// Create Points where Positive
+// You may want to turn on Bind Each to Density to
+// apply to all volumes.
+if (@density > 0)
+{
+    addpoint(geoself(), @P);
+}
+
+"""
 
 
 class VexPrecisionMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_auto = 0
-        self.menu__32 = 1
-        self.menu__64 = 2
+        self.menu_auto = "auto"
+        self.menu__32 = "32"
+        self.menu__64 = "64"
 
 
 

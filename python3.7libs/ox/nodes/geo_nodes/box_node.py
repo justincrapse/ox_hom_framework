@@ -58,25 +58,25 @@ class TypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_polygon = 0
-        self.menu_polygon_mesh = 1
-        self.menu_mesh = 2
-        self.menu_nurbs = 3
-        self.menu_bezier = 4
-        self.menu_points = 5
+        self.menu_polygon = "poly"
+        self.menu_polygon_mesh = "polymesh"
+        self.menu_mesh = "mesh"
+        self.menu_nurbs = "nurbs"
+        self.menu_bezier = "bezier"
+        self.menu_points = "points"
 
 
 class SurftypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_rows = 0
-        self.menu_columns = 1
-        self.menu_rows_and_columns = 2
-        self.menu_triangles = 3
-        self.menu_quadrilaterals = 4
-        self.menu_alternating_triangles = 5
-        self.menu_reverse_triangles = 6
+        self.menu_rows = "rows"
+        self.menu_columns = "cols"
+        self.menu_rows_and_columns = "rowcol"
+        self.menu_triangles = "triangles"
+        self.menu_quadrilaterals = "quads"
+        self.menu_alternating_triangles = "alttriangles"
+        self.menu_reverse_triangles = "revtriangles"
 
 
 

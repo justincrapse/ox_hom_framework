@@ -76,44 +76,44 @@ class CombineMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_replace = 0
-        self.menu_add = 1
-        self.menu_subtract = 2
-        self.menu_difference = 3
-        self.menu_multiply = 4
-        self.menu_maximum = 5
-        self.menu_minimum = 6
-        self.menu_blend = 7
+        self.menu_replace = "replace"
+        self.menu_add = "add"
+        self.menu_subtract = "subtract"
+        self.menu_difference = "diff"
+        self.menu_multiply = "multiply"
+        self.menu_maximum = "max"
+        self.menu_minimum = "min"
+        self.menu_blend = "blend"
 
 
 class BasisMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_sinusoid = 0
-        self.menu_perlin = 1
-        self.menu_periodic_perlin = 2
-        self.menu_simplex__improved_perlin_ = 3
-        self.menu_sparse_convolution = 4
-        self.menu_flow = 5
-        self.menu_periodic_flow = 6
-        self.menu_worley__cellular__f1 = 7
-        self.menu_worley__cellular__f2_f1 = 8
-        self.menu_manhattan_worley__cellular__f1 = 9
-        self.menu_manhattan_worley__cellular__f2_f1 = 10
-        self.menu_chebyshev_worley__cellular__f1 = 11
-        self.menu_chebyshev_worley__cellular__f2_f1 = 12
-        self.menu_alligator = 13
+        self.menu_sinusoid = "sine"
+        self.menu_perlin = "perlin"
+        self.menu_periodic_perlin = "pperlin"
+        self.menu_simplex = "simplex"
+        self.menu_sparse_convolution = "sparse"
+        self.menu_perlin_flow = "flow"
+        self.menu_periodic_perlin_flow = "pflow"
+        self.menu_worley_cellular_f1 = "worleyFA"
+        self.menu_worley_cellular_f2_f1 = "worleyFB"
+        self.menu_manhattan_cellular_f1 = "mworleyFA"
+        self.menu_manhattan_cellular_f2_f1 = "mworleyFB"
+        self.menu_chebyshev_cellular_f1 = "cworleyFA"
+        self.menu_chebyshev_cellular_f2_f1 = "cworleyFB"
+        self.menu_alligator = "alligator"
 
 
 class FractalMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_none = 0
-        self.menu_standard__fbm_ = 1
-        self.menu_terrain = 2
-        self.menu_hybrid_terrain = 3
+        self.menu_none = "none"
+        self.menu_standard__fbm_ = "fBm"
+        self.menu_terrain = "mfT"
+        self.menu_hybrid_terrain = "hmfT"
 
 
 

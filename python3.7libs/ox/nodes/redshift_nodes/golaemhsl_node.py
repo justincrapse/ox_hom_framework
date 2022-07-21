@@ -6,7 +6,7 @@ from ox.base_objects.menu import Menu
 
 class GolaemhslNode(OXNode):
     node_type = 'redshift::GolaemHSL'
-    parm_lookup_dict = {'incolorr': 'inColorr', 'incolorg': 'inColorg', 'incolorb': 'inColorb', 'h': 'h', 's': 's', 'l': 'l'}
+    parm_lookup_dict = {'incolorr': 'inColorr', 'incolorg': 'inColorg', 'incolorb': 'inColorb', 'h': 'h', 's': 's', 'l': 'l', 'shader_skipdefvalparms': 'shader_skipdefvalparms'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -24,6 +24,7 @@ class GolaemhslNode(OXNode):
         self.parm_h = Parameter(parm=self.node.parm('h'))
         self.parm_s = Parameter(parm=self.node.parm('s'))
         self.parm_l = Parameter(parm=self.node.parm('l'))
+        self.parm_shader_skipdefvalparms = Parameter(parm=self.node.parm('shader_skipdefvalparms'))
 
         
         # parm menu vars:

@@ -6,7 +6,7 @@ from ox.base_objects.menu import Menu
 
 class DisplacementNode(OXNode):
     node_type = 'redshift::Displacement'
-    parm_lookup_dict = {'texture_0': 'Texture_0', 'texmapr': 'texMapr', 'texmapg': 'texMapg', 'texmapb': 'texMapb', 'scale': 'scale', 'map_encoding': 'map_encoding', 'space_type': 'space_type', 'tangents_1': 'Tangents_1', 'tangents': 'tangents', 'change_range_2': 'Change_Range_2', 'oldrange_min': 'oldrange_min', 'oldrange_max': 'oldrange_max', 'newrange_min': 'newrange_min', 'newrange_max': 'newrange_max'}
+    parm_lookup_dict = {'texture_0': 'Texture_0', 'texmapr': 'texMapr', 'texmapg': 'texMapg', 'texmapb': 'texMapb', 'scale': 'scale', 'map_encoding': 'map_encoding', 'space_type': 'space_type', 'tangents_1': 'Tangents_1', 'tangents': 'tangents', 'change_range_2': 'Change_Range_2', 'oldrange_min': 'oldrange_min', 'oldrange_max': 'oldrange_max', 'newrange_min': 'newrange_min', 'newrange_max': 'newrange_max', 'shader_skipdefvalparms': 'shader_skipdefvalparms'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -30,6 +30,7 @@ class DisplacementNode(OXNode):
         self.parm_oldrange_max = Parameter(parm=self.node.parm('oldrange_max'))
         self.parm_newrange_min = Parameter(parm=self.node.parm('newrange_min'))
         self.parm_newrange_max = Parameter(parm=self.node.parm('newrange_max'))
+        self.parm_shader_skipdefvalparms = Parameter(parm=self.node.parm('shader_skipdefvalparms'))
 
         
         # parm menu vars:
@@ -51,16 +52,16 @@ class MapEncodingMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_vector = 0
-        self.menu_height_field = 1
+        self.menu_vector = "0"
+        self.menu_height_field = "2"
 
 
 class SpaceTypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_object = 0
-        self.menu_tangent = 1
+        self.menu_object = "1"
+        self.menu_tangent = "2"
 
 
 

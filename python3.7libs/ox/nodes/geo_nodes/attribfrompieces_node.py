@@ -106,81 +106,81 @@ class ModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_cycle = 0
-        self.menu_patches = 1
-        self.menu_noise = 2
-        self.menu_random = 3
-        self.menu_map_attribute = 4
-        self.menu_vexpression = 5
+        self.menu_cycle = "cycle"
+        self.menu_patches = "worley"
+        self.menu_noise = "noise"
+        self.menu_random = "random"
+        self.menu_map_attribute = "attrib"
+        self.menu_vexpression = "vex"
 
 
 class NoisebasisMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_value_noise___fast = 0
-        self.menu_value_noise___sparse_convolution = 1
-        self.menu_value_noise___alligator = 2
-        self.menu_perlin = 3
-        self.menu_perlin___flow = 4
-        self.menu_simplex = 5
-        self.menu_worley_cellular___f1 = 6
-        self.menu_worley_cellular___f2_f1 = 7
-        self.menu_worley_cellular___manhattan_f1 = 8
-        self.menu_worley_cellular___manhattan_f2_f1 = 9
-        self.menu_worley_cellular___chebyshev_f1 = 10
-        self.menu_worley_cellular___chebyshev_f2_f1 = 11
+        self.menu_fast = "value_fast"
+        self.menu_sparse_convolution = "sparse"
+        self.menu_alligator = "alligator"
+        self.menu_perlin = "perlin"
+        self.menu_perlin_flow = "flow"
+        self.menu_simplex = "simplex"
+        self.menu_worley_cellular_f1 = "worleyFA"
+        self.menu_worley_cellular_f2_f1 = "worleyFB"
+        self.menu_manhattan_cellular_f1 = "mworleyFA"
+        self.menu_manhattan_cellular_f2_f1 = "mworleyFB"
+        self.menu_chebyshev_cellular_f1 = "cworleyFA"
+        self.menu_chebyshev_cellular_f2_f1 = "cworleyFB"
 
 
 class WeightmethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_uniform_distribution = 0
-        self.menu_piece_weights = 1
-        self.menu_weight_attribute = 2
+        self.menu_uniform_distribution = "uniform"
+        self.menu_piece_weights = "weights"
+        self.menu_weight_attribute = "attrib"
 
 
 class AttribtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_numeric = 0
-        self.menu_string = 1
+        self.menu_numeric = "number"
+        self.menu_string = "string"
 
 
 class MappiecesfromMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_automatic_ranges = 0
-        self.menu_explicit_range = 1
+        self.menu_automatic_ranges = "auto"
+        self.menu_explicit_range = "explicit"
 
 
 class Noiseremap1InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = 0
-        self.menu_linear = 1
-        self.menu_catmull_rom = 2
-        self.menu_monotone_cubic = 3
-        self.menu_bezier = 4
-        self.menu_b_spline = 5
-        self.menu_hermite = 6
+        self.menu_constant = "constant"
+        self.menu_linear = "linear"
+        self.menu_catmull_rom = "catmull-rom"
+        self.menu_monotone_cubic = "monotonecubic"
+        self.menu_bezier = "bezier"
+        self.menu_b_spline = "bspline"
+        self.menu_hermite = "hermite"
 
 
 class Noiseremap2InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = 0
-        self.menu_linear = 1
-        self.menu_catmull_rom = 2
-        self.menu_monotone_cubic = 3
-        self.menu_bezier = 4
-        self.menu_b_spline = 5
-        self.menu_hermite = 6
+        self.menu_constant = "constant"
+        self.menu_linear = "linear"
+        self.menu_catmull_rom = "catmull-rom"
+        self.menu_monotone_cubic = "monotonecubic"
+        self.menu_bezier = "bezier"
+        self.menu_b_spline = "bspline"
+        self.menu_hermite = "hermite"
 
 
 

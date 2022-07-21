@@ -80,68 +80,68 @@ class GrouptypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_guess_from_group = 0
-        self.menu_breakpoints = 1
-        self.menu_edges = 2
-        self.menu_points = 3
-        self.menu_primitives = 4
+        self.menu_guess_from_group = "guess"
+        self.menu_breakpoints = "breakpoints"
+        self.menu_edges = "edges"
+        self.menu_points = "points"
+        self.menu_primitives = "prims"
 
 
 class XordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_scale_rot_trans = 0
-        self.menu_scale_trans_rot = 1
-        self.menu_rot_scale_trans = 2
-        self.menu_rot_trans_scale = 3
-        self.menu_trans_scale_rot = 4
-        self.menu_trans_rot_scale = 5
+        self.menu_scale_rot_trans = "srt"
+        self.menu_scale_trans_rot = "str"
+        self.menu_rot_scale_trans = "rst"
+        self.menu_rot_trans_scale = "rts"
+        self.menu_trans_scale_rot = "tsr"
+        self.menu_trans_rot_scale = "trs"
 
 
 class RordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_rx_ry_rz = 0
-        self.menu_rx_rz_ry = 1
-        self.menu_ry_rx_rz = 2
-        self.menu_ry_rz_rx = 3
-        self.menu_rz_rx_ry = 4
-        self.menu_rz_ry_rx = 5
+        self.menu_rx_ry_rz = "xyz"
+        self.menu_rx_rz_ry = "xzy"
+        self.menu_ry_rx_rz = "yxz"
+        self.menu_ry_rz_rx = "yzx"
+        self.menu_rz_rx_ry = "zxy"
+        self.menu_rz_ry_rx = "zyx"
 
 
 class PrexformXordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_scale_rot_trans = 0
-        self.menu_scale_trans_rot = 1
-        self.menu_rot_scale_trans = 2
-        self.menu_rot_trans_scale = 3
-        self.menu_trans_scale_rot = 4
-        self.menu_trans_rot_scale = 5
+        self.menu_scale_rot_trans = "srt"
+        self.menu_scale_trans_rot = "str"
+        self.menu_rot_scale_trans = "rst"
+        self.menu_rot_trans_scale = "rts"
+        self.menu_trans_scale_rot = "tsr"
+        self.menu_trans_rot_scale = "trs"
 
 
 class PrexformRordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_rx_ry_rz = 0
-        self.menu_rx_rz_ry = 1
-        self.menu_ry_rx_rz = 2
-        self.menu_ry_rz_rx = 3
-        self.menu_rz_rx_ry = 4
-        self.menu_rz_ry_rx = 5
+        self.menu_rx_ry_rz = "xyz"
+        self.menu_rx_rz_ry = "xzy"
+        self.menu_ry_rx_rz = "yxz"
+        self.menu_ry_rz_rx = "yzx"
+        self.menu_rz_rx_ry = "zxy"
+        self.menu_rz_ry_rx = "zyx"
 
 
 class OutputmergeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_replace_existing = 0
-        self.menu_pre_multiply = 1
-        self.menu_post_multiply = 2
+        self.menu_replace_existing = "replace"
+        self.menu_pre_multiply = "pre"
+        self.menu_post_multiply = "post"
 
 
 

@@ -6,7 +6,7 @@ from ox.base_objects.menu import Menu
 
 class RscolorlayerNode(OXNode):
     node_type = 'redshift::RSColorLayer'
-    parm_lookup_dict = {'advanced_mode': 'advanced_mode', 'base_layer_0': 'Base_Layer_0', 'base_colorr': 'base_colorr', 'base_colorg': 'base_colorg', 'base_colorb': 'base_colorb', 'base_colora': 'base_colora', 'base_color_premult': 'base_color_premult', 'layer_1_1': 'Layer_1_1', 'layer1_enable': 'layer1_enable', 'layer1_colorr': 'layer1_colorr', 'layer1_colorg': 'layer1_colorg', 'layer1_colorb': 'layer1_colorb', 'layer1_colora': 'layer1_colora', 'layer1_mask': 'layer1_mask', 'layer1_blend_mode': 'layer1_blend_mode', 'layer1_overlay_mode': 'layer1_overlay_mode', 'layer1_color_premult': 'layer1_color_premult', 'layer_2_2': 'Layer_2_2', 'layer2_enable': 'layer2_enable', 'layer2_colorr': 'layer2_colorr', 'layer2_colorg': 'layer2_colorg', 'layer2_colorb': 'layer2_colorb', 'layer2_colora': 'layer2_colora', 'layer2_mask': 'layer2_mask', 'layer2_blend_mode': 'layer2_blend_mode', 'layer2_overlay_mode': 'layer2_overlay_mode', 'layer2_color_premult': 'layer2_color_premult', 'layer_3_3': 'Layer_3_3', 'layer3_enable': 'layer3_enable', 'layer3_colorr': 'layer3_colorr', 'layer3_colorg': 'layer3_colorg', 'layer3_colorb': 'layer3_colorb', 'layer3_colora': 'layer3_colora', 'layer3_mask': 'layer3_mask', 'layer3_blend_mode': 'layer3_blend_mode', 'layer3_overlay_mode': 'layer3_overlay_mode', 'layer3_color_premult': 'layer3_color_premult', 'layer_4_4': 'Layer_4_4', 'layer4_enable': 'layer4_enable', 'layer4_colorr': 'layer4_colorr', 'layer4_colorg': 'layer4_colorg', 'layer4_colorb': 'layer4_colorb', 'layer4_colora': 'layer4_colora', 'layer4_mask': 'layer4_mask', 'layer4_blend_mode': 'layer4_blend_mode', 'layer4_overlay_mode': 'layer4_overlay_mode', 'layer4_color_premult': 'layer4_color_premult', 'layer_5_5': 'Layer_5_5', 'layer5_enable': 'layer5_enable', 'layer5_colorr': 'layer5_colorr', 'layer5_colorg': 'layer5_colorg', 'layer5_colorb': 'layer5_colorb', 'layer5_colora': 'layer5_colora', 'layer5_mask': 'layer5_mask', 'layer5_blend_mode': 'layer5_blend_mode', 'layer5_overlay_mode': 'layer5_overlay_mode', 'layer5_color_premult': 'layer5_color_premult', 'layer_6_6': 'Layer_6_6', 'layer6_enable': 'layer6_enable', 'layer6_colorr': 'layer6_colorr', 'layer6_colorg': 'layer6_colorg', 'layer6_colorb': 'layer6_colorb', 'layer6_colora': 'layer6_colora', 'layer6_mask': 'layer6_mask', 'layer6_blend_mode': 'layer6_blend_mode', 'layer6_overlay_mode': 'layer6_overlay_mode', 'layer6_color_premult': 'layer6_color_premult', 'layer_7_7': 'Layer_7_7', 'layer7_enable': 'layer7_enable', 'layer7_colorr': 'layer7_colorr', 'layer7_colorg': 'layer7_colorg', 'layer7_colorb': 'layer7_colorb', 'layer7_colora': 'layer7_colora', 'layer7_mask': 'layer7_mask', 'layer7_blend_mode': 'layer7_blend_mode', 'layer7_overlay_mode': 'layer7_overlay_mode', 'layer7_color_premult': 'layer7_color_premult'}
+    parm_lookup_dict = {'advanced_mode': 'advanced_mode', 'base_layer_0': 'Base_Layer_0', 'base_colorr': 'base_colorr', 'base_colorg': 'base_colorg', 'base_colorb': 'base_colorb', 'base_colora': 'base_colora', 'base_color_premult': 'base_color_premult', 'layer_1_1': 'Layer_1_1', 'layer1_enable': 'layer1_enable', 'layer1_colorr': 'layer1_colorr', 'layer1_colorg': 'layer1_colorg', 'layer1_colorb': 'layer1_colorb', 'layer1_colora': 'layer1_colora', 'layer1_mask': 'layer1_mask', 'layer1_blend_mode': 'layer1_blend_mode', 'layer1_overlay_mode': 'layer1_overlay_mode', 'layer1_color_premult': 'layer1_color_premult', 'layer_2_2': 'Layer_2_2', 'layer2_enable': 'layer2_enable', 'layer2_colorr': 'layer2_colorr', 'layer2_colorg': 'layer2_colorg', 'layer2_colorb': 'layer2_colorb', 'layer2_colora': 'layer2_colora', 'layer2_mask': 'layer2_mask', 'layer2_blend_mode': 'layer2_blend_mode', 'layer2_overlay_mode': 'layer2_overlay_mode', 'layer2_color_premult': 'layer2_color_premult', 'layer_3_3': 'Layer_3_3', 'layer3_enable': 'layer3_enable', 'layer3_colorr': 'layer3_colorr', 'layer3_colorg': 'layer3_colorg', 'layer3_colorb': 'layer3_colorb', 'layer3_colora': 'layer3_colora', 'layer3_mask': 'layer3_mask', 'layer3_blend_mode': 'layer3_blend_mode', 'layer3_overlay_mode': 'layer3_overlay_mode', 'layer3_color_premult': 'layer3_color_premult', 'layer_4_4': 'Layer_4_4', 'layer4_enable': 'layer4_enable', 'layer4_colorr': 'layer4_colorr', 'layer4_colorg': 'layer4_colorg', 'layer4_colorb': 'layer4_colorb', 'layer4_colora': 'layer4_colora', 'layer4_mask': 'layer4_mask', 'layer4_blend_mode': 'layer4_blend_mode', 'layer4_overlay_mode': 'layer4_overlay_mode', 'layer4_color_premult': 'layer4_color_premult', 'layer_5_5': 'Layer_5_5', 'layer5_enable': 'layer5_enable', 'layer5_colorr': 'layer5_colorr', 'layer5_colorg': 'layer5_colorg', 'layer5_colorb': 'layer5_colorb', 'layer5_colora': 'layer5_colora', 'layer5_mask': 'layer5_mask', 'layer5_blend_mode': 'layer5_blend_mode', 'layer5_overlay_mode': 'layer5_overlay_mode', 'layer5_color_premult': 'layer5_color_premult', 'layer_6_6': 'Layer_6_6', 'layer6_enable': 'layer6_enable', 'layer6_colorr': 'layer6_colorr', 'layer6_colorg': 'layer6_colorg', 'layer6_colorb': 'layer6_colorb', 'layer6_colora': 'layer6_colora', 'layer6_mask': 'layer6_mask', 'layer6_blend_mode': 'layer6_blend_mode', 'layer6_overlay_mode': 'layer6_overlay_mode', 'layer6_color_premult': 'layer6_color_premult', 'layer_7_7': 'Layer_7_7', 'layer7_enable': 'layer7_enable', 'layer7_colorr': 'layer7_colorr', 'layer7_colorg': 'layer7_colorg', 'layer7_colorb': 'layer7_colorb', 'layer7_colora': 'layer7_colora', 'layer7_mask': 'layer7_mask', 'layer7_blend_mode': 'layer7_blend_mode', 'layer7_overlay_mode': 'layer7_overlay_mode', 'layer7_color_premult': 'layer7_color_premult', 'shader_skipdefvalparms': 'shader_skipdefvalparms'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -81,6 +81,7 @@ class RscolorlayerNode(OXNode):
         self.parm_layer7_colora = Parameter(parm=self.node.parm('layer7_colora'))
         self.parm_layer7_mask = Parameter(parm=self.node.parm('layer7_mask'))
         self.parm_layer7_color_premult = Parameter(parm=self.node.parm('layer7_color_premult'))
+        self.parm_shader_skipdefvalparms = Parameter(parm=self.node.parm('shader_skipdefvalparms'))
 
         
         # parm menu vars:
@@ -123,280 +124,280 @@ class Layer1BlendModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_normal = 0
-        self.menu_average = 1
-        self.menu_add = 2
-        self.menu_subtract = 3
-        self.menu_multiply = 4
-        self.menu_difference = 5
-        self.menu_lighten = 6
-        self.menu_darken = 7
-        self.menu_screen = 8
-        self.menu_hardlight = 9
-        self.menu_softlight = 10
-        self.menu_burn = 11
-        self.menu_dodge = 12
-        self.menu_overlay = 13
-        self.menu_exclusion = 14
-        self.menu_divide = 15
+        self.menu_normal = "0"
+        self.menu_average = "1"
+        self.menu_add = "2"
+        self.menu_subtract = "3"
+        self.menu_multiply = "4"
+        self.menu_difference = "5"
+        self.menu_lighten = "6"
+        self.menu_darken = "7"
+        self.menu_screen = "8"
+        self.menu_hardlight = "9"
+        self.menu_softlight = "10"
+        self.menu_burn = "11"
+        self.menu_dodge = "12"
+        self.menu_overlay = "13"
+        self.menu_exclusion = "14"
+        self.menu_divide = "15"
 
 
 class Layer1OverlayModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_src = 0
-        self.menu_atop = 1
-        self.menu_over = 2
-        self.menu_inside = 3
-        self.menu_out = 4
-        self.menu_dest = 5
-        self.menu_destatop = 6
-        self.menu_destover = 7
-        self.menu_destin = 8
-        self.menu_destout = 9
-        self.menu_clear = 10
-        self.menu_xor = 11
+        self.menu_src = "0"
+        self.menu_atop = "1"
+        self.menu_over = "2"
+        self.menu_inside = "3"
+        self.menu_out = "4"
+        self.menu_dest = "5"
+        self.menu_destatop = "6"
+        self.menu_destover = "7"
+        self.menu_destin = "8"
+        self.menu_destout = "9"
+        self.menu_clear = "10"
+        self.menu_xor = "11"
 
 
 class Layer2BlendModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_normal = 0
-        self.menu_average = 1
-        self.menu_add = 2
-        self.menu_subtract = 3
-        self.menu_multiply = 4
-        self.menu_difference = 5
-        self.menu_lighten = 6
-        self.menu_darken = 7
-        self.menu_screen = 8
-        self.menu_hardlight = 9
-        self.menu_softlight = 10
-        self.menu_burn = 11
-        self.menu_dodge = 12
-        self.menu_overlay = 13
-        self.menu_exclusion = 14
-        self.menu_divide = 15
+        self.menu_normal = "0"
+        self.menu_average = "1"
+        self.menu_add = "2"
+        self.menu_subtract = "3"
+        self.menu_multiply = "4"
+        self.menu_difference = "5"
+        self.menu_lighten = "6"
+        self.menu_darken = "7"
+        self.menu_screen = "8"
+        self.menu_hardlight = "9"
+        self.menu_softlight = "10"
+        self.menu_burn = "11"
+        self.menu_dodge = "12"
+        self.menu_overlay = "13"
+        self.menu_exclusion = "14"
+        self.menu_divide = "15"
 
 
 class Layer2OverlayModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_src = 0
-        self.menu_atop = 1
-        self.menu_over = 2
-        self.menu_inside = 3
-        self.menu_out = 4
-        self.menu_dest = 5
-        self.menu_destatop = 6
-        self.menu_destover = 7
-        self.menu_destin = 8
-        self.menu_destout = 9
-        self.menu_clear = 10
-        self.menu_xor = 11
+        self.menu_src = "0"
+        self.menu_atop = "1"
+        self.menu_over = "2"
+        self.menu_inside = "3"
+        self.menu_out = "4"
+        self.menu_dest = "5"
+        self.menu_destatop = "6"
+        self.menu_destover = "7"
+        self.menu_destin = "8"
+        self.menu_destout = "9"
+        self.menu_clear = "10"
+        self.menu_xor = "11"
 
 
 class Layer3BlendModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_normal = 0
-        self.menu_average = 1
-        self.menu_add = 2
-        self.menu_subtract = 3
-        self.menu_multiply = 4
-        self.menu_difference = 5
-        self.menu_lighten = 6
-        self.menu_darken = 7
-        self.menu_screen = 8
-        self.menu_hardlight = 9
-        self.menu_softlight = 10
-        self.menu_burn = 11
-        self.menu_dodge = 12
-        self.menu_overlay = 13
-        self.menu_exclusion = 14
-        self.menu_divide = 15
+        self.menu_normal = "0"
+        self.menu_average = "1"
+        self.menu_add = "2"
+        self.menu_subtract = "3"
+        self.menu_multiply = "4"
+        self.menu_difference = "5"
+        self.menu_lighten = "6"
+        self.menu_darken = "7"
+        self.menu_screen = "8"
+        self.menu_hardlight = "9"
+        self.menu_softlight = "10"
+        self.menu_burn = "11"
+        self.menu_dodge = "12"
+        self.menu_overlay = "13"
+        self.menu_exclusion = "14"
+        self.menu_divide = "15"
 
 
 class Layer3OverlayModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_src = 0
-        self.menu_atop = 1
-        self.menu_over = 2
-        self.menu_inside = 3
-        self.menu_out = 4
-        self.menu_dest = 5
-        self.menu_destatop = 6
-        self.menu_destover = 7
-        self.menu_destin = 8
-        self.menu_destout = 9
-        self.menu_clear = 10
-        self.menu_xor = 11
+        self.menu_src = "0"
+        self.menu_atop = "1"
+        self.menu_over = "2"
+        self.menu_inside = "3"
+        self.menu_out = "4"
+        self.menu_dest = "5"
+        self.menu_destatop = "6"
+        self.menu_destover = "7"
+        self.menu_destin = "8"
+        self.menu_destout = "9"
+        self.menu_clear = "10"
+        self.menu_xor = "11"
 
 
 class Layer4BlendModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_normal = 0
-        self.menu_average = 1
-        self.menu_add = 2
-        self.menu_subtract = 3
-        self.menu_multiply = 4
-        self.menu_difference = 5
-        self.menu_lighten = 6
-        self.menu_darken = 7
-        self.menu_screen = 8
-        self.menu_hardlight = 9
-        self.menu_softlight = 10
-        self.menu_burn = 11
-        self.menu_dodge = 12
-        self.menu_overlay = 13
-        self.menu_exclusion = 14
-        self.menu_divide = 15
+        self.menu_normal = "0"
+        self.menu_average = "1"
+        self.menu_add = "2"
+        self.menu_subtract = "3"
+        self.menu_multiply = "4"
+        self.menu_difference = "5"
+        self.menu_lighten = "6"
+        self.menu_darken = "7"
+        self.menu_screen = "8"
+        self.menu_hardlight = "9"
+        self.menu_softlight = "10"
+        self.menu_burn = "11"
+        self.menu_dodge = "12"
+        self.menu_overlay = "13"
+        self.menu_exclusion = "14"
+        self.menu_divide = "15"
 
 
 class Layer4OverlayModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_src = 0
-        self.menu_atop = 1
-        self.menu_over = 2
-        self.menu_inside = 3
-        self.menu_out = 4
-        self.menu_dest = 5
-        self.menu_destatop = 6
-        self.menu_destover = 7
-        self.menu_destin = 8
-        self.menu_destout = 9
-        self.menu_clear = 10
-        self.menu_xor = 11
+        self.menu_src = "0"
+        self.menu_atop = "1"
+        self.menu_over = "2"
+        self.menu_inside = "3"
+        self.menu_out = "4"
+        self.menu_dest = "5"
+        self.menu_destatop = "6"
+        self.menu_destover = "7"
+        self.menu_destin = "8"
+        self.menu_destout = "9"
+        self.menu_clear = "10"
+        self.menu_xor = "11"
 
 
 class Layer5BlendModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_normal = 0
-        self.menu_average = 1
-        self.menu_add = 2
-        self.menu_subtract = 3
-        self.menu_multiply = 4
-        self.menu_difference = 5
-        self.menu_lighten = 6
-        self.menu_darken = 7
-        self.menu_screen = 8
-        self.menu_hardlight = 9
-        self.menu_softlight = 10
-        self.menu_burn = 11
-        self.menu_dodge = 12
-        self.menu_overlay = 13
-        self.menu_exclusion = 14
-        self.menu_divide = 15
+        self.menu_normal = "0"
+        self.menu_average = "1"
+        self.menu_add = "2"
+        self.menu_subtract = "3"
+        self.menu_multiply = "4"
+        self.menu_difference = "5"
+        self.menu_lighten = "6"
+        self.menu_darken = "7"
+        self.menu_screen = "8"
+        self.menu_hardlight = "9"
+        self.menu_softlight = "10"
+        self.menu_burn = "11"
+        self.menu_dodge = "12"
+        self.menu_overlay = "13"
+        self.menu_exclusion = "14"
+        self.menu_divide = "15"
 
 
 class Layer5OverlayModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_src = 0
-        self.menu_atop = 1
-        self.menu_over = 2
-        self.menu_inside = 3
-        self.menu_out = 4
-        self.menu_dest = 5
-        self.menu_destatop = 6
-        self.menu_destover = 7
-        self.menu_destin = 8
-        self.menu_destout = 9
-        self.menu_clear = 10
-        self.menu_xor = 11
+        self.menu_src = "0"
+        self.menu_atop = "1"
+        self.menu_over = "2"
+        self.menu_inside = "3"
+        self.menu_out = "4"
+        self.menu_dest = "5"
+        self.menu_destatop = "6"
+        self.menu_destover = "7"
+        self.menu_destin = "8"
+        self.menu_destout = "9"
+        self.menu_clear = "10"
+        self.menu_xor = "11"
 
 
 class Layer6BlendModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_normal = 0
-        self.menu_average = 1
-        self.menu_add = 2
-        self.menu_subtract = 3
-        self.menu_multiply = 4
-        self.menu_difference = 5
-        self.menu_lighten = 6
-        self.menu_darken = 7
-        self.menu_screen = 8
-        self.menu_hardlight = 9
-        self.menu_softlight = 10
-        self.menu_burn = 11
-        self.menu_dodge = 12
-        self.menu_overlay = 13
-        self.menu_exclusion = 14
-        self.menu_divide = 15
+        self.menu_normal = "0"
+        self.menu_average = "1"
+        self.menu_add = "2"
+        self.menu_subtract = "3"
+        self.menu_multiply = "4"
+        self.menu_difference = "5"
+        self.menu_lighten = "6"
+        self.menu_darken = "7"
+        self.menu_screen = "8"
+        self.menu_hardlight = "9"
+        self.menu_softlight = "10"
+        self.menu_burn = "11"
+        self.menu_dodge = "12"
+        self.menu_overlay = "13"
+        self.menu_exclusion = "14"
+        self.menu_divide = "15"
 
 
 class Layer6OverlayModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_src = 0
-        self.menu_atop = 1
-        self.menu_over = 2
-        self.menu_inside = 3
-        self.menu_out = 4
-        self.menu_dest = 5
-        self.menu_destatop = 6
-        self.menu_destover = 7
-        self.menu_destin = 8
-        self.menu_destout = 9
-        self.menu_clear = 10
-        self.menu_xor = 11
+        self.menu_src = "0"
+        self.menu_atop = "1"
+        self.menu_over = "2"
+        self.menu_inside = "3"
+        self.menu_out = "4"
+        self.menu_dest = "5"
+        self.menu_destatop = "6"
+        self.menu_destover = "7"
+        self.menu_destin = "8"
+        self.menu_destout = "9"
+        self.menu_clear = "10"
+        self.menu_xor = "11"
 
 
 class Layer7BlendModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_normal = 0
-        self.menu_average = 1
-        self.menu_add = 2
-        self.menu_subtract = 3
-        self.menu_multiply = 4
-        self.menu_difference = 5
-        self.menu_lighten = 6
-        self.menu_darken = 7
-        self.menu_screen = 8
-        self.menu_hardlight = 9
-        self.menu_softlight = 10
-        self.menu_burn = 11
-        self.menu_dodge = 12
-        self.menu_overlay = 13
-        self.menu_exclusion = 14
-        self.menu_divide = 15
+        self.menu_normal = "0"
+        self.menu_average = "1"
+        self.menu_add = "2"
+        self.menu_subtract = "3"
+        self.menu_multiply = "4"
+        self.menu_difference = "5"
+        self.menu_lighten = "6"
+        self.menu_darken = "7"
+        self.menu_screen = "8"
+        self.menu_hardlight = "9"
+        self.menu_softlight = "10"
+        self.menu_burn = "11"
+        self.menu_dodge = "12"
+        self.menu_overlay = "13"
+        self.menu_exclusion = "14"
+        self.menu_divide = "15"
 
 
 class Layer7OverlayModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_src = 0
-        self.menu_atop = 1
-        self.menu_over = 2
-        self.menu_inside = 3
-        self.menu_out = 4
-        self.menu_dest = 5
-        self.menu_destatop = 6
-        self.menu_destover = 7
-        self.menu_destin = 8
-        self.menu_destout = 9
-        self.menu_clear = 10
-        self.menu_xor = 11
+        self.menu_src = "0"
+        self.menu_atop = "1"
+        self.menu_over = "2"
+        self.menu_inside = "3"
+        self.menu_out = "4"
+        self.menu_dest = "5"
+        self.menu_destatop = "6"
+        self.menu_destover = "7"
+        self.menu_destin = "8"
+        self.menu_destout = "9"
+        self.menu_clear = "10"
+        self.menu_xor = "11"
 
 
 

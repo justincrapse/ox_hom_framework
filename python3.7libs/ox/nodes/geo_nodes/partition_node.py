@@ -36,50 +36,50 @@ class EntityMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_primitives = 0
-        self.menu_points = 1
+        self.menu_primitives = "primitive"
+        self.menu_points = "point"
 
 
 class GeotypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_all_types = 0
-        self.menu_bezier_curve = 1
-        self.menu_bezier_surface = 2
-        self.menu_bilinear_mesh = 3
-        self.menu_circle = 4
-        self.menu_meta_super_quad = 5
-        self.menu_metaball = 6
-        self.menu_nurbs_curve = 7
-        self.menu_nurbs_surface = 8
-        self.menu_packed_agent = 9
-        self.menu_packed_alembic = 10
-        self.menu_packed_disk = 11
-        self.menu_packed_disk_sequence = 12
-        self.menu_packed_fragment = 13
-        self.menu_packed_geometry = 14
-        self.menu_packed_usd = 15
-        self.menu_particle_system = 16
-        self.menu_pasted_nurbs_surface = 17
-        self.menu_polygon = 18
-        self.menu_polygon_soup = 19
-        self.menu_sphere = 20
-        self.menu_tetrahedron = 21
-        self.menu_triangle_fan = 22
-        self.menu_triangle_strip = 23
-        self.menu_triangular_bezier_patch = 24
-        self.menu_tube = 25
-        self.menu_vdb = 26
-        self.menu_volume = 27
+        self.menu_all_types = "all"
+        self.menu_bezier_curve = "bezierc"
+        self.menu_bezier_surface = "bezier"
+        self.menu_bilinear_mesh = "mesh"
+        self.menu_circle = "circle"
+        self.menu_meta_super_quad = "MetaSQuad"
+        self.menu_metaball = "meta"
+        self.menu_nurbs_curve = "nurbc"
+        self.menu_nurbs_surface = "nurb"
+        self.menu_packed_agent = "PackedAgent"
+        self.menu_packed_alembic = "AlembicRef"
+        self.menu_packed_disk = "PackedDisk"
+        self.menu_packed_disk_sequence = "PackedDiskSequence"
+        self.menu_packed_fragment = "PackedFragment"
+        self.menu_packed_geometry = "PackedGeometry"
+        self.menu_packed_usd = "PackedUSD"
+        self.menu_particle_system = "part"
+        self.menu_pasted_nurbs_surface = "PasteSurf"
+        self.menu_polygon = "poly"
+        self.menu_polygon_soup = "polysoup"
+        self.menu_sphere = "sphere"
+        self.menu_tetrahedron = "tetrahedron"
+        self.menu_triangle_fan = "trifan"
+        self.menu_triangle_strip = "tristrip"
+        self.menu_triangular_bezier_patch = "tribez"
+        self.menu_tube = "tube"
+        self.menu_vdb = "vdb"
+        self.menu_volume = "volume"
 
 
 class RuleMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_group_by_color = 0
-        self.menu_group_by_alpha = 1
+        self.menu_group_by_color = "color_`rint(@Cd.r*255)`_`rint(@Cd.g*255)`_`rint(@Cd.b*255)`"
+        self.menu_group_by_alpha = "alpha_`rint(@Alpha*255)`"
 
 
 

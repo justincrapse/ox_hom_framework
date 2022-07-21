@@ -39,8 +39,8 @@ class SignatureMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_float = 'default'
-        self.menu_vector_3 = 'vector3'
+        self.menu_float = "default"
+        self.menu_vector_3 = "vector3"
 
 
 

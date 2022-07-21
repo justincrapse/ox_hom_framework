@@ -6,7 +6,7 @@ from ox.base_objects.menu import Menu
 
 class HeightfieldVisualizeNode(OXNode):
     node_type = 'heightfield_visualize'
-    parm_lookup_dict = {'folder0': 'folder0', 'updatetinting': 'updatetinting', 'heightvolume': 'heightvolume', 'cdvolume': 'cdvolume', 'computerange': 'computerange', 'cdrangeoverride': 'cdrangeoverride', 'cdrange1': 'cdrange1', 'cdrange2': 'cdrange2', 'cdrampmode': 'cdrampmode', 'cdpreset': 'cdpreset', 'cdramp': 'cdramp', 'folder1': 'folder1', 'updatematerial': 'updatematerial', 'vis_projection': 'vis_projection', 'computerange2': 'computerange2', 'vis_minelevation': 'vis_minelevation', 'vis_maxelevation': 'vis_maxelevation', 'vis_heightramp': 'vis_heightramp', 'vis_layer3': 'vis_layer3', 'vis_color3r': 'vis_color3r', 'vis_color3g': 'vis_color3g', 'vis_color3b': 'vis_color3b', 'vis_color3a': 'vis_color3a', 'vis_layer2': 'vis_layer2', 'vis_color2r': 'vis_color2r', 'vis_color2g': 'vis_color2g', 'vis_color2b': 'vis_color2b', 'vis_color2a': 'vis_color2a', 'vis_layer1': 'vis_layer1', 'vis_color1r': 'vis_color1r', 'vis_color1g': 'vis_color1g', 'vis_color1b': 'vis_color1b', 'vis_color1a': 'vis_color1a', 'cdramp1pos': 'cdramp1pos', 'cdramp1cr': 'cdramp1cr', 'cdramp1cg': 'cdramp1cg', 'cdramp1cb': 'cdramp1cb', 'cdramp1interp': 'cdramp1interp', 'cdramp2pos': 'cdramp2pos', 'cdramp2cr': 'cdramp2cr', 'cdramp2cg': 'cdramp2cg', 'cdramp2cb': 'cdramp2cb', 'cdramp2interp': 'cdramp2interp', 'vis_heightramp1pos': 'vis_heightramp1pos', 'vis_heightramp1cr': 'vis_heightramp1cr', 'vis_heightramp1cg': 'vis_heightramp1cg', 'vis_heightramp1cb': 'vis_heightramp1cb', 'vis_heightramp1interp': 'vis_heightramp1interp', 'vis_heightramp2pos': 'vis_heightramp2pos', 'vis_heightramp2cr': 'vis_heightramp2cr', 'vis_heightramp2cg': 'vis_heightramp2cg', 'vis_heightramp2cb': 'vis_heightramp2cb', 'vis_heightramp2interp': 'vis_heightramp2interp', 'vis_heightramp3pos': 'vis_heightramp3pos', 'vis_heightramp3cr': 'vis_heightramp3cr', 'vis_heightramp3cg': 'vis_heightramp3cg', 'vis_heightramp3cb': 'vis_heightramp3cb', 'vis_heightramp3interp': 'vis_heightramp3interp', 'vis_heightramp4pos': 'vis_heightramp4pos', 'vis_heightramp4cr': 'vis_heightramp4cr', 'vis_heightramp4cg': 'vis_heightramp4cg', 'vis_heightramp4cb': 'vis_heightramp4cb', 'vis_heightramp4interp': 'vis_heightramp4interp', 'vis_heightramp5pos': 'vis_heightramp5pos', 'vis_heightramp5cr': 'vis_heightramp5cr', 'vis_heightramp5cg': 'vis_heightramp5cg', 'vis_heightramp5cb': 'vis_heightramp5cb', 'vis_heightramp5interp': 'vis_heightramp5interp'}
+    parm_lookup_dict = {'folder0': 'folder0', 'updatetinting': 'updatetinting', 'heightvolume': 'heightvolume', 'cdvolume': 'cdvolume', 'computerange': 'computerange', 'cdrangeoverride': 'cdrangeoverride', 'cdrange1': 'cdrange1', 'cdrange2': 'cdrange2', 'cdrampmode': 'cdrampmode', 'cdpreset': 'cdpreset', 'cdramp': 'cdramp', 'folder1': 'folder1', 'updatematerial': 'updatematerial', 'vis_projection': 'vis_projection', 'computerange2': 'computerange2', 'vis_minelevation': 'vis_minelevation', 'vis_maxelevation': 'vis_maxelevation', 'vis_heightramp': 'vis_heightramp', 'vis_layer9': 'vis_layer9', 'vis_color9r': 'vis_color9r', 'vis_color9g': 'vis_color9g', 'vis_color9b': 'vis_color9b', 'vis_color9a': 'vis_color9a', 'vis_layer8': 'vis_layer8', 'vis_color8r': 'vis_color8r', 'vis_color8g': 'vis_color8g', 'vis_color8b': 'vis_color8b', 'vis_color8a': 'vis_color8a', 'vis_layer7': 'vis_layer7', 'vis_color7r': 'vis_color7r', 'vis_color7g': 'vis_color7g', 'vis_color7b': 'vis_color7b', 'vis_color7a': 'vis_color7a', 'vis_layer6': 'vis_layer6', 'vis_color6r': 'vis_color6r', 'vis_color6g': 'vis_color6g', 'vis_color6b': 'vis_color6b', 'vis_color6a': 'vis_color6a', 'vis_layer5': 'vis_layer5', 'vis_color5r': 'vis_color5r', 'vis_color5g': 'vis_color5g', 'vis_color5b': 'vis_color5b', 'vis_color5a': 'vis_color5a', 'vis_layer4': 'vis_layer4', 'vis_color4r': 'vis_color4r', 'vis_color4g': 'vis_color4g', 'vis_color4b': 'vis_color4b', 'vis_color4a': 'vis_color4a', 'vis_layer3': 'vis_layer3', 'vis_color3r': 'vis_color3r', 'vis_color3g': 'vis_color3g', 'vis_color3b': 'vis_color3b', 'vis_color3a': 'vis_color3a', 'vis_layer2': 'vis_layer2', 'vis_color2r': 'vis_color2r', 'vis_color2g': 'vis_color2g', 'vis_color2b': 'vis_color2b', 'vis_color2a': 'vis_color2a', 'vis_layer1': 'vis_layer1', 'vis_color1r': 'vis_color1r', 'vis_color1g': 'vis_color1g', 'vis_color1b': 'vis_color1b', 'vis_color1a': 'vis_color1a', 'cdramp1pos': 'cdramp1pos', 'cdramp1cr': 'cdramp1cr', 'cdramp1cg': 'cdramp1cg', 'cdramp1cb': 'cdramp1cb', 'cdramp1interp': 'cdramp1interp', 'cdramp2pos': 'cdramp2pos', 'cdramp2cr': 'cdramp2cr', 'cdramp2cg': 'cdramp2cg', 'cdramp2cb': 'cdramp2cb', 'cdramp2interp': 'cdramp2interp', 'vis_heightramp1pos': 'vis_heightramp1pos', 'vis_heightramp1cr': 'vis_heightramp1cr', 'vis_heightramp1cg': 'vis_heightramp1cg', 'vis_heightramp1cb': 'vis_heightramp1cb', 'vis_heightramp1interp': 'vis_heightramp1interp', 'vis_heightramp2pos': 'vis_heightramp2pos', 'vis_heightramp2cr': 'vis_heightramp2cr', 'vis_heightramp2cg': 'vis_heightramp2cg', 'vis_heightramp2cb': 'vis_heightramp2cb', 'vis_heightramp2interp': 'vis_heightramp2interp', 'vis_heightramp3pos': 'vis_heightramp3pos', 'vis_heightramp3cr': 'vis_heightramp3cr', 'vis_heightramp3cg': 'vis_heightramp3cg', 'vis_heightramp3cb': 'vis_heightramp3cb', 'vis_heightramp3interp': 'vis_heightramp3interp', 'vis_heightramp4pos': 'vis_heightramp4pos', 'vis_heightramp4cr': 'vis_heightramp4cr', 'vis_heightramp4cg': 'vis_heightramp4cg', 'vis_heightramp4cb': 'vis_heightramp4cb', 'vis_heightramp4interp': 'vis_heightramp4interp', 'vis_heightramp5pos': 'vis_heightramp5pos', 'vis_heightramp5cr': 'vis_heightramp5cr', 'vis_heightramp5cg': 'vis_heightramp5cg', 'vis_heightramp5cb': 'vis_heightramp5cb', 'vis_heightramp5interp': 'vis_heightramp5interp'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -31,6 +31,36 @@ class HeightfieldVisualizeNode(OXNode):
         self.parm_vis_minelevation = Parameter(parm=self.node.parm('vis_minelevation'))
         self.parm_vis_maxelevation = Parameter(parm=self.node.parm('vis_maxelevation'))
         self.parm_vis_heightramp = Parameter(parm=self.node.parm('vis_heightramp'))
+        self.parm_vis_layer9 = Parameter(parm=self.node.parm('vis_layer9'))
+        self.parm_vis_color9r = Parameter(parm=self.node.parm('vis_color9r'))
+        self.parm_vis_color9g = Parameter(parm=self.node.parm('vis_color9g'))
+        self.parm_vis_color9b = Parameter(parm=self.node.parm('vis_color9b'))
+        self.parm_vis_color9a = Parameter(parm=self.node.parm('vis_color9a'))
+        self.parm_vis_layer8 = Parameter(parm=self.node.parm('vis_layer8'))
+        self.parm_vis_color8r = Parameter(parm=self.node.parm('vis_color8r'))
+        self.parm_vis_color8g = Parameter(parm=self.node.parm('vis_color8g'))
+        self.parm_vis_color8b = Parameter(parm=self.node.parm('vis_color8b'))
+        self.parm_vis_color8a = Parameter(parm=self.node.parm('vis_color8a'))
+        self.parm_vis_layer7 = Parameter(parm=self.node.parm('vis_layer7'))
+        self.parm_vis_color7r = Parameter(parm=self.node.parm('vis_color7r'))
+        self.parm_vis_color7g = Parameter(parm=self.node.parm('vis_color7g'))
+        self.parm_vis_color7b = Parameter(parm=self.node.parm('vis_color7b'))
+        self.parm_vis_color7a = Parameter(parm=self.node.parm('vis_color7a'))
+        self.parm_vis_layer6 = Parameter(parm=self.node.parm('vis_layer6'))
+        self.parm_vis_color6r = Parameter(parm=self.node.parm('vis_color6r'))
+        self.parm_vis_color6g = Parameter(parm=self.node.parm('vis_color6g'))
+        self.parm_vis_color6b = Parameter(parm=self.node.parm('vis_color6b'))
+        self.parm_vis_color6a = Parameter(parm=self.node.parm('vis_color6a'))
+        self.parm_vis_layer5 = Parameter(parm=self.node.parm('vis_layer5'))
+        self.parm_vis_color5r = Parameter(parm=self.node.parm('vis_color5r'))
+        self.parm_vis_color5g = Parameter(parm=self.node.parm('vis_color5g'))
+        self.parm_vis_color5b = Parameter(parm=self.node.parm('vis_color5b'))
+        self.parm_vis_color5a = Parameter(parm=self.node.parm('vis_color5a'))
+        self.parm_vis_layer4 = Parameter(parm=self.node.parm('vis_layer4'))
+        self.parm_vis_color4r = Parameter(parm=self.node.parm('vis_color4r'))
+        self.parm_vis_color4g = Parameter(parm=self.node.parm('vis_color4g'))
+        self.parm_vis_color4b = Parameter(parm=self.node.parm('vis_color4b'))
+        self.parm_vis_color4a = Parameter(parm=self.node.parm('vis_color4a'))
         self.parm_vis_layer3 = Parameter(parm=self.node.parm('vis_layer3'))
         self.parm_vis_color3r = Parameter(parm=self.node.parm('vis_color3r'))
         self.parm_vis_color3g = Parameter(parm=self.node.parm('vis_color3g'))
@@ -100,139 +130,139 @@ class UpdatetintingMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_change = 0
-        self.menu_default_tinting = 1
-        self.menu_custom_tinting = 2
-        self.menu_remove_tinting = 3
+        self.menu_no_change = "unchanged"
+        self.menu_default_tinting = "default"
+        self.menu_custom_tinting = "custom"
+        self.menu_remove_tinting = "none"
 
 
 class CdrampmodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_ramp = 0
-        self.menu_clamped_ramp = 1
-        self.menu_periodic_ramp = 2
+        self.menu_no_ramp = "none"
+        self.menu_clamped_ramp = "clamp"
+        self.menu_periodic_ramp = "periodic"
 
 
 class CdpresetMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_presets = 0
-        self.menu_infra_red = 1
-        self.menu_white_to_red = 2
-        self.menu_grayscale = 3
-        self.menu_black_body = 4
-        self.menu_two_tone = 5
+        self.menu_presets = "none"
+        self.menu_infra_red = "false"
+        self.menu_white_to_red = "pink"
+        self.menu_grayscale = "mono"
+        self.menu_blackbody = "blackbody"
+        self.menu_two_tone = "bipartite"
 
 
 class UpdatematerialMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_change = 0
-        self.menu_custom_material = 1
-        self.menu_remove_material = 2
+        self.menu_no_change = "unchanged"
+        self.menu_custom_material = "custom"
+        self.menu_remove_material = "none"
 
 
 class VisProjectionMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_y_up = 0
-        self.menu_z_up = 1
+        self.menu_y_up = "y"
+        self.menu_z_up = "z"
 
 
 class Cdramp1InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = 0
-        self.menu_linear = 1
-        self.menu_catmull_rom = 2
-        self.menu_monotone_cubic = 3
-        self.menu_bezier = 4
-        self.menu_b_spline = 5
-        self.menu_hermite = 6
+        self.menu_constant = "constant"
+        self.menu_linear = "linear"
+        self.menu_catmull_rom = "catmull-rom"
+        self.menu_monotone_cubic = "monotonecubic"
+        self.menu_bezier = "bezier"
+        self.menu_b_spline = "bspline"
+        self.menu_hermite = "hermite"
 
 
 class Cdramp2InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = 0
-        self.menu_linear = 1
-        self.menu_catmull_rom = 2
-        self.menu_monotone_cubic = 3
-        self.menu_bezier = 4
-        self.menu_b_spline = 5
-        self.menu_hermite = 6
+        self.menu_constant = "constant"
+        self.menu_linear = "linear"
+        self.menu_catmull_rom = "catmull-rom"
+        self.menu_monotone_cubic = "monotonecubic"
+        self.menu_bezier = "bezier"
+        self.menu_b_spline = "bspline"
+        self.menu_hermite = "hermite"
 
 
 class VisHeightramp1InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = 0
-        self.menu_linear = 1
-        self.menu_catmull_rom = 2
-        self.menu_monotone_cubic = 3
-        self.menu_bezier = 4
-        self.menu_b_spline = 5
-        self.menu_hermite = 6
+        self.menu_constant = "constant"
+        self.menu_linear = "linear"
+        self.menu_catmull_rom = "catmull-rom"
+        self.menu_monotone_cubic = "monotonecubic"
+        self.menu_bezier = "bezier"
+        self.menu_b_spline = "bspline"
+        self.menu_hermite = "hermite"
 
 
 class VisHeightramp2InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = 0
-        self.menu_linear = 1
-        self.menu_catmull_rom = 2
-        self.menu_monotone_cubic = 3
-        self.menu_bezier = 4
-        self.menu_b_spline = 5
-        self.menu_hermite = 6
+        self.menu_constant = "constant"
+        self.menu_linear = "linear"
+        self.menu_catmull_rom = "catmull-rom"
+        self.menu_monotone_cubic = "monotonecubic"
+        self.menu_bezier = "bezier"
+        self.menu_b_spline = "bspline"
+        self.menu_hermite = "hermite"
 
 
 class VisHeightramp3InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = 0
-        self.menu_linear = 1
-        self.menu_catmull_rom = 2
-        self.menu_monotone_cubic = 3
-        self.menu_bezier = 4
-        self.menu_b_spline = 5
-        self.menu_hermite = 6
+        self.menu_constant = "constant"
+        self.menu_linear = "linear"
+        self.menu_catmull_rom = "catmull-rom"
+        self.menu_monotone_cubic = "monotonecubic"
+        self.menu_bezier = "bezier"
+        self.menu_b_spline = "bspline"
+        self.menu_hermite = "hermite"
 
 
 class VisHeightramp4InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = 0
-        self.menu_linear = 1
-        self.menu_catmull_rom = 2
-        self.menu_monotone_cubic = 3
-        self.menu_bezier = 4
-        self.menu_b_spline = 5
-        self.menu_hermite = 6
+        self.menu_constant = "constant"
+        self.menu_linear = "linear"
+        self.menu_catmull_rom = "catmull-rom"
+        self.menu_monotone_cubic = "monotonecubic"
+        self.menu_bezier = "bezier"
+        self.menu_b_spline = "bspline"
+        self.menu_hermite = "hermite"
 
 
 class VisHeightramp5InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = 0
-        self.menu_linear = 1
-        self.menu_catmull_rom = 2
-        self.menu_monotone_cubic = 3
-        self.menu_bezier = 4
-        self.menu_b_spline = 5
-        self.menu_hermite = 6
+        self.menu_constant = "constant"
+        self.menu_linear = "linear"
+        self.menu_catmull_rom = "catmull-rom"
+        self.menu_monotone_cubic = "monotonecubic"
+        self.menu_bezier = "bezier"
+        self.menu_b_spline = "bspline"
+        self.menu_hermite = "hermite"
 
 
 

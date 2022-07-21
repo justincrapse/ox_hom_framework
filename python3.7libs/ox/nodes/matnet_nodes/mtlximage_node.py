@@ -62,76 +62,77 @@ class SignatureMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_float = 'default'
-        self.menu_color = 'color3'
-        self.menu_color_4 = 'color4'
-        self.menu_vector_2 = 'vector2'
-        self.menu_vector_3 = 'vector3'
-        self.menu_vector_4 = 'vector4'
+        self.menu_float = "default"
+        self.menu_color = "color3"
+        self.menu_color_4 = "color4"
+        self.menu_vector_2 = "vector2"
+        self.menu_vector_3 = "vector3"
+        self.menu_vector_4 = "vector4"
 
 
 class FilecolorspaceMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_linear___rec_709 = 'lin_rec709'
-        self.menu_linear_texture___srgb = 'srgb_texture'
+        self.menu_linear___rec_709 = "lin_rec709"
+        self.menu_linear_texture___srgb = "srgb_texture"
 
 
 class FileMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_e__art_3d_00_my____ring_opacity_png = 'E:/ART/3d/00_my_trees/euc_abc_png/Eucalyptus_Leaf_Front1_Spring_Opacity.png'
-        self.menu_e__art_3d_00_my____pring_normal_png = 'E:/ART/3d/00_my_trees/euc_abc_png/Eucalyptus_Leaf_Front1_Spring_Normal.png'
-        self.menu_e__art_3d_00_my____t1_spring_ao_png = 'E:/ART/3d/00_my_trees/euc_abc_png/Eucalyptus_Leaf_Front1_Spring_AO.png'
-        self.menu_e__art_3d_00_my____urfaceamount_png = 'E:/ART/3d/00_my_trees/euc_abc_png/Eucalyptus_Leaf_Front1_Spring_SubsurfaceAmount.png'
-        self.menu_e__art_3d_00_my____surfacecolor_png = 'E:/ART/3d/00_my_trees/euc_abc_png/Eucalyptus_Leaf_Front1_Spring_SubsurfaceColor.png'
-        self.menu_e__art_3d_00_my____spring_gloss_png = 'E:/ART/3d/00_my_trees/euc_abc_png/Eucalyptus_Leaf_Front1_Spring_Gloss.png'
-        self.menu_e__art_3d_00_my____ront1_spring_png = 'E:/ART/3d/00_my_trees/euc_abc_png/Eucalyptus_Leaf_Front1_Spring.png'
-        self.menu_e__art_3d_00_my____bark_1_gloss_png = 'E:/ART/3d/00_my_trees/euc_abc_png/Eucalyptus_bark_1_Gloss.png'
-        self.menu_e__art_3d_00_my____us_bark_1_ao_png = 'E:/ART/3d/00_my_trees/euc_abc_png/Eucalyptus_bark_1_AO.png'
-        self.menu_e__art_3d_00_my____ark_3_height_png = 'E:/ART/3d/00_my_trees/euc_abc_png/Eucalyptus_Bark_3_Height.png'
-        self.menu_e__art_3d_00_my____yptus_bark_1_png = 'E:/ART/3d/00_my_trees/euc_abc_png/Eucalyptus_bark_1.png'
+        self.menu_e__art_projects____a_sunrise_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr"
+        self.menu_e__art_projects____anga_veld_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr"
+        self.menu_e__art_projects____s_on_fire_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr"
+        self.menu_e__art_projects____ly_cloudy_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr"
+        self.menu_e__art_projects____enheim_05_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr"
+        self.menu_e__art_projects____quarry_02_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr"
+        self.menu_e__art_projects_____1d_clear_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr"
+        self.menu_e__art_projects____oon_grass_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr"
+        self.menu_e__art_projects____in_cellar_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr"
+        self.menu_e__art_products____ers_tip_mask_jpg = "E:/ART/PRODUCTS/OX-Terrain_Textuers/tip_mask.jpg"
+        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/multi_texture_folder/green_tiles/wall_tile_unstuck_basecolor.jpg"
+        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/glazed_terracotta/wall_tile_unstuck_basecolor.jpg"
 
 
 class UaddressmodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = 'constant'
-        self.menu_clamp = 'clamp'
-        self.menu_periodic = 'periodic'
-        self.menu_mirror = 'mirror'
+        self.menu_constant = "constant"
+        self.menu_clamp = "clamp"
+        self.menu_periodic = "periodic"
+        self.menu_mirror = "mirror"
 
 
 class VaddressmodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = 'constant'
-        self.menu_clamp = 'clamp'
-        self.menu_periodic = 'periodic'
-        self.menu_mirror = 'mirror'
+        self.menu_constant = "constant"
+        self.menu_clamp = "clamp"
+        self.menu_periodic = "periodic"
+        self.menu_mirror = "mirror"
 
 
 class FiltertypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_closest = 'closest'
-        self.menu_linear = 'linear'
-        self.menu_cubic = 'cubic'
+        self.menu_closest = "closest"
+        self.menu_linear = "linear"
+        self.menu_cubic = "cubic"
 
 
 class FrameendactionMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = 'constant'
-        self.menu_clamp = 'clamp'
-        self.menu_periodic = 'periodic'
-        self.menu_mirror = 'mirror'
+        self.menu_constant = "constant"
+        self.menu_clamp = "clamp"
+        self.menu_periodic = "periodic"
+        self.menu_mirror = "mirror"
 
 
 

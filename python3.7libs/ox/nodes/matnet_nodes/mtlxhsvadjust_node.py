@@ -44,7 +44,7 @@ class SignatureMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_color = 'default'
+        self.menu_color = "default"
 
 
 

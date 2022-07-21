@@ -52,28 +52,28 @@ class XformtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_none = 0
-        self.menu_into_this_object = 1
-        self.menu_into_specified_object = 2
+        self.menu_none = "none"
+        self.menu_into_this_object = "local"
+        self.menu_into_specified_object = "object"
 
 
 class PivotMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_origin = 0
-        self.menu_centroid = 1
+        self.menu_origin = "origin"
+        self.menu_centroid = "centroid"
 
 
 class ViewportlodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_full_geometry = 0
-        self.menu_point_cloud = 1
-        self.menu_bounding_box = 2
-        self.menu_centroid = 3
-        self.menu_hidden = 4
+        self.menu_full_geometry = "full"
+        self.menu_point_cloud = "points"
+        self.menu_bounding_box = "box"
+        self.menu_centroid = "centroid"
+        self.menu_hidden = "hidden"
 
 
 

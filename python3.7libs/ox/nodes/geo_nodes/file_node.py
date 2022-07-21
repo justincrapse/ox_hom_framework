@@ -51,81 +51,71 @@ class FilemodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_automatic = 0
-        self.menu_read_files = 1
-        self.menu_write_files = 2
-        self.menu_no_operation = 3
+        self.menu_automatic = "auto"
+        self.menu_read_files = "read"
+        self.menu_write_files = "write"
+        self.menu_no_operation = "none"
 
 
 class FileMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_e__art_projects_____with_wind_1_abc = 0
-        self.menu_e__art_projects____bx_erf_tall2_fbx = 1
-        self.menu_e__art_projects____dgum_field_2_fbx = 2
-        self.menu_e__art_projects_____1_erf_tall3_abc = 3
-        self.menu__chs__file___ = 4
-        self.menu_e__art_3d_00_my____las_4_forest_fbx = 5
-        self.menu_e__art_3d_00_my____las_4_forest_abc = 6
-        self.menu_e__art_3d_from_t___e_first_wind_abc = 7
-        self.menu_e__art_projects____dgum_field_1_fbx = 8
-        self.menu_e__art_3d_from_t____first_wind3_abc = 9
-        self.menu_e__art_3d_from_t____wind_groups_abc = 10
-        self.menu_e__art_3d_from_t___ind_particle_abc = 11
+        self.menu_e__art_products_____fx_logo_july_ai = "E:/ART/PRODUCTS/ox_fx/logo/ox_fx_logo_july.ai"
 
 
 class MissingframeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_report_error = 0
-        self.menu_no_geometry = 1
+        self.menu_report_error = "error"
+        self.menu_no_geometry = "empty"
 
 
 class LoadtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_all_geometry = 0
-        self.menu_info_bounding_box = 1
-        self.menu_info = 2
-        self.menu_point_cloud = 3
-        self.menu_packed_disk_primitive = 4
-        self.menu_packed_disk_sequence = 5
+        self.menu_all_geometry = "full"
+        self.menu_info_bounding_box = "infobbox"
+        self.menu_info = "info"
+        self.menu_point_cloud = "points"
+        self.menu_packed_disk_primitive = "delayed"
+        self.menu_packed_disk_sequence = "packedseq"
+        self.menu_packed_geometry = "packedgeo"
 
 
 class PackedvieweditMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_use_file_setting = 0
-        self.menu_full_geometry = 1
-        self.menu_point_cloud = 2
-        self.menu_bounding_box = 3
-        self.menu_centroid = 4
-        self.menu_hidden = 5
+        self.menu_use_file_setting = "unchanged"
+        self.menu_full_geometry = "full"
+        self.menu_point_cloud = "points"
+        self.menu_bounding_box = "box"
+        self.menu_centroid = "centroid"
+        self.menu_hidden = "hidden"
 
 
 class ViewportlodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_full_geometry = 0
-        self.menu_point_cloud = 1
-        self.menu_bounding_box = 2
-        self.menu_centroid = 3
-        self.menu_hidden = 4
+        self.menu_full_geometry = "full"
+        self.menu_point_cloud = "points"
+        self.menu_bounding_box = "box"
+        self.menu_centroid = "centroid"
+        self.menu_hidden = "hidden"
 
 
 class WrapMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_cycle = 0
-        self.menu_clamp = 1
-        self.menu_strict = 2
-        self.menu_mirror = 3
+        self.menu_cycle = "cycle"
+        self.menu_clamp = "clamp"
+        self.menu_strict = "strick"
+        self.menu_mirror = "mirror"
 
 
 

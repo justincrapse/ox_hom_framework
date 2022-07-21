@@ -6,7 +6,7 @@ from ox.base_objects.menu import Menu
 
 class CamNode(OXNode):
     node_type = 'cam'
-    parm_lookup_dict = {'stdswitcher1': 'stdswitcher1', 'xord': 'xOrd', 'rord': 'rOrd', 'tx': 'tx', 'ty': 'ty', 'tz': 'tz', 'rx': 'rx', 'ry': 'ry', 'rz': 'rz', 'sx': 'sx', 'sy': 'sy', 'sz': 'sz', 'px': 'px', 'py': 'py', 'pz': 'pz', 'prx': 'prx', 'pry': 'pry', 'prz': 'prz', 'scale': 'scale', 'pre_xform': 'pre_xform', 'keeppos': 'keeppos', 'childcomp': 'childcomp', 'constraints_on': 'constraints_on', 'constraints_path': 'constraints_path', 'lookatpath': 'lookatpath', 'lookupobjpath': 'lookupobjpath', 'lookup': 'lookup', 'pathobjpath': 'pathobjpath', 'roll': 'roll', 'pos': 'pos', 'uparmtype': 'uparmtype', 'pathorient': 'pathorient', 'upx': 'upx', 'upy': 'upy', 'upz': 'upz', 'bank': 'bank', 'tdisplay': 'tdisplay', 'display': 'display', 'use_dcolor': 'use_dcolor', 'dcolorr': 'dcolorr', 'dcolorg': 'dcolorg', 'dcolorb': 'dcolorb', 'picking': 'picking', 'pickscript': 'pickscript', 'caching': 'caching', 'stdswitcher31': 'stdswitcher31', 'iconscale': 'iconscale', 'resx': 'resx', 'resy': 'resy', 'resmenu': 'resMenu', 'aspect': 'aspect', 'projection': 'projection', 'vm_lensshader': 'vm_lensshader', 'focal': 'focal', 'focalunits': 'focalunits', 'aperture': 'aperture', 'orthowidth': 'orthowidth', 'near': 'near', 'far': 'far', 'vm_bgenable': 'vm_bgenable', 'vm_background': 'vm_background', 'winx': 'winx', 'winy': 'winy', 'winsizex': 'winsizex', 'winsizey': 'winsizey', 'winmask': 'winmask', 'cropl': 'cropl', 'cropr': 'cropr', 'cropb': 'cropb', 'cropt': 'cropt', 'cropmask': 'cropmask', 'shutter': 'shutter', 'focus': 'focus', 'fstop': 'fstop', 'vm_bokeh': 'vm_bokeh', 'vm_bokehfile': 'vm_bokehfile', 'vm_bokehrotation': 'vm_bokehrotation', 'rs_camprop_switcher1': 'RS_camprop_switcher1', 'rs_campro_first': 'RS_campro_first', 'rs_campro_label0': 'RS_campro_label0', 'rs_campro_projection': 'RS_campro_projection', 'rs_campro_label1': 'RS_campro_label1', 'rs_campro_fisheyehscale': 'RS_campro_fisheyeHScale', 'rs_campro_fisheyevscale': 'RS_campro_fisheyeVScale', 'rs_campro_fisheyefov': 'RS_campro_fisheyeFOV', 'rs_campro_label2': 'RS_campro_label2', 'rs_campro_cylhfov': 'RS_campro_cylHFOV', 'rs_campro_cylvfov': 'RS_campro_cylVFOV', 'rs_campro_cylortho': 'RS_campro_cylOrtho', 'rs_campro_cylorthoheight': 'RS_campro_cylOrthoHeight', 'rs_campro_label3': 'RS_campro_label3', 'rs_campro_stereomode': 'RS_campro_stereoMode', 'rs_campro_stereoseparation': 'RS_campro_stereoSeparation', 'rs_campro_stereofocus': 'RS_campro_stereoFocus', 'rs_campro_stereofocuscam': 'RS_campro_stereoFocusCam', 'rs_campro_stereofocusdist': 'RS_campro_stereoFocusDist', 'rs_campro_stereohfov': 'RS_campro_stereoHFov', 'rs_campro_stereovfov': 'RS_campro_stereoVFov', 'rs_campro_mbdisable': 'RS_campro_mbDisable', 'rs_campro_label4': 'RS_campro_label4', 'rs_campro_dofenable': 'RS_campro_dofEnable', 'rs_campro_dofusehoudinicamera': 'RS_campro_dofUseHoudiniCamera', 'rs_campro_doflegacytechnique': 'RS_campro_dofLegacyTechnique', 'rs_campro_dofdistance': 'RS_campro_dofDistance', 'rs_campro_dofcoc': 'RS_campro_dofCoC', 'rs_campro_dofpower': 'RS_campro_dofPower', 'rs_campro_dofapect': 'RS_campro_dofApect', 'rs_campro_dofbladescount': 'RS_campro_dofBladesCount', 'rs_campro_dofbladesangle': 'RS_campro_dofBladesAngle', 'rs_campro_dofbokeh': 'RS_campro_dofBokeh', 'rs_campro_dofbokehnorm': 'RS_campro_dofBokehNorm', 'rs_campro_dofbokehimage': 'RS_campro_dofBokehImage', 'rs_campro_label5': 'RS_campro_label5', 'rs_campro_pycamenable': 'RS_campro_PyCamEnable', 'rs_campro_label5b': 'RS_campro_label5b', 'rs_campro_pycamiso': 'RS_campro_PyCamISO', 'rs_campro_pycamshutter': 'RS_campro_PyCamShutter', 'rs_campro_pycamfstop': 'RS_campro_PyCamfstop', 'rs_campro_pycamwpointr': 'RS_campro_PyCamWPointr', 'rs_campro_pycamwpointg': 'RS_campro_PyCamWPointg', 'rs_campro_pycamwpointb': 'RS_campro_PyCamWPointb', 'rs_campro_pycamvignetting': 'RS_campro_PyCamVignetting', 'rs_campro_label5c': 'RS_campro_label5c', 'rs_campro_pycamoverexp': 'RS_campro_PyCamOverExp', 'rs_campro_pycamallowdesat': 'RS_campro_PyCamAllowDesat', 'rs_campro_pycamcrusht': 'RS_campro_PyCamCrushT', 'rs_campro_pycamcrusha': 'RS_campro_PyCamCrushA', 'rs_campro_pycamsaturation': 'RS_campro_PyCamSaturation', 'rs_campro_label7': 'RS_campro_label7', 'rs_campro_enablepfx': 'RS_campro_enablePFX', 'rs_campro_applypfx': 'RS_campro_applyPFX', 'rs_campro_ocioswitcher': 'RS_campro_ocioSwitcher', 'rs_campro_ociodisplay': 'RS_campro_ocioDisplay', 'rs_campro_ocioview': 'RS_campro_ocioView', 'rs_campro_lutswitcher': 'RS_campro_lutSwitcher', 'rs_campro_lutenable': 'RS_campro_lutEnable', 'rs_campro_lutfile': 'RS_campro_lutFile', 'rs_campro_lutbeforecm': 'RS_campro_lutBeforeCM', 'rs_campro_lutislog': 'RS_campro_lutIsLog', 'rs_campro_lutstrength': 'RS_campro_lutStrength', 'rs_campro_colorswitcher': 'RS_campro_colorSwitcher', 'rs_campro_colorenable': 'RS_campro_colorEnable', 'rs_campro_colorexposure': 'RS_campro_colorExposure', 'rs_campro_colorcontrast': 'RS_campro_colorContrast', 'rs_campro_colorcurvesswitcher': 'RS_campro_colorCurvesSwitcher', 'rs_campro_colorcurvesr': 'RS_campro_colorCurvesR', 'rs_campro_colorcurvesg': 'RS_campro_colorCurvesG', 'rs_campro_colorcurvesb': 'RS_campro_colorCurvesB', 'rs_campro_colorcurvesrgb': 'RS_campro_colorCurvesRGB', 'rs_campro_bloomswitcher': 'RS_campro_bloomSwitcher', 'rs_campro_bloomenable': 'RS_campro_bloomEnable', 'rs_campro_bloomthreshold': 'RS_campro_bloomThreshold', 'rs_campro_bloomsoftness': 'RS_campro_bloomSoftness', 'rs_campro_bloomintensity': 'RS_campro_bloomIntensity', 'rs_campro_bloomtintswicther': 'RS_campro_bloomTintSwicther', 'rs_campro_bloomtint1r': 'RS_campro_bloomTint1r', 'rs_campro_bloomtint1g': 'RS_campro_bloomTint1g', 'rs_campro_bloomtint1b': 'RS_campro_bloomTint1b', 'rs_campro_bloomtint2r': 'RS_campro_bloomTint2r', 'rs_campro_bloomtint2g': 'RS_campro_bloomTint2g', 'rs_campro_bloomtint2b': 'RS_campro_bloomTint2b', 'rs_campro_bloomtint3r': 'RS_campro_bloomTint3r', 'rs_campro_bloomtint3g': 'RS_campro_bloomTint3g', 'rs_campro_bloomtint3b': 'RS_campro_bloomTint3b', 'rs_campro_bloomtint4r': 'RS_campro_bloomTint4r', 'rs_campro_bloomtint4g': 'RS_campro_bloomTint4g', 'rs_campro_bloomtint4b': 'RS_campro_bloomTint4b', 'rs_campro_bloomtint5r': 'RS_campro_bloomTint5r', 'rs_campro_bloomtint5g': 'RS_campro_bloomTint5g', 'rs_campro_bloomtint5b': 'RS_campro_bloomTint5b', 'rs_campro_flareswitcher': 'RS_campro_flareSwitcher', 'rs_campro_flareenable': 'RS_campro_flareEnable', 'rs_campro_flarethreshold': 'RS_campro_flareThreshold', 'rs_campro_flaresoftness': 'RS_campro_flareSoftness', 'rs_campro_flarechromatic': 'RS_campro_flareChromatic', 'rs_campro_flaresize': 'RS_campro_flareSize', 'rs_campro_flarehalo': 'RS_campro_flareHalo', 'rs_campro_flareintensity': 'RS_campro_flareIntensity', 'rs_campro_flaretintswitcher': 'RS_campro_flareTintSwitcher', 'rs_campro_flaretint1r': 'RS_campro_flareTint1r', 'rs_campro_flaretint1g': 'RS_campro_flareTint1g', 'rs_campro_flaretint1b': 'RS_campro_flareTint1b', 'rs_campro_flaretint2r': 'RS_campro_flareTint2r', 'rs_campro_flaretint2g': 'RS_campro_flareTint2g', 'rs_campro_flaretint2b': 'RS_campro_flareTint2b', 'rs_campro_flaretint3r': 'RS_campro_flareTint3r', 'rs_campro_flaretint3g': 'RS_campro_flareTint3g', 'rs_campro_flaretint3b': 'RS_campro_flareTint3b', 'rs_campro_flaretint4r': 'RS_campro_flareTint4r', 'rs_campro_flaretint4g': 'RS_campro_flareTint4g', 'rs_campro_flaretint4b': 'RS_campro_flareTint4b', 'rs_campro_flaretint5r': 'RS_campro_flareTint5r', 'rs_campro_flaretint5g': 'RS_campro_flareTint5g', 'rs_campro_flaretint5b': 'RS_campro_flareTint5b', 'rs_campro_flaretint6r': 'RS_campro_flareTint6r', 'rs_campro_flaretint6g': 'RS_campro_flareTint6g', 'rs_campro_flaretint6b': 'RS_campro_flareTint6b', 'rs_campro_streakswitcher': 'RS_campro_streakSwitcher', 'rs_campro_streakenable': 'RS_campro_streakEnable', 'rs_campro_streakthreshold': 'RS_campro_streakThreshold', 'rs_campro_streaktail': 'RS_campro_streakTail', 'rs_campro_streaksoftness': 'RS_campro_streakSoftness', 'rs_campro_streaknumber': 'RS_campro_streakNumber', 'rs_campro_streakangle': 'RS_campro_streakAngle', 'rs_campro_streakintensity': 'RS_campro_streakIntensity', 'rs_campro_label6': 'RS_campro_label6', 'rs_campro_distortionenable': 'RS_campro_distortionEnable', 'rs_campro_distortionimage': 'RS_campro_distortionImage', 'rs_campro_last': 'RS_campro_last'}
+    parm_lookup_dict = {'stdswitcher1': 'stdswitcher1', 'xord': 'xOrd', 'rord': 'rOrd', 'tx': 'tx', 'ty': 'ty', 'tz': 'tz', 'rx': 'rx', 'ry': 'ry', 'rz': 'rz', 'sx': 'sx', 'sy': 'sy', 'sz': 'sz', 'px': 'px', 'py': 'py', 'pz': 'pz', 'prx': 'prx', 'pry': 'pry', 'prz': 'prz', 'scale': 'scale', 'pre_xform': 'pre_xform', 'keeppos': 'keeppos', 'childcomp': 'childcomp', 'constraints_on': 'constraints_on', 'constraints_path': 'constraints_path', 'lookatpath': 'lookatpath', 'lookupobjpath': 'lookupobjpath', 'lookup': 'lookup', 'pathobjpath': 'pathobjpath', 'roll': 'roll', 'pos': 'pos', 'uparmtype': 'uparmtype', 'pathorient': 'pathorient', 'upx': 'upx', 'upy': 'upy', 'upz': 'upz', 'bank': 'bank', 'tdisplay': 'tdisplay', 'display': 'display', 'use_dcolor': 'use_dcolor', 'dcolorr': 'dcolorr', 'dcolorg': 'dcolorg', 'dcolorb': 'dcolorb', 'picking': 'picking', 'pickscript': 'pickscript', 'caching': 'caching', 'stdswitcher31': 'stdswitcher31', 'iconscale': 'iconscale', 'resx': 'resx', 'resy': 'resy', 'resmenu': 'resMenu', 'aspect': 'aspect', 'projection': 'projection', 'vm_lensshader': 'vm_lensshader', 'focal': 'focal', 'focalunits': 'focalunits', 'aperture': 'aperture', 'orthowidth': 'orthowidth', 'near': 'near', 'far': 'far', 'vm_bgenable': 'vm_bgenable', 'vm_background': 'vm_background', 'winx': 'winx', 'winy': 'winy', 'winsizex': 'winsizex', 'winsizey': 'winsizey', 'winmask': 'winmask', 'cropl': 'cropl', 'cropr': 'cropr', 'cropb': 'cropb', 'cropt': 'cropt', 'cropmask': 'cropmask', 'fgimage': 'fgimage', 'shutter': 'shutter', 'focus': 'focus', 'fstop': 'fstop', 'vm_bokeh': 'vm_bokeh', 'vm_bokehfile': 'vm_bokehfile', 'vm_bokehrotation': 'vm_bokehrotation', 'rs_camprop_switcher1': 'RS_camprop_switcher1', 'rs_campro_first': 'RS_campro_first', 'rs_campro_label0': 'RS_campro_label0', 'rs_campro_projection': 'RS_campro_projection', 'rs_campro_label1': 'RS_campro_label1', 'rs_campro_fisheyehscale': 'RS_campro_fisheyeHScale', 'rs_campro_fisheyevscale': 'RS_campro_fisheyeVScale', 'rs_campro_fisheyefov': 'RS_campro_fisheyeFOV', 'rs_campro_label2': 'RS_campro_label2', 'rs_campro_cylhfov': 'RS_campro_cylHFOV', 'rs_campro_cylvfov': 'RS_campro_cylVFOV', 'rs_campro_cylortho': 'RS_campro_cylOrtho', 'rs_campro_cylorthoheight': 'RS_campro_cylOrthoHeight', 'rs_campro_label3': 'RS_campro_label3', 'rs_campro_stereomode': 'RS_campro_stereoMode', 'rs_campro_stereoseparation': 'RS_campro_stereoSeparation', 'rs_campro_stereofocus': 'RS_campro_stereoFocus', 'rs_campro_stereofocuscam': 'RS_campro_stereoFocusCam', 'rs_campro_stereofocusdist': 'RS_campro_stereoFocusDist', 'rs_campro_stereohfov': 'RS_campro_stereoHFov', 'rs_campro_stereovfov': 'RS_campro_stereoVFov', 'rs_campro_mbdisable': 'RS_campro_mbDisable', 'rs_campro_label4': 'RS_campro_label4', 'rs_campro_dofenable': 'RS_campro_dofEnable', 'rs_campro_dofusehoudinicamera': 'RS_campro_dofUseHoudiniCamera', 'rs_campro_doflegacytechnique': 'RS_campro_dofLegacyTechnique', 'rs_campro_dofdistance': 'RS_campro_dofDistance', 'rs_campro_dofcoc': 'RS_campro_dofCoC', 'rs_campro_dofpower': 'RS_campro_dofPower', 'rs_campro_dofapect': 'RS_campro_dofApect', 'rs_campro_dofbladescount': 'RS_campro_dofBladesCount', 'rs_campro_dofbladesangle': 'RS_campro_dofBladesAngle', 'rs_campro_dofbokeh': 'RS_campro_dofBokeh', 'rs_campro_dofbokehnorm': 'RS_campro_dofBokehNorm', 'rs_campro_dofbokehimage': 'RS_campro_dofBokehImage', 'rs_campro_label5': 'RS_campro_label5', 'rs_campro_pycamenable': 'RS_campro_PyCamEnable', 'rs_campro_label5b': 'RS_campro_label5b', 'rs_campro_pycamiso': 'RS_campro_PyCamISO', 'rs_campro_pycamshutter': 'RS_campro_PyCamShutter', 'rs_campro_pycamfstop': 'RS_campro_PyCamfstop', 'rs_campro_pycamwpointr': 'RS_campro_PyCamWPointr', 'rs_campro_pycamwpointg': 'RS_campro_PyCamWPointg', 'rs_campro_pycamwpointb': 'RS_campro_PyCamWPointb', 'rs_campro_pycamvignetting': 'RS_campro_PyCamVignetting', 'rs_campro_label5c': 'RS_campro_label5c', 'rs_campro_pycamoverexp': 'RS_campro_PyCamOverExp', 'rs_campro_pycamallowdesat': 'RS_campro_PyCamAllowDesat', 'rs_campro_pycamcrusht': 'RS_campro_PyCamCrushT', 'rs_campro_pycamcrusha': 'RS_campro_PyCamCrushA', 'rs_campro_pycamsaturation': 'RS_campro_PyCamSaturation', 'rs_campro_label7': 'RS_campro_label7', 'rs_campro_enablepfx': 'RS_campro_enablePFX', 'rs_campro_applypfx': 'RS_campro_applyPFX', 'rs_campro_ocioswitcher': 'RS_campro_ocioSwitcher', 'rs_campro_ociodisplay': 'RS_campro_ocioDisplay', 'rs_campro_ocioview': 'RS_campro_ocioView', 'rs_campro_lutswitcher': 'RS_campro_lutSwitcher', 'rs_campro_lutenable': 'RS_campro_lutEnable', 'rs_campro_lutfile': 'RS_campro_lutFile', 'rs_campro_lutbeforecm': 'RS_campro_lutBeforeCM', 'rs_campro_lutislog': 'RS_campro_lutIsLog', 'rs_campro_lutstrength': 'RS_campro_lutStrength', 'rs_campro_colorswitcher': 'RS_campro_colorSwitcher', 'rs_campro_colorenable': 'RS_campro_colorEnable', 'rs_campro_colorexposure': 'RS_campro_colorExposure', 'rs_campro_colorcontrast': 'RS_campro_colorContrast', 'rs_campro_colorcurvesswitcher': 'RS_campro_colorCurvesSwitcher', 'rs_campro_colorcurvesr': 'RS_campro_colorCurvesR', 'rs_campro_colorcurvesg': 'RS_campro_colorCurvesG', 'rs_campro_colorcurvesb': 'RS_campro_colorCurvesB', 'rs_campro_colorcurvesrgb': 'RS_campro_colorCurvesRGB', 'rs_campro_bloomswitcher': 'RS_campro_bloomSwitcher', 'rs_campro_bloomenable': 'RS_campro_bloomEnable', 'rs_campro_bloomthreshold': 'RS_campro_bloomThreshold', 'rs_campro_bloomsoftness': 'RS_campro_bloomSoftness', 'rs_campro_bloomintensity': 'RS_campro_bloomIntensity', 'rs_campro_bloomtintswicther': 'RS_campro_bloomTintSwicther', 'rs_campro_bloomtint1r': 'RS_campro_bloomTint1r', 'rs_campro_bloomtint1g': 'RS_campro_bloomTint1g', 'rs_campro_bloomtint1b': 'RS_campro_bloomTint1b', 'rs_campro_bloomtint2r': 'RS_campro_bloomTint2r', 'rs_campro_bloomtint2g': 'RS_campro_bloomTint2g', 'rs_campro_bloomtint2b': 'RS_campro_bloomTint2b', 'rs_campro_bloomtint3r': 'RS_campro_bloomTint3r', 'rs_campro_bloomtint3g': 'RS_campro_bloomTint3g', 'rs_campro_bloomtint3b': 'RS_campro_bloomTint3b', 'rs_campro_bloomtint4r': 'RS_campro_bloomTint4r', 'rs_campro_bloomtint4g': 'RS_campro_bloomTint4g', 'rs_campro_bloomtint4b': 'RS_campro_bloomTint4b', 'rs_campro_bloomtint5r': 'RS_campro_bloomTint5r', 'rs_campro_bloomtint5g': 'RS_campro_bloomTint5g', 'rs_campro_bloomtint5b': 'RS_campro_bloomTint5b', 'rs_campro_flareswitcher': 'RS_campro_flareSwitcher', 'rs_campro_flareenable': 'RS_campro_flareEnable', 'rs_campro_flarethreshold': 'RS_campro_flareThreshold', 'rs_campro_flaresoftness': 'RS_campro_flareSoftness', 'rs_campro_flarechromatic': 'RS_campro_flareChromatic', 'rs_campro_flaresize': 'RS_campro_flareSize', 'rs_campro_flarehalo': 'RS_campro_flareHalo', 'rs_campro_flareintensity': 'RS_campro_flareIntensity', 'rs_campro_flaretintswitcher': 'RS_campro_flareTintSwitcher', 'rs_campro_flaretint1r': 'RS_campro_flareTint1r', 'rs_campro_flaretint1g': 'RS_campro_flareTint1g', 'rs_campro_flaretint1b': 'RS_campro_flareTint1b', 'rs_campro_flaretint2r': 'RS_campro_flareTint2r', 'rs_campro_flaretint2g': 'RS_campro_flareTint2g', 'rs_campro_flaretint2b': 'RS_campro_flareTint2b', 'rs_campro_flaretint3r': 'RS_campro_flareTint3r', 'rs_campro_flaretint3g': 'RS_campro_flareTint3g', 'rs_campro_flaretint3b': 'RS_campro_flareTint3b', 'rs_campro_flaretint4r': 'RS_campro_flareTint4r', 'rs_campro_flaretint4g': 'RS_campro_flareTint4g', 'rs_campro_flaretint4b': 'RS_campro_flareTint4b', 'rs_campro_flaretint5r': 'RS_campro_flareTint5r', 'rs_campro_flaretint5g': 'RS_campro_flareTint5g', 'rs_campro_flaretint5b': 'RS_campro_flareTint5b', 'rs_campro_flaretint6r': 'RS_campro_flareTint6r', 'rs_campro_flaretint6g': 'RS_campro_flareTint6g', 'rs_campro_flaretint6b': 'RS_campro_flareTint6b', 'rs_campro_streakswitcher': 'RS_campro_streakSwitcher', 'rs_campro_streakenable': 'RS_campro_streakEnable', 'rs_campro_streakthreshold': 'RS_campro_streakThreshold', 'rs_campro_streaktail': 'RS_campro_streakTail', 'rs_campro_streaksoftness': 'RS_campro_streakSoftness', 'rs_campro_streaknumber': 'RS_campro_streakNumber', 'rs_campro_streakangle': 'RS_campro_streakAngle', 'rs_campro_streakintensity': 'RS_campro_streakIntensity', 'rs_campro_label6': 'RS_campro_label6', 'rs_campro_distortionenable': 'RS_campro_distortionEnable', 'rs_campro_distortionimage': 'RS_campro_distortionImage', 'rs_campro_last': 'RS_campro_last'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -220,6 +220,7 @@ class CamNode(OXNode):
         self.parm_projection = ProjectionMenu(parm=self.node.parm('projection'))
         self.parm_focalunits = FocalunitsMenu(parm=self.node.parm('focalunits'))
         self.parm_vm_background = VmBackgroundMenu(parm=self.node.parm('vm_background'))
+        self.parm_fgimage = FgimageMenu(parm=self.node.parm('fgimage'))
         self.parm_vm_bokeh = VmBokehMenu(parm=self.node.parm('vm_bokeh'))
         self.parm_vm_bokehfile = VmBokehfileMenu(parm=self.node.parm('vm_bokehfile'))
         self.parm_rs_campro_projection = RsCamproProjectionMenu(parm=self.node.parm('RS_campro_projection'))
@@ -241,273 +242,291 @@ class XordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_scale_rot_trans = 0
-        self.menu_scale_trans_rot = 1
-        self.menu_rot_scale_trans = 2
-        self.menu_rot_trans_scale = 3
-        self.menu_trans_scale_rot = 4
-        self.menu_trans_rot_scale = 5
+        self.menu_scale_rot_trans = "srt"
+        self.menu_scale_trans_rot = "str"
+        self.menu_rot_scale_trans = "rst"
+        self.menu_rot_trans_scale = "rts"
+        self.menu_trans_scale_rot = "tsr"
+        self.menu_trans_rot_scale = "trs"
 
 
 class RordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_rx_ry_rz = 0
-        self.menu_rx_rz_ry = 1
-        self.menu_ry_rx_rz = 2
-        self.menu_ry_rz_rx = 3
-        self.menu_rz_rx_ry = 4
-        self.menu_rz_ry_rx = 5
+        self.menu_rx_ry_rz = "xyz"
+        self.menu_rx_rz_ry = "xzy"
+        self.menu_ry_rx_rz = "yxz"
+        self.menu_ry_rz_rx = "yzx"
+        self.menu_rz_rx_ry = "zxy"
+        self.menu_rz_ry_rx = "zyx"
 
 
 class PreXformMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_clean_transform = 0
-        self.menu_clean_translates = 1
-        self.menu_clean_rotates = 2
-        self.menu_clean_scales = 3
-        self.menu_extract_pre_transform = 4
-        self.menu_reset_pre_transform = 5
+        self.menu_clean_transform = "clean"
+        self.menu_clean_translates = "cleantrans"
+        self.menu_clean_rotates = "cleanrot"
+        self.menu_clean_scales = "cleanscales"
+        self.menu_extract_pre_transform = "extract"
+        self.menu_reset_pre_transform = "reset"
 
 
 class LookupMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_don_t_use_up_vector = 0
-        self.menu_use_up_vector = 1
-        self.menu_use_quaternions = 2
-        self.menu_use_global_position = 3
-        self.menu_use_up_object = 4
+        self.menu_don_t_use_up_vector = "off"
+        self.menu_use_up_vector = "on"
+        self.menu_use_quaternions = "quat"
+        self.menu_use_global_position = "pos"
+        self.menu_use_up_object = "obj"
 
 
 class UparmtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_uniform = 0
-        self.menu_arc_length = 1
+        self.menu_uniform = "uniform"
+        self.menu_arc_length = "arc"
 
 
 class PickscriptMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__hip_my_first_tree_prox_rs = 0
-        self.menu_c__programdata_r____portra_800_cube = 1
-        self.menu__hip_grasses_grass_card_001_fbx = 2
-        self.menu_e__art_projects____rock_stone_sbsar = 3
-        self.menu_e__art_projects____mud_ground_sbsar = 4
-        self.menu_e__art_projects____u_sugi_ban_sbsar = 5
-        self.menu_e__art_projects_____facade_02_sbsar = 6
-        self.menu_e__art_projects____and_smooth_sbsar = 7
-        self.menu__hip_crystallize___ice_nugget_sbsar = 8
-        self.menu__hip_chromatic_glass_gradient_sbsar = 9
-        self.menu__hip_acid_etched_glass_rough_sbsar = 10
-        self.menu_e__art_projects____agon_tiles_sbsar = 11
+        self.menu__job_desktop_articulatcf_bold_otf = "$JOB/Desktop/ArticulatCF-Bold.otf"
+        self.menu__hip_desktop_articulatcf_bold_otf = "$HIP/Desktop/ArticulatCF-Bold.otf"
+        self.menu_e__art_products_ox_mtlx_hf_test_out = "E:/ART/PRODUCTS/OX-MTLX/hf_test_out"
+        self.menu_d__minecraft_sub___ded_copper_sbsar = "D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar"
+        self.menu_d__minecraft_sub___dirt_field_sbsar = "D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar"
+        self.menu_e__art_products____ers_rock_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_cpu.jpg"
+        self.menu_e__art_products____ers_rock_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_xpu.jpg"
+        self.menu_e__art_products____rs_quilt_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_xpu.jpg"
+        self.menu_e__art_products____rs_quilt_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_cpu.jpg"
+        self.menu_e__art_products____ers_lava_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg"
+        self.menu_e__art_products____ers_lava_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg"
+        self.menu_e__art_products____s_glazed_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg"
 
 
 class ResmenuMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_x_480_640 = 0
-        self.menu_hdtv_720 = 1
-        self.menu_hdtv_1080 = 2
-        self.menu_hdtv_2160__4k_ = 3
-        self.menu__________ = 4
-        self.menu_ntsc = 5
-        self.menu_ntsc_d1 = 6
-        self.menu_pal = 7
-        self.menu_pal_d1 = 8
-        self.menu_pal_16_9_anamorphic = 9
-        self.menu_pal_16_9__1_to_1_ = 10
-        self.menu__________ = 11
-        self.menu_full_ap_4k = 12
-        self.menu_full_ap_2k = 13
-        self.menu_acad_4k = 14
-        self.menu_acad_2k = 15
-        self.menu_scope_4k = 16
-        self.menu_scope_2k = 17
-        self.menu_vista_4k = 18
-        self.menu_vista_2k = 19
-        self.menu__________ = 20
-        self.menu__2_256 = 21
-        self.menu__2_512 = 22
-        self.menu__2_1024 = 23
-        self.menu__2_2048 = 24
-        self.menu__2_4096 = 25
-        self.menu__2_8192 = 26
+        self.menu_x_480_640 = "640 480 1"
+        self.menu_hdtv_720 = "1280 720 1"
+        self.menu_hdtv_1080 = "1920 1080 1"
+        self.menu_hdtv_2160__4k_ = "3840 2160 1"
+        self.menu__________ = "_separator_"
+        self.menu_ntsc = "640 486 1"
+        self.menu_ntsc_d1 = "720 486 0.9"
+        self.menu_pal = "768 576 1"
+        self.menu_pal_d1 = "720 576 1.067"
+        self.menu_pal_16_9_anamorphic = "720 576 1.422"
+        self.menu_pal_16_9__1_to_1_ = "1024 576 1"
+        self.menu__________ = "_separator_"
+        self.menu_full_ap_4k = "4096 3112 1"
+        self.menu_full_ap_2k = "2048 1556 1"
+        self.menu_acad_4k = "3656 2664 1"
+        self.menu_acad_2k = "1828 1332 1"
+        self.menu_scope_4k = "3656 3112 1"
+        self.menu_scope_2k = "1828 1556 1"
+        self.menu_vista_4k = "6144 4096 1"
+        self.menu_vista_2k = "3072 2048 1"
+        self.menu__________ = "_separator_"
+        self.menu__2_256 = "256 256 1"
+        self.menu__2_512 = "512 512 1"
+        self.menu__2_1024 = "1024 1024 1"
+        self.menu__2_2048 = "2048 2048 1"
+        self.menu__2_4096 = "4096 4096 1"
+        self.menu__2_8192 = "8192 8192 1"
 
 
 class ProjectionMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_perspective = 0
-        self.menu_orthographic = 1
-        self.menu_polar__panoramic_ = 2
-        self.menu_cylindrical__panoramic_ = 3
-        self.menu_lens_shader = 4
+        self.menu_perspective = "perspective"
+        self.menu_orthographic = "ortho"
+        self.menu_polar__panoramic_ = "sphere"
+        self.menu_cylindrical__panoramic_ = "cylinder"
+        self.menu_lens_shader = "lens"
 
 
 class FocalunitsMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_millimeters = 0
-        self.menu_meters = 1
-        self.menu_nanometers = 2
-        self.menu_inches = 3
-        self.menu_feet = 4
+        self.menu_millimeters = "mm"
+        self.menu_meters = "m"
+        self.menu_nanometers = "nm"
+        self.menu_inches = "in"
+        self.menu_feet = "ft"
 
 
 class VmBackgroundMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_e__art_projects____anga_veld_4k_exr = 0
-        self.menu_e__art_3d_00_my____ring_opacity_png = 1
-        self.menu_e__art_projects____ly_cloudy_4k_exr = 2
-        self.menu_e__art_projects_____1d_clear_4k_exr = 3
-        self.menu_op__opfullpath______gen_displace___ = 4
-        self.menu_op__opfullpath__________ocean_s____ = 5
-        self.menu_op__opfullpath_____ean_interior____ = 6
-        self.menu_e__art_3d_eucaly___ark_3_height_png = 7
-        self.menu_e__art_projects____quarry_02_4k_exr = 8
-        self.menu_e__art_projects____a_sunrise_4k_exr = 9
-        self.menu_e__art_projects____in_cellar_4k_exr = 10
-        self.menu_e__art_projects____oon_grass_4k_exr = 11
+        self.menu_e__art_projects____a_sunrise_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr"
+        self.menu_e__art_projects____anga_veld_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr"
+        self.menu_e__art_projects____s_on_fire_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr"
+        self.menu_e__art_projects____ly_cloudy_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr"
+        self.menu_e__art_projects____enheim_05_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr"
+        self.menu_e__art_projects____quarry_02_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr"
+        self.menu_e__art_projects_____1d_clear_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr"
+        self.menu_e__art_projects____oon_grass_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr"
+        self.menu_e__art_projects____in_cellar_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr"
+        self.menu_e__art_products____ers_tip_mask_jpg = "E:/ART/PRODUCTS/OX-Terrain_Textuers/tip_mask.jpg"
+        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/multi_texture_folder/green_tiles/wall_tile_unstuck_basecolor.jpg"
+        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/glazed_terracotta/wall_tile_unstuck_basecolor.jpg"
+
+
+class FgimageMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__art_projects____a_sunrise_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr"
+        self.menu_e__art_projects____anga_veld_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr"
+        self.menu_e__art_projects____s_on_fire_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr"
+        self.menu_e__art_projects____ly_cloudy_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr"
+        self.menu_e__art_projects____enheim_05_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr"
+        self.menu_e__art_projects____quarry_02_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr"
+        self.menu_e__art_projects_____1d_clear_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr"
+        self.menu_e__art_projects____oon_grass_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr"
+        self.menu_e__art_projects____in_cellar_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr"
+        self.menu_e__art_products____ers_tip_mask_jpg = "E:/ART/PRODUCTS/OX-Terrain_Textuers/tip_mask.jpg"
+        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/multi_texture_folder/green_tiles/wall_tile_unstuck_basecolor.jpg"
+        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/glazed_terracotta/wall_tile_unstuck_basecolor.jpg"
 
 
 class VmBokehMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_radial_bokeh = 0
-        self.menu_image_file_bokeh = 1
-        self.menu_box_filter_bokeh = 2
-        self.menu_disable_bokeh = 3
+        self.menu_radial_bokeh = "radial"
+        self.menu_image_file_bokeh = "file"
+        self.menu_box_filter_bokeh = "box"
+        self.menu_disable_bokeh = "null"
 
 
 class VmBokehfileMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_e__art_projects____anga_veld_4k_exr = 0
-        self.menu_e__art_3d_00_my____ring_opacity_png = 1
-        self.menu_e__art_projects____ly_cloudy_4k_exr = 2
-        self.menu_e__art_projects_____1d_clear_4k_exr = 3
-        self.menu_op__opfullpath______gen_displace___ = 4
-        self.menu_op__opfullpath__________ocean_s____ = 5
-        self.menu_op__opfullpath_____ean_interior____ = 6
-        self.menu_e__art_3d_eucaly___ark_3_height_png = 7
-        self.menu_e__art_projects____quarry_02_4k_exr = 8
-        self.menu_e__art_projects____a_sunrise_4k_exr = 9
-        self.menu_e__art_projects____in_cellar_4k_exr = 10
-        self.menu_e__art_projects____oon_grass_4k_exr = 11
+        self.menu_e__art_projects____a_sunrise_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr"
+        self.menu_e__art_projects____anga_veld_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr"
+        self.menu_e__art_projects____s_on_fire_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr"
+        self.menu_e__art_projects____ly_cloudy_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr"
+        self.menu_e__art_projects____enheim_05_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr"
+        self.menu_e__art_projects____quarry_02_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr"
+        self.menu_e__art_projects_____1d_clear_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr"
+        self.menu_e__art_projects____oon_grass_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr"
+        self.menu_e__art_projects____in_cellar_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr"
+        self.menu_e__art_products____ers_tip_mask_jpg = "E:/ART/PRODUCTS/OX-Terrain_Textuers/tip_mask.jpg"
+        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/multi_texture_folder/green_tiles/wall_tile_unstuck_basecolor.jpg"
+        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/glazed_terracotta/wall_tile_unstuck_basecolor.jpg"
 
 
 class RsCamproProjectionMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_houdini_camera_projection = 0
-        self.menu_fisheye_projection = 1
-        self.menu_stereo_spherical_projection = 2
+        self.menu_houdini_camera_projection = "houdini_camera"
+        self.menu_fisheye_projection = "fisheye"
+        self.menu_stereo_spherical_projection = "stereo_spherical"
 
 
 class RsCamproStereomodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_side_by_side = 0
-        self.menu_top_botton = 1
-        self.menu_left_only = 2
-        self.menu_right_only = 3
+        self.menu_side_by_side = "side_by_side"
+        self.menu_top_botton = "top_botton"
+        self.menu_left_only = "left_only"
+        self.menu_right_only = "right_only"
 
 
 class RsCamproDofbokehnormMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_none = 0
-        self.menu_unit_intensity = 1
-        self.menu_white_color_sum = 2
+        self.menu_none = "1"
+        self.menu_unit_intensity = "2"
+        self.menu_white_color_sum = "3"
 
 
 class RsCamproDofbokehimageMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_e__art_projects____anga_veld_4k_exr = 0
-        self.menu_e__art_3d_00_my____ring_opacity_png = 1
-        self.menu_e__art_projects____ly_cloudy_4k_exr = 2
-        self.menu_e__art_projects_____1d_clear_4k_exr = 3
-        self.menu_op__opfullpath______gen_displace___ = 4
-        self.menu_op__opfullpath__________ocean_s____ = 5
-        self.menu_op__opfullpath_____ean_interior____ = 6
-        self.menu_e__art_3d_eucaly___ark_3_height_png = 7
-        self.menu_e__art_projects____quarry_02_4k_exr = 8
-        self.menu_e__art_projects____a_sunrise_4k_exr = 9
-        self.menu_e__art_projects____in_cellar_4k_exr = 10
-        self.menu_e__art_projects____oon_grass_4k_exr = 11
+        self.menu_e__art_projects____a_sunrise_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr"
+        self.menu_e__art_projects____anga_veld_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr"
+        self.menu_e__art_projects____s_on_fire_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr"
+        self.menu_e__art_projects____ly_cloudy_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr"
+        self.menu_e__art_projects____enheim_05_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr"
+        self.menu_e__art_projects____quarry_02_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr"
+        self.menu_e__art_projects_____1d_clear_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr"
+        self.menu_e__art_projects____oon_grass_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr"
+        self.menu_e__art_projects____in_cellar_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr"
+        self.menu_e__art_products____ers_tip_mask_jpg = "E:/ART/PRODUCTS/OX-Terrain_Textuers/tip_mask.jpg"
+        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/multi_texture_folder/green_tiles/wall_tile_unstuck_basecolor.jpg"
+        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/glazed_terracotta/wall_tile_unstuck_basecolor.jpg"
 
 
 class RsCamproOciodisplayMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_srgb = 0
+        self.menu_srgb = "sRGB"
 
 
 class RsCamproOcioviewMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_aces_1_0_sdr_video = 0
-        self.menu_un_tone_mapped = 1
-        self.menu_log = 2
-        self.menu_raw = 3
+        self.menu_aces_1_0_sdr_video = "ACES 1.0 SDR-video"
+        self.menu_un_tone_mapped = "Un-tone-mapped"
+        self.menu_log = "Log"
+        self.menu_raw = "Raw"
 
 
 class RsCamproLutfileMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__hip_my_first_tree_prox_rs = 0
-        self.menu_c__programdata_r____portra_800_cube = 1
-        self.menu__hip_grasses_grass_card_001_fbx = 2
-        self.menu_e__art_projects____rock_stone_sbsar = 3
-        self.menu_e__art_projects____mud_ground_sbsar = 4
-        self.menu_e__art_projects____u_sugi_ban_sbsar = 5
-        self.menu_e__art_projects_____facade_02_sbsar = 6
-        self.menu_e__art_projects____and_smooth_sbsar = 7
-        self.menu__hip_crystallize___ice_nugget_sbsar = 8
-        self.menu__hip_chromatic_glass_gradient_sbsar = 9
-        self.menu__hip_acid_etched_glass_rough_sbsar = 10
-        self.menu_e__art_projects____agon_tiles_sbsar = 11
+        self.menu__job_desktop_articulatcf_bold_otf = "$JOB/Desktop/ArticulatCF-Bold.otf"
+        self.menu__hip_desktop_articulatcf_bold_otf = "$HIP/Desktop/ArticulatCF-Bold.otf"
+        self.menu_e__art_products_ox_mtlx_hf_test_out = "E:/ART/PRODUCTS/OX-MTLX/hf_test_out"
+        self.menu_d__minecraft_sub___ded_copper_sbsar = "D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar"
+        self.menu_d__minecraft_sub___dirt_field_sbsar = "D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar"
+        self.menu_e__art_products____ers_rock_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_cpu.jpg"
+        self.menu_e__art_products____ers_rock_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_xpu.jpg"
+        self.menu_e__art_products____rs_quilt_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_xpu.jpg"
+        self.menu_e__art_products____rs_quilt_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_cpu.jpg"
+        self.menu_e__art_products____ers_lava_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg"
+        self.menu_e__art_products____ers_lava_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg"
+        self.menu_e__art_products____s_glazed_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg"
 
 
 class RsCamproDistortionimageMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_e__art_projects____anga_veld_4k_exr = 0
-        self.menu_e__art_3d_00_my____ring_opacity_png = 1
-        self.menu_e__art_projects____ly_cloudy_4k_exr = 2
-        self.menu_e__art_projects_____1d_clear_4k_exr = 3
-        self.menu_op__opfullpath______gen_displace___ = 4
-        self.menu_op__opfullpath__________ocean_s____ = 5
-        self.menu_op__opfullpath_____ean_interior____ = 6
-        self.menu_e__art_3d_eucaly___ark_3_height_png = 7
-        self.menu_e__art_projects____quarry_02_4k_exr = 8
-        self.menu_e__art_projects____a_sunrise_4k_exr = 9
-        self.menu_e__art_projects____in_cellar_4k_exr = 10
-        self.menu_e__art_projects____oon_grass_4k_exr = 11
+        self.menu_e__art_projects____a_sunrise_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr"
+        self.menu_e__art_projects____anga_veld_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr"
+        self.menu_e__art_projects____s_on_fire_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr"
+        self.menu_e__art_projects____ly_cloudy_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr"
+        self.menu_e__art_projects____enheim_05_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr"
+        self.menu_e__art_projects____quarry_02_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr"
+        self.menu_e__art_projects_____1d_clear_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr"
+        self.menu_e__art_projects____oon_grass_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr"
+        self.menu_e__art_projects____in_cellar_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr"
+        self.menu_e__art_products____ers_tip_mask_jpg = "E:/ART/PRODUCTS/OX-Terrain_Textuers/tip_mask.jpg"
+        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/multi_texture_folder/green_tiles/wall_tile_unstuck_basecolor.jpg"
+        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/glazed_terracotta/wall_tile_unstuck_basecolor.jpg"
 
 
 

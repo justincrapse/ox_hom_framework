@@ -138,17 +138,7 @@ class SignatureMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_float = 'default'
-        self.menu_color = 'color3'
-        self.menu_color__fa_ = 'color3FA'
-        self.menu_color_4 = 'color4'
-        self.menu_color_4__fa_ = 'color4FA'
-        self.menu_vector_2 = 'vector2'
-        self.menu_vector_2__fa_ = 'vector2FA'
-        self.menu_vector_3 = 'vector3'
-        self.menu_vector_3__fa_ = 'vector3FA'
-        self.menu_vector_4 = 'vector4'
-        self.menu_vector_4__fa_ = 'vector4FA'
+        self.menu_float = "default"
 
 
 

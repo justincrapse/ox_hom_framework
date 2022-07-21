@@ -6,7 +6,7 @@ from ox.base_objects.menu import Menu
 
 class UnpackNode(OXNode):
     node_type = 'unpack'
-    parm_lookup_dict = {'group': 'group', 'limit_iterations': 'limit_iterations', 'iterations': 'iterations', 'detail_attributes': 'detail_attributes', 'transfer_attributes': 'transfer_attributes', 'transfer_groups': 'transfer_groups', 'apply_style_sheets': 'apply_style_sheets', 'scene_style_sheet': 'scene_style_sheet', 'obj_style_sheet': 'obj_style_sheet'}
+    parm_lookup_dict = {'group': 'group', 'limit_iterations': 'limit_iterations', 'iterations': 'iterations', 'detail_attributes': 'detail_attributes', 'transfer_attributes': 'transfer_attributes', 'transfer_groups': 'transfer_groups', 'apply_style_sheets': 'apply_style_sheets', 'scene_style_sheet': 'scene_style_sheet', 'obj_style_sheet': 'obj_style_sheet', 'dotransform': 'dotransform'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -26,6 +26,7 @@ class UnpackNode(OXNode):
         self.parm_apply_style_sheets = Parameter(parm=self.node.parm('apply_style_sheets'))
         self.parm_scene_style_sheet = Parameter(parm=self.node.parm('scene_style_sheet'))
         self.parm_obj_style_sheet = Parameter(parm=self.node.parm('obj_style_sheet'))
+        self.parm_dotransform = Parameter(parm=self.node.parm('dotransform'))
 
         
         # parm menu vars:
@@ -41,10 +42,10 @@ class DetailAttributesMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_promotion = 0
-        self.menu_promote_to_primitive_attributes = 1
-        self.menu_promote_to_point_attributes = 2
-        self.menu_promote_to_vertex_attributes = 3
+        self.menu_no_promotion = "detail"
+        self.menu_promote_to_primitive_attributes = "primitive"
+        self.menu_promote_to_point_attributes = "point"
+        self.menu_promote_to_vertex_attributes = "vertex"
 
 
 

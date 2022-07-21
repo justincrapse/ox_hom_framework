@@ -71,27 +71,27 @@ class GeneratebyMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_by_density = 0
-        self.menu_count_per_primitive = 1
-        self.menu_in_texture_space = 2
+        self.menu_by_density = "bydensity"
+        self.menu_count_per_primitive = "countperprimitive"
+        self.menu_in_texture_space = "texturespace"
 
 
 class DensitytextureMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__hip_my_first_tree_prox_rs = 0
-        self.menu_c__programdata_r____portra_800_cube = 1
-        self.menu__hip_grasses_grass_card_001_fbx = 2
-        self.menu_e__art_projects____rock_stone_sbsar = 3
-        self.menu_e__art_projects____mud_ground_sbsar = 4
-        self.menu_e__art_projects____u_sugi_ban_sbsar = 5
-        self.menu_e__art_projects_____facade_02_sbsar = 6
-        self.menu_e__art_projects____and_smooth_sbsar = 7
-        self.menu__hip_crystallize___ice_nugget_sbsar = 8
-        self.menu__hip_chromatic_glass_gradient_sbsar = 9
-        self.menu__hip_acid_etched_glass_rough_sbsar = 10
-        self.menu_e__art_projects____agon_tiles_sbsar = 11
+        self.menu__job_desktop_articulatcf_bold_otf = "$JOB/Desktop/ArticulatCF-Bold.otf"
+        self.menu__hip_desktop_articulatcf_bold_otf = "$HIP/Desktop/ArticulatCF-Bold.otf"
+        self.menu_e__art_products_ox_mtlx_hf_test_out = "E:/ART/PRODUCTS/OX-MTLX/hf_test_out"
+        self.menu_d__minecraft_sub___ded_copper_sbsar = "D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar"
+        self.menu_d__minecraft_sub___dirt_field_sbsar = "D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar"
+        self.menu_e__art_products____ers_rock_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_cpu.jpg"
+        self.menu_e__art_products____ers_rock_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_xpu.jpg"
+        self.menu_e__art_products____rs_quilt_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_xpu.jpg"
+        self.menu_e__art_products____rs_quilt_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_cpu.jpg"
+        self.menu_e__art_products____ers_lava_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg"
+        self.menu_e__art_products____ers_lava_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg"
+        self.menu_e__art_products____s_glazed_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg"
 
 
 

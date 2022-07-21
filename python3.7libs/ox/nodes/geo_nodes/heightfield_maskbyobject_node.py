@@ -50,52 +50,52 @@ class CombineMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_replace = 0
-        self.menu_add = 1
-        self.menu_subtract = 2
-        self.menu_difference = 3
-        self.menu_multiply = 4
-        self.menu_maximum = 5
-        self.menu_minimum = 6
-        self.menu_blend = 7
+        self.menu_replace = "replace"
+        self.menu_add = "add"
+        self.menu_subtract = "subtract"
+        self.menu_difference = "diff"
+        self.menu_multiply = "multiply"
+        self.menu_maximum = "max"
+        self.menu_minimum = "min"
+        self.menu_blend = "blend"
 
 
 class MethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_project = 0
-        self.menu_fog_volume = 1
-        self.menu_sdf_volume = 2
+        self.menu_project = "ray"
+        self.menu_fog_volume = "volume"
+        self.menu_sdf_volume = "sdf"
 
 
 class MaskdirMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_either_side = 0
-        self.menu_above_heightfield = 1
-        self.menu_below_heightfield = 2
+        self.menu_either_side = "both"
+        self.menu_above_heightfield = "above"
+        self.menu_below_heightfield = "below"
 
 
 class BlurmethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_blur = 0
-        self.menu_box_blur = 1
-        self.menu_expand = 2
-        self.menu_shrink = 3
+        self.menu_blur = "blur"
+        self.menu_box_blur = "boxblur"
+        self.menu_expand = "expand"
+        self.menu_shrink = "shrink"
 
 
 class JittercombineMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_average = 0
-        self.menu_median = 1
-        self.menu_shortest = 2
-        self.menu_longest = 3
+        self.menu_average = "avg"
+        self.menu_median = "median"
+        self.menu_shortest = "min"
+        self.menu_longest = "max"
 
 
 

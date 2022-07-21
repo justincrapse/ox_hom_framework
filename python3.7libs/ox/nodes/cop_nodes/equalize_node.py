@@ -61,93 +61,93 @@ class OpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_stretch_range_to_black_white = 'histogram'
-        self.menu_move_minimum_value_to_black = 'histblack'
-        self.menu_move_maximum_value_to_white = 'histwhite'
-        self.menu_move_average_luminance = 'average'
-        self.menu_equalize_luminance_across_frames = 'equalize'
+        self.menu_stretch_range_to_black_white = "histogram"
+        self.menu_move_minimum_value_to_black = "histblack"
+        self.menu_move_maximum_value_to_white = "histwhite"
+        self.menu_move_average_luminance = "average"
+        self.menu_equalize_luminance_across_frames = "equalize"
 
 
 class FitMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_scale_to_fit = 'scale'
-        self.menu_shift_to_fit = 'shift'
+        self.menu_scale_to_fit = "scale"
+        self.menu_shift_to_fit = "shift"
 
 
 class LumMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_luminance = 'lum'
-        self.menu_ntsc_luminance = 'ntsclum'
-        self.menu_max_component = 'max'
-        self.menu_min_component = 'min'
-        self.menu_average = 'average'
-        self.menu_red = 'r'
-        self.menu_green = 'g'
-        self.menu_blue = 'b'
-        self.menu_fourth_component = 'c4'
+        self.menu_luminance = "lum"
+        self.menu_ntsc_luminance = "ntsclum"
+        self.menu_max_component = "max"
+        self.menu_min_component = "min"
+        self.menu_average = "average"
+        self.menu_red = "r"
+        self.menu_green = "g"
+        self.menu_blue = "b"
+        self.menu_fourth_component = "c4"
 
 
 class MaskinputMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_first_input = 'first'
-        self.menu_mask_input = 'mask'
-        self.menu_off = 'off'
+        self.menu_first_input = "first"
+        self.menu_mask_input = "mask"
+        self.menu_off = "off"
 
 
 class MaskplaneMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_mask_input = 'none'
+        self.menu_no_mask_input = "none"
 
 
 class PscopeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__ = '*'
+        self.menu__ = "*"
 
 
 class FscopeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_all_frames = 'all'
-        self.menu_inside_range = 'inside'
-        self.menu_outside_range = 'outside'
-        self.menu_even_frames = 'even'
-        self.menu_odd_frames = 'odd'
-        self.menu_specific_frames = 'specific'
+        self.menu_all_frames = "all"
+        self.menu_inside_range = "inside"
+        self.menu_outside_range = "outside"
+        self.menu_even_frames = "even"
+        self.menu_odd_frames = "odd"
+        self.menu_specific_frames = "specific"
 
 
 class FdropfuncMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_linear = 'linear'
-        self.menu_ease_in = 'easein'
-        self.menu_ease_out = 'easeout'
-        self.menu_ease_in_ease_out = 'easeinout'
+        self.menu_linear = "linear"
+        self.menu_ease_in = "easein"
+        self.menu_ease_out = "easeout"
+        self.menu_ease_in_ease_out = "easeinout"
 
 
 class FmenuMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_scope_all_frames = 'scopeall'
-        self.menu_scope_current_frame = 'scopecur'
-        self.menu_scope_from_start_to_current = 'scopetocur'
-        self.menu_scope_from_current_to_end = 'scopefromcur'
-        self.menu_unscope_all_frames = 'unscopeall'
-        self.menu_unscope_current_frame = 'unscopecur'
-        self.menu_unscope_from_start_to_current = 'unscopetocur'
-        self.menu_unscope_from_current_to_end = 'unscopefromcur'
+        self.menu_scope_all_frames = "scopeall"
+        self.menu_scope_current_frame = "scopecur"
+        self.menu_scope_from_start_to_current = "scopetocur"
+        self.menu_scope_from_current_to_end = "scopefromcur"
+        self.menu_unscope_all_frames = "unscopeall"
+        self.menu_unscope_current_frame = "unscopecur"
+        self.menu_unscope_from_start_to_current = "unscopetocur"
+        self.menu_unscope_from_current_to_end = "unscopefromcur"
 
 
 

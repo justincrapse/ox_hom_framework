@@ -45,9 +45,10 @@ class ParmTemplate:
         ox_logger.debug(f'Getting all parm templates for "{self.node.name()}" parmTemplates: {parm_templates}')
         return parm_templates
 
-    def add_parm_template(self, parm_template, folder_label=None, as_first=False, insert_after_parm=None, insert_before_parm=None):
+    def add_parm_template(self, parm_template, folder_label=None, as_first=False, insert_after_parm=None, insert_before_parm=None) -> hou.Parm:
         """if folder_label is specified, as_first, insert_after_parm, and insert_before_parm are not relavant as those will dictate which
         folder a parm template is added to."""
+        parm_template: hou.ParmTemplate
         if folder_label:
             self.__create_folder_if_not_exist(folder_label=folder_label)
             folder = self.parm_template_group.findFolder(folder_label)
@@ -68,6 +69,8 @@ class ParmTemplate:
         else:
             self.parm_template_group.append(parm_template)
         self.__save_template_group()
+        new_parm = self.node.parm(parm_template.name())
+        return new_parm
 
     def remove_parm_template_by_name(self, parm_name):
         result = self.parm_template_group.remove(parm_name)

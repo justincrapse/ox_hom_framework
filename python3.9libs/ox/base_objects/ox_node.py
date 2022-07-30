@@ -144,10 +144,7 @@ class OXNode(ParmTemplate):  # mixins
         return children_node_list
 
     def get_child_nodes_by_type(self, node_type, expect_match=True):
-        matching_nodes = []
-        for child in self.get_children_nodes():
-            if child.type().name() == node_type:
-                matching_nodes.append()
+        matching_nodes = [i for i in self.get_children_nodes() if i.type().name() == node_type]
         if not matching_nodes and expect_match:
             raise ValueError(f'Expected child node of type "{node_type}" but no matches were found')
         return matching_nodes

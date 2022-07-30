@@ -28,7 +28,7 @@ class NetworkBox:
             raise ValueError(f'Node type "{node_type}" not found in network box "{self.name}"')
         if matching_nodes and len(matching_nodes) == 1:
             return matching_nodes[0]
-        else:
+        elif len(matching_nodes) > 1:
             raise ValueError(f'Multiple nodes found for type "{node_type}": {matching_nodes}\n Did you mean to use "get_network_nodes_by_type?"')
 
     def get_network_nodes_by_type(self, node_type, raise_value_error=True) -> List[hou.Node]:

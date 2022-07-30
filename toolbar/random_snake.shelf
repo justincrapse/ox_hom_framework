@@ -92,21 +92,15 @@ copy2points_node.node.setRenderFlag(on=True)
 from ox.base_objects.ox_node import OXNode
 from ox.utils.gen_classes import gen_node_classes
 
-obj_node = hou.node('/obj')
+obj_node = hou.node("/obj")
 hh_obj_node = OXNode(node=obj_node)
 selected_nodes = hou.selectedNodes()
 
-node_folder_list = [
-    'obj_nodes',
-    'geo_nodes',
-    'matnet_nodes',
-    'redshift_nodes',
-    'cop_nodes'
-]
+node_folder_list = ["obj_nodes", "geo_nodes", "matnet_nodes", "redshift_nodes", "cop_nodes"]
 node_selected = hou.ui.selectFromList(node_folder_list)
 node_context = node_folder_list[node_selected[0]]
 for node in selected_nodes:
-    gen_node_classes.generate_node_class(node=node, sub_dir=node_context, debug=True)
+    gen_node_classes.generate_node_class(node=node, sub_dir=node_context)
 ]]></script>
   </tool>
 </shelfDocument>

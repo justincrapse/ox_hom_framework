@@ -210,11 +210,11 @@ class ParmTemplate:
         new_parm_template = hou.RampParmTemplate(name=name, label=label, ramp_parm_type=ramp_parm_type, **kwargs)
         return new_parm_template
 
-    def add_separator_parameter(self, name, **kwargs):
+    def create_separator_parm_template(self, name, **kwargs):
         new_parm_template = hou.SeparatorParmTemplate(name=name, **kwargs)
         return new_parm_template
 
-    def add_operator_path_parameter(self, name, label=None, num_components=1, **kwargs):
+    def create_operator_parm_template(self, name, label=None, num_components=1, **kwargs):
         label = label if label else name.replace(" ", "_")
         new_parm_template = hou.StringParmTemplate(
             name=name,

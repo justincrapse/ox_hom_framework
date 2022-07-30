@@ -5,7 +5,6 @@ in the child class (that represents a houdini node.) Avoid adding attributes to 
 they are not evaluated in the same manner. If there is overlap with this skip list and a parameter attribute that you want to change, a message
 will let the coder know that there is an overlap and that this particular attribute will have to be set using the hou module.
 """
-from multiprocessing.sharedctypes import Value
 import re
 import logging
 from typing import List

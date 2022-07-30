@@ -39,4 +39,4 @@ class CTRLHelper:
         elif parm_type == pt_types.RAMP:
             self.parm_ctrl_node.create_ramp_parm_template(name=name, label=label, folder_label=folder_label, **kwargs)
         elif parm_type == pt_types.SEPARATOR:
-            self.parm_ctrl_node.add_separator_parameter(name=name, label=label, folder_label=folder_label, **kwargs)
+            self.parm_ctrl_node.create_separator_parm_template(name=name, label=label, folder_label=folder_label, **kwargs)

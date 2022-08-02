@@ -18,6 +18,7 @@ class FileNode(OXNode):
         super().__init__(node=self.node)
         
         # parm vars:
+        self.parm_file = Parameter(parm=self.node.parm('file'))
         self.parm_reload = Parameter(parm=self.node.parm('reload'))
         self.parm_objpattern = Parameter(parm=self.node.parm('objpattern'))
         self.parm_geodatapath = Parameter(parm=self.node.parm('geodatapath'))
@@ -34,7 +35,6 @@ class FileNode(OXNode):
         
         # parm menu vars:
         self.parm_filemode = FilemodeMenu(parm=self.node.parm('filemode'))
-        self.parm_file = FileMenu(parm=self.node.parm('file'))
         self.parm_missingframe = MissingframeMenu(parm=self.node.parm('missingframe'))
         self.parm_loadtype = LoadtypeMenu(parm=self.node.parm('loadtype'))
         self.parm_packedviewedit = PackedvieweditMenu(parm=self.node.parm('packedviewedit'))
@@ -55,13 +55,6 @@ class FilemodeMenu(Menu):
         self.menu_read_files = "read"
         self.menu_write_files = "write"
         self.menu_no_operation = "none"
-
-
-class FileMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu_e__art_products_____fx_logo_july_ai = "E:/ART/PRODUCTS/ox_fx/logo/ox_fx_logo_july.ai"
 
 
 class MissingframeMenu(Menu):

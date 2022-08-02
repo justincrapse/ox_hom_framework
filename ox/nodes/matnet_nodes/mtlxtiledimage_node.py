@@ -6,7 +6,7 @@ from ox.base_objects.menu import Menu
 
 class MtlxtiledimageNode(OXNode):
     node_type = 'mtlxtiledimage'
-    parm_lookup_dict = {'signature': 'signature', 'filecolorspace': 'filecolorspace', 'file': 'file', 'default': 'default', 'texcoordx': 'texcoordx', 'texcoordy': 'texcoordy', 'uvtilingx': 'uvtilingx', 'uvtilingy': 'uvtilingy', 'uvoffsetx': 'uvoffsetx', 'uvoffsety': 'uvoffsety', 'realworldimagesizex': 'realworldimagesizex', 'realworldimagesizey': 'realworldimagesizey', 'realworldtilesizex': 'realworldtilesizex', 'realworldtilesizey': 'realworldtilesizey', 'filtertype': 'filtertype', 'framerange': 'framerange', 'frameoffset': 'frameoffset', 'frameendaction': 'frameendaction', 'default_color3r': 'default_color3r', 'default_color3g': 'default_color3g', 'default_color3b': 'default_color3b', 'default_color4r': 'default_color4r', 'default_color4g': 'default_color4g', 'default_color4b': 'default_color4b', 'default_color4a': 'default_color4a', 'default_vector2x': 'default_vector2x', 'default_vector2y': 'default_vector2y', 'default_vector3x': 'default_vector3x', 'default_vector3y': 'default_vector3y', 'default_vector3z': 'default_vector3z', 'default_vector4x': 'default_vector4x', 'default_vector4y': 'default_vector4y', 'default_vector4z': 'default_vector4z', 'default_vector4w': 'default_vector4w'}
+    parm_lookup_dict = {'signature': 'signature', 'file': 'file', 'filecolorspace': 'filecolorspace', 'default': 'default', 'texcoordx': 'texcoordx', 'texcoordy': 'texcoordy', 'uvtilingx': 'uvtilingx', 'uvtilingy': 'uvtilingy', 'uvoffsetx': 'uvoffsetx', 'uvoffsety': 'uvoffsety', 'realworldimagesizex': 'realworldimagesizex', 'realworldimagesizey': 'realworldimagesizey', 'realworldtilesizex': 'realworldtilesizex', 'realworldtilesizey': 'realworldtilesizey', 'filtertype': 'filtertype', 'framerange': 'framerange', 'frameoffset': 'frameoffset', 'frameendaction': 'frameendaction', 'default_color3r': 'default_color3r', 'default_color3g': 'default_color3g', 'default_color3b': 'default_color3b', 'default_color4r': 'default_color4r', 'default_color4g': 'default_color4g', 'default_color4b': 'default_color4b', 'default_color4a': 'default_color4a', 'default_vector2x': 'default_vector2x', 'default_vector2y': 'default_vector2y', 'default_vector3x': 'default_vector3x', 'default_vector3y': 'default_vector3y', 'default_vector3z': 'default_vector3z', 'default_vector4x': 'default_vector4x', 'default_vector4y': 'default_vector4y', 'default_vector4z': 'default_vector4z', 'default_vector4w': 'default_vector4w'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -18,6 +18,7 @@ class MtlxtiledimageNode(OXNode):
         super().__init__(node=self.node)
         
         # parm vars:
+        self.parm_file = Parameter(parm=self.node.parm('file'))
         self.parm_default = Parameter(parm=self.node.parm('default'))
         self.parm_texcoordx = Parameter(parm=self.node.parm('texcoordx'))
         self.parm_texcoordy = Parameter(parm=self.node.parm('texcoordy'))
@@ -52,7 +53,6 @@ class MtlxtiledimageNode(OXNode):
         # parm menu vars:
         self.parm_signature = SignatureMenu(parm=self.node.parm('signature'))
         self.parm_filecolorspace = FilecolorspaceMenu(parm=self.node.parm('filecolorspace'))
-        self.parm_file = FileMenu(parm=self.node.parm('file'))
         self.parm_filtertype = FiltertypeMenu(parm=self.node.parm('filtertype'))
         self.parm_frameendaction = FrameendactionMenu(parm=self.node.parm('frameendaction'))
 
@@ -85,24 +85,6 @@ class FilecolorspaceMenu(Menu):
         super().__init__(parm=parm)
         self.menu_linear___rec_709 = "lin_rec709"
         self.menu_linear_texture___srgb = "srgb_texture"
-
-
-class FileMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu_e__art_projects____a_sunrise_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr"
-        self.menu_e__art_projects____anga_veld_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr"
-        self.menu_e__art_projects____s_on_fire_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr"
-        self.menu_e__art_projects____ly_cloudy_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr"
-        self.menu_e__art_projects____enheim_05_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr"
-        self.menu_e__art_projects____quarry_02_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr"
-        self.menu_e__art_projects_____1d_clear_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr"
-        self.menu_e__art_projects____oon_grass_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr"
-        self.menu_e__art_projects____in_cellar_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr"
-        self.menu_e__art_products____ers_tip_mask_jpg = "E:/ART/PRODUCTS/OX-Terrain_Textuers/tip_mask.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/multi_texture_folder/green_tiles/wall_tile_unstuck_basecolor.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/glazed_terracotta/wall_tile_unstuck_basecolor.jpg"
 
 
 class FiltertypeMenu(Menu):

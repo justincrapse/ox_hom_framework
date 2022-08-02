@@ -4,9 +4,9 @@ from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class CollectNode(OXNode):
-    node_type = 'collect'
-    parm_lookup_dict = {'inputnum': 'inputnum', 'inputname1': 'inputname1', 'inputlabel1': 'inputlabel1'}
+class RedshiftMaterialNode(OXNode):
+    node_type = 'redshift_material'
+    parm_lookup_dict = {'rs_matprop_id': 'RS_matprop_ID'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -18,17 +18,20 @@ class CollectNode(OXNode):
         super().__init__(node=self.node)
         
         # parm vars:
-        self.parm_inputnum = Parameter(parm=self.node.parm('inputnum'))
-        self.parm_inputname1 = Parameter(parm=self.node.parm('inputname1'))
-        self.parm_inputlabel1 = Parameter(parm=self.node.parm('inputlabel1'))
+        self.parm_rs_matprop_id = Parameter(parm=self.node.parm('RS_matprop_ID'))
 
         
         # parm menu vars:
 
 
         # input vars:
-        self.input_input_1 = 'Input 1'
-        self.input_input_2 = 'Input 2'
+        self.input_surface = 'Surface'
+        self.input_displacement = 'Displacement'
+        self.input_bump_map = 'Bump Map'
+        self.input_environment = 'Environment'
+        self.input_volume = 'Volume'
+        self.input_shadow = 'Shadow'
+        self.input_photon = 'Photon'
 
 
 # parm menu classes:

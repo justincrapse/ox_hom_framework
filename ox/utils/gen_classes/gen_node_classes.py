@@ -15,11 +15,11 @@ nodes_path = current_path.parent.parent.joinpath("nodes")
 
 
 def get_parm_menu_labels(parm):
-    ox_logger.info(f"getting menu labels for: {parm}")
+    ox_logger.debug(f"getting menu labels for: {parm}")
     try:
         return parm.menuLabels()
     except Exception as e:
-        ox_logger.info(e)
+        ox_logger.debug(e)
 
 
 def generate_node_class(node, sub_dir):
@@ -28,7 +28,7 @@ def generate_node_class(node, sub_dir):
 
     # parms:
     parms_list = [i.name() for i in node.parms()]
-    ox_logger.info(f"parms names list: {parms_list}")
+    ox_logger.debug(f"parms names list: {parms_list}")
     parm_vars_list = [data_lover.get_str_as_py_var(i) for i in parms_list]
     parm_no_menu_list = [i for i in parms_list if not get_parm_menu_labels(node.parm(i))]
     parm_vars_no_menu_list = [data_lover.get_str_as_py_var(i) for i in parm_no_menu_list]
@@ -95,7 +95,7 @@ class {class_name}(OXNode):
         "\t", "    "
     )
     with open(full_file_path, "w") as file:
-        ox_logger.info(f"writing file: {full_file_path}")
+        ox_logger.debug(f"writing file: {full_file_path}")
         file.write(class_string)
 
     import_line = f"from .{file_name_node} import {class_name}"
@@ -105,5 +105,5 @@ class {class_name}(OXNode):
             if import_line in line:
                 break
         else:  # not found, we are at the eof
-            ox_logger.info(f"registering node in file: {init_file_path}")
+            ox_logger.debug(f"registering node in file: {init_file_path}")
             file.write(f"\n{import_line}")  # append missing data

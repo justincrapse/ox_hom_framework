@@ -6,7 +6,7 @@ from ox.base_objects.menu import Menu
 
 class MtlxstandardSurfaceNode(OXNode):
     node_type = 'mtlxstandard_surface'
-    parm_lookup_dict = {'folder01': 'folder01', 'base': 'base', 'base_colorr': 'base_colorr', 'base_colorg': 'base_colorg', 'base_colorb': 'base_colorb', 'diffuse_roughness': 'diffuse_roughness', 'metalness': 'metalness', 'specular': 'specular', 'specular_colorr': 'specular_colorr', 'specular_colorg': 'specular_colorg', 'specular_colorb': 'specular_colorb', 'specular_roughness': 'specular_roughness', 'specular_ior': 'specular_IOR', 'specular_anisotropy': 'specular_anisotropy', 'specular_rotation': 'specular_rotation', 'transmission': 'transmission', 'transmission_colorr': 'transmission_colorr', 'transmission_colorg': 'transmission_colorg', 'transmission_colorb': 'transmission_colorb', 'transmission_depth': 'transmission_depth', 'transmission_scatterr': 'transmission_scatterr', 'transmission_scatterg': 'transmission_scatterg', 'transmission_scatterb': 'transmission_scatterb', 'transmission_scatter_anisotropy': 'transmission_scatter_anisotropy', 'transmission_dispersion': 'transmission_dispersion', 'transmission_extra_roughness': 'transmission_extra_roughness', 'subsurface': 'subsurface', 'subsurface_colorr': 'subsurface_colorr', 'subsurface_colorg': 'subsurface_colorg', 'subsurface_colorb': 'subsurface_colorb', 'subsurface_radiusr': 'subsurface_radiusr', 'subsurface_radiusg': 'subsurface_radiusg', 'subsurface_radiusb': 'subsurface_radiusb', 'subsurface_scale': 'subsurface_scale', 'subsurface_anisotropy': 'subsurface_anisotropy', 'sheen': 'sheen', 'sheen_colorr': 'sheen_colorr', 'sheen_colorg': 'sheen_colorg', 'sheen_colorb': 'sheen_colorb', 'sheen_roughness': 'sheen_roughness', 'coat': 'coat', 'coat_colorr': 'coat_colorr', 'coat_colorg': 'coat_colorg', 'coat_colorb': 'coat_colorb', 'coat_roughness': 'coat_roughness', 'coat_anisotropy': 'coat_anisotropy', 'coat_rotation': 'coat_rotation', 'coat_ior': 'coat_IOR', 'coat_normalx': 'coat_normalx', 'coat_normaly': 'coat_normaly', 'coat_normalz': 'coat_normalz', 'coat_affect_color': 'coat_affect_color', 'coat_affect_roughness': 'coat_affect_roughness', 'thin_film_thickness': 'thin_film_thickness', 'thin_film_ior': 'thin_film_IOR', 'emission': 'emission', 'emission_colorr': 'emission_colorr', 'emission_colorg': 'emission_colorg', 'emission_colorb': 'emission_colorb', 'opacityr': 'opacityr', 'opacityg': 'opacityg', 'opacityb': 'opacityb', 'thin_walled': 'thin_walled', 'normalx': 'normalx', 'normaly': 'normaly', 'normalz': 'normalz', 'tangentx': 'tangentx', 'tangenty': 'tangenty', 'tangentz': 'tangentz'}
+    parm_lookup_dict = {'signature': 'signature', 'folder01': 'folder01', 'base': 'base', 'base_colorr': 'base_colorr', 'base_colorg': 'base_colorg', 'base_colorb': 'base_colorb', 'diffuse_roughness': 'diffuse_roughness', 'metalness': 'metalness', 'specular': 'specular', 'specular_colorr': 'specular_colorr', 'specular_colorg': 'specular_colorg', 'specular_colorb': 'specular_colorb', 'specular_roughness': 'specular_roughness', 'specular_ior': 'specular_IOR', 'specular_anisotropy': 'specular_anisotropy', 'specular_rotation': 'specular_rotation', 'transmission': 'transmission', 'transmission_colorr': 'transmission_colorr', 'transmission_colorg': 'transmission_colorg', 'transmission_colorb': 'transmission_colorb', 'transmission_depth': 'transmission_depth', 'transmission_scatterr': 'transmission_scatterr', 'transmission_scatterg': 'transmission_scatterg', 'transmission_scatterb': 'transmission_scatterb', 'transmission_scatter_anisotropy': 'transmission_scatter_anisotropy', 'transmission_dispersion': 'transmission_dispersion', 'transmission_extra_roughness': 'transmission_extra_roughness', 'subsurface': 'subsurface', 'subsurface_colorr': 'subsurface_colorr', 'subsurface_colorg': 'subsurface_colorg', 'subsurface_colorb': 'subsurface_colorb', 'subsurface_radiusr': 'subsurface_radiusr', 'subsurface_radiusg': 'subsurface_radiusg', 'subsurface_radiusb': 'subsurface_radiusb', 'subsurface_scale': 'subsurface_scale', 'subsurface_anisotropy': 'subsurface_anisotropy', 'sheen': 'sheen', 'sheen_colorr': 'sheen_colorr', 'sheen_colorg': 'sheen_colorg', 'sheen_colorb': 'sheen_colorb', 'sheen_roughness': 'sheen_roughness', 'coat': 'coat', 'coat_colorr': 'coat_colorr', 'coat_colorg': 'coat_colorg', 'coat_colorb': 'coat_colorb', 'coat_roughness': 'coat_roughness', 'coat_anisotropy': 'coat_anisotropy', 'coat_rotation': 'coat_rotation', 'coat_ior': 'coat_IOR', 'coat_normalx': 'coat_normalx', 'coat_normaly': 'coat_normaly', 'coat_normalz': 'coat_normalz', 'coat_affect_color': 'coat_affect_color', 'coat_affect_roughness': 'coat_affect_roughness', 'thin_film_thickness': 'thin_film_thickness', 'thin_film_ior': 'thin_film_IOR', 'emission': 'emission', 'emission_colorr': 'emission_colorr', 'emission_colorg': 'emission_colorg', 'emission_colorb': 'emission_colorb', 'opacityr': 'opacityr', 'opacityg': 'opacityg', 'opacityb': 'opacityb', 'thin_walled': 'thin_walled', 'normalx': 'normalx', 'normaly': 'normaly', 'normalz': 'normalz', 'tangentx': 'tangentx', 'tangenty': 'tangenty', 'tangentz': 'tangentz'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -90,6 +90,7 @@ class MtlxstandardSurfaceNode(OXNode):
 
         
         # parm menu vars:
+        self.parm_signature = SignatureMenu(parm=self.node.parm('signature'))
 
 
         # input vars:
@@ -138,4 +139,11 @@ class MtlxstandardSurfaceNode(OXNode):
 
 
 # parm menu classes:
+class SignatureMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_surfacesurfaceshader__1_0_1_ = "default"
+
+
 

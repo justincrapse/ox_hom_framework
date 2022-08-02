@@ -6,7 +6,7 @@ from ox.base_objects.menu import Menu
 
 class CleanNode(OXNode):
     node_type = 'clean'
-    parm_lookup_dict = {'fusepts': 'fusepts', 'deldegengeo': 'deldegengeo', 'orientpoly': 'orientpoly', 'reversewinding': 'reversewinding', 'fixoverlap': 'fixoverlap', 'deleteoverlap': 'deleteoverlap', 'delunusedpts': 'delunusedpts', 'dodelattribs': 'dodelattribs', 'delattribs': 'delattribs', 'dodelgroups': 'dodelgroups', 'delgroups': 'delgroups', 'delnans': 'delnans', 'make_manifold': 'make_manifold', 'delete_small': 'delete_small', 'prim_count': 'prim_count'}
+    parm_lookup_dict = {'fusepts': 'fusepts', 'deldegengeo': 'deldegengeo', 'degentol': 'degentol', 'removeunusedgrp': 'removeunusedgrp', 'orientpoly': 'orientpoly', 'reversewinding': 'reversewinding', 'fixoverlap': 'fixoverlap', 'deleteoverlap': 'deleteoverlap', 'delunusedpts': 'delunusedpts', 'dodelattribs': 'dodelattribs', 'delattribs': 'delattribs', 'dodelgroups': 'dodelgroups', 'delgroups': 'delgroups', 'delnans': 'delnans', 'make_manifold': 'make_manifold', 'delete_small': 'delete_small', 'prim_count': 'prim_count'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -20,6 +20,8 @@ class CleanNode(OXNode):
         # parm vars:
         self.parm_fusepts = Parameter(parm=self.node.parm('fusepts'))
         self.parm_deldegengeo = Parameter(parm=self.node.parm('deldegengeo'))
+        self.parm_degentol = Parameter(parm=self.node.parm('degentol'))
+        self.parm_removeunusedgrp = Parameter(parm=self.node.parm('removeunusedgrp'))
         self.parm_orientpoly = Parameter(parm=self.node.parm('orientpoly'))
         self.parm_reversewinding = Parameter(parm=self.node.parm('reversewinding'))
         self.parm_fixoverlap = Parameter(parm=self.node.parm('fixoverlap'))

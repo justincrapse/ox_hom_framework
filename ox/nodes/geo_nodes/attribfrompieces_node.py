@@ -6,7 +6,7 @@ from ox.base_objects.menu import Menu
 
 class AttribfrompiecesNode(OXNode):
     node_type = 'attribfrompieces'
-    parm_lookup_dict = {'pieceattrib': 'pieceattrib', 'piecefilter': 'piecefilter', 'mode': 'mode', 'piecesfolder': 'piecesfolder', 'shuffle': 'shuffle', 'seed': 'seed', 'offset': 'offset', 'sourcepointsfolder': 'sourcepointsfolder', 'overrideptnum': 'overrideptnum', 'ptnumattrib': 'ptnumattrib', 'locattrib': 'locattrib', 'patchesfolder': 'patchesfolder', 'patchsize': 'patchsize', 'patchscalex': 'patchscalex', 'patchscaley': 'patchscaley', 'patchscalez': 'patchscalez', 'patchoffsetx': 'patchoffsetx', 'patchoffsety': 'patchoffsety', 'patchoffsetz': 'patchoffsetz', 'worleydistortion': 'worleydistortion', 'distortstrength': 'distortstrength', 'distortsize': 'distortsize', 'worleyrough': 'worleyrough', 'distortoffsetx': 'distortoffsetx', 'distortoffsety': 'distortoffsety', 'distortoffsetz': 'distortoffsetz', 'noisefolder2': 'noisefolder2', 'noisebasis': 'noisebasis', 'noiseelementsize': 'noiseelementsize', 'noiseelementscalex': 'noiseelementscalex', 'noiseelementscaley': 'noiseelementscaley', 'noiseelementscalez': 'noiseelementscalez', 'offset2x': 'offset2x', 'offset2y': 'offset2y', 'offset2z': 'offset2z', 'noiseoct': 'noiseoct', 'noiserough': 'noiserough', 'noisedistortion': 'noisedistortion', 'disp': 'disp', 'dispfreq': 'dispfreq', 'gflow': 'gflow', 'noiseremap': 'noiseremap', 'randomfolder': 'randomfolder', 'weightmethod': 'weightmethod', 'randomseed': 'randomseed', 'autofillnamernd': 'autofillnamernd', 'numval': 'numval', 'weightattrib': 'weightattrib', 'folder0': 'folder0', 'attrib': 'attrib', 'attribtype': 'attribtype', 'mappiecesfrom': 'mappiecesfrom', 'autofillnamestring': 'autofillnamestring', 'nummaps': 'nummaps', 'autofillnamenumeric': 'autofillnamenumeric', 'numranges': 'numranges', 'attribunmatchedpiece': 'attribunmatchedpiece', 'useattribunmatchedgroup': 'useattribunmatchedgroup', 'attribunmatchedgroup': 'attribunmatchedgroup', 'seedmapattrib': 'seedmapattrib', 'vexfolder': 'vexfolder', 'autofillnamevex': 'autofillnamevex', 'numvex': 'numvex', 'vexunmatchedpiece': 'vexunmatchedpiece', 'usevexunmatchedgroup': 'usevexunmatchedgroup', 'vexunmatchedgroup': 'vexunmatchedgroup', 'seedvex': 'seedvex', 'noiseremap1pos': 'noiseremap1pos', 'noiseremap1value': 'noiseremap1value', 'noiseremap1interp': 'noiseremap1interp', 'noiseremap2pos': 'noiseremap2pos', 'noiseremap2value': 'noiseremap2value', 'noiseremap2interp': 'noiseremap2interp'}
+    parm_lookup_dict = {'pieceattrib': 'pieceattrib', 'piecefilter': 'piecefilter', 'mode': 'mode', 'copyattrib': 'copyattrib', 'copyp': 'copyp', 'copymethod': 'copymethod', 'piecesfolder': 'piecesfolder', 'shuffle': 'shuffle', 'seed': 'seed', 'offset': 'offset', 'sourcepointsfolder': 'sourcepointsfolder', 'overrideptnum': 'overrideptnum', 'ptnumattrib': 'ptnumattrib', 'locattrib': 'locattrib', 'patchesfolder': 'patchesfolder', 'patchsize': 'patchsize', 'patchscalex': 'patchscalex', 'patchscaley': 'patchscaley', 'patchscalez': 'patchscalez', 'patchoffsetx': 'patchoffsetx', 'patchoffsety': 'patchoffsety', 'patchoffsetz': 'patchoffsetz', 'worleydistortion': 'worleydistortion', 'distortstrength': 'distortstrength', 'distortsize': 'distortsize', 'worleyrough': 'worleyrough', 'distortoffsetx': 'distortoffsetx', 'distortoffsety': 'distortoffsety', 'distortoffsetz': 'distortoffsetz', 'noisefolder2': 'noisefolder2', 'noisebasis': 'noisebasis', 'noiseelementsize': 'noiseelementsize', 'noiseelementscalex': 'noiseelementscalex', 'noiseelementscaley': 'noiseelementscaley', 'noiseelementscalez': 'noiseelementscalez', 'offset2x': 'offset2x', 'offset2y': 'offset2y', 'offset2z': 'offset2z', 'noiseoct': 'noiseoct', 'noiserough': 'noiserough', 'noisedistortion': 'noisedistortion', 'disp': 'disp', 'dispfreq': 'dispfreq', 'gflow': 'gflow', 'noiseremap': 'noiseremap', 'randomfolder': 'randomfolder', 'weightmethod': 'weightmethod', 'randomseed': 'randomseed', 'autofillnamernd': 'autofillnamernd', 'numval': 'numval', 'weightattrib': 'weightattrib', 'folder0': 'folder0', 'attrib': 'attrib', 'attribtype': 'attribtype', 'mappiecesfrom': 'mappiecesfrom', 'autofillnamestring': 'autofillnamestring', 'nummaps': 'nummaps', 'autofillnamenumeric': 'autofillnamenumeric', 'numranges': 'numranges', 'attribunmatchedpiece': 'attribunmatchedpiece', 'useattribunmatchedgroup': 'useattribunmatchedgroup', 'attribunmatchedgroup': 'attribunmatchedgroup', 'seedmapattrib': 'seedmapattrib', 'vexfolder': 'vexfolder', 'autofillnamevex': 'autofillnamevex', 'numvex': 'numvex', 'vexunmatchedpiece': 'vexunmatchedpiece', 'usevexunmatchedgroup': 'usevexunmatchedgroup', 'vexunmatchedgroup': 'vexunmatchedgroup', 'seedvex': 'seedvex', 'noiseremap1pos': 'noiseremap1pos', 'noiseremap1value': 'noiseremap1value', 'noiseremap1interp': 'noiseremap1interp', 'noiseremap2pos': 'noiseremap2pos', 'noiseremap2value': 'noiseremap2value', 'noiseremap2interp': 'noiseremap2interp'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -20,6 +20,8 @@ class AttribfrompiecesNode(OXNode):
         # parm vars:
         self.parm_pieceattrib = Parameter(parm=self.node.parm('pieceattrib'))
         self.parm_piecefilter = Parameter(parm=self.node.parm('piecefilter'))
+        self.parm_copyattrib = Parameter(parm=self.node.parm('copyattrib'))
+        self.parm_copyp = Parameter(parm=self.node.parm('copyp'))
         self.parm_piecesfolder = Parameter(parm=self.node.parm('piecesfolder'))
         self.parm_shuffle = Parameter(parm=self.node.parm('shuffle'))
         self.parm_seed = Parameter(parm=self.node.parm('seed'))
@@ -88,6 +90,7 @@ class AttribfrompiecesNode(OXNode):
         
         # parm menu vars:
         self.parm_mode = ModeMenu(parm=self.node.parm('mode'))
+        self.parm_copymethod = CopymethodMenu(parm=self.node.parm('copymethod'))
         self.parm_noisebasis = NoisebasisMenu(parm=self.node.parm('noisebasis'))
         self.parm_weightmethod = WeightmethodMenu(parm=self.node.parm('weightmethod'))
         self.parm_attribtype = AttribtypeMenu(parm=self.node.parm('attribtype'))
@@ -112,6 +115,23 @@ class ModeMenu(Menu):
         self.menu_random = "random"
         self.menu_map_attribute = "attrib"
         self.menu_vexpression = "vex"
+
+
+class CopymethodMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_maximum = "max"
+        self.menu_minimum = "min"
+        self.menu_average = "mean"
+        self.menu_mode = "mode"
+        self.menu_median = "median"
+        self.menu_sum = "sum"
+        self.menu_sum_of_squares = "sumsquare"
+        self.menu_root_mean_square = "rms"
+        self.menu_first_match = "first"
+        self.menu_last_match = "last"
+        self.menu_array_of_all = "array"
 
 
 class NoisebasisMenu(Menu):

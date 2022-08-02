@@ -6,7 +6,7 @@ from ox.base_objects.menu import Menu
 
 class ColorNode(OXNode):
     node_type = 'color'
-    parm_lookup_dict = {'group': 'group', 'grouptype': 'grouptype', 'deleteallcolorattribs': 'deleteallcolorattribs', 'class_alt': 'class', 'colortype': 'colortype', 'colorr': 'colorr', 'colorg': 'colorg', 'colorb': 'colorb', 'seed': 'seed', 'rampattribute': 'rampattribute', 'ramprange1': 'ramprange1', 'ramprange2': 'ramprange2', 'ramp': 'ramp', 'ramp1pos': 'ramp1pos', 'ramp1cr': 'ramp1cr', 'ramp1cg': 'ramp1cg', 'ramp1cb': 'ramp1cb', 'ramp1interp': 'ramp1interp', 'ramp2pos': 'ramp2pos', 'ramp2cr': 'ramp2cr', 'ramp2cg': 'ramp2cg', 'ramp2cb': 'ramp2cb', 'ramp2interp': 'ramp2interp'}
+    parm_lookup_dict = {'group': 'group', 'grouptype': 'grouptype', 'deleteallcolorattribs': 'deleteallcolorattribs', 'enable': 'enable', 'class_alt': 'class', 'colortype': 'colortype', 'colorr': 'colorr', 'colorg': 'colorg', 'colorb': 'colorb', 'seed': 'seed', 'rampattribute': 'rampattribute', 'ramprange1': 'ramprange1', 'ramprange2': 'ramprange2', 'ramp': 'ramp', 'ramp1pos': 'ramp1pos', 'ramp1cr': 'ramp1cr', 'ramp1cg': 'ramp1cg', 'ramp1cb': 'ramp1cb', 'ramp1interp': 'ramp1interp', 'ramp2pos': 'ramp2pos', 'ramp2cr': 'ramp2cr', 'ramp2cg': 'ramp2cg', 'ramp2cb': 'ramp2cb', 'ramp2interp': 'ramp2interp'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -20,6 +20,7 @@ class ColorNode(OXNode):
         # parm vars:
         self.parm_group = Parameter(parm=self.node.parm('group'))
         self.parm_deleteallcolorattribs = Parameter(parm=self.node.parm('deleteallcolorattribs'))
+        self.parm_enable = Parameter(parm=self.node.parm('enable'))
         self.parm_colorr = Parameter(parm=self.node.parm('colorr'))
         self.parm_colorg = Parameter(parm=self.node.parm('colorg'))
         self.parm_colorb = Parameter(parm=self.node.parm('colorb'))

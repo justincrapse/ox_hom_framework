@@ -18,7 +18,7 @@ class Menu(Parameter, object):
             return object.__getattribute__(self, item)
         else:
             attr_val = object.__getattribute__(self, item)
-            logging.debug(f"Setting {self.parm.name()} menu parameter to {attr_val}")
+            ox_logger.debug(f"Setting {self.parm.name()} menu parameter to {attr_val}")
             try:
                 self.parm.set(str(attr_val))
             except OperationFailed:

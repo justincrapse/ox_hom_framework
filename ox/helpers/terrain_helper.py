@@ -266,7 +266,7 @@ class TerrainHelper:
         user_mask_controller_node = self.obj_node.create_node_if_not_exists(
             ox_node_class=nodes.obj_nodes.GeoNode, node_name=f"{mask_name}_controller"
         )  # type: nodes.obj_nodes.GeoNode
-        user_mask_controller_node.move_node_relative_to(relative_node=self.terrain_node, y=-(1 + index))
+        user_mask_controller_node.move_node_relative_to(ox_node=self.terrain_node, y=-(1 + index))
 
         # for redshift
         if self.use_redshift:

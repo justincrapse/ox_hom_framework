@@ -57,6 +57,7 @@ class GeoNode(OXNode):
         self.parm_dcolorg = Parameter(parm=self.node.parm('dcolorg'))
         self.parm_dcolorb = Parameter(parm=self.node.parm('dcolorb'))
         self.parm_picking = Parameter(parm=self.node.parm('picking'))
+        self.parm_pickscript = Parameter(parm=self.node.parm('pickscript'))
         self.parm_caching = Parameter(parm=self.node.parm('caching'))
         self.parm_vport_shadeopen = Parameter(parm=self.node.parm('vport_shadeopen'))
         self.parm_vport_displayassubdiv = Parameter(parm=self.node.parm('vport_displayassubdiv'))
@@ -133,6 +134,7 @@ class GeoNode(OXNode):
         self.parm_rs_objprop_ipr_forcemeshupdate = Parameter(parm=self.node.parm('RS_objprop_ipr_forceMeshUpdate'))
         self.parm_rs_objpro_label5 = Parameter(parm=self.node.parm('RS_objpro_label5'))
         self.parm_rs_objprop_proxy_enable = Parameter(parm=self.node.parm('RS_objprop_proxy_enable'))
+        self.parm_rs_objprop_proxy_file = Parameter(parm=self.node.parm('RS_objprop_proxy_file'))
         self.parm_rs_objprop_proxy_prevpercent = Parameter(parm=self.node.parm('RS_objprop_proxy_prevPercent'))
         self.parm_rs_objprop_proxy_prevlines = Parameter(parm=self.node.parm('RS_objprop_proxy_prevLines'))
         self.parm_rs_objprop_proxy_prevanimated = Parameter(parm=self.node.parm('RS_objprop_proxy_prevAnimated'))
@@ -233,7 +235,6 @@ class GeoNode(OXNode):
         self.parm_lookup = LookupMenu(parm=self.node.parm('lookup'))
         self.parm_uparmtype = UparmtypeMenu(parm=self.node.parm('uparmtype'))
         self.parm_shop_materialopts = ShopMaterialoptsMenu(parm=self.node.parm('shop_materialopts'))
-        self.parm_pickscript = PickscriptMenu(parm=self.node.parm('pickscript'))
         self.parm_vport_onionskin = VportOnionskinMenu(parm=self.node.parm('vport_onionskin'))
         self.parm_viewportlod = ViewportlodMenu(parm=self.node.parm('viewportlod'))
         self.parm_vm_rendervisibility = VmRendervisibilityMenu(parm=self.node.parm('vm_rendervisibility'))
@@ -253,7 +254,6 @@ class GeoNode(OXNode):
         self.parm_rs_objprop_inst_mb = RsObjpropInstMbMenu(parm=self.node.parm('RS_objprop_inst_mb'))
         self.parm_rs_objprop_inst_lightshader = RsObjpropInstLightshaderMenu(parm=self.node.parm('RS_objprop_inst_lightShader'))
         self.parm_rs_objprop_inst_universalif = RsObjpropInstUniversalifMenu(parm=self.node.parm('RS_objprop_inst_universalIF'))
-        self.parm_rs_objprop_proxy_file = RsObjpropProxyFileMenu(parm=self.node.parm('RS_objprop_proxy_file'))
         self.parm_rs_objprop_proxy_preview = RsObjpropProxyPreviewMenu(parm=self.node.parm('RS_objprop_proxy_preview'))
         self.parm_rs_objprop_proxy_materials = RsObjpropProxyMaterialsMenu(parm=self.node.parm('RS_objprop_proxy_materials'))
         self.parm_rs_objprop_rstess_rule = RsObjpropRstessRuleMenu(parm=self.node.parm('RS_objprop_rstess_rule'))
@@ -331,24 +331,6 @@ class ShopMaterialoptsMenu(Menu):
         self.menu_remove_unchanged_local_material_parameters = "rmdefault"
         self.menu_synchronize_with_global_material_parameters = "sync"
         self.menu_revert_to_global_material_parameter_values = "revert"
-
-
-class PickscriptMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu__job_desktop_articulatcf_bold_otf = "$JOB/Desktop/ArticulatCF-Bold.otf"
-        self.menu__hip_desktop_articulatcf_bold_otf = "$HIP/Desktop/ArticulatCF-Bold.otf"
-        self.menu_e__art_products_ox_mtlx_hf_test_out = "E:/ART/PRODUCTS/OX-MTLX/hf_test_out"
-        self.menu_d__minecraft_sub___ded_copper_sbsar = "D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar"
-        self.menu_d__minecraft_sub___dirt_field_sbsar = "D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar"
-        self.menu_e__art_products____ers_rock_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_cpu.jpg"
-        self.menu_e__art_products____ers_rock_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_xpu.jpg"
-        self.menu_e__art_products____rs_quilt_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_xpu.jpg"
-        self.menu_e__art_products____rs_quilt_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_cpu.jpg"
-        self.menu_e__art_products____ers_lava_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg"
-        self.menu_e__art_products____ers_lava_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg"
-        self.menu_e__art_products____s_glazed_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg"
 
 
 class VportOnionskinMenu(Menu):
@@ -530,24 +512,6 @@ class RsObjpropInstUniversalifMenu(Menu):
         super().__init__(parm=parm)
         self.menu_instance_redshift_proxy_objects = "0"
         self.menu_instance_houdini_compatible_objects = "1"
-
-
-class RsObjpropProxyFileMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu__job_desktop_articulatcf_bold_otf = "$JOB/Desktop/ArticulatCF-Bold.otf"
-        self.menu__hip_desktop_articulatcf_bold_otf = "$HIP/Desktop/ArticulatCF-Bold.otf"
-        self.menu_e__art_products_ox_mtlx_hf_test_out = "E:/ART/PRODUCTS/OX-MTLX/hf_test_out"
-        self.menu_d__minecraft_sub___ded_copper_sbsar = "D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar"
-        self.menu_d__minecraft_sub___dirt_field_sbsar = "D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar"
-        self.menu_e__art_products____ers_rock_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_cpu.jpg"
-        self.menu_e__art_products____ers_rock_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_xpu.jpg"
-        self.menu_e__art_products____rs_quilt_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_xpu.jpg"
-        self.menu_e__art_products____rs_quilt_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_cpu.jpg"
-        self.menu_e__art_products____ers_lava_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg"
-        self.menu_e__art_products____ers_lava_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg"
-        self.menu_e__art_products____s_glazed_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg"
 
 
 class RsObjpropProxyPreviewMenu(Menu):

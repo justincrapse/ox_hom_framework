@@ -4,9 +4,9 @@ from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class CollectNode(OXNode):
-    node_type = 'collect'
-    parm_lookup_dict = {'inputnum': 'inputnum', 'inputname1': 'inputname1', 'inputlabel1': 'inputlabel1'}
+class RsmathinvNode(OXNode):
+    node_type = 'redshift::RSMathInv'
+    parm_lookup_dict = {'input': 'input', 'math_op': 'math_op', 'shader_skipdefvalparms': 'shader_skipdefvalparms'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -18,17 +18,16 @@ class CollectNode(OXNode):
         super().__init__(node=self.node)
         
         # parm vars:
-        self.parm_inputnum = Parameter(parm=self.node.parm('inputnum'))
-        self.parm_inputname1 = Parameter(parm=self.node.parm('inputname1'))
-        self.parm_inputlabel1 = Parameter(parm=self.node.parm('inputlabel1'))
+        self.parm_input = Parameter(parm=self.node.parm('input'))
+        self.parm_math_op = Parameter(parm=self.node.parm('math_op'))
+        self.parm_shader_skipdefvalparms = Parameter(parm=self.node.parm('shader_skipdefvalparms'))
 
         
         # parm menu vars:
 
 
         # input vars:
-        self.input_input_1 = 'Input 1'
-        self.input_input_2 = 'Input 2'
+        self.input_input = 'input'
 
 
 # parm menu classes:

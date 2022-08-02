@@ -4,9 +4,9 @@ from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class BoxNode(OXNode):
-    node_type = 'box'
-    parm_lookup_dict = {'type': 'type', 'surftype': 'surftype', 'consolidatepts': 'consolidatepts', 'sizex': 'sizex', 'sizey': 'sizey', 'sizez': 'sizez', 'tx': 'tx', 'ty': 'ty', 'tz': 'tz', 'rx': 'rx', 'ry': 'ry', 'rz': 'rz', 'scale': 'scale', 'divrate1': 'divrate1', 'divrate2': 'divrate2', 'divrate3': 'divrate3', 'orderrate1': 'orderrate1', 'orderrate2': 'orderrate2', 'orderrate3': 'orderrate3', 'dodivs': 'dodivs', 'divsx': 'divsx', 'divsy': 'divsy', 'divsz': 'divsz', 'rebar': 'rebar', 'orientedbbox': 'orientedbbox', 'vertexnormals': 'vertexnormals'}
+class SphereNode(OXNode):
+    node_type = 'sphere'
+    parm_lookup_dict = {'type': 'type', 'surftype': 'surftype', 'radx': 'radx', 'rady': 'rady', 'radz': 'radz', 'tx': 'tx', 'ty': 'ty', 'tz': 'tz', 'rx': 'rx', 'ry': 'ry', 'rz': 'rz', 'scale': 'scale', 'orient': 'orient', 'freq': 'freq', 'rows': 'rows', 'cols': 'cols', 'orderu': 'orderu', 'orderv': 'orderv', 'imperfect': 'imperfect', 'upole': 'upole', 'accurate': 'accurate', 'triangularpoles': 'triangularpoles'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -18,10 +18,9 @@ class BoxNode(OXNode):
         super().__init__(node=self.node)
         
         # parm vars:
-        self.parm_consolidatepts = Parameter(parm=self.node.parm('consolidatepts'))
-        self.parm_sizex = Parameter(parm=self.node.parm('sizex'))
-        self.parm_sizey = Parameter(parm=self.node.parm('sizey'))
-        self.parm_sizez = Parameter(parm=self.node.parm('sizez'))
+        self.parm_radx = Parameter(parm=self.node.parm('radx'))
+        self.parm_rady = Parameter(parm=self.node.parm('rady'))
+        self.parm_radz = Parameter(parm=self.node.parm('radz'))
         self.parm_tx = Parameter(parm=self.node.parm('tx'))
         self.parm_ty = Parameter(parm=self.node.parm('ty'))
         self.parm_tz = Parameter(parm=self.node.parm('tz'))
@@ -29,24 +28,21 @@ class BoxNode(OXNode):
         self.parm_ry = Parameter(parm=self.node.parm('ry'))
         self.parm_rz = Parameter(parm=self.node.parm('rz'))
         self.parm_scale = Parameter(parm=self.node.parm('scale'))
-        self.parm_divrate1 = Parameter(parm=self.node.parm('divrate1'))
-        self.parm_divrate2 = Parameter(parm=self.node.parm('divrate2'))
-        self.parm_divrate3 = Parameter(parm=self.node.parm('divrate3'))
-        self.parm_orderrate1 = Parameter(parm=self.node.parm('orderrate1'))
-        self.parm_orderrate2 = Parameter(parm=self.node.parm('orderrate2'))
-        self.parm_orderrate3 = Parameter(parm=self.node.parm('orderrate3'))
-        self.parm_dodivs = Parameter(parm=self.node.parm('dodivs'))
-        self.parm_divsx = Parameter(parm=self.node.parm('divsx'))
-        self.parm_divsy = Parameter(parm=self.node.parm('divsy'))
-        self.parm_divsz = Parameter(parm=self.node.parm('divsz'))
-        self.parm_rebar = Parameter(parm=self.node.parm('rebar'))
-        self.parm_orientedbbox = Parameter(parm=self.node.parm('orientedbbox'))
-        self.parm_vertexnormals = Parameter(parm=self.node.parm('vertexnormals'))
+        self.parm_freq = Parameter(parm=self.node.parm('freq'))
+        self.parm_rows = Parameter(parm=self.node.parm('rows'))
+        self.parm_cols = Parameter(parm=self.node.parm('cols'))
+        self.parm_orderu = Parameter(parm=self.node.parm('orderu'))
+        self.parm_orderv = Parameter(parm=self.node.parm('orderv'))
+        self.parm_imperfect = Parameter(parm=self.node.parm('imperfect'))
+        self.parm_upole = Parameter(parm=self.node.parm('upole'))
+        self.parm_accurate = Parameter(parm=self.node.parm('accurate'))
+        self.parm_triangularpoles = Parameter(parm=self.node.parm('triangularpoles'))
 
         
         # parm menu vars:
         self.parm_type = TypeMenu(parm=self.node.parm('type'))
         self.parm_surftype = SurftypeMenu(parm=self.node.parm('surftype'))
+        self.parm_orient = OrientMenu(parm=self.node.parm('orient'))
 
 
         # input vars:
@@ -58,13 +54,13 @@ class TypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
+        self.menu_primitive = "prim"
         self.menu_polygon = "poly"
         self.menu_polygon_mesh = "polymesh"
         self.menu_mesh = "mesh"
         self.menu_nurbs = "nurbs"
         self.menu_bezier = "bezier"
-        self.menu_points = "points"
-        self.menu_primitive = "prim"
+        self.menu_polygon_soup = "polysoup"
 
 
 class SurftypeMenu(Menu):
@@ -78,6 +74,15 @@ class SurftypeMenu(Menu):
         self.menu_quadrilaterals = "quads"
         self.menu_alternating_triangles = "alttriangles"
         self.menu_reverse_triangles = "revtriangles"
+
+
+class OrientMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_x_axis = "x"
+        self.menu_y_axis = "y"
+        self.menu_z_axis = "z"
 
 
 

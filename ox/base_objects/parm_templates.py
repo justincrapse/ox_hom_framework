@@ -57,7 +57,7 @@ class ParmTemplate:
             first_pt = self.__get_parm_templates()[0]
             self.parm_template_group.insertBefore(first_pt, parm_template)
         elif insert_after_parm:
-            parm_to_follow = self.node.parm(insert_after_parm)
+            parm_to_follow = insert_after_parm if isinstance(insert_after_parm, hou.Parm) else self.node.parm(insert_after_parm)
             ptf_pt = parm_to_follow.parmTemplate()
             ox_logger.debug(f"Adding parm insert after: {parm_to_follow.name()}")
             self.parm_template_group.insertAfter(ptf_pt, parm_template)
@@ -69,6 +69,7 @@ class ParmTemplate:
         else:
             self.parm_template_group.append(parm_template)
         self.__save_template_group()
+        ox_logger.info(f'Added new parm template to "{self.node.name()}" node: {parm_template.name()}')
         new_parm = self.node.parm(parm_template.name())
         return new_parm
 

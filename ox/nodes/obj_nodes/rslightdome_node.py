@@ -53,6 +53,7 @@ class RslightdomeNode(OXNode):
         self.parm_display = Parameter(parm=self.node.parm('display'))
         self.parm_dimmer = Parameter(parm=self.node.parm('dimmer'))
         self.parm_picking = Parameter(parm=self.node.parm('picking'))
+        self.parm_pickscript = Parameter(parm=self.node.parm('pickscript'))
         self.parm_caching = Parameter(parm=self.node.parm('caching'))
         self.parm_use_dcolor = Parameter(parm=self.node.parm('use_dcolor'))
         self.parm_dcolorr = Parameter(parm=self.node.parm('dcolorr'))
@@ -71,6 +72,7 @@ class RslightdomeNode(OXNode):
         self.parm_light_colorr = Parameter(parm=self.node.parm('light_colorr'))
         self.parm_light_colorg = Parameter(parm=self.node.parm('light_colorg'))
         self.parm_light_colorb = Parameter(parm=self.node.parm('light_colorb'))
+        self.parm_env_map = Parameter(parm=self.node.parm('env_map'))
         self.parm_rsl_fliphorizontal = Parameter(parm=self.node.parm('RSL_flipHorizontal'))
         self.parm_rsl_hue = Parameter(parm=self.node.parm('RSL_hue'))
         self.parm_rsl_saturation = Parameter(parm=self.node.parm('RSL_saturation'))
@@ -81,6 +83,7 @@ class RslightdomeNode(OXNode):
         self.parm_alphareplacevalue = Parameter(parm=self.node.parm('alphaReplaceValue'))
         self.parm_rs_shadernodemainswitcher_1 = Parameter(parm=self.node.parm('RS_shaderNodeMainSwitcher_1'))
         self.parm_backplateenabled = Parameter(parm=self.node.parm('backPlateEnabled'))
+        self.parm_tex1 = Parameter(parm=self.node.parm('tex1'))
         self.parm_tex1_gamma = Parameter(parm=self.node.parm('tex1_gamma'))
         self.parm_rsl_exposure2 = Parameter(parm=self.node.parm('RSL_exposure2'))
         self.parm_rsl_hue2 = Parameter(parm=self.node.parm('RSL_hue2'))
@@ -136,11 +139,8 @@ class RslightdomeNode(OXNode):
         self.parm_pre_xform = PreXformMenu(parm=self.node.parm('pre_xform'))
         self.parm_lookup = LookupMenu(parm=self.node.parm('lookup'))
         self.parm_uparmtype = UparmtypeMenu(parm=self.node.parm('uparmtype'))
-        self.parm_pickscript = PickscriptMenu(parm=self.node.parm('pickscript'))
-        self.parm_env_map = EnvMapMenu(parm=self.node.parm('env_map'))
         self.parm_envtype = EnvtypeMenu(parm=self.node.parm('envType'))
         self.parm_tex0_colorspace = Tex0ColorspaceMenu(parm=self.node.parm('tex0_colorSpace'))
-        self.parm_tex1 = Tex1Menu(parm=self.node.parm('tex1'))
         self.parm_tex1_colorspace = Tex1ColorspaceMenu(parm=self.node.parm('tex1_colorSpace'))
         self.parm_backplateaspect = BackplateaspectMenu(parm=self.node.parm('backPlateAspect'))
         self.parm_rsl_affectedbyrefraction = RslAffectedbyrefractionMenu(parm=self.node.parm('RSL_affectedByRefraction'))
@@ -206,42 +206,6 @@ class UparmtypeMenu(Menu):
         self.menu_arc_length = "arc"
 
 
-class PickscriptMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu__job_desktop_articulatcf_bold_otf = "$JOB/Desktop/ArticulatCF-Bold.otf"
-        self.menu__hip_desktop_articulatcf_bold_otf = "$HIP/Desktop/ArticulatCF-Bold.otf"
-        self.menu_e__art_products_ox_mtlx_hf_test_out = "E:/ART/PRODUCTS/OX-MTLX/hf_test_out"
-        self.menu_d__minecraft_sub___ded_copper_sbsar = "D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar"
-        self.menu_d__minecraft_sub___dirt_field_sbsar = "D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar"
-        self.menu_e__art_products____ers_rock_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_cpu.jpg"
-        self.menu_e__art_products____ers_rock_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_xpu.jpg"
-        self.menu_e__art_products____rs_quilt_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_xpu.jpg"
-        self.menu_e__art_products____rs_quilt_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_cpu.jpg"
-        self.menu_e__art_products____ers_lava_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg"
-        self.menu_e__art_products____ers_lava_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg"
-        self.menu_e__art_products____s_glazed_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg"
-
-
-class EnvMapMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu_e__art_projects____a_sunrise_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr"
-        self.menu_e__art_projects____anga_veld_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr"
-        self.menu_e__art_projects____s_on_fire_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr"
-        self.menu_e__art_projects____ly_cloudy_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr"
-        self.menu_e__art_projects____enheim_05_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr"
-        self.menu_e__art_projects____quarry_02_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr"
-        self.menu_e__art_projects_____1d_clear_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr"
-        self.menu_e__art_projects____oon_grass_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr"
-        self.menu_e__art_projects____in_cellar_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr"
-        self.menu_e__art_products____ers_tip_mask_jpg = "E:/ART/PRODUCTS/OX-Terrain_Textuers/tip_mask.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/multi_texture_folder/green_tiles/wall_tile_unstuck_basecolor.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/glazed_terracotta/wall_tile_unstuck_basecolor.jpg"
-
-
 class EnvtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
@@ -272,24 +236,6 @@ class Tex0ColorspaceMenu(Menu):
         self.menu_panasonic_v_log___v_gamut = "Panasonic V-Log / V-Gamut"
         self.menu_log_film_scan__adx10_ = "Log film scan (ADX10)"
         self.menu_invert_aces_1_0_sdr_video = "Invert ACES 1.0 SDR-video"
-
-
-class Tex1Menu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu_e__art_projects____a_sunrise_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr"
-        self.menu_e__art_projects____anga_veld_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr"
-        self.menu_e__art_projects____s_on_fire_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr"
-        self.menu_e__art_projects____ly_cloudy_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr"
-        self.menu_e__art_projects____enheim_05_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr"
-        self.menu_e__art_projects____quarry_02_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr"
-        self.menu_e__art_projects_____1d_clear_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr"
-        self.menu_e__art_projects____oon_grass_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr"
-        self.menu_e__art_projects____in_cellar_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr"
-        self.menu_e__art_products____ers_tip_mask_jpg = "E:/ART/PRODUCTS/OX-Terrain_Textuers/tip_mask.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/multi_texture_folder/green_tiles/wall_tile_unstuck_basecolor.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/glazed_terracotta/wall_tile_unstuck_basecolor.jpg"
 
 
 class Tex1ColorspaceMenu(Menu):

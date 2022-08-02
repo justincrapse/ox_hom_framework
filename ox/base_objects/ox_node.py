@@ -90,8 +90,8 @@ class OXNode(ParmTemplate):  # mixins
         try:
             index = labels.index(label)
             return index
-        except ValueError as e:
-            ValueError(f"Label: {label}. Was not found in node: {self.path}")
+        except ValueError:
+            raise ValueError(f"Label: {label}. Was not found in node: {self.path}")
 
     def create_node(self, node_type_name, node_name=None) -> hou.Node:
         new_node = self.node.createNode(node_type_name, node_name)
@@ -177,9 +177,9 @@ class OXNode(ParmTemplate):  # mixins
     def layout_children(self):
         self.node.layoutChildren()
 
-    def move_node_relative_to(self, relative_node, x=0, y=-1, unit_multiplier=2):
-        """a handy node that will move this node relative to another node. The default moves the node below the relative node"""
-        relative_position_vector = relative_node.node.position()
+    def move_node_relative_to(self, ox_node, x=0, y=-1, unit_multiplier=2):
+        """a handy method that will move this node relative to another node. The default moves the node below the relative node"""
+        relative_position_vector = ox_node.node.position()
         r_x = relative_position_vector[0]
         r_y = relative_position_vector[1]
         vector = hou.Vector2(r_x + x * unit_multiplier, r_y + y * unit_multiplier)

@@ -33,3 +33,4 @@ from .box_node import BoxNode
 from .normal_node import NormalNode
 from .attribtransfer_node import AttribtransferNode
 from .matchsize_node import MatchsizeNode
+from .sphere_node import SphereNode

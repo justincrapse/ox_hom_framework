@@ -56,6 +56,7 @@ class SubnetNode(OXNode):
         self.parm_tdisplay = Parameter(parm=self.node.parm('tdisplay'))
         self.parm_display = Parameter(parm=self.node.parm('display'))
         self.parm_picking = Parameter(parm=self.node.parm('picking'))
+        self.parm_pickscript = Parameter(parm=self.node.parm('pickscript'))
         self.parm_caching = Parameter(parm=self.node.parm('caching'))
         self.parm_use_dcolor = Parameter(parm=self.node.parm('use_dcolor'))
         self.parm_dcolorr = Parameter(parm=self.node.parm('dcolorr'))
@@ -71,7 +72,6 @@ class SubnetNode(OXNode):
         self.parm_uparmtype = UparmtypeMenu(parm=self.node.parm('uparmtype'))
         self.parm_outputobj = OutputobjMenu(parm=self.node.parm('outputobj'))
         self.parm_visibleobjects = VisibleobjectsMenu(parm=self.node.parm('visibleobjects'))
-        self.parm_pickscript = PickscriptMenu(parm=self.node.parm('pickscript'))
 
 
         # input vars:
@@ -86,92 +86,74 @@ class XordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_scale_rot_trans = 'srt'
-        self.menu_scale_trans_rot = 'str'
-        self.menu_rot_scale_trans = 'rst'
-        self.menu_rot_trans_scale = 'rts'
-        self.menu_trans_scale_rot = 'tsr'
-        self.menu_trans_rot_scale = 'trs'
+        self.menu_scale_rot_trans = "srt"
+        self.menu_scale_trans_rot = "str"
+        self.menu_rot_scale_trans = "rst"
+        self.menu_rot_trans_scale = "rts"
+        self.menu_trans_scale_rot = "tsr"
+        self.menu_trans_rot_scale = "trs"
 
 
 class RordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_rx_ry_rz = 'xyz'
-        self.menu_rx_rz_ry = 'xzy'
-        self.menu_ry_rx_rz = 'yxz'
-        self.menu_ry_rz_rx = 'yzx'
-        self.menu_rz_rx_ry = 'zxy'
-        self.menu_rz_ry_rx = 'zyx'
+        self.menu_rx_ry_rz = "xyz"
+        self.menu_rx_rz_ry = "xzy"
+        self.menu_ry_rx_rz = "yxz"
+        self.menu_ry_rz_rx = "yzx"
+        self.menu_rz_rx_ry = "zxy"
+        self.menu_rz_ry_rx = "zyx"
 
 
 class PreXformMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_clean_transform = 'clean'
-        self.menu_clean_translates = 'cleantrans'
-        self.menu_clean_rotates = 'cleanrot'
-        self.menu_clean_scales = 'cleanscales'
-        self.menu_extract_pre_transform = 'extract'
-        self.menu_reset_pre_transform = 'reset'
+        self.menu_clean_transform = "clean"
+        self.menu_clean_translates = "cleantrans"
+        self.menu_clean_rotates = "cleanrot"
+        self.menu_clean_scales = "cleanscales"
+        self.menu_extract_pre_transform = "extract"
+        self.menu_reset_pre_transform = "reset"
 
 
 class LookupMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_don_t_use_up_vector = 'off'
-        self.menu_use_up_vector = 'on'
-        self.menu_use_quaternions = 'quat'
-        self.menu_use_global_position = 'pos'
-        self.menu_use_up_object = 'obj'
+        self.menu_don_t_use_up_vector = "off"
+        self.menu_use_up_vector = "on"
+        self.menu_use_quaternions = "quat"
+        self.menu_use_global_position = "pos"
+        self.menu_use_up_object = "obj"
 
 
 class UparmtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_uniform = 'uniform'
-        self.menu_arc_length = 'arc'
+        self.menu_uniform = "uniform"
+        self.menu_arc_length = "arc"
 
 
 class OutputobjMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_object = ''
-        self.menu_input_object_1 = '_input1_obj_'
-        self.menu_input_object_2 = '_input2_obj_'
-        self.menu_input_object_3 = '_input3_obj_'
-        self.menu_input_object_4 = '_input4_obj_'
-        self.menu__separator_ = '_separator_'
+        self.menu_no_object = ""
+        self.menu_input_object_1 = "_input1_obj_"
+        self.menu_input_object_2 = "_input2_obj_"
+        self.menu_input_object_3 = "_input3_obj_"
+        self.menu_input_object_4 = "_input4_obj_"
+        self.menu__separator_ = "_separator_"
 
 
 class VisibleobjectsMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_bundles_defined = ''
-
-
-class PickscriptMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu__job_desktop_articulatcf_bold_otf = '$JOB/Desktop/ArticulatCF-Bold.otf'
-        self.menu__hip_desktop_articulatcf_bold_otf = '$HIP/Desktop/ArticulatCF-Bold.otf'
-        self.menu_e__art_products_ox_mtlx_hf_test_out = 'E:/ART/PRODUCTS/OX-MTLX/hf_test_out'
-        self.menu_d__minecraft_sub___ded_copper_sbsar = 'D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar'
-        self.menu_d__minecraft_sub___dirt_field_sbsar = 'D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar'
-        self.menu_e__art_products____ers_rock_cpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/rock_cpu.jpg'
-        self.menu_e__art_products____ers_rock_xpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/rock_xpu.jpg'
-        self.menu_e__art_products____rs_quilt_xpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/quilt_xpu.jpg'
-        self.menu_e__art_products____rs_quilt_cpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/quilt_cpu.jpg'
-        self.menu_e__art_products____ers_lava_cpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg'
-        self.menu_e__art_products____ers_lava_xpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg'
-        self.menu_e__art_products____s_glazed_xpu_jpg = 'E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg'
+        self.menu_no_bundles_defined = ""
 
 
 

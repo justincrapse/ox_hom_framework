@@ -6,7 +6,7 @@ from ox.base_objects.menu import Menu
 
 class ScatterNode(OXNode):
     node_type = 'scatter::2.0'
-    parm_lookup_dict = {'group': 'group', 'stdswitcher1': 'stdswitcher1', 'generateby': 'generateby', 'densityscale': 'densityscale', 'usedensityattrib': 'usedensityattrib', 'densityattrib': 'densityattrib', 'useareaattrib': 'useareaattrib', 'areaattrib': 'areaattrib', 'indepvoxel': 'indepvoxel', 'useareaforvolumes': 'useareaforvolumes', 'forcetotal': 'forcetotal', 'npts': 'npts', 'usedensitytexture': 'usedensitytexture', 'densitytexture': 'densitytexture', 'primcountattrib': 'primcountattrib', 'useemergencylimit': 'useemergencylimit', 'emergencylimit': 'emergencylimit', 'seed': 'seed', 'overrideprimseed': 'overrideprimseed', 'primseedattrib': 'primseedattrib', 'randomizeorder': 'randomizeorder', 'relaxpoints': 'relaxpoints', 'relaxiterations': 'relaxiterations', 'scaleradiiby': 'scaleradiiby', 'usemaxradius': 'usemaxradius', 'maxradius': 'maxradius', 'useprimnumattrib': 'useprimnumattrib', 'primnumattrib': 'primnumattrib', 'useprimuvwattrib': 'useprimuvwattrib', 'primuvwattrib': 'primuvwattrib', 'useoutputdensityattrib': 'useoutputdensityattrib', 'outputdensityattrib': 'outputdensityattrib', 'useoutputradiusattrib': 'useoutputradiusattrib', 'outputradiusattrib': 'outputradiusattrib', 'radiusintexturespace': 'radiusintexturespace', 'pointattribs': 'pointattribs', 'vertattribs': 'vertattribs', 'primattribs': 'primattribs', 'detailattribs': 'detailattribs'}
+    parm_lookup_dict = {'group': 'group', 'stdswitcher1': 'stdswitcher1', 'generateby': 'generateby', 'indepvoxel': 'indepvoxel', 'forcetotal': 'forcetotal', 'npts': 'npts', 'densityscale': 'densityscale', 'usedensityattrib': 'usedensityattrib', 'densityattrib': 'densityattrib', 'useareaattrib': 'useareaattrib', 'areaattrib': 'areaattrib', 'useareaforvolumes': 'useareaforvolumes', 'usedensitytexture': 'usedensitytexture', 'densitytexture': 'densitytexture', 'uvattrib': 'uvattrib', 'primcountattrib': 'primcountattrib', 'useemergencylimit': 'useemergencylimit', 'emergencylimit': 'emergencylimit', 'seed': 'seed', 'overrideprimseed': 'overrideprimseed', 'primseedattrib': 'primseedattrib', 'randomizeorder': 'randomizeorder', 'relaxpoints': 'relaxpoints', 'relaxiterations': 'relaxiterations', 'scaleradiiby': 'scaleradiiby', 'usemaxradius': 'usemaxradius', 'maxradius': 'maxradius', 'useprimnumattrib': 'useprimnumattrib', 'primnumattrib': 'primnumattrib', 'useprimuvwattrib': 'useprimuvwattrib', 'primuvwattrib': 'primuvwattrib', 'useoutputdensityattrib': 'useoutputdensityattrib', 'outputdensityattrib': 'outputdensityattrib', 'useoutputradiusattrib': 'useoutputradiusattrib', 'outputradiusattrib': 'outputradiusattrib', 'radiusintexturespace': 'radiusintexturespace', 'pointattribs': 'pointattribs', 'vertattribs': 'vertattribs', 'primattribs': 'primattribs', 'detailattribs': 'detailattribs'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -20,16 +20,18 @@ class ScatterNode(OXNode):
         # parm vars:
         self.parm_group = Parameter(parm=self.node.parm('group'))
         self.parm_stdswitcher1 = Parameter(parm=self.node.parm('stdswitcher1'))
+        self.parm_indepvoxel = Parameter(parm=self.node.parm('indepvoxel'))
+        self.parm_forcetotal = Parameter(parm=self.node.parm('forcetotal'))
+        self.parm_npts = Parameter(parm=self.node.parm('npts'))
         self.parm_densityscale = Parameter(parm=self.node.parm('densityscale'))
         self.parm_usedensityattrib = Parameter(parm=self.node.parm('usedensityattrib'))
         self.parm_densityattrib = Parameter(parm=self.node.parm('densityattrib'))
         self.parm_useareaattrib = Parameter(parm=self.node.parm('useareaattrib'))
         self.parm_areaattrib = Parameter(parm=self.node.parm('areaattrib'))
-        self.parm_indepvoxel = Parameter(parm=self.node.parm('indepvoxel'))
         self.parm_useareaforvolumes = Parameter(parm=self.node.parm('useareaforvolumes'))
-        self.parm_forcetotal = Parameter(parm=self.node.parm('forcetotal'))
-        self.parm_npts = Parameter(parm=self.node.parm('npts'))
         self.parm_usedensitytexture = Parameter(parm=self.node.parm('usedensitytexture'))
+        self.parm_densitytexture = Parameter(parm=self.node.parm('densitytexture'))
+        self.parm_uvattrib = Parameter(parm=self.node.parm('uvattrib'))
         self.parm_primcountattrib = Parameter(parm=self.node.parm('primcountattrib'))
         self.parm_useemergencylimit = Parameter(parm=self.node.parm('useemergencylimit'))
         self.parm_emergencylimit = Parameter(parm=self.node.parm('emergencylimit'))
@@ -59,7 +61,6 @@ class ScatterNode(OXNode):
         
         # parm menu vars:
         self.parm_generateby = GeneratebyMenu(parm=self.node.parm('generateby'))
-        self.parm_densitytexture = DensitytextureMenu(parm=self.node.parm('densitytexture'))
 
 
         # input vars:
@@ -74,24 +75,6 @@ class GeneratebyMenu(Menu):
         self.menu_by_density = "bydensity"
         self.menu_count_per_primitive = "countperprimitive"
         self.menu_in_texture_space = "texturespace"
-
-
-class DensitytextureMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu__job_desktop_articulatcf_bold_otf = "$JOB/Desktop/ArticulatCF-Bold.otf"
-        self.menu__hip_desktop_articulatcf_bold_otf = "$HIP/Desktop/ArticulatCF-Bold.otf"
-        self.menu_e__art_products_ox_mtlx_hf_test_out = "E:/ART/PRODUCTS/OX-MTLX/hf_test_out"
-        self.menu_d__minecraft_sub___ded_copper_sbsar = "D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar"
-        self.menu_d__minecraft_sub___dirt_field_sbsar = "D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar"
-        self.menu_e__art_products____ers_rock_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_cpu.jpg"
-        self.menu_e__art_products____ers_rock_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_xpu.jpg"
-        self.menu_e__art_products____rs_quilt_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_xpu.jpg"
-        self.menu_e__art_products____rs_quilt_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_cpu.jpg"
-        self.menu_e__art_products____ers_lava_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg"
-        self.menu_e__art_products____ers_lava_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg"
-        self.menu_e__art_products____s_glazed_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg"
 
 
 

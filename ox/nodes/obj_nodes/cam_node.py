@@ -56,6 +56,7 @@ class CamNode(OXNode):
         self.parm_dcolorg = Parameter(parm=self.node.parm('dcolorg'))
         self.parm_dcolorb = Parameter(parm=self.node.parm('dcolorb'))
         self.parm_picking = Parameter(parm=self.node.parm('picking'))
+        self.parm_pickscript = Parameter(parm=self.node.parm('pickscript'))
         self.parm_caching = Parameter(parm=self.node.parm('caching'))
         self.parm_stdswitcher31 = Parameter(parm=self.node.parm('stdswitcher31'))
         self.parm_iconscale = Parameter(parm=self.node.parm('iconscale'))
@@ -69,6 +70,7 @@ class CamNode(OXNode):
         self.parm_near = Parameter(parm=self.node.parm('near'))
         self.parm_far = Parameter(parm=self.node.parm('far'))
         self.parm_vm_bgenable = Parameter(parm=self.node.parm('vm_bgenable'))
+        self.parm_vm_background = Parameter(parm=self.node.parm('vm_background'))
         self.parm_winx = Parameter(parm=self.node.parm('winx'))
         self.parm_winy = Parameter(parm=self.node.parm('winy'))
         self.parm_winsizex = Parameter(parm=self.node.parm('winsizex'))
@@ -79,9 +81,11 @@ class CamNode(OXNode):
         self.parm_cropb = Parameter(parm=self.node.parm('cropb'))
         self.parm_cropt = Parameter(parm=self.node.parm('cropt'))
         self.parm_cropmask = Parameter(parm=self.node.parm('cropmask'))
+        self.parm_fgimage = Parameter(parm=self.node.parm('fgimage'))
         self.parm_shutter = Parameter(parm=self.node.parm('shutter'))
         self.parm_focus = Parameter(parm=self.node.parm('focus'))
         self.parm_fstop = Parameter(parm=self.node.parm('fstop'))
+        self.parm_vm_bokehfile = Parameter(parm=self.node.parm('vm_bokehfile'))
         self.parm_vm_bokehrotation = Parameter(parm=self.node.parm('vm_bokehrotation'))
         self.parm_rs_camprop_switcher1 = Parameter(parm=self.node.parm('RS_camprop_switcher1'))
         self.parm_rs_campro_first = Parameter(parm=self.node.parm('RS_campro_first'))
@@ -114,6 +118,7 @@ class CamNode(OXNode):
         self.parm_rs_campro_dofbladescount = Parameter(parm=self.node.parm('RS_campro_dofBladesCount'))
         self.parm_rs_campro_dofbladesangle = Parameter(parm=self.node.parm('RS_campro_dofBladesAngle'))
         self.parm_rs_campro_dofbokeh = Parameter(parm=self.node.parm('RS_campro_dofBokeh'))
+        self.parm_rs_campro_dofbokehimage = Parameter(parm=self.node.parm('RS_campro_dofBokehImage'))
         self.parm_rs_campro_label5 = Parameter(parm=self.node.parm('RS_campro_label5'))
         self.parm_rs_campro_pycamenable = Parameter(parm=self.node.parm('RS_campro_PyCamEnable'))
         self.parm_rs_campro_label5b = Parameter(parm=self.node.parm('RS_campro_label5b'))
@@ -136,6 +141,7 @@ class CamNode(OXNode):
         self.parm_rs_campro_ocioswitcher = Parameter(parm=self.node.parm('RS_campro_ocioSwitcher'))
         self.parm_rs_campro_lutswitcher = Parameter(parm=self.node.parm('RS_campro_lutSwitcher'))
         self.parm_rs_campro_lutenable = Parameter(parm=self.node.parm('RS_campro_lutEnable'))
+        self.parm_rs_campro_lutfile = Parameter(parm=self.node.parm('RS_campro_lutFile'))
         self.parm_rs_campro_lutbeforecm = Parameter(parm=self.node.parm('RS_campro_lutBeforeCM'))
         self.parm_rs_campro_lutislog = Parameter(parm=self.node.parm('RS_campro_lutIsLog'))
         self.parm_rs_campro_lutstrength = Parameter(parm=self.node.parm('RS_campro_lutStrength'))
@@ -206,6 +212,7 @@ class CamNode(OXNode):
         self.parm_rs_campro_streakintensity = Parameter(parm=self.node.parm('RS_campro_streakIntensity'))
         self.parm_rs_campro_label6 = Parameter(parm=self.node.parm('RS_campro_label6'))
         self.parm_rs_campro_distortionenable = Parameter(parm=self.node.parm('RS_campro_distortionEnable'))
+        self.parm_rs_campro_distortionimage = Parameter(parm=self.node.parm('RS_campro_distortionImage'))
         self.parm_rs_campro_last = Parameter(parm=self.node.parm('RS_campro_last'))
 
         
@@ -215,22 +222,15 @@ class CamNode(OXNode):
         self.parm_pre_xform = PreXformMenu(parm=self.node.parm('pre_xform'))
         self.parm_lookup = LookupMenu(parm=self.node.parm('lookup'))
         self.parm_uparmtype = UparmtypeMenu(parm=self.node.parm('uparmtype'))
-        self.parm_pickscript = PickscriptMenu(parm=self.node.parm('pickscript'))
         self.parm_resmenu = ResmenuMenu(parm=self.node.parm('resMenu'))
         self.parm_projection = ProjectionMenu(parm=self.node.parm('projection'))
         self.parm_focalunits = FocalunitsMenu(parm=self.node.parm('focalunits'))
-        self.parm_vm_background = VmBackgroundMenu(parm=self.node.parm('vm_background'))
-        self.parm_fgimage = FgimageMenu(parm=self.node.parm('fgimage'))
         self.parm_vm_bokeh = VmBokehMenu(parm=self.node.parm('vm_bokeh'))
-        self.parm_vm_bokehfile = VmBokehfileMenu(parm=self.node.parm('vm_bokehfile'))
         self.parm_rs_campro_projection = RsCamproProjectionMenu(parm=self.node.parm('RS_campro_projection'))
         self.parm_rs_campro_stereomode = RsCamproStereomodeMenu(parm=self.node.parm('RS_campro_stereoMode'))
         self.parm_rs_campro_dofbokehnorm = RsCamproDofbokehnormMenu(parm=self.node.parm('RS_campro_dofBokehNorm'))
-        self.parm_rs_campro_dofbokehimage = RsCamproDofbokehimageMenu(parm=self.node.parm('RS_campro_dofBokehImage'))
         self.parm_rs_campro_ociodisplay = RsCamproOciodisplayMenu(parm=self.node.parm('RS_campro_ocioDisplay'))
         self.parm_rs_campro_ocioview = RsCamproOcioviewMenu(parm=self.node.parm('RS_campro_ocioView'))
-        self.parm_rs_campro_lutfile = RsCamproLutfileMenu(parm=self.node.parm('RS_campro_lutFile'))
-        self.parm_rs_campro_distortionimage = RsCamproDistortionimageMenu(parm=self.node.parm('RS_campro_distortionImage'))
 
 
         # input vars:
@@ -293,24 +293,6 @@ class UparmtypeMenu(Menu):
         self.menu_arc_length = "arc"
 
 
-class PickscriptMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu__job_desktop_articulatcf_bold_otf = "$JOB/Desktop/ArticulatCF-Bold.otf"
-        self.menu__hip_desktop_articulatcf_bold_otf = "$HIP/Desktop/ArticulatCF-Bold.otf"
-        self.menu_e__art_products_ox_mtlx_hf_test_out = "E:/ART/PRODUCTS/OX-MTLX/hf_test_out"
-        self.menu_d__minecraft_sub___ded_copper_sbsar = "D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar"
-        self.menu_d__minecraft_sub___dirt_field_sbsar = "D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar"
-        self.menu_e__art_products____ers_rock_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_cpu.jpg"
-        self.menu_e__art_products____ers_rock_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_xpu.jpg"
-        self.menu_e__art_products____rs_quilt_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_xpu.jpg"
-        self.menu_e__art_products____rs_quilt_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_cpu.jpg"
-        self.menu_e__art_products____ers_lava_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg"
-        self.menu_e__art_products____ers_lava_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg"
-        self.menu_e__art_products____s_glazed_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg"
-
-
 class ResmenuMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
@@ -366,42 +348,6 @@ class FocalunitsMenu(Menu):
         self.menu_feet = "ft"
 
 
-class VmBackgroundMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu_e__art_projects____a_sunrise_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr"
-        self.menu_e__art_projects____anga_veld_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr"
-        self.menu_e__art_projects____s_on_fire_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr"
-        self.menu_e__art_projects____ly_cloudy_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr"
-        self.menu_e__art_projects____enheim_05_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr"
-        self.menu_e__art_projects____quarry_02_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr"
-        self.menu_e__art_projects_____1d_clear_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr"
-        self.menu_e__art_projects____oon_grass_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr"
-        self.menu_e__art_projects____in_cellar_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr"
-        self.menu_e__art_products____ers_tip_mask_jpg = "E:/ART/PRODUCTS/OX-Terrain_Textuers/tip_mask.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/multi_texture_folder/green_tiles/wall_tile_unstuck_basecolor.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/glazed_terracotta/wall_tile_unstuck_basecolor.jpg"
-
-
-class FgimageMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu_e__art_projects____a_sunrise_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr"
-        self.menu_e__art_projects____anga_veld_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr"
-        self.menu_e__art_projects____s_on_fire_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr"
-        self.menu_e__art_projects____ly_cloudy_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr"
-        self.menu_e__art_projects____enheim_05_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr"
-        self.menu_e__art_projects____quarry_02_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr"
-        self.menu_e__art_projects_____1d_clear_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr"
-        self.menu_e__art_projects____oon_grass_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr"
-        self.menu_e__art_projects____in_cellar_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr"
-        self.menu_e__art_products____ers_tip_mask_jpg = "E:/ART/PRODUCTS/OX-Terrain_Textuers/tip_mask.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/multi_texture_folder/green_tiles/wall_tile_unstuck_basecolor.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/glazed_terracotta/wall_tile_unstuck_basecolor.jpg"
-
-
 class VmBokehMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
@@ -410,24 +356,6 @@ class VmBokehMenu(Menu):
         self.menu_image_file_bokeh = "file"
         self.menu_box_filter_bokeh = "box"
         self.menu_disable_bokeh = "null"
-
-
-class VmBokehfileMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu_e__art_projects____a_sunrise_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr"
-        self.menu_e__art_projects____anga_veld_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr"
-        self.menu_e__art_projects____s_on_fire_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr"
-        self.menu_e__art_projects____ly_cloudy_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr"
-        self.menu_e__art_projects____enheim_05_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr"
-        self.menu_e__art_projects____quarry_02_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr"
-        self.menu_e__art_projects_____1d_clear_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr"
-        self.menu_e__art_projects____oon_grass_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr"
-        self.menu_e__art_projects____in_cellar_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr"
-        self.menu_e__art_products____ers_tip_mask_jpg = "E:/ART/PRODUCTS/OX-Terrain_Textuers/tip_mask.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/multi_texture_folder/green_tiles/wall_tile_unstuck_basecolor.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/glazed_terracotta/wall_tile_unstuck_basecolor.jpg"
 
 
 class RsCamproProjectionMenu(Menu):
@@ -458,24 +386,6 @@ class RsCamproDofbokehnormMenu(Menu):
         self.menu_white_color_sum = "3"
 
 
-class RsCamproDofbokehimageMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu_e__art_projects____a_sunrise_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr"
-        self.menu_e__art_projects____anga_veld_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr"
-        self.menu_e__art_projects____s_on_fire_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr"
-        self.menu_e__art_projects____ly_cloudy_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr"
-        self.menu_e__art_projects____enheim_05_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr"
-        self.menu_e__art_projects____quarry_02_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr"
-        self.menu_e__art_projects_____1d_clear_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr"
-        self.menu_e__art_projects____oon_grass_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr"
-        self.menu_e__art_projects____in_cellar_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr"
-        self.menu_e__art_products____ers_tip_mask_jpg = "E:/ART/PRODUCTS/OX-Terrain_Textuers/tip_mask.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/multi_texture_folder/green_tiles/wall_tile_unstuck_basecolor.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/glazed_terracotta/wall_tile_unstuck_basecolor.jpg"
-
-
 class RsCamproOciodisplayMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
@@ -491,42 +401,6 @@ class RsCamproOcioviewMenu(Menu):
         self.menu_un_tone_mapped = "Un-tone-mapped"
         self.menu_log = "Log"
         self.menu_raw = "Raw"
-
-
-class RsCamproLutfileMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu__job_desktop_articulatcf_bold_otf = "$JOB/Desktop/ArticulatCF-Bold.otf"
-        self.menu__hip_desktop_articulatcf_bold_otf = "$HIP/Desktop/ArticulatCF-Bold.otf"
-        self.menu_e__art_products_ox_mtlx_hf_test_out = "E:/ART/PRODUCTS/OX-MTLX/hf_test_out"
-        self.menu_d__minecraft_sub___ded_copper_sbsar = "D:/Minecraft/substance/hazelnut_3/copper_block/grinded_copper.sbsar"
-        self.menu_d__minecraft_sub___dirt_field_sbsar = "D:/Minecraft/substance/hazelnut/farmland_wet/arid_dirt_field.sbsar"
-        self.menu_e__art_products____ers_rock_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_cpu.jpg"
-        self.menu_e__art_products____ers_rock_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/rock_xpu.jpg"
-        self.menu_e__art_products____rs_quilt_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_xpu.jpg"
-        self.menu_e__art_products____rs_quilt_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/quilt_cpu.jpg"
-        self.menu_e__art_products____ers_lava_cpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_cpu.jpg"
-        self.menu_e__art_products____ers_lava_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/lava_xpu.jpg"
-        self.menu_e__art_products____s_glazed_xpu_jpg = "E:/ART/PRODUCTS/OX-MTLX/renders/glazed_xpu.jpg"
-
-
-class RsCamproDistortionimageMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu_e__art_projects____a_sunrise_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr"
-        self.menu_e__art_projects____anga_veld_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr"
-        self.menu_e__art_projects____s_on_fire_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr"
-        self.menu_e__art_projects____ly_cloudy_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloofendal_48d_partly_cloudy_4k.exr"
-        self.menu_e__art_projects____enheim_05_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr"
-        self.menu_e__art_projects____quarry_02_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/quarry_02_4k.exr"
-        self.menu_e__art_projects_____1d_clear_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr"
-        self.menu_e__art_projects____oon_grass_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/noon_grass_4k.exr"
-        self.menu_e__art_projects____in_cellar_4k_exr = "E:/ART/PROJECTS/00_shared/hdri/castle_zavelstein_cellar_4k.exr"
-        self.menu_e__art_products____ers_tip_mask_jpg = "E:/ART/PRODUCTS/OX-Terrain_Textuers/tip_mask.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/multi_texture_folder/green_tiles/wall_tile_unstuck_basecolor.jpg"
-        self.menu_e__art_products____ck_basecolor_jpg = "E:/ART/PRODUCTS/OX-MTLX/glazed_terracotta/wall_tile_unstuck_basecolor.jpg"
 
 
 

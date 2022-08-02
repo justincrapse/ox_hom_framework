@@ -4,9 +4,9 @@ from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class CollectNode(OXNode):
-    node_type = 'collect'
-    parm_lookup_dict = {'inputnum': 'inputnum', 'inputname1': 'inputname1', 'inputlabel1': 'inputlabel1'}
+class RsmathmulNode(OXNode):
+    node_type = 'redshift::RSMathMul'
+    parm_lookup_dict = {'input1': 'input1', 'input2': 'input2', 'math_op': 'math_op', 'shader_skipdefvalparms': 'shader_skipdefvalparms'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -18,17 +18,18 @@ class CollectNode(OXNode):
         super().__init__(node=self.node)
         
         # parm vars:
-        self.parm_inputnum = Parameter(parm=self.node.parm('inputnum'))
-        self.parm_inputname1 = Parameter(parm=self.node.parm('inputname1'))
-        self.parm_inputlabel1 = Parameter(parm=self.node.parm('inputlabel1'))
+        self.parm_input1 = Parameter(parm=self.node.parm('input1'))
+        self.parm_input2 = Parameter(parm=self.node.parm('input2'))
+        self.parm_math_op = Parameter(parm=self.node.parm('math_op'))
+        self.parm_shader_skipdefvalparms = Parameter(parm=self.node.parm('shader_skipdefvalparms'))
 
         
         # parm menu vars:
 
 
         # input vars:
-        self.input_input_1 = 'Input 1'
-        self.input_input_2 = 'Input 2'
+        self.input_input1 = 'input1'
+        self.input_input2 = 'input2'
 
 
 # parm menu classes:

@@ -133,4 +133,163 @@ for node in selected_nodes:
     <memberTool name="regenerate_node_classes"/>
     <memberTool name="examples"/>
   </toolshelf>
+
+  <tool name="regenerate_node_classes" label="Regenerate Node Classes" icon="cat_blue_icon">
+    <script scriptType="python"><![CDATA[import inspect
+import logging
+from collections import defaultdict
+
+import hou
+from ox.base_objects.ox_node import OXNode
+from ox.utils.gen_classes import gen_node_classes
+from ox import nodes
+from ox.utils import ui
+
+ox_logger = logging.getLogger("ox_logger")
+
+obj_node: hou.Node = hou.node("/obj")
+ox_obj_node = OXNode(node=obj_node)
+
+node_folder_list = ["obj_nodes", "geo_nodes", "matnet_nodes", "redshift_nodes", "cop_nodes"]
+
+node_cat_list = [i for i in dir(nodes) if not i.startswith("__")]
+
+
+created_node_dict = defaultdict(list)
+
+ui.display_confirmation(
+    message="This will regenerate all existing OX Nodes. Are you sure you want to do this? Press cancel to exit code.", require_confirmation=True
+)
+
+
+######################################################################################################################################################
+# OBJ Nodes:
+node_dir = "obj_nodes"
+source_node: hou.Node = obj_node
+node_cat = nodes.obj_nodes
+
+node_name_list = [i for i in dir(node_cat) if not i.startswith("__")]
+node_class_list = [getattr(node_cat, i) for i in node_name_list if inspect.isclass(getattr(node_cat, i))]
+for node in node_class_list:
+    ox_logger.info(f"Node type: {node.node_type}")
+    new_node = source_node.createNode(node.node_type)
+    gen_node_classes.generate_node_class(node=new_node, sub_dir=node_dir)
+    created_node_dict[node_dir].append(node.node_type)
+
+
+######################################################################################################################################################
+# GEO Nodes:
+node_dir = "geo_nodes"
+source_node = obj_node.createNode("geo")
+node_cat = nodes.geo_nodes
+
+node_name_list = [i for i in dir(node_cat) if not i.startswith("__")]
+node_class_list = [getattr(node_cat, i) for i in node_name_list if inspect.isclass(getattr(node_cat, i))]
+for node in node_class_list:
+    ox_logger.info(f"Node type: {node.node_type}")
+    new_node = source_node.createNode(node.node_type)
+    if node.node_type == "labs::hf_combine_masks":
+        new_node.parm("folder0").set(1)
+    ox_logger.info(new_node.name())
+    gen_node_classes.generate_node_class(node=new_node, sub_dir=node_dir)
+    created_node_dict[node_dir].append(node.node_type)
+
+
+######################################################################################################################################################
+# Matnet Nodes:
+node_dir = "matnet_nodes"
+source_node = obj_node.createNode("matnet")
+node_cat = nodes.matnet_nodes
+
+node_name_list = [i for i in dir(node_cat) if not i.startswith("__")]
+node_class_list = [getattr(node_cat, i) for i in node_name_list if inspect.isclass(getattr(node_cat, i))]
+extra_node = source_node.createNode("mtlxstandard_surface")
+for node in node_class_list:
+    ox_logger.info(f"Node type: {node.node_type}")
+    new_node = source_node.createNode(node.node_type)
+    if node.node_type == "collect":
+        new_node.setInput(input_index=0, item_to_become_input=extra_node, output_index=0)
+    ox_logger.info(new_node.name())
+    gen_node_classes.generate_node_class(node=new_node, sub_dir=node_dir)
+    created_node_dict[node_dir].append(node.node_type)
+
+
+######################################################################################################################################################
+# Redshift Nodes:
+node_dir = "redshift_nodes"
+matnet_node = obj_node.createNode("matnet")
+source_node: hou.Node = matnet_node.createNode("redshift_vopnet")
+source_node.deleteItems(source_node.allItems())
+node_cat = nodes.redshift_nodes
+
+node_name_list = [i for i in dir(node_cat) if not i.startswith("__")]
+node_class_list = [getattr(node_cat, i) for i in node_name_list if inspect.isclass(getattr(node_cat, i))]
+for node in node_class_list:
+    ox_logger.info(f"Node type: {node.node_type}")
+    new_node = source_node.createNode(node.node_type)
+    ox_logger.info(new_node.name())
+    gen_node_classes.generate_node_class(node=new_node, sub_dir=node_dir)
+    created_node_dict[node_dir].append(node.node_type)
+
+
+######################################################################################################################################################
+# Cop Nodes:
+node_dir = "cop_nodes"
+source_node: hou.Node = obj_node.createNode("cop2net")
+node_cat = nodes.cop_nodes
+
+node_name_list = [i for i in dir(node_cat) if not i.startswith("__")]
+node_class_list = [getattr(node_cat, i) for i in node_name_list if inspect.isclass(getattr(node_cat, i))]
+for node in node_class_list:
+    ox_logger.info(f"Node type: {node.node_type}")
+    new_node = source_node.createNode(node.node_type)
+    ox_logger.info(new_node.name())
+    gen_node_classes.generate_node_class(node=new_node, sub_dir=node_dir)
+    created_node_dict[node_dir].append(node.node_type)
+
+for key, value in created_node_dict.items():
+    ox_logger.info(f"{key}: {len(value)}")
+]]></script>
+  </tool>
+
+  <tool name="examples" label="Examples" icon="cat_rainbow">
+    <script scriptType="python"><![CDATA[# autocomplete nodes, parm, menu
+from hashlib import new
+import hou
+from ox import nodes
+from ox.base_objects.ox_node import OXNode
+
+
+# obj_node = hou.node("/obj")
+# geo_node = obj_node.createNode("geo")
+# sphere_node: hou.Node = geo_node.createNode("sphere")
+# sphere_node.parm("scale").set(0.5)
+# freq_parm: hou.Parm = sphere_node.parm("freq")
+# freq_parm.set(1)
+# type_parm: hou.Parm = sphere_node.parm("type")
+# menu_lookup = dict(zip(type_parm.menuLabels(), type_parm.menuItems()))
+# type_parm.set(menu_lookup["Polygon"])
+
+# new_parm_template = hou.ButtonParmTemplate(
+#     name="my_button", label="My Button", script_callback="print('Test Button 1')", script_callback_language=hou.scriptLanguage.Python
+# )
+# parm_template_group: hou.ParmTemplateGroup = sphere_node.parmTemplateGroup()
+# freq_pt = freq_parm.parmTemplate()
+# parm_template_group.insertAfter(freq_pt, new_parm_template)
+# sphere_node.setParmTemplateGroup(parm_template_group=parm_template_group)
+
+
+obj_node = hou.node("/obj")
+ox_obj_node = OXNode(obj_node)
+ox_geo_node = nodes.obj_nodes.GeoNode(ox_parent=ox_obj_node)
+ox_sphere_node = nodes.geo_nodes.SphereNode(ox_parent=ox_geo_node)
+ox_sphere_node.parm_type.menu_polygon
+ox_sphere_node.parm_scale = 0.5
+ox_sphere_node.parm_freq = 1
+
+button_pt = ox_sphere_node.create_button_parm_template(name="my_button", label="My Button", script_callback="print('Test Button 2')")
+ox_sphere_node.add_parm_template(parm_template=button_pt, insert_after_parm=ox_sphere_node.parm_freq.parm)
+
+]]></script>
+  </tool>
 </shelfDocument>

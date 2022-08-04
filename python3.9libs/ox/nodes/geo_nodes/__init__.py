@@ -34,3 +34,4 @@ from .normal_node import NormalNode
 from .attribtransfer_node import AttribtransferNode
 from .matchsize_node import MatchsizeNode
 from .sphere_node import SphereNode
+from .torus_node import TorusNode

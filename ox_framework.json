@@ -1,0 +1,14 @@
+{
+  "path": "",
+  "env": [
+    {
+      "ox_framework_path": "D:/houdini_plugins/ox_framework"
+    },
+    {
+      "HOUDINI_UI_ICON_PATH": "$ox_framework_path/icons"
+    },
+    {
+      "HOUDINI_PATH": "$ox_framework_path"
+    }
+  ]
+}

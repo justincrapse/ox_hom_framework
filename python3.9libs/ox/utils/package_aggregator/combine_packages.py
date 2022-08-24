@@ -14,9 +14,6 @@ def aggregate_packages(package_path_list, out_path, out_folder):
 if __name__ == "__main__":
     p_path = Path("D:\houdini_plugins")
     out_path = p_path.joinpath('aggregates')
-    mtlx_path = p_path.joinpath("ox_mtlx_package")
-    redshift_path = p_path.joinpath("ox_redshift_package")
-    utils_path = p_path.joinpath("ox_utils_package")
-
-    package_path_list = [mtlx_path, redshift_path, utils_path]
+    package_list = ['ox_mtlx_package', 'ox_redshift_package', 'ox_utils_package']
+    package_path_list = [p_path.joinpath(i) for i in package_list]
     aggregate_packages(package_path_list=package_path_list, out_path=out_path, out_folder='texture_packages')

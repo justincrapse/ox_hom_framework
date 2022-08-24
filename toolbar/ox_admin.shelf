@@ -254,10 +254,17 @@ for key, value in created_node_dict.items():
 
   <tool name="examples" label="Examples" icon="cat_rainbow">
     <script scriptType="python"><![CDATA[# autocomplete nodes, parm, menu
-from hashlib import new
+import logging
+import os
+
 import hou
+
 from ox import nodes
 from ox.base_objects.ox_node import OXNode
+from ox.constants.ox_conf import sesh_vars
+from ox.utils import session_utils, file_utils
+
+ox_logger = logging.getLogger("ox_logger")
 
 
 # obj_node = hou.node("/obj")
@@ -287,9 +294,18 @@ ox_sphere_node.parm_type.menu_polygon
 ox_sphere_node.parm_scale = 0.5
 ox_sphere_node.parm_freq = 1
 
+session_utils.set_session_variable(var_name=sesh_vars.LOAD_USER_PRESETS, value=True)
+load_user_presets = session_utils.get_session_variable(sesh_vars.LOAD_USER_PRESETS)
+if load_user_presets:
+    ox_logger.debug(f"loading user preset: {ox_sphere_node.name}")
+    ox_sphere_node.load_preset()
+
 button_pt = ox_sphere_node.create_button_parm_template(name="my_button", label="My Button", script_callback="print('Test Button 2')")
 ox_sphere_node.add_parm_template(parm_template=button_pt, insert_after_parm=ox_sphere_node.parm_freq.parm)
 
+# folder_path = os.getenv("HIP")
+# contents = file_utils.get_dir_contents(folder_path=folder_path)
+# print(contents)
 ]]></script>
   </tool>
 </shelfDocument>

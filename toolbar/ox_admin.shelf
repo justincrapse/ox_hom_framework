@@ -291,6 +291,7 @@ ox_obj_node = OXNode(obj_node)
 ox_geo_node = nodes.obj_nodes.GeoNode(ox_parent=ox_obj_node)
 ox_sphere_node = nodes.geo_nodes.SphereNode(ox_parent=ox_geo_node)
 ox_sphere_node.parm_type.menu_polygon
+ox_geo_node.add_parm_template()
 ox_sphere_node.parm_scale = 0.5
 ox_sphere_node.parm_freq = 1
 

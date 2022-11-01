@@ -6,7 +6,31 @@ Usage
 Installation
 ------------
 
-To use Lumache, first install it using pip:
+*this should be in italics*
+**this should be bold**
+``this is a code example``
+text with **bold text** in the middle 
+text with\ **bold text**\ in the middle with escaped spaces
+
+* this
+* is a list
+
+    * and this is nested
+
+* and this is original list 
+
+#. This is a numbered list
+#. another entry
+
+    #. sub entry in numbered list
+
+My Term
+    definition of my Term
+
+    more stuff
+
+Next Term
+    description
 
 .. code-block:: console
 
@@ -37,4 +61,3 @@ For example:
 ['shells', 'gorgonzola', 'parsley']
 bloogers
 
-trap step

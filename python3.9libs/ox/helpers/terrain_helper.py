@@ -161,6 +161,7 @@ class TerrainHelper:
         if not scatter_node:  # lol I don't remember what this is for. simple scatter I think?
             # set the main scatter node for the scatter set:
             scatter_node = nodes.geo_nodes.HeightfieldScatterNode(ox_parent=self.terrain_node, node_name=f"{user_mask}_hf_scatter")
+
             scatter_node.unlock_node()
             scatter_node.parm_keepterrain = False
             scatter_node.parm_keepscatterpoints = False

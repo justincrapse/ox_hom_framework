@@ -1,5 +1,7 @@
-Usage
-=====
+.. image:: images/index/under_construction.jpg
+    
+Practice
+========
 
 .. _installation:
 

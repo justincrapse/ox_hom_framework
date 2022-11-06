@@ -52,7 +52,7 @@ will raise an exception.
 
 For example:
 
-.. image:: https://cdnb.artstation.com/p/assets/images/images/017/653/573/large/philipp-kruse-skirmish1.jpg?1556826067
+.. image:: images/my_test.jpg
    :width: 600
    :alt: alt text here
 

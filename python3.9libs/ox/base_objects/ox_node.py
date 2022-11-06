@@ -5,6 +5,7 @@ in the child class (that represents a houdini node.) Avoid adding attributes to 
 they are not evaluated in the same manner. If there is overlap with this skip list and a parameter attribute that you want to change, a message
 will let the coder know that there is an overlap and that this particular attribute will have to be set using the hou module.
 """
+from collections import defaultdict
 import re
 import logging
 from typing import List
@@ -156,6 +157,10 @@ class OXNode(ParmTemplate):  # mixins
             return matching_nodes[0]
 
     def set_color(self, color):
+        """
+        Can pass in a tuple for RGB values or a hou.Color object. 
+        """
+        color = color if isinstance(color, hou.Color) else hou.Color(color)
         self.node.setColor(color)
 
     def set_name(self, new_name):
@@ -251,6 +256,10 @@ class OXNode(ParmTemplate):  # mixins
         self.name = new_name
         ox_logger.debug(f"rename node result: {result}")
 
+    def get_input_count(self):
+        input_count = len(self.node.inputConnections())
+        return input_count
+
     ##################################################################################################################################################
     # parm methods
     def get_parms(self) -> List[hou.Parm]:
@@ -265,6 +274,11 @@ class OXNode(ParmTemplate):  # mixins
             parm_sublist = [i for i in parameters if i.name().startswith(substring)]
         else:
             parm_sublist = [i for i in parameters if substring in i.name()]
+        return parm_sublist
+
+    def get_parms_by_regex(self, regex_str):
+        parameters = self.get_parms()   
+        parm_sublist = [i for i in parameters if re.match(regex_str, i.name())]
         return parm_sublist
 
     def get_parm_labels(self):
@@ -290,5 +304,32 @@ class OXNode(ParmTemplate):  # mixins
         parm_list = self.get_parms_by_name_substring(substring=substring) if substring else self.get_parms()
         parm_dict = {i.name(): i.eval() for i in parm_list}
         return parm_dict
+
+    def get_children_parms_dict(self):
+        """
+        handy method that gets all children nodes and parameters as a dict to reaply later or to another node. 
+        """
+        child_parms_dict = defaultdict(dict)
+        for i in self.get_children_nodes():
+            ox_logger.debug(f'coppying parms for child node {i.name()}')
+            for parm in i.parms():
+                parm_value = parm.eval()
+                parm_name = parm.name()
+                node_name = i.name()
+                child_parms_dict[node_name][parm_name] = parm_value
+        return child_parms_dict
+
+    def apply_children_parms_dict(self, children_parms_dict):
+        for key, value in children_parms_dict.items():
+            ox_logger.debug(f'Getting child node by key: ({key}) to apply children parms to')
+            key_node: hou.Node = self.get_child_by_name(key)
+            for parm_key, parm_value in value.items():
+                try: 
+                    parm: hou.Parm = key_node.parm(parm_key)
+                except AttributeError:
+                    ox_logger.warn(f'No parm "{parm_key}" found for node {key_node} to apply value to. Skipping')
+                    continue
+                ox_logger.debug(f'Node: {key_node} - Setting parm "{parm_key}" to value: {parm_value}')
+                parm.set(parm_value)
 
     ##################################################################################################################################################

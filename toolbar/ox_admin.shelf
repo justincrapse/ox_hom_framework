@@ -132,6 +132,7 @@ for node in selected_nodes:
     <memberTool name="node_class_generator"/>
     <memberTool name="regenerate_node_classes"/>
     <memberTool name="examples"/>
+    <memberTool name="sandbox"/>
   </toolshelf>
 
   <tool name="regenerate_node_classes" label="Regenerate Node Classes" icon="cat_blue_icon">
@@ -308,5 +309,103 @@ ox_sphere_node.add_parm_template(parm_template=button_pt, insert_after_parm=ox_s
 # contents = file_utils.get_dir_contents(folder_path=folder_path)
 # print(contents)
 ]]></script>
+  </tool>
+
+  <tool name="sandbox" label="SandBox" icon="pearl_icon">
+    <script scriptType="python"><![CDATA[from collections import defaultdict
+import hou
+from ox.base_objects.ox_node import OXNode
+from ox.utils import ui
+
+obj_node = hou.node("/obj")
+hh_obj_node = OXNode(node=obj_node)
+
+selected_nodes = ui.get_selected_nodes()
+selected_node_1 = selected_nodes[0]
+selected_node_2 = selected_nodes[1]
+selected_ox_node = OXNode(node=selected_node_1)
+selected_ox_node_2 = OXNode(node=selected_node_2)
+children_nodes = selected_ox_node.get_children_nodes()
+
+i: hou.Node
+parm_save_dict = defaultdict(dict)
+for i in children_nodes:
+    # print(i.name())
+    for parm in i.parms():
+        parm_value = parm.eval()
+        parm_name = parm.name()
+        node_name = i.name()
+        parm_save_dict[node_name][parm_name] = parm_value
+
+for key, value in parm_save_dict.items():
+    key_node: hou.Node = selected_ox_node_2.get_child_by_name(key)
+    for parm_key, parm_value in value.items():
+        parm: hou.Parm = key_node.parm(parm_key)
+        parm.set(parm_value)
+        # print(f'{key}: {i}')
+
+
+
+
+# for i in children_nodes:
+#     # print(i.name())
+#     for entry in i.parmTemplateGroup().entries():
+#         parm = i.parm(entry.name())
+#         if not hasattr(entry, 'parmTemplates') and hasattr(parm, 'eval') and hasattr(parm.parmTemplate(), 'defaultValue'):
+#             parm_value = parm.rawValue()
+#             parm_value = parm.eval()
+#             if isinstance(parm_value, hou.Ramp):
+#                 parm_value = parm.rawValue()
+#             default_value = parm.parmTemplate().defaultValue()
+#             # print(default_value)
+#             if isinstance(default_value, tuple):
+#                 default_value = ' '.join(str(i) for i in default_value)
+#             print(i.name(), parm.name(), parm_value, default_value)
+#             if parm.rawValue() == parm.parmTemplate().defaultValue():
+#                 pass
+#             elif str(parm_value) == str(default_value):
+#                 pass
+#             elif parm_value == 'off' and default_value == False:
+#                 pass
+#             elif isinstance(parm_value, int) and float(parm_value) == default_value:
+#                 pass
+#             else:
+#                 print(i.name(), parm.name(), parm_value, default_value, f'parm value type: {type(parm_value)}')
+#         elif hasattr(entry, 'parmTemplates') : 
+#             for sub_e in entry.parmTemplates():
+#                 pass
+#                 # print(entry.name(), i.parm(entry.name()))
+
+# for i in children_nodes:
+#     # print(i.name())
+#     for entry in i.parms():
+#         parm = entry
+#         if not hasattr(entry, 'parmTemplates') and hasattr(parm, 'eval') and hasattr(parm.parmTemplate(), 'defaultValue'):
+#             parm_value = parm.rawValue()
+#             parm_value = parm.eval()
+#             raw_value = parm.rawValue()
+#             if isinstance(parm_value, hou.Ramp):
+#                 parm_value = parm.rawValue()
+#             default_value = parm.parmTemplate().defaultValue()
+#             # print(default_value)
+#             if isinstance(default_value, tuple):
+#                 default_value = ' '.join(str(i) for i in default_value)
+#             # print(i.name(), parm.name(), parm_value, default_value)
+#             if parm.rawValue() == parm.parmTemplate().defaultValue():
+#                 pass
+#             elif str(parm_value) == str(default_value):
+#                 pass
+#             elif parm_value == 'off' and default_value == False:
+#                 pass
+#             elif isinstance(parm_value, int) and float(parm_value) == default_value:
+#                 pass
+#             else:
+#                 # print(i.name(), parm.name(), parm_value, default_value, f'parm value type: {type(parm_value)}')
+#                 print(i.name(), parm.name(), parm_value, '|||', default_value)
+#                 # print(f'raw_{i.name()}', parm.name(), raw_value, default_value)
+#         elif hasattr(entry, 'parmTemplates') : 
+#             for sub_e in entry.parmTemplates():
+#                 pass
+#                 # print(entry.name(), i.parm(entry.name()))]]></script>
   </tool>
 </shelfDocument>

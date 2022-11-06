@@ -19,11 +19,10 @@ class TerrainHelper:
         self.terrain_node = terrain_node
         self.hf_node = scatter_anchor_node
         # scatter bridge setup:
-        self.scatter_bridge_node = self.obj_node.create_node_if_not_exists(
-            ox_node_class=nodes.obj_nodes.GeoNode, node_name="scatter_bridge"
-        )  # type: nodes.obj_nodes.GeoNode
-        self.scatter_bridge_node.set_color(colors.cerulean_blue)
-        self.scatter_bridge_node.set_display_flag(on=False, include_render_flag=False)
+        self.scatter_bridge_node = self.obj_node.create_node_if_not_exists(ox_node_class=nodes.obj_nodes.GeoNode, node_name="scatter_bridge")
+        self.scatter_bridge_ox_node = nodes.obj_nodes.GeoNode(node=self.scatter_bridge_node)
+        self.scatter_bridge_ox_node.set_color(colors.cerulean_blue)
+        self.scatter_bridge_ox_node.set_display_flag(on=False, include_render_flag=False)
         self.geo_import_node_tup_list = []  # we need a count, so a dict doesn't work
         self.mask_null_node_dict = {}
         self.prev_hf_node = None
@@ -82,7 +81,7 @@ class TerrainHelper:
         path_list = scatter_set_node.get_children_paths_by_partial_name(substring=postfix)
         geo_node_name = scatter_set_hou_node.name()
         node_name = f"{geo_node_name}_import"
-        merge_object_node = self.scatter_bridge_node.create_node_if_not_exists(
+        merge_object_node = self.scatter_bridge_ox_node.create_node_if_not_exists(
             ox_node_class=nodes.geo_nodes.ObjectMergeNode, node_name=node_name
         )  # type: nodes.geo_nodes.ObjectMergeNode
         merge_object_node.parm_numobj = len(path_list)
@@ -111,20 +110,20 @@ class TerrainHelper:
         this method finished the bridge settup.
         """
         name_only = mask_name.replace("_mask", "")
-        null_node = self.scatter_bridge_node.create_node_if_not_exists(
+        null_node = self.scatter_bridge_ox_node.create_node_if_not_exists(
             ox_node_class=nodes.geo_nodes.NullNode, node_name=f"OUT_{mask_name}"
         )  # type: nodes.geo_nodes.NullNode
         matching_import_nodes = [i for i in self.geo_import_node_tup_list if name_only in i[0]]
-        xform_node = self.scatter_bridge_node.create_node_if_not_exists(
+        xform_node = self.scatter_bridge_ox_node.create_node_if_not_exists(
             ox_node_class=nodes.geo_nodes.TransformNode, node_name=f"{mask_name}_xform"
         )  # type: nodes.geo_nodes.TransformNode
         if len(matching_import_nodes) > 1:
-            merge_node = self.scatter_bridge_node.create_node_if_not_exists(
+            merge_node = self.scatter_bridge_ox_node.create_node_if_not_exists(
                 ox_node_class=nodes.geo_nodes.MergeNode, node_name=f"{mask_name}_merge_node"
             )  # type: nodes.geo_nodes.MergeNode
             for index, ox_node in enumerate(matching_import_nodes):
                 weight_node_name = f"{mask_name}_weight_attr_{index}"
-                weight_attr_node = self.scatter_bridge_node.create_node_if_not_exists(
+                weight_attr_node = self.scatter_bridge_ox_node.create_node_if_not_exists(
                     ox_node_class=nodes.geo_nodes.AttribcreateNode, node_name=weight_node_name
                 )  # type: nodes.geo_nodes.AttribcreateNode
                 weight_attr_node.parm_name1 = "weight"
@@ -209,7 +208,7 @@ class TerrainHelper:
 
             # get the scatter set output from the bridge
             import_node = nodes.geo_nodes.ObjectMergeNode(ox_parent=self.terrain_node, node_name=f"{user_mask}_import_from_bridge")
-            import_node.parm_objpath1 = f'{self.scatter_bridge_node.path}/{f"OUT_{user_mask}"}'
+            import_node.parm_objpath1 = f'{self.scatter_bridge_ox_node.path}/{f"OUT_{user_mask}"}'
             scatter_node.connect_from(ox_node=import_node, input_label=scatter_node.input_primitives_to_instance)
             if simple_scatter:
                 return

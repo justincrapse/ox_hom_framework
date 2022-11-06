@@ -45,15 +45,19 @@ class ParmTemplate:
         ox_logger.debug(f'Getting all parm templates for "{self.node.name()}" parmTemplates: {parm_templates}')
         return parm_templates
 
-    def add_parm_template(self, parm_template, folder_label=None, as_first=False, insert_after_parm=None, insert_before_parm=None) -> hou.Parm:
+    def add_parm_template(
+        self, parm_template, folder_label=None, as_first=False, insert_after_parm=None, insert_before_parm=None, return_type=None
+    ) -> hou.Parm:
         """if folder_label is specified, as_first, insert_after_parm, and insert_before_parm are not relavant as those will dictate which
         folder a parm template is added to."""
         parm_template: hou.ParmTemplate
         if folder_label:
+            ox_logger.debug(f"Appending parm to folder: {folder_label}")
             self.__create_folder_if_not_exist(folder_label=folder_label)
             folder = self.parm_template_group.findFolder(folder_label)
             self.parm_template_group.appendToFolder(folder, parm_template)
         elif as_first:
+            ox_logger.debug("Inserting parm template as first entry")
             first_pt = self.__get_parm_templates()[0]
             self.parm_template_group.insertBefore(first_pt, parm_template)
         elif insert_after_parm:
@@ -67,9 +71,17 @@ class ParmTemplate:
             ox_logger.debug(f"Adding parm insert before: {parm_to_preceed.name()}")
             self.parm_template_group.insertBefore(ptf_pt, parm_template)
         else:
+            ox_logger.debug("No matching strategy. Appending parm template to end")
             self.parm_template_group.append(parm_template)
         self.__save_template_group()
         ox_logger.info(f'Added new parm template to "{self.node.name()}" node: {parm_template.name()}')
+        if return_type == "color":
+            return_parm_tuple = (
+                self.node.parm(f"{parm_template.name()}r"),
+                self.node.parm(f"{parm_template.name()}g"),
+                self.node.parm(f"{parm_template.name()}b"),
+            )
+            return return_parm_tuple
         new_parm = self.node.parm(parm_template.name())
         return new_parm
 
@@ -142,19 +154,33 @@ class ParmTemplate:
     ##################################################################################################################################################
     # creating parm templates
 
-    def create_int_parm_template(self, name, label, num_components=1, **kwargs):
-        new_parm_template = hou.IntParmTemplate(name=name, label=label, num_components=num_components, **kwargs)
+    def create_int_parm_template(self, name, label, num_components=1, min=0, max=10, help=None, **kwargs):
+        new_parm_template = hou.IntParmTemplate(name=name, label=label, num_components=num_components, min=min, max=max, help=help, **kwargs)
         return new_parm_template
 
-    def create_float_parm_template(self, name, label, num_components=1, min_f=0.0, max_f=10.0, min_is_strict=False, max_is_strict=False, **kwargs):
+    def create_float_parm_template(
+        self,
+        name,
+        label,
+        num_components=1,
+        min=0.0,
+        max=10.0,
+        min_is_strict=False,
+        max_is_strict=False,
+        is_label_hidden=False,
+        join_with_next=False,
+        **kwargs,
+    ):
         new_parm_template = hou.FloatParmTemplate(
             name=name,
             label=label,
             num_components=num_components,
-            min=min_f,
-            max=max_f,
+            min=min,
+            max=max,
             min_is_strict=min_is_strict,
             max_is_strict=max_is_strict,
+            is_label_hidden=is_label_hidden,
+            join_with_next=join_with_next,
             **kwargs,
         )
         return new_parm_template
@@ -179,15 +205,19 @@ class ParmTemplate:
     def create_string_parm_template(
         self,
         name,
-        label,
+        label=None,
         num_components=1,
         multiline=False,
         join_with_next=False,
         script_callback=None,
         script_callback_language=hou.scriptLanguage.Python,
         tags=None,
+        is_label_hidden=False,
+        default_value=(),
         **kwargs,
     ):
+        label = label if label else name.replace(" ", "_")
+        default_value = default_value if isinstance(default_value, tuple) else (default_value,)
         tags = tags if tags else {}
         if multiline:
             tags["editor"] = "1"
@@ -199,6 +229,8 @@ class ParmTemplate:
             script_callback=script_callback,
             script_callback_language=script_callback_language,
             tags=tags,
+            is_label_hidden=is_label_hidden,
+            default_value=default_value,
             **kwargs,
         )
         return new_parm_template
@@ -215,7 +247,7 @@ class ParmTemplate:
         new_parm_template = hou.SeparatorParmTemplate(name=name, **kwargs)
         return new_parm_template
 
-    def create_operator_parm_template(self, name, label=None, num_components=1, **kwargs):
+    def create_operator_parm_template(self, name, label=None, num_components=1, is_label_hidden=False, join_with_next=False, **kwargs):
         label = label if label else name.replace(" ", "_")
         new_parm_template = hou.StringParmTemplate(
             name=name,
@@ -224,6 +256,26 @@ class ParmTemplate:
             naming_scheme=hou.parmNamingScheme.Base1,
             string_type=hou.stringParmType.NodeReference,
             menu_type=hou.menuType.Normal,
+            is_label_hidden=is_label_hidden,
+            join_with_next=join_with_next,
             **kwargs,
+        )
+        return new_parm_template
+
+    ##################################################################################################################################################
+    # creating special parm templates
+    def create_color_tuple_parm_template(self, name, label=None, default_value=([1, 1, 1]), is_label_hidden=False, join_with_next=False):
+        new_parm_template = self.create_float_parm_template(
+            name=name,
+            label=label,
+            num_components=3,
+            default_value=default_value,
+            min=0,
+            max=1,
+            min_is_strict=False,
+            look=hou.parmLook.ColorSquare,
+            naming_scheme=hou.parmNamingScheme.RGBA,
+            is_label_hidden=is_label_hidden,
+            join_with_next=join_with_next,
         )
         return new_parm_template

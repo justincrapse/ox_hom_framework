@@ -20,7 +20,7 @@ def get_ox_node_from_hda_parm(parm_name, node_class=OXNode, null_msg=None, allow
     ox_node = node_class(node=hou_node)
     return hou_node if return_hou_node else ox_node
 
-def get_hda_parm_value(parm_name, as_raw_value=True, null_msg=None, allow_null=False):
+def get_hda_parm_value(parm_name, as_raw_value=True, null_msg=None, allow_null=True):
     ox_logger.debug(f'get_hda_parm_value>HDA Parm: {hou.pwd().parm(parm_name)}')
     parm_value = hou.pwd().parm(parm_name).rawValue() if as_raw_value else hou.pwd().parm(parm_name).eval()
     if not parm_value and not allow_null:

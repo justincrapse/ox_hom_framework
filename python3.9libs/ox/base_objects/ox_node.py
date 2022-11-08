@@ -327,7 +327,7 @@ class OXNode(ParmTemplate):  # mixins
                 try: 
                     parm: hou.Parm = key_node.parm(parm_key)
                 except AttributeError:
-                    ox_logger.warn(f'No parm "{parm_key}" found for node {key_node} to apply value to. Skipping')
+                    ox_logger.info(f'No parm "{parm_key}" found for node {key_node} to apply value to. Skipping')
                     continue
                 ox_logger.debug(f'Node: {key_node} - Setting parm "{parm_key}" to value: {parm_value}')
                 parm.set(parm_value)

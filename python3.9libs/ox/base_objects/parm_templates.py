@@ -235,7 +235,8 @@ class ParmTemplate:
         )
         return new_parm_template
 
-    def create_menu_parm_template(self, name, label, menu_items, menu_labels=(), **kwargs):
+    def create_menu_parm_template(self, name, menu_items, label=None, menu_labels=(), **kwargs):
+        label = label if label else name.replace(" ", "_")
         new_parm_template = hou.MenuParmTemplate(name=name, label=label, menu_items=menu_items, menu_labels=menu_labels, **kwargs)
         return new_parm_template
 

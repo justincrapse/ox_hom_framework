@@ -85,6 +85,9 @@ class ParmTemplate:
         new_parm = self.node.parm(parm_template.name())
         return new_parm
 
+    def add_parm_template_to_sub_folder():
+        pass
+
     def remove_parm_template_by_name(self, parm_name):
         result = self.parm_template_group.remove(parm_name)
         ox_logger.debug(f'Remove "{parm_name}" parm template result: {result}')
@@ -93,6 +96,45 @@ class ParmTemplate:
     def remove_folder_by_label(self, label):
         folder_name = self.get_folder_name_by_label(label=label)
         self.remove_parm_template_by_name(parm_name=folder_name)
+
+    def get_folder_parm_templates_by_label(self, folder_label):
+        parm_template_list = self.parm_template_group.parmTemplates()
+        pt: hou.ParmTemplate
+        for pt in parm_template_list:
+            if pt.label() == folder_label:
+                folder_parm_templates = pt.parmTemplates()
+                return folder_parm_templates
+        ox_logger.info(f"\nNo matching folder label for {folder_label} for method get_folder_parm_templates_by_label")
+
+    def remove_subfolder_by_labels(self, parent_folder_label, folder_label):
+        parent_folder_parm_templates = self.get_folder_parm_templates_by_label(folder_label=parent_folder_label)
+        ox_logger.info(f"\nParent Folder Parm Templates: {parent_folder_parm_templates}")
+        pt: hou.ParmTemplate
+        folder_parm_name = None
+        for pt in parent_folder_parm_templates:
+            ox_logger.info(f"pt.label(): {pt.label()} folder_label_to_match: {folder_label}")
+            if pt.label() == folder_label:
+                folder_parm_name = pt.name()
+                break
+        if folder_parm_name:
+            self.parm_template_group.remove(folder_parm_name)
+            self.__save_template_group()
+        else:
+            ox_logger.info(f"No matching folder label for parent {parent_folder_label} and child {folder_label}")
+
+    def get_sub_folder_parm_value_dict_by_folder_labels(self, parent_folder_label, folder_label):
+        parent_folder_parm_templates = self.get_folder_parm_templates_by_label(folder_label=parent_folder_label)
+        ox_logger.info(f"\nParent Folder Parm Templates: {parent_folder_parm_templates}")
+        pt: hou.ParmTemplate
+        folder_parm_templates = None
+        for pt in parent_folder_parm_templates:
+            if pt.label() == folder_label:
+                folder_parm_templates = pt.parmTemplates()
+        if folder_parm_templates:
+            parm_value_dict = {i.name(): self.node.parm(i.name()).eval() for i in folder_parm_templates}
+            return parm_value_dict
+        else:
+            ox_logger.info(f"No matching folder label for parent {parent_folder_label} and child {folder_label}")
 
     def get_folder_name_by_label(self, label):
         folder_parm_templates = self.get_parm_templates_by_type(template_type=parm_template_types.FOLDER)
@@ -154,14 +196,27 @@ class ParmTemplate:
     ##################################################################################################################################################
     # creating parm templates
 
-    def create_int_parm_template(self, name, label, num_components=1, min=0, max=10, help=None, **kwargs):
-        new_parm_template = hou.IntParmTemplate(name=name, label=label, num_components=num_components, min=min, max=max, help=help, **kwargs)
+    def create_int_parm_template(
+        self, name, label=None, num_components=1, min=0, max=10, help=None, is_label_hidden=False, join_with_next=False, **kwargs
+    ):
+        label = label if label else name.replace(" ", "_")
+        new_parm_template = hou.IntParmTemplate(
+            name=name,
+            label=label,
+            num_components=num_components,
+            min=min,
+            max=max,
+            help=help,
+            is_label_hidden=is_label_hidden,
+            join_with_next=join_with_next,
+            **kwargs,
+        )
         return new_parm_template
 
     def create_float_parm_template(
         self,
         name,
-        label,
+        label=None,
         num_components=1,
         min=0.0,
         max=10.0,
@@ -171,6 +226,7 @@ class ParmTemplate:
         join_with_next=False,
         **kwargs,
     ):
+        label = label if label else name.replace(" ", "_")
         new_parm_template = hou.FloatParmTemplate(
             name=name,
             label=label,
@@ -185,8 +241,9 @@ class ParmTemplate:
         )
         return new_parm_template
 
-    def create_toggle_parm_template(self, name, label, **kwargs):
-        new_parm_template = hou.ToggleParmTemplate(name=name, label=label, **kwargs)
+    def create_toggle_parm_template(self, name, label=None, is_label_hidden=False, join_with_next=False, **kwargs):
+        label = label if label else name.replace(" ", "_")
+        new_parm_template = hou.ToggleParmTemplate(name=name, label=label, is_label_hidden=is_label_hidden, join_with_next=join_with_next, **kwargs)
         return new_parm_template
 
     def create_button_parm_template(
@@ -235,9 +292,17 @@ class ParmTemplate:
         )
         return new_parm_template
 
-    def create_menu_parm_template(self, name, menu_items, label=None, menu_labels=(), **kwargs):
+    def create_menu_parm_template(self, name, menu_items, label=None, menu_labels=(), is_label_hidden=False, join_with_next=False, **kwargs):
         label = label if label else name.replace(" ", "_")
-        new_parm_template = hou.MenuParmTemplate(name=name, label=label, menu_items=menu_items, menu_labels=menu_labels, **kwargs)
+        new_parm_template = hou.MenuParmTemplate(
+            name=name,
+            label=label,
+            menu_items=menu_items,
+            menu_labels=menu_labels,
+            is_label_hidden=is_label_hidden,
+            join_with_next=join_with_next,
+            **kwargs,
+        )
         return new_parm_template
 
     def create_ramp_parm_template(self, name, label, ramp_parm_type=hou.rampParmType.Float, **kwargs):
@@ -260,6 +325,49 @@ class ParmTemplate:
             is_label_hidden=is_label_hidden,
             join_with_next=join_with_next,
             **kwargs,
+        )
+        return new_parm_template
+
+    def create_folder_parm_template(self, name, label=None) -> hou.FolderParmTemplate:
+        label = label if label else name.replace(" ", "_")
+        new_parm_template = hou.FolderParmTemplate(name=name, label=label)
+        return new_parm_template
+
+    def create_vex_snippet_parm_template(self, name, label=None, **kwargs) -> hou.StringParmTemplate:
+        """
+        This is pretty much just the attribute wrangle vex parameter .asCode()
+        """
+        label = label if label else name.replace(" ", "_")
+        new_parm_template = hou.StringParmTemplate(
+            name=name,
+            label=label,
+            num_components=1,
+            default_value=([""]),
+            naming_scheme=hou.parmNamingScheme.Base1,
+            string_type=hou.stringParmType.Regular,
+            menu_items=([]),
+            menu_labels=([]),
+            icon_names=([]),
+            item_generator_script="import vexpressionmenu\\n\\nreturn vexpressionmenu.buildSnippetMenu('attribwrangle/snippet')",
+            item_generator_script_language=hou.scriptLanguage.Python,
+            menu_type=hou.menuType.StringReplace,
+            **kwargs,
+        )
+        new_parm_template.setTags(
+            {
+                "autoscope": "0000000000000000",
+                "editor": "1",
+                "editorlang": "VEX",
+                "editorlines": "8-30",
+                "script_action": """import vexpressionmenu
+
+node = kwargs['node']
+parmname = 'snippet'
+
+vexpressionmenu.createSpareParmsFromChCalls(node, parmname)""",
+                "script_action_help": "Creates spare parameters for each unique call of ch() ",
+                "script_action_icon": "BUTTONS_create_parm_from_ch",
+            }
         )
         return new_parm_template
 

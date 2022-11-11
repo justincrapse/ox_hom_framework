@@ -140,7 +140,7 @@ class TerrainHelper:
     def create_scatter_node(
         self,
         user_mask,
-        user_source_points,
+            user_source_points,
         prev_hf_node,
         next_mask=None,
         is_first_mask=False,

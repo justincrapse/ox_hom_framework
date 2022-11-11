@@ -8,13 +8,19 @@ ox_logger = logging.getLogger("ox_logger")
 
 
 class NetworkBox:
-    def __init__(self, hou_network_box):
-        self.network_box: hou.NetworkBox = hou_network_box
+    def __init__(self, network_box, box_comment=None):
+        self.network_box: hou.NetworkBox = network_box
         self.name = self.network_box.name()
+        if box_comment:
+            self.network_box.setComment(box_comment)
 
     def get_network_nodes(self) -> List[hou.Node]:
         nodes = self.network_box.nodes()
         return nodes
+
+    def add_node(self, node: hou.Node):
+        result = self.network_box.addItem(item=node)
+        ox_logger.debug(f'Added item {node} to network box: {self.network_box}: result: {result}')
 
     def get_network_node_by_type(self, node_type, raise_value_error=True) -> hou.Node:
         node: hou.Node
@@ -43,3 +49,7 @@ class NetworkBox:
             raise ValueError(f'Node type "{node_type}" not found in network box "{self.name}"')
         else:
             return matching_nodes
+
+    def get_nodes_parm_value_dict(self):
+        """ get a dict of dicts (node_name: {parm_name: parm_value}) for all nodes in network box """
+        

@@ -132,7 +132,7 @@ class OXNode(ParmTemplate):  # mixins
                 path_list.append(node.path())
         return path_list
 
-    def get_children_nodes_by_partial_name(self, substring):
+    def get_children_nodes_by_partial_name(self, substring) -> List[hou.Node]:
         node_list = []
         for node in self.get_children_nodes():
             if substring in node.name():
@@ -158,7 +158,7 @@ class OXNode(ParmTemplate):  # mixins
 
     def set_color(self, color):
         """
-        Can pass in a tuple for RGB values or a hou.Color object. 
+        Can pass in a tuple for RGB values or a hou.Color object.
         """
         color = color if isinstance(color, hou.Color) else hou.Color(color)
         self.node.setColor(color)
@@ -277,7 +277,7 @@ class OXNode(ParmTemplate):  # mixins
         return parm_sublist
 
     def get_parms_by_regex(self, regex_str):
-        parameters = self.get_parms()   
+        parameters = self.get_parms()
         parm_sublist = [i for i in parameters if re.match(regex_str, i.name())]
         return parm_sublist
 
@@ -296,35 +296,64 @@ class OXNode(ParmTemplate):  # mixins
         parm_sublist = [i for i in parm_names if substring in i]
         return parm_sublist
 
-    def get_parms_as_dict(self, parm_list: List[hou.Parm], substring=None):
+    def delete_parms_by_name(self, parm_name_list):
+        for parm_name in parm_name_list:
+            self.remove_parm_template_by_name(parm_name=parm_name)
+
+    ##################################################################################################################################################
+    # copying and re-applying parm values methods:
+
+    def get_parms_as_dict(self, substring=None, as_raw_value=False):
         """
         returns all parameters as a dictionary with the parm name as key and parm value as the value.
         If a substring is specified, this will only match parameter names with that substring
         """
         parm_list = self.get_parms_by_name_substring(substring=substring) if substring else self.get_parms()
-        parm_dict = {i.name(): i.eval() for i in parm_list}
+        if as_raw_value:
+            parm_dict = {i.name(): i.rawValue() for i in parm_list}
+        else:
+            parm_dict = {i.name(): i.eval() for i in parm_list}
         return parm_dict
 
-    def get_children_parms_dict(self):
+    def apply_parms_dict(self, parms_dict):
+        for parm_name, parm_value in parms_dict.items():
+            ox_logger.debug(f'Setting parameter "{parm_name}" to value "{parm_value}"')
+            parm = self.node.parm(parm_name)
+            if parm:
+                parm.set(parm_value)
+            else:
+                ox_logger.debug(f'No parameter "{parm_name}" to set value to: {parm_value}')
+
+    # def get_node_parms_dict(self, node_list: List[hou.Node]):
+    #     node_parms_dict = defaultdict(dict)
+    #     for node in node_list:
+    #         node_name = node.name()
+    #         parms = node.parms()
+    #         for parm in parms:
+    #             node_parms_dict[node_name][parm.name()] = parm.eval()
+    #     return node_parms_dict
+
+    def get_children_parms_dict(self, node_list=None):
         """
-        handy method that gets all children nodes and parameters as a dict to reaply later or to another node. 
+        handy method that gets all children nodes and parameters as a dict to reaply later or to another node.
         """
         child_parms_dict = defaultdict(dict)
-        for i in self.get_children_nodes():
-            ox_logger.debug(f'coppying parms for child node {i.name()}')
-            for parm in i.parms():
+        node_list = node_list if node_list else self.get_children_nodes()
+        for node in node_list:
+            ox_logger.debug(f"coppying parms for child node {node.name()}")
+            for parm in node.parms():
                 parm_value = parm.eval()
                 parm_name = parm.name()
-                node_name = i.name()
+                node_name = node.name()
                 child_parms_dict[node_name][parm_name] = parm_value
         return child_parms_dict
 
     def apply_children_parms_dict(self, children_parms_dict):
         for key, value in children_parms_dict.items():
-            ox_logger.debug(f'Getting child node by key: ({key}) to apply children parms to')
+            ox_logger.debug(f"Getting child node by key: ({key}) to apply children parms to")
             key_node: hou.Node = self.get_child_by_name(key)
             for parm_key, parm_value in value.items():
-                try: 
+                try:
                     parm: hou.Parm = key_node.parm(parm_key)
                 except AttributeError:
                     ox_logger.info(f'No parm "{parm_key}" found for node {key_node} to apply value to. Skipping')

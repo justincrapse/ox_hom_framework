@@ -19,7 +19,7 @@ class ParmTemplate:
         self.node: hou.Node = node
         self.parm_template_group: hou.Node.parmTemplateGroup = self.node.parmTemplateGroup()
 
-    def __save_template_group(self, supress_error=True):
+    def _save_template_group(self, supress_error=True):
         # TODO: supress_error needs an explanation!
         try:
             self.node.setParmTemplateGroup(parm_template_group=self.parm_template_group)
@@ -46,7 +46,13 @@ class ParmTemplate:
         return parm_templates
 
     def add_parm_template(
-        self, parm_template, folder_label=None, as_first=False, insert_after_parm=None, insert_before_parm=None, return_type=None
+        self,
+        parm_template,
+        folder_label=None,
+        as_first=False,
+        insert_after_parm=None,
+        insert_before_parm=None,
+        return_type=None,
     ) -> hou.Parm:
         """if folder_label is specified, as_first, insert_after_parm, and insert_before_parm are not relavant as those will dictate which
         folder a parm template is added to."""
@@ -62,6 +68,8 @@ class ParmTemplate:
             self.parm_template_group.insertBefore(first_pt, parm_template)
         elif insert_after_parm:
             parm_to_follow = insert_after_parm if isinstance(insert_after_parm, hou.Parm) else self.node.parm(insert_after_parm)
+            if not parm_to_follow:
+                ox_logger.error(f'No parm_to_follow found for parm "{insert_after_parm}"')
             ptf_pt = parm_to_follow.parmTemplate()
             ox_logger.debug(f"Adding parm insert after: {parm_to_follow.name()}")
             self.parm_template_group.insertAfter(ptf_pt, parm_template)
@@ -73,7 +81,7 @@ class ParmTemplate:
         else:
             ox_logger.debug("No matching strategy. Appending parm template to end")
             self.parm_template_group.append(parm_template)
-        self.__save_template_group()
+        self._save_template_group()
         ox_logger.info(f'Added new parm template to "{self.node.name()}" node: {parm_template.name()}')
         if return_type == "color":
             return_parm_tuple = (
@@ -83,15 +91,47 @@ class ParmTemplate:
             )
             return return_parm_tuple
         new_parm = self.node.parm(parm_template.name())
+        if not new_parm:
+            ox_logger.error(f"No new parm created for parm_template: {parm_template}.")
+        return new_parm
+
+    def add_parm_template_with_override(
+        self,
+        parm_template,
+        folder_label=None,
+        as_first=False,
+        insert_after_parm=None,
+        insert_before_parm=None,
+        return_type=None,
+        keep_original_value=True,
+    ):
+        """
+        This method will delete the parm method if it already exists and can reapply that value to the newly created parm
+        """
+        existing_parm: hou.Parm = self.node.parm(parm_template.name())
+        if existing_parm:
+            original_value = existing_parm.eval()
+            self.remove_parm_template_by_name(parm_name=parm_template.name())
+        new_parm = self.add_parm_template(
+            parm_template=parm_template,
+            folder_label=folder_label,
+            as_first=as_first,
+            insert_after_parm=insert_after_parm,
+            insert_before_parm=insert_before_parm,
+            return_type=return_type,
+        )
+        if existing_parm:
+            new_parm.set(original_value)
         return new_parm
 
     def add_parm_template_to_sub_folder():
         pass
 
-    def remove_parm_template_by_name(self, parm_name):
+    def remove_parm_template_by_name(self, parm_name, save_template_group=True):
         result = self.parm_template_group.remove(parm_name)
         ox_logger.debug(f'Remove "{parm_name}" parm template result: {result}')
-        self.__save_template_group()
+        if save_template_group:
+            self._save_template_group()
 
     def remove_folder_by_label(self, label):
         folder_name = self.get_folder_name_by_label(label=label)
@@ -118,7 +158,7 @@ class ParmTemplate:
                 break
         if folder_parm_name:
             self.parm_template_group.remove(folder_parm_name)
-            self.__save_template_group()
+            self._save_template_group()
         else:
             ox_logger.info(f"No matching folder label for parent {parent_folder_label} and child {folder_label}")
 
@@ -175,7 +215,7 @@ class ParmTemplate:
     def add_folder(self, folder_label, folder_name, as_first=False):
         folder_template = hou.FolderParmTemplate(folder_name, folder_label)
         self.add_parm_template(parm_template=folder_template, as_first=as_first)
-        self.__save_template_group()
+        self._save_template_group()
         return folder_label
 
     def delete_folder(self, folder_label):
@@ -183,7 +223,7 @@ class ParmTemplate:
         for pt in parm_templates:
             if pt.label() == folder_label:
                 self.parm_template_group.remove(pt)
-                self.__save_template_group()
+                self._save_template_group()
                 break
 
     def delete_all_folders(self):
@@ -191,7 +231,7 @@ class ParmTemplate:
         parm_templates = self.__get_parm_templates()
         for pt in parm_templates:
             self.parm_template_group.remove(pt)
-            self.__save_template_group()
+            self._save_template_group()
 
     ##################################################################################################################################################
     # creating parm templates

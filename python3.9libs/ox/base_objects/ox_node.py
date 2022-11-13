@@ -273,8 +273,21 @@ class OXNode(ParmTemplate):  # mixins
         elif starts_with:
             parm_sublist = [i for i in parameters if i.name().startswith(substring)]
         else:
-            parm_sublist = [i for i in parameters if substring in i.name()]
+            # parm_sublist = [i for i in parameters if substring in i.name()]  # why in the world is this matching things it shouldn't???
+            parm_sublist = []
+            for item in parameters:
+                if substring in item.name():
+                    parm_sublist.append(item)
+                    ox_logger.info(f'Substring "{substring}" is in "{item.name()}": {substring in item.name()}')
+        ox_logger.info(f"return parm_sublist: {parm_sublist}")
         return parm_sublist
+
+    def remove_parms_by_name_substring(self, substring, ends_with=False, starts_with=False):
+        parm_list = self.get_parms_by_name_substring(substring=substring, ends_with=ends_with, starts_with=starts_with)
+        for parm in parm_list:
+            ox_logger.info(f"removing parm by name: {parm.name()} for substring: {substring}")
+            self.remove_parm_template_by_name(parm.name(), save_template_group=False)
+        self._save_template_group()
 
     def get_parms_by_regex(self, regex_str):
         parameters = self.get_parms()
@@ -333,12 +346,21 @@ class OXNode(ParmTemplate):  # mixins
     #             node_parms_dict[node_name][parm.name()] = parm.eval()
     #     return node_parms_dict
 
-    def get_children_parms_dict(self, node_list=None):
+    def get_children_parms_dict(self, node_list: List[hou.Node] = None, exclude_type_list: List[str] = None):
         """
+        exclude_type_list: a list of types (from node.type() values) to exclude from the parms dict
         handy method that gets all children nodes and parameters as a dict to reaply later or to another node.
         """
         child_parms_dict = defaultdict(dict)
         node_list = node_list if node_list else self.get_children_nodes()
+        if exclude_type_list:
+            clean_node_list = []
+            for node in node_list:
+                node_type = node.type().name()
+                ox_logger.debug(f"child_node_type: {node_type}, exclusion_list={exclude_type_list}")
+                if node_type not in exclude_type_list:
+                    clean_node_list.append(node)
+            node_list = clean_node_list
         for node in node_list:
             ox_logger.debug(f"coppying parms for child node {node.name()}")
             for parm in node.parms():

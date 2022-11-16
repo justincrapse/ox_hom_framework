@@ -120,7 +120,7 @@ class ParmTemplate:
             insert_before_parm=insert_before_parm,
             return_type=return_type,
         )
-        if existing_parm:
+        if existing_parm and keep_original_value:
             new_parm.set(original_value)
         return new_parm
 
@@ -129,7 +129,7 @@ class ParmTemplate:
 
     def remove_parm_template_by_name(self, parm_name, save_template_group=True):
         result = self.parm_template_group.remove(parm_name)
-        ox_logger.debug(f'Remove "{parm_name}" parm template result: {result}')
+        ox_logger.info(f'Remove "{parm_name}" parm template result: {result}')
         if save_template_group:
             self._save_template_group()
 

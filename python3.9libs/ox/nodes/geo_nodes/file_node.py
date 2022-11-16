@@ -18,7 +18,6 @@ class FileNode(OXNode):
         super().__init__(node=self.node)
         
         # parm vars:
-        self.parm_file = Parameter(parm=self.node.parm('file'))
         self.parm_reload = Parameter(parm=self.node.parm('reload'))
         self.parm_objpattern = Parameter(parm=self.node.parm('objpattern'))
         self.parm_geodatapath = Parameter(parm=self.node.parm('geodatapath'))
@@ -35,6 +34,7 @@ class FileNode(OXNode):
         
         # parm menu vars:
         self.parm_filemode = FilemodeMenu(parm=self.node.parm('filemode'))
+        self.parm_file = FileMenu(parm=self.node.parm('file'))
         self.parm_missingframe = MissingframeMenu(parm=self.node.parm('missingframe'))
         self.parm_loadtype = LoadtypeMenu(parm=self.node.parm('loadtype'))
         self.parm_packedviewedit = PackedvieweditMenu(parm=self.node.parm('packedviewedit'))
@@ -51,64 +51,75 @@ class FilemodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_automatic = "auto"
-        self.menu_read_files = "read"
-        self.menu_write_files = "write"
-        self.menu_no_operation = "none"
+        self.menu_automatic = ("auto", 0)
+        self.menu_read_files = ("read", 1)
+        self.menu_write_files = ("write", 2)
+        self.menu_no_operation = ("none", 3)
+
+
+class FileMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_d__art_projects____che1__f4_bgeo_sc = ("D:/ART/PROJECTS/NEBULA/geo/NEBULA_supercharged_wist.filecache1/NEBULA_supercharged_wist.filecache1.$F4.bgeo.sc", 0)
+        self.menu__hip_statue_bgeo_sc = ("$HIP/statue.bgeo.sc", 1)
+        self.menu_e__art_projects____geo_upgraded_abc = ("E:/ART/PROJECTS/sword/full_sword_geo_upgraded.abc", 2)
+        self.menu_e__art_projects____ll_sword_geo_abc = ("E:/ART/PROJECTS/sword/full_sword_geo.abc", 3)
+        self.menu_e__art_projects____l_sword_geo_bgeo = ("E:/ART/PROJECTS/sword/full_sword_geo.bgeo", 4)
 
 
 class MissingframeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_report_error = "error"
-        self.menu_no_geometry = "empty"
+        self.menu_report_error = ("error", 0)
+        self.menu_no_geometry = ("empty", 1)
 
 
 class LoadtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_all_geometry = "full"
-        self.menu_info_bounding_box = "infobbox"
-        self.menu_info = "info"
-        self.menu_point_cloud = "points"
-        self.menu_packed_disk_primitive = "delayed"
-        self.menu_packed_disk_sequence = "packedseq"
-        self.menu_packed_geometry = "packedgeo"
+        self.menu_all_geometry = ("full", 0)
+        self.menu_info_bounding_box = ("infobbox", 1)
+        self.menu_info = ("info", 2)
+        self.menu_point_cloud = ("points", 3)
+        self.menu_packed_disk_primitive = ("delayed", 4)
+        self.menu_packed_disk_sequence = ("packedseq", 5)
+        self.menu_packed_geometry = ("packedgeo", 6)
 
 
 class PackedvieweditMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_use_file_setting = "unchanged"
-        self.menu_full_geometry = "full"
-        self.menu_point_cloud = "points"
-        self.menu_bounding_box = "box"
-        self.menu_centroid = "centroid"
-        self.menu_hidden = "hidden"
+        self.menu_use_file_setting = ("unchanged", 0)
+        self.menu_full_geometry = ("full", 1)
+        self.menu_point_cloud = ("points", 2)
+        self.menu_bounding_box = ("box", 3)
+        self.menu_centroid = ("centroid", 4)
+        self.menu_hidden = ("hidden", 5)
 
 
 class ViewportlodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_full_geometry = "full"
-        self.menu_point_cloud = "points"
-        self.menu_bounding_box = "box"
-        self.menu_centroid = "centroid"
-        self.menu_hidden = "hidden"
+        self.menu_full_geometry = ("full", 0)
+        self.menu_point_cloud = ("points", 1)
+        self.menu_bounding_box = ("box", 2)
+        self.menu_centroid = ("centroid", 3)
+        self.menu_hidden = ("hidden", 4)
 
 
 class WrapMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_cycle = "cycle"
-        self.menu_clamp = "clamp"
-        self.menu_strict = "strick"
-        self.menu_mirror = "mirror"
+        self.menu_cycle = ("cycle", 0)
+        self.menu_clamp = ("clamp", 1)
+        self.menu_strict = ("strick", 2)
+        self.menu_mirror = ("mirror", 3)
 
 
 

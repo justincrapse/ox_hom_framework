@@ -57,7 +57,6 @@ class GeoNode(OXNode):
         self.parm_dcolorg = Parameter(parm=self.node.parm('dcolorg'))
         self.parm_dcolorb = Parameter(parm=self.node.parm('dcolorb'))
         self.parm_picking = Parameter(parm=self.node.parm('picking'))
-        self.parm_pickscript = Parameter(parm=self.node.parm('pickscript'))
         self.parm_caching = Parameter(parm=self.node.parm('caching'))
         self.parm_vport_shadeopen = Parameter(parm=self.node.parm('vport_shadeopen'))
         self.parm_vport_displayassubdiv = Parameter(parm=self.node.parm('vport_displayassubdiv'))
@@ -134,7 +133,6 @@ class GeoNode(OXNode):
         self.parm_rs_objprop_ipr_forcemeshupdate = Parameter(parm=self.node.parm('RS_objprop_ipr_forceMeshUpdate'))
         self.parm_rs_objpro_label5 = Parameter(parm=self.node.parm('RS_objpro_label5'))
         self.parm_rs_objprop_proxy_enable = Parameter(parm=self.node.parm('RS_objprop_proxy_enable'))
-        self.parm_rs_objprop_proxy_file = Parameter(parm=self.node.parm('RS_objprop_proxy_file'))
         self.parm_rs_objprop_proxy_prevpercent = Parameter(parm=self.node.parm('RS_objprop_proxy_prevPercent'))
         self.parm_rs_objprop_proxy_prevlines = Parameter(parm=self.node.parm('RS_objprop_proxy_prevLines'))
         self.parm_rs_objprop_proxy_prevanimated = Parameter(parm=self.node.parm('RS_objprop_proxy_prevAnimated'))
@@ -235,6 +233,7 @@ class GeoNode(OXNode):
         self.parm_lookup = LookupMenu(parm=self.node.parm('lookup'))
         self.parm_uparmtype = UparmtypeMenu(parm=self.node.parm('uparmtype'))
         self.parm_shop_materialopts = ShopMaterialoptsMenu(parm=self.node.parm('shop_materialopts'))
+        self.parm_pickscript = PickscriptMenu(parm=self.node.parm('pickscript'))
         self.parm_vport_onionskin = VportOnionskinMenu(parm=self.node.parm('vport_onionskin'))
         self.parm_viewportlod = ViewportlodMenu(parm=self.node.parm('viewportlod'))
         self.parm_vm_rendervisibility = VmRendervisibilityMenu(parm=self.node.parm('vm_rendervisibility'))
@@ -254,6 +253,7 @@ class GeoNode(OXNode):
         self.parm_rs_objprop_inst_mb = RsObjpropInstMbMenu(parm=self.node.parm('RS_objprop_inst_mb'))
         self.parm_rs_objprop_inst_lightshader = RsObjpropInstLightshaderMenu(parm=self.node.parm('RS_objprop_inst_lightShader'))
         self.parm_rs_objprop_inst_universalif = RsObjpropInstUniversalifMenu(parm=self.node.parm('RS_objprop_inst_universalIF'))
+        self.parm_rs_objprop_proxy_file = RsObjpropProxyFileMenu(parm=self.node.parm('RS_objprop_proxy_file'))
         self.parm_rs_objprop_proxy_preview = RsObjpropProxyPreviewMenu(parm=self.node.parm('RS_objprop_proxy_preview'))
         self.parm_rs_objprop_proxy_materials = RsObjpropProxyMaterialsMenu(parm=self.node.parm('RS_objprop_proxy_materials'))
         self.parm_rs_objprop_rstess_rule = RsObjpropRstessRuleMenu(parm=self.node.parm('RS_objprop_rstess_rule'))
@@ -270,296 +270,314 @@ class XordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_scale_rot_trans = "srt"
-        self.menu_scale_trans_rot = "str"
-        self.menu_rot_scale_trans = "rst"
-        self.menu_rot_trans_scale = "rts"
-        self.menu_trans_scale_rot = "tsr"
-        self.menu_trans_rot_scale = "trs"
+        self.menu_scale_rot_trans = ("srt", 0)
+        self.menu_scale_trans_rot = ("str", 1)
+        self.menu_rot_scale_trans = ("rst", 2)
+        self.menu_rot_trans_scale = ("rts", 3)
+        self.menu_trans_scale_rot = ("tsr", 4)
+        self.menu_trans_rot_scale = ("trs", 5)
 
 
 class RordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_rx_ry_rz = "xyz"
-        self.menu_rx_rz_ry = "xzy"
-        self.menu_ry_rx_rz = "yxz"
-        self.menu_ry_rz_rx = "yzx"
-        self.menu_rz_rx_ry = "zxy"
-        self.menu_rz_ry_rx = "zyx"
+        self.menu_rx_ry_rz = ("xyz", 0)
+        self.menu_rx_rz_ry = ("xzy", 1)
+        self.menu_ry_rx_rz = ("yxz", 2)
+        self.menu_ry_rz_rx = ("yzx", 3)
+        self.menu_rz_rx_ry = ("zxy", 4)
+        self.menu_rz_ry_rx = ("zyx", 5)
 
 
 class PreXformMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_clean_transform = "clean"
-        self.menu_clean_translates = "cleantrans"
-        self.menu_clean_rotates = "cleanrot"
-        self.menu_clean_scales = "cleanscales"
-        self.menu_extract_pre_transform = "extract"
-        self.menu_reset_pre_transform = "reset"
+        self.menu_clean_transform = ("clean", 0)
+        self.menu_clean_translates = ("cleantrans", 1)
+        self.menu_clean_rotates = ("cleanrot", 2)
+        self.menu_clean_scales = ("cleanscales", 3)
+        self.menu_extract_pre_transform = ("extract", 4)
+        self.menu_reset_pre_transform = ("reset", 5)
 
 
 class LookupMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_don_t_use_up_vector = "off"
-        self.menu_use_up_vector = "on"
-        self.menu_use_quaternions = "quat"
-        self.menu_use_global_position = "pos"
-        self.menu_use_up_object = "obj"
+        self.menu_don_t_use_up_vector = ("off", 0)
+        self.menu_use_up_vector = ("on", 1)
+        self.menu_use_quaternions = ("quat", 2)
+        self.menu_use_global_position = ("pos", 3)
+        self.menu_use_up_object = ("obj", 4)
 
 
 class UparmtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_uniform = "uniform"
-        self.menu_arc_length = "arc"
+        self.menu_uniform = ("uniform", 0)
+        self.menu_arc_length = ("arc", 1)
 
 
 class ShopMaterialoptsMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_create_all_local_material_parameters = "override"
-        self.menu_select_and_create_local_material_parameters = "select"
-        self.menu_remove_all_local_material_parameters = "remove"
-        self.menu_remove_unchanged_local_material_parameters = "rmdefault"
-        self.menu_synchronize_with_global_material_parameters = "sync"
-        self.menu_revert_to_global_material_parameter_values = "revert"
+        self.menu_create_all_local_material_parameters = ("override", 0)
+        self.menu_select_and_create_local_material_parameters = ("select", 1)
+        self.menu_remove_all_local_material_parameters = ("remove", 2)
+        self.menu_remove_unchanged_local_material_parameters = ("rmdefault", 3)
+        self.menu_synchronize_with_global_material_parameters = ("sync", 4)
+        self.menu_revert_to_global_material_parameter_values = ("revert", 5)
+
+
+class PickscriptMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__renders_houdi___name__os__f4_exr = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr", 0)
+        self.menu_e__renders_houdi___r_magic_prev__f3 = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3", 1)
+        self.menu_e__art_projects____y_first_hdrlight = ("E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight", 2)
 
 
 class VportOnionskinMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_off = "off"
-        self.menu_transform_only = "xform"
-        self.menu_full_deformation = "on"
+        self.menu_off = ("off", 0)
+        self.menu_transform_only = ("xform", 1)
+        self.menu_full_deformation = ("on", 2)
 
 
 class ViewportlodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_full_geometry = "full"
-        self.menu_point_cloud = "points"
-        self.menu_bounding_box = "box"
-        self.menu_centroid = "centroid"
-        self.menu_hidden = "hidden"
-        self.menu_subdivision_surface___curves = "subd"
+        self.menu_full_geometry = ("full", 0)
+        self.menu_point_cloud = ("points", 1)
+        self.menu_bounding_box = ("box", 2)
+        self.menu_centroid = ("centroid", 3)
+        self.menu_hidden = ("hidden", 4)
+        self.menu_subdivision_surface___curves = ("subd", 5)
 
 
 class VmRendervisibilityMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_visible_to_all = "*"
-        self.menu_visible_only_to_primary_rays = "primary"
-        self.menu_visible_only_to_primary_and_shadow_rays = "primary|shadow"
-        self.menu_invisible_to_primary_rays__phantom_ = "-primary"
-        self.menu_invisible_to_diffuse_rays = "-diffuse"
-        self.menu_invisible_to_secondary_rays = "-diffuse&-reflect&-refract"
-        self.menu_invisible__unrenderable_ = ""
+        self.menu_visible_to_all = ("*", 0)
+        self.menu_visible_only_to_primary_rays = ("primary", 1)
+        self.menu_visible_only_to_primary_and_shadow_rays = ("primary|shadow", 2)
+        self.menu_invisible_to_primary_rays__phantom_ = ("-primary", 3)
+        self.menu_invisible_to_diffuse_rays = ("-diffuse", 4)
+        self.menu_invisible_to_secondary_rays = ("-diffuse&-reflect&-refract", 5)
+        self.menu_invisible__unrenderable_ = ("", 6)
 
 
 class VmSubdstyleMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_mantra_catmull_clark = "mantra_catclark"
-        self.menu_opensubdiv_catmull_clark = "osd_catclark"
+        self.menu_mantra_catmull_clark = ("mantra_catclark", 0)
+        self.menu_opensubdiv_catmull_clark = ("osd_catclark", 1)
 
 
 class VmOsdVtxinterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_vertex_interpolation = "0"
-        self.menu_edges_only = "1"
-        self.menu_edges_and_corners = "2"
+        self.menu_no_vertex_interpolation = ("0", 0)
+        self.menu_edges_only = ("1", 1)
+        self.menu_edges_and_corners = ("2", 2)
 
 
 class VmOsdFvarinterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_smooth_everywhere = "0"
-        self.menu_sharpen_corners_only = "1"
-        self.menu_sharpen_edges_and_corners = "2"
-        self.menu_sharpen_edges_and_propagated_corners = "3"
-        self.menu_sharpen_all_boundaries = "4"
-        self.menu_bilinear_interpolation = "5"
+        self.menu_smooth_everywhere = ("0", 0)
+        self.menu_sharpen_corners_only = ("1", 1)
+        self.menu_sharpen_edges_and_corners = ("2", 2)
+        self.menu_sharpen_edges_and_propagated_corners = ("3", 3)
+        self.menu_sharpen_all_boundaries = ("4", 4)
+        self.menu_bilinear_interpolation = ("5", 5)
 
 
 class VmVolumefilterMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_box_filter = "box"
-        self.menu_gaussian = "gaussian"
-        self.menu_bartlett__triangle_ = "bartlett"
-        self.menu_catmull_rom = "catrom"
-        self.menu_hanning = "hanning"
-        self.menu_blackman = "blackman"
-        self.menu_sinc__sharpening_ = "sinc"
+        self.menu_box_filter = ("box", 0)
+        self.menu_gaussian = ("gaussian", 1)
+        self.menu_bartlett__triangle_ = ("bartlett", 2)
+        self.menu_catmull_rom = ("catrom", 3)
+        self.menu_hanning = ("hanning", 4)
+        self.menu_blackman = ("blackman", 5)
+        self.menu_sinc__sharpening_ = ("sinc", 6)
 
 
 class GeoVelocityblurMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_velocity_blur = "off"
-        self.menu_velocity_blur = "on"
-        self.menu_acceleration_blur = "accelblur"
+        self.menu_no_velocity_blur = ("off", 0)
+        self.menu_velocity_blur = ("on", 1)
+        self.menu_acceleration_blur = ("accelblur", 2)
 
 
 class VmRayprediceMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_disable_predicing = "0"
-        self.menu_full_predicing = "1"
-        self.menu_precompute_bounds = "2"
+        self.menu_disable_predicing = ("0", 0)
+        self.menu_full_predicing = ("1", 1)
+        self.menu_precompute_bounds = ("2", 2)
 
 
 class VmRenderpointsMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_point_rendering = "0"
-        self.menu_render_only_points = "1"
-        self.menu_render_unconnected_points = "2"
+        self.menu_no_point_rendering = ("0", 0)
+        self.menu_render_only_points = ("1", 1)
+        self.menu_render_unconnected_points = ("2", 2)
 
 
 class VmRenderpointsasMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_spheres = "0"
-        self.menu_circles = "1"
+        self.menu_spheres = ("0", 0)
+        self.menu_circles = ("1", 1)
 
 
 class VmCovingMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_disable_coving = "0"
-        self.menu_coving_for_displacement_sub_d = "1"
-        self.menu_coving_for_all_primitives = "2"
+        self.menu_disable_coving = ("0", 0)
+        self.menu_coving_for_displacement_sub_d = ("1", 1)
+        self.menu_coving_for_all_primitives = ("2", 2)
 
 
 class VmMaterialoverrideMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_disabled = "none"
-        self.menu_evaluate_for_each_primitve_point = "full"
-        self.menu_evaluate_once = "compact"
+        self.menu_disabled = ("none", 0)
+        self.menu_evaluate_for_each_primitve_point = ("full", 1)
+        self.menu_evaluate_once = ("compact", 2)
 
 
 class RsObjpropNgonsTessmodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_to_quads = "0"
-        self.menu_to_triangles = "1"
+        self.menu_to_quads = ("0", 0)
+        self.menu_to_triangles = ("1", 1)
 
 
 class RsObjpropMbDeformstepsMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_auto = "-1"
-        self.menu_steps_2 = "2"
-        self.menu_steps_3 = "3"
-        self.menu_steps_5 = "5"
-        self.menu_steps_9 = "9"
-        self.menu_steps_17 = "17"
+        self.menu_auto = ("-1", 0)
+        self.menu_steps_2 = ("2", 1)
+        self.menu_steps_3 = ("3", 2)
+        self.menu_steps_5 = ("5", 3)
+        self.menu_steps_9 = ("9", 4)
+        self.menu_steps_17 = ("17", 5)
 
 
 class RsObjpropInstModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_redshift_instances = "insInstances"
-        self.menu_redshift_point_clouds = "insPointClouds"
+        self.menu_redshift_instances = ("insInstances", 0)
+        self.menu_redshift_point_clouds = ("insPointClouds", 1)
 
 
 class RsObjpropInstMbMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_compute_sub_frame_geometry__deformation_ = "insMBVectors"
-        self.menu_use_point_velocity_attribute = "insMBFull"
+        self.menu_compute_sub_frame_geometry__deformation_ = ("insMBVectors", 0)
+        self.menu_use_point_velocity_attribute = ("insMBFull", 1)
 
 
 class RsObjpropInstLightshaderMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_attributes_support_using_individual_shaders = "insLightsNotShared"
-        self.menu_using_a_common_shared_shader = "insLightsShared"
+        self.menu_attributes_support_using_individual_shaders = ("insLightsNotShared", 0)
+        self.menu_using_a_common_shared_shader = ("insLightsShared", 1)
 
 
 class RsObjpropInstUniversalifMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_instance_redshift_proxy_objects = "0"
-        self.menu_instance_houdini_compatible_objects = "1"
+        self.menu_instance_redshift_proxy_objects = ("0", 0)
+        self.menu_instance_houdini_compatible_objects = ("1", 1)
+
+
+class RsObjpropProxyFileMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__renders_houdi___name__os__f4_exr = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr", 0)
+        self.menu_e__renders_houdi___r_magic_prev__f3 = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3", 1)
+        self.menu_e__art_projects____y_first_hdrlight = ("E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight", 2)
 
 
 class RsObjpropProxyPreviewMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_none = "proxyPrevNone"
-        self.menu_bounding_box = "proxyPrevBB"
-        self.menu_mesh = "proxyPrevSolid"
-        self.menu_points = "proxyPrevPoints"
+        self.menu_none = ("proxyPrevNone", 0)
+        self.menu_bounding_box = ("proxyPrevBB", 1)
+        self.menu_mesh = ("proxyPrevSolid", 2)
+        self.menu_points = ("proxyPrevPoints", 3)
 
 
 class RsObjpropProxyMaterialsMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_from_proxy = "proxyMatProxy"
-        self.menu_from_obj_node = "proxyMatObject"
-        self.menu_full_override = "proxyMatOverride"
-        self.menu_list_override = "proxyMatOvrList"
-        self.menu_from_scene_materials = "proxyMatOvrScene"
+        self.menu_from_proxy = ("proxyMatProxy", 0)
+        self.menu_from_obj_node = ("proxyMatObject", 1)
+        self.menu_full_override = ("proxyMatOverride", 2)
+        self.menu_list_override = ("proxyMatOvrList", 3)
+        self.menu_from_scene_materials = ("proxyMatOvrScene", 4)
 
 
 class RsObjpropRstessRuleMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_catmull_clark___loop = "ccLoop"
-        self.menu_catmull_clark_only = "ccOnly"
+        self.menu_catmull_clark___loop = ("ccLoop", 0)
+        self.menu_catmull_clark_only = ("ccOnly", 1)
 
 
 class RsObjpropStrandsTypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_box = "RS_STRAND_SHAPE_BOX"
-        self.menu_cylinder = "RS_STRAND_SHAPE_CYLINDER"
-        self.menu_capsule = "RS_STRAND_SHAPE_CAPSULE"
-        self.menu_cone = "RS_STRAND_SHAPE_CONE"
-        self.menu_strip = "RS_STRAND_SHAPE_STRIP"
+        self.menu_box = ("RS_STRAND_SHAPE_BOX", 0)
+        self.menu_cylinder = ("RS_STRAND_SHAPE_CYLINDER", 1)
+        self.menu_capsule = ("RS_STRAND_SHAPE_CAPSULE", 2)
+        self.menu_cone = ("RS_STRAND_SHAPE_CONE", 3)
+        self.menu_strip = ("RS_STRAND_SHAPE_STRIP", 4)
 
 
 class RsObjpropVolumeTypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_openvdb_file = "vOpenVDB"
-        self.menu_volume_vdb_houdini_primitive = "vHoudiniVolume"
+        self.menu_openvdb_file = ("vOpenVDB", 0)
+        self.menu_volume_vdb_houdini_primitive = ("vHoudiniVolume", 1)
 
 
 

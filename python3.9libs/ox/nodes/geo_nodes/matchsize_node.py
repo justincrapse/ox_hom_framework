@@ -71,125 +71,125 @@ class GrouptypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_guess_from_group = "guess"
-        self.menu_breakpoints = "breakpoints"
-        self.menu_edges = "edges"
-        self.menu_points = "points"
-        self.menu_primitives = "prims"
+        self.menu_guess_from_group = ("guess", 0)
+        self.menu_breakpoints = ("breakpoints", 1)
+        self.menu_edges = ("edges", 2)
+        self.menu_points = ("points", 3)
+        self.menu_primitives = ("prims", 4)
 
 
 class JustifytargetMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_origin_and_unit_size = "origin"
-        self.menu_second_input = "input"
-        self.menu_location_and_size = "explicit"
-        self.menu_input_if_wired = "auto"
+        self.menu_origin_and_unit_size = ("origin", 0)
+        self.menu_second_input = ("input", 1)
+        self.menu_location_and_size = ("explicit", 2)
+        self.menu_input_if_wired = ("auto", 3)
 
 
 class SourcegrouptypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_guess_from_group = "guess"
-        self.menu_breakpoints = "breakpoints"
-        self.menu_edges = "edges"
-        self.menu_points = "points"
-        self.menu_primitives = "prims"
+        self.menu_guess_from_group = ("guess", 0)
+        self.menu_breakpoints = ("breakpoints", 1)
+        self.menu_edges = ("edges", 2)
+        self.menu_points = ("points", 3)
+        self.menu_primitives = ("prims", 4)
 
 
 class RefgrouptypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_guess_from_group = "guess"
-        self.menu_breakpoints = "breakpoints"
-        self.menu_edges = "edges"
-        self.menu_points = "points"
-        self.menu_primitives = "prims"
+        self.menu_guess_from_group = ("guess", 0)
+        self.menu_breakpoints = ("breakpoints", 1)
+        self.menu_edges = ("edges", 2)
+        self.menu_points = ("points", 3)
+        self.menu_primitives = ("prims", 4)
 
 
 class JustifyXMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_none = "none"
-        self.menu_min = "min"
-        self.menu_center = "center"
-        self.menu_max = "max"
+        self.menu_none = ("none", 0)
+        self.menu_min = ("min", 1)
+        self.menu_center = ("center", 2)
+        self.menu_max = ("max", 3)
 
 
 class GoalXMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_same = "same"
-        self.menu_min = "min"
-        self.menu_center = "center"
-        self.menu_max = "max"
+        self.menu_same = ("same", 0)
+        self.menu_min = ("min", 1)
+        self.menu_center = ("center", 2)
+        self.menu_max = ("max", 3)
 
 
 class JustifyYMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_none = "none"
-        self.menu_min = "min"
-        self.menu_center = "center"
-        self.menu_max = "max"
+        self.menu_none = ("none", 0)
+        self.menu_min = ("min", 1)
+        self.menu_center = ("center", 2)
+        self.menu_max = ("max", 3)
 
 
 class GoalYMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_same = "same"
-        self.menu_min = "min"
-        self.menu_center = "center"
-        self.menu_max = "max"
+        self.menu_same = ("same", 0)
+        self.menu_min = ("min", 1)
+        self.menu_center = ("center", 2)
+        self.menu_max = ("max", 3)
 
 
 class JustifyZMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_none = "none"
-        self.menu_min = "min"
-        self.menu_center = "center"
-        self.menu_max = "max"
+        self.menu_none = ("none", 0)
+        self.menu_min = ("min", 1)
+        self.menu_center = ("center", 2)
+        self.menu_max = ("max", 3)
 
 
 class GoalZMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_same = "same"
-        self.menu_min = "min"
-        self.menu_center = "center"
-        self.menu_max = "max"
+        self.menu_same = ("same", 0)
+        self.menu_min = ("min", 1)
+        self.menu_center = ("center", 2)
+        self.menu_max = ("max", 3)
 
 
 class ScaleAxisMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_x = "x"
-        self.menu_y = "y"
-        self.menu_z = "z"
-        self.menu_best_fit = "min"
-        self.menu_perimeter = "perimeter"
-        self.menu_area = "area"
-        self.menu_volume = "volume"
+        self.menu_x = ("x", 0)
+        self.menu_y = ("y", 1)
+        self.menu_z = ("z", 2)
+        self.menu_best_fit = ("min", 3)
+        self.menu_perimeter = ("perimeter", 4)
+        self.menu_area = ("area", 5)
+        self.menu_volume = ("volume", 6)
 
 
 class StashmergeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_replace_existing = "replace"
-        self.menu_pre_multiply = "pre"
-        self.menu_post_multiply = "post"
+        self.menu_replace_existing = ("replace", 0)
+        self.menu_pre_multiply = ("pre", 1)
+        self.menu_post_multiply = ("post", 2)
 
 
 

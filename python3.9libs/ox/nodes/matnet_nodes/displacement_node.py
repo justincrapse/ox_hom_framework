@@ -52,16 +52,16 @@ class MapEncodingMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_vector = "0"
-        self.menu_height_field = "2"
+        self.menu_vector = ("0", 0)
+        self.menu_height_field = ("2", 1)
 
 
 class SpaceTypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_object = "1"
-        self.menu_tangent = "2"
+        self.menu_object = ("1", 0)
+        self.menu_tangent = ("2", 1)
 
 
 

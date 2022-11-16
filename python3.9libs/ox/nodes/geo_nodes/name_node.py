@@ -40,9 +40,9 @@ class ClassAltMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_primitive = "primitive"
-        self.menu_point = "point"
-        self.menu_vertex = "vertex"
+        self.menu_primitive = ("primitive", 0)
+        self.menu_point = ("point", 1)
+        self.menu_vertex = ("vertex", 2)
 
 
 

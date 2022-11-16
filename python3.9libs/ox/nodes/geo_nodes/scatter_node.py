@@ -30,7 +30,6 @@ class ScatterNode(OXNode):
         self.parm_areaattrib = Parameter(parm=self.node.parm('areaattrib'))
         self.parm_useareaforvolumes = Parameter(parm=self.node.parm('useareaforvolumes'))
         self.parm_usedensitytexture = Parameter(parm=self.node.parm('usedensitytexture'))
-        self.parm_densitytexture = Parameter(parm=self.node.parm('densitytexture'))
         self.parm_uvattrib = Parameter(parm=self.node.parm('uvattrib'))
         self.parm_primcountattrib = Parameter(parm=self.node.parm('primcountattrib'))
         self.parm_useemergencylimit = Parameter(parm=self.node.parm('useemergencylimit'))
@@ -61,6 +60,7 @@ class ScatterNode(OXNode):
         
         # parm menu vars:
         self.parm_generateby = GeneratebyMenu(parm=self.node.parm('generateby'))
+        self.parm_densitytexture = DensitytextureMenu(parm=self.node.parm('densitytexture'))
 
 
         # input vars:
@@ -72,9 +72,18 @@ class GeneratebyMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_by_density = "bydensity"
-        self.menu_count_per_primitive = "countperprimitive"
-        self.menu_in_texture_space = "texturespace"
+        self.menu_by_density = ("bydensity", 0)
+        self.menu_count_per_primitive = ("countperprimitive", 1)
+        self.menu_in_texture_space = ("texturespace", 2)
+
+
+class DensitytextureMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__renders_houdi___name__os__f4_exr = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr", 0)
+        self.menu_e__renders_houdi___r_magic_prev__f3 = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3", 1)
+        self.menu_e__art_projects____y_first_hdrlight = ("E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight", 2)
 
 
 

@@ -53,9 +53,9 @@ class InputtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_height_field = "0"
-        self.menu_tangent_space_normal = "1"
-        self.menu_object_space_normal = "2"
+        self.menu_height_field = ("0", 0)
+        self.menu_tangent_space_normal = ("1", 1)
+        self.menu_object_space_normal = ("2", 2)
 
 
 

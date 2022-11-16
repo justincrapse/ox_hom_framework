@@ -55,30 +55,30 @@ class SrcgrouptypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_primitives = "primitive"
-        self.menu_points = "point"
+        self.menu_primitives = ("primitive", 0)
+        self.menu_points = ("point", 1)
 
 
 class DstgrouptypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_primitives = "primitive"
-        self.menu_points = "point"
+        self.menu_primitives = ("primitive", 0)
+        self.menu_points = ("point", 1)
 
 
 class KernelMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_wyvill_model = "wyvill"
-        self.menu_elendt_model = "elendt"
-        self.menu_blinn_model = "blinn"
-        self.menu_links_model = "links"
-        self.menu_renderman_model = "prman"
-        self.menu_hart_model = "hart"
-        self.menu_exponential_bump = "xpbump"
-        self.menu_uniform_model = "uniform"
+        self.menu_wyvill_model = ("wyvill", 0)
+        self.menu_elendt_model = ("elendt", 1)
+        self.menu_blinn_model = ("blinn", 2)
+        self.menu_links_model = ("links", 3)
+        self.menu_renderman_model = ("prman", 4)
+        self.menu_hart_model = ("hart", 5)
+        self.menu_exponential_bump = ("xpbump", 6)
+        self.menu_uniform_model = ("uniform", 7)
 
 
 

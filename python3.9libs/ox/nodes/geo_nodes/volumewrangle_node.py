@@ -63,9 +63,9 @@ class VexPrecisionMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_auto = "auto"
-        self.menu__32 = "32"
-        self.menu__64 = "64"
+        self.menu_auto = ("auto", 0)
+        self.menu__32 = ("32", 1)
+        self.menu__64 = ("64", 2)
 
 
 

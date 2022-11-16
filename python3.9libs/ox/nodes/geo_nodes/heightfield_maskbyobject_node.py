@@ -50,52 +50,52 @@ class CombineMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_replace = "replace"
-        self.menu_add = "add"
-        self.menu_subtract = "subtract"
-        self.menu_difference = "diff"
-        self.menu_multiply = "multiply"
-        self.menu_maximum = "max"
-        self.menu_minimum = "min"
-        self.menu_blend = "blend"
+        self.menu_replace = ("replace", 0)
+        self.menu_add = ("add", 1)
+        self.menu_subtract = ("subtract", 2)
+        self.menu_difference = ("diff", 3)
+        self.menu_multiply = ("multiply", 4)
+        self.menu_maximum = ("max", 5)
+        self.menu_minimum = ("min", 6)
+        self.menu_blend = ("blend", 7)
 
 
 class MethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_project = "ray"
-        self.menu_fog_volume = "volume"
-        self.menu_sdf_volume = "sdf"
+        self.menu_project = ("ray", 0)
+        self.menu_fog_volume = ("volume", 1)
+        self.menu_sdf_volume = ("sdf", 2)
 
 
 class MaskdirMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_either_side = "both"
-        self.menu_above_heightfield = "above"
-        self.menu_below_heightfield = "below"
+        self.menu_either_side = ("both", 0)
+        self.menu_above_heightfield = ("above", 1)
+        self.menu_below_heightfield = ("below", 2)
 
 
 class BlurmethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_blur = "blur"
-        self.menu_box_blur = "boxblur"
-        self.menu_expand = "expand"
-        self.menu_shrink = "shrink"
+        self.menu_blur = ("blur", 0)
+        self.menu_box_blur = ("boxblur", 1)
+        self.menu_expand = ("expand", 2)
+        self.menu_shrink = ("shrink", 3)
 
 
 class JittercombineMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_average = "avg"
-        self.menu_median = "median"
-        self.menu_shortest = "min"
-        self.menu_longest = "max"
+        self.menu_average = ("avg", 0)
+        self.menu_median = ("median", 1)
+        self.menu_shortest = ("min", 2)
+        self.menu_longest = ("max", 3)
 
 
 

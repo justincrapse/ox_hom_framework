@@ -86,53 +86,53 @@ class ScattermethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_by_coverage_using_mask_layer = "coverage"
-        self.menu_by_density_using_mask_layer = "density"
-        self.menu_total_point_count_using_mask_layer = "totalpointcount"
-        self.menu_per_point_count_using_source_points = "perpointcount"
+        self.menu_by_coverage_using_mask_layer = ("coverage", 0)
+        self.menu_by_density_using_mask_layer = ("density", 1)
+        self.menu_total_point_count_using_mask_layer = ("totalpointcount", 2)
+        self.menu_per_point_count_using_source_points = ("perpointcount", 3)
 
 
 class PerpointcountMethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_poisson_distribution = "poissondist"
-        self.menu_exact_number = "exactnumber"
+        self.menu_poisson_distribution = ("poissondist", 0)
+        self.menu_exact_number = ("exactnumber", 1)
 
 
 class PositioningMethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_offset = "offset"
-        self.menu_origin = "origin"
-        self.menu_ratio = "ratio"
+        self.menu_offset = ("offset", 0)
+        self.menu_origin = ("origin", 1)
+        self.menu_ratio = ("ratio", 2)
 
 
 class VariabilityMethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_uniform_distribution = "uniformdist"
-        self.menu_normal_distribution = "normaldist"
-        self.menu_exact_scale = "exactscale"
+        self.menu_uniform_distribution = ("uniformdist", 0)
+        self.menu_normal_distribution = ("normaldist", 1)
+        self.menu_exact_scale = ("exactscale", 2)
 
 
 class RelaxPointremovalmethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_only_flag = "onlyflag"
-        self.menu_remove = "remove"
+        self.menu_only_flag = ("onlyflag", 0)
+        self.menu_remove = ("remove", 1)
 
 
 class PiecemodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_from_attribute = "attribute"
-        self.menu_from_connectivity = "connectivity"
-        self.menu_single_piece = "single"
+        self.menu_from_attribute = ("attribute", 0)
+        self.menu_from_connectivity = ("connectivity", 1)
+        self.menu_single_piece = ("single", 2)
 
 
 

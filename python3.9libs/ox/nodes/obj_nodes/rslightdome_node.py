@@ -53,7 +53,6 @@ class RslightdomeNode(OXNode):
         self.parm_display = Parameter(parm=self.node.parm('display'))
         self.parm_dimmer = Parameter(parm=self.node.parm('dimmer'))
         self.parm_picking = Parameter(parm=self.node.parm('picking'))
-        self.parm_pickscript = Parameter(parm=self.node.parm('pickscript'))
         self.parm_caching = Parameter(parm=self.node.parm('caching'))
         self.parm_use_dcolor = Parameter(parm=self.node.parm('use_dcolor'))
         self.parm_dcolorr = Parameter(parm=self.node.parm('dcolorr'))
@@ -72,7 +71,6 @@ class RslightdomeNode(OXNode):
         self.parm_light_colorr = Parameter(parm=self.node.parm('light_colorr'))
         self.parm_light_colorg = Parameter(parm=self.node.parm('light_colorg'))
         self.parm_light_colorb = Parameter(parm=self.node.parm('light_colorb'))
-        self.parm_env_map = Parameter(parm=self.node.parm('env_map'))
         self.parm_rsl_fliphorizontal = Parameter(parm=self.node.parm('RSL_flipHorizontal'))
         self.parm_rsl_hue = Parameter(parm=self.node.parm('RSL_hue'))
         self.parm_rsl_saturation = Parameter(parm=self.node.parm('RSL_saturation'))
@@ -83,7 +81,6 @@ class RslightdomeNode(OXNode):
         self.parm_alphareplacevalue = Parameter(parm=self.node.parm('alphaReplaceValue'))
         self.parm_rs_shadernodemainswitcher_1 = Parameter(parm=self.node.parm('RS_shaderNodeMainSwitcher_1'))
         self.parm_backplateenabled = Parameter(parm=self.node.parm('backPlateEnabled'))
-        self.parm_tex1 = Parameter(parm=self.node.parm('tex1'))
         self.parm_tex1_gamma = Parameter(parm=self.node.parm('tex1_gamma'))
         self.parm_rsl_exposure2 = Parameter(parm=self.node.parm('RSL_exposure2'))
         self.parm_rsl_hue2 = Parameter(parm=self.node.parm('RSL_hue2'))
@@ -139,8 +136,11 @@ class RslightdomeNode(OXNode):
         self.parm_pre_xform = PreXformMenu(parm=self.node.parm('pre_xform'))
         self.parm_lookup = LookupMenu(parm=self.node.parm('lookup'))
         self.parm_uparmtype = UparmtypeMenu(parm=self.node.parm('uparmtype'))
+        self.parm_pickscript = PickscriptMenu(parm=self.node.parm('pickscript'))
+        self.parm_env_map = EnvMapMenu(parm=self.node.parm('env_map'))
         self.parm_envtype = EnvtypeMenu(parm=self.node.parm('envType'))
         self.parm_tex0_colorspace = Tex0ColorspaceMenu(parm=self.node.parm('tex0_colorSpace'))
+        self.parm_tex1 = Tex1Menu(parm=self.node.parm('tex1'))
         self.parm_tex1_colorspace = Tex1ColorspaceMenu(parm=self.node.parm('tex1_colorSpace'))
         self.parm_backplateaspect = BackplateaspectMenu(parm=self.node.parm('backPlateAspect'))
         self.parm_rsl_affectedbyrefraction = RslAffectedbyrefractionMenu(parm=self.node.parm('RSL_affectedByRefraction'))
@@ -155,126 +155,171 @@ class XordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_scale_rot_trans = "srt"
-        self.menu_scale_trans_rot = "str"
-        self.menu_rot_scale_trans = "rst"
-        self.menu_rot_trans_scale = "rts"
-        self.menu_trans_scale_rot = "tsr"
-        self.menu_trans_rot_scale = "trs"
+        self.menu_scale_rot_trans = ("srt", 0)
+        self.menu_scale_trans_rot = ("str", 1)
+        self.menu_rot_scale_trans = ("rst", 2)
+        self.menu_rot_trans_scale = ("rts", 3)
+        self.menu_trans_scale_rot = ("tsr", 4)
+        self.menu_trans_rot_scale = ("trs", 5)
 
 
 class RordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_rx_ry_rz = "xyz"
-        self.menu_rx_rz_ry = "xzy"
-        self.menu_ry_rx_rz = "yxz"
-        self.menu_ry_rz_rx = "yzx"
-        self.menu_rz_rx_ry = "zxy"
-        self.menu_rz_ry_rx = "zyx"
+        self.menu_rx_ry_rz = ("xyz", 0)
+        self.menu_rx_rz_ry = ("xzy", 1)
+        self.menu_ry_rx_rz = ("yxz", 2)
+        self.menu_ry_rz_rx = ("yzx", 3)
+        self.menu_rz_rx_ry = ("zxy", 4)
+        self.menu_rz_ry_rx = ("zyx", 5)
 
 
 class PreXformMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_clean_transform = "clean"
-        self.menu_clean_translates = "cleantrans"
-        self.menu_clean_rotates = "cleanrot"
-        self.menu_clean_scales = "cleanscales"
-        self.menu_extract_pre_transform = "extract"
-        self.menu_reset_pre_transform = "reset"
+        self.menu_clean_transform = ("clean", 0)
+        self.menu_clean_translates = ("cleantrans", 1)
+        self.menu_clean_rotates = ("cleanrot", 2)
+        self.menu_clean_scales = ("cleanscales", 3)
+        self.menu_extract_pre_transform = ("extract", 4)
+        self.menu_reset_pre_transform = ("reset", 5)
 
 
 class LookupMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_don_t_use_up_vector = "off"
-        self.menu_use_up_vector = "on"
-        self.menu_use_quaternions = "quat"
-        self.menu_use_global_position = "pos"
-        self.menu_use_up_object = "obj"
+        self.menu_don_t_use_up_vector = ("off", 0)
+        self.menu_use_up_vector = ("on", 1)
+        self.menu_use_quaternions = ("quat", 2)
+        self.menu_use_global_position = ("pos", 3)
+        self.menu_use_up_object = ("obj", 4)
 
 
 class UparmtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_uniform = "uniform"
-        self.menu_arc_length = "arc"
+        self.menu_uniform = ("uniform", 0)
+        self.menu_arc_length = ("arc", 1)
+
+
+class PickscriptMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__renders_houdi___name__os__f4_exr = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr", 0)
+        self.menu_e__renders_houdi___r_magic_prev__f3 = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3", 1)
+        self.menu_e__art_projects____y_first_hdrlight = ("E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight", 2)
+
+
+class EnvMapMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__art_old_proje___quarry_02_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/quarry_02_4k.exr", 0)
+        self.menu_e__art_old_proje____1d_clear_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr", 1)
+        self.menu_e__art_old_proje___a_sunrise_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr", 2)
+        self.menu_d__art_projects____e_background_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/hdri_exrs/subtle_background.exr", 3)
+        self.menu_e__art_old_proje___s_on_fire_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr", 4)
+        self.menu_e__art_old_proje___enheim_05_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr", 5)
+        self.menu_e__art_old_proje___anga_veld_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr", 6)
+        self.menu_e__art_old_proje___oon_grass_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/noon_grass_4k.exr", 7)
+        self.menu_d__art_projects____arfield_hdri_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/first_starfield_hdri.exr", 8)
+        self.menu_e__art_old_proje___e_purple_neb_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/purple_neb.jpg", 9)
+        self.menu_e__art_old_proje___xl_128051940_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/dreamstime_xxl_128051940.jpg", 10)
+        self.menu_d__art_projects____s_flare_star_png = ("D:/ART/PROJECTS/stars_rnd/starfields/my_star_sprites/blue_lens_flare_star.png", 11)
 
 
 class EnvtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_spherical = "0"
-        self.menu_hemispherical = "1"
-        self.menu_mirror_ball = "2"
-        self.menu_angular = "3"
+        self.menu_spherical = ("0", 0)
+        self.menu_hemispherical = ("1", 1)
+        self.menu_mirror_ball = ("2", 2)
+        self.menu_angular = ("3", 3)
 
 
 class Tex0ColorspaceMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_auto = ""
-        self.menu_srgb = "sRGB"
-        self.menu_adobergb = "AdobeRGB"
-        self.menu_acescg = "ACEScg"
-        self.menu_aces2065_1 = "ACES2065-1"
-        self.menu_scene_linear_rec_709_srgb = "scene-linear Rec.709-sRGB"
-        self.menu_scene_linear_dci_p3_d65 = "scene-linear DCI-P3 D65"
-        self.menu_scene_linear_rec_2020 = "scene-linear Rec.2020"
-        self.menu_raw = "Raw"
-        self.menu_acescct = "ACEScct"
-        self.menu_arri_logc___alexawidegamut = "ARRI LogC / AlexaWideGamut"
-        self.menu_red_log3g10___redwidegamutrgb = "RED Log3G10 / REDWideGamutRGB"
-        self.menu_sony_slog3___sgamut3 = "Sony SLog3 / SGamut3"
-        self.menu_panasonic_v_log___v_gamut = "Panasonic V-Log / V-Gamut"
-        self.menu_log_film_scan__adx10_ = "Log film scan (ADX10)"
-        self.menu_invert_aces_1_0_sdr_video = "Invert ACES 1.0 SDR-video"
+        self.menu_auto = ("", 0)
+        self.menu_srgb = ("sRGB", 1)
+        self.menu_adobergb = ("AdobeRGB", 2)
+        self.menu_acescg = ("ACEScg", 3)
+        self.menu_aces2065_1 = ("ACES2065-1", 4)
+        self.menu_scene_linear_rec_709_srgb = ("scene-linear Rec.709-sRGB", 5)
+        self.menu_scene_linear_dci_p3_d65 = ("scene-linear DCI-P3 D65", 6)
+        self.menu_scene_linear_rec_2020 = ("scene-linear Rec.2020", 7)
+        self.menu_raw = ("Raw", 8)
+        self.menu_acescct = ("ACEScct", 9)
+        self.menu_arri_logc___alexawidegamut = ("ARRI LogC / AlexaWideGamut", 10)
+        self.menu_red_log3g10___redwidegamutrgb = ("RED Log3G10 / REDWideGamutRGB", 11)
+        self.menu_sony_slog3___sgamut3 = ("Sony SLog3 / SGamut3", 12)
+        self.menu_panasonic_v_log___v_gamut = ("Panasonic V-Log / V-Gamut", 13)
+        self.menu_log_film_scan__adx10_ = ("Log film scan (ADX10)", 14)
+        self.menu_invert_aces_1_0_sdr_video = ("Invert ACES 1.0 SDR-video", 15)
+
+
+class Tex1Menu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__art_old_proje___quarry_02_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/quarry_02_4k.exr", 0)
+        self.menu_e__art_old_proje____1d_clear_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr", 1)
+        self.menu_e__art_old_proje___a_sunrise_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr", 2)
+        self.menu_d__art_projects____e_background_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/hdri_exrs/subtle_background.exr", 3)
+        self.menu_e__art_old_proje___s_on_fire_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr", 4)
+        self.menu_e__art_old_proje___enheim_05_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr", 5)
+        self.menu_e__art_old_proje___anga_veld_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr", 6)
+        self.menu_e__art_old_proje___oon_grass_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/noon_grass_4k.exr", 7)
+        self.menu_d__art_projects____arfield_hdri_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/first_starfield_hdri.exr", 8)
+        self.menu_e__art_old_proje___e_purple_neb_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/purple_neb.jpg", 9)
+        self.menu_e__art_old_proje___xl_128051940_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/dreamstime_xxl_128051940.jpg", 10)
+        self.menu_d__art_projects____s_flare_star_png = ("D:/ART/PROJECTS/stars_rnd/starfields/my_star_sprites/blue_lens_flare_star.png", 11)
 
 
 class Tex1ColorspaceMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_auto = ""
-        self.menu_srgb = "sRGB"
-        self.menu_adobergb = "AdobeRGB"
-        self.menu_acescg = "ACEScg"
-        self.menu_aces2065_1 = "ACES2065-1"
-        self.menu_scene_linear_rec_709_srgb = "scene-linear Rec.709-sRGB"
-        self.menu_scene_linear_dci_p3_d65 = "scene-linear DCI-P3 D65"
-        self.menu_scene_linear_rec_2020 = "scene-linear Rec.2020"
-        self.menu_raw = "Raw"
-        self.menu_acescct = "ACEScct"
-        self.menu_arri_logc___alexawidegamut = "ARRI LogC / AlexaWideGamut"
-        self.menu_red_log3g10___redwidegamutrgb = "RED Log3G10 / REDWideGamutRGB"
-        self.menu_sony_slog3___sgamut3 = "Sony SLog3 / SGamut3"
-        self.menu_panasonic_v_log___v_gamut = "Panasonic V-Log / V-Gamut"
-        self.menu_log_film_scan__adx10_ = "Log film scan (ADX10)"
-        self.menu_invert_aces_1_0_sdr_video = "Invert ACES 1.0 SDR-video"
+        self.menu_auto = ("", 0)
+        self.menu_srgb = ("sRGB", 1)
+        self.menu_adobergb = ("AdobeRGB", 2)
+        self.menu_acescg = ("ACEScg", 3)
+        self.menu_aces2065_1 = ("ACES2065-1", 4)
+        self.menu_scene_linear_rec_709_srgb = ("scene-linear Rec.709-sRGB", 5)
+        self.menu_scene_linear_dci_p3_d65 = ("scene-linear DCI-P3 D65", 6)
+        self.menu_scene_linear_rec_2020 = ("scene-linear Rec.2020", 7)
+        self.menu_raw = ("Raw", 8)
+        self.menu_acescct = ("ACEScct", 9)
+        self.menu_arri_logc___alexawidegamut = ("ARRI LogC / AlexaWideGamut", 10)
+        self.menu_red_log3g10___redwidegamutrgb = ("RED Log3G10 / REDWideGamutRGB", 11)
+        self.menu_sony_slog3___sgamut3 = ("Sony SLog3 / SGamut3", 12)
+        self.menu_panasonic_v_log___v_gamut = ("Panasonic V-Log / V-Gamut", 13)
+        self.menu_log_film_scan__adx10_ = ("Log film scan (ADX10)", 14)
+        self.menu_invert_aces_1_0_sdr_video = ("Invert ACES 1.0 SDR-video", 15)
 
 
 class BackplateaspectMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_texture = "0"
-        self.menu_render = "1"
+        self.menu_texture = ("0", 0)
+        self.menu_render = ("1", 1)
 
 
 class RslAffectedbyrefractionMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_never = "never"
-        self.menu_auto = "auto"
-        self.menu_always = "always"
+        self.menu_never = ("never", 0)
+        self.menu_auto = ("auto", 1)
+        self.menu_always = ("always", 2)
 
 
 

@@ -54,13 +54,9 @@ class RopCompNode(OXNode):
         self.parm_vm_image_mplay_gamma = Parameter(parm=self.node.parm('vm_image_mplay_gamma'))
         self.parm_vm_image_jpeg_quality = Parameter(parm=self.node.parm('vm_image_jpeg_quality'))
         self.parm_tprerender = Parameter(parm=self.node.parm('tprerender'))
-        self.parm_prerender = Parameter(parm=self.node.parm('prerender'))
         self.parm_tpreframe = Parameter(parm=self.node.parm('tpreframe'))
-        self.parm_preframe = Parameter(parm=self.node.parm('preframe'))
         self.parm_tpostframe = Parameter(parm=self.node.parm('tpostframe'))
-        self.parm_postframe = Parameter(parm=self.node.parm('postframe'))
         self.parm_tpostrender = Parameter(parm=self.node.parm('tpostrender'))
-        self.parm_postrender = Parameter(parm=self.node.parm('postrender'))
 
         
         # parm menu vars:
@@ -96,9 +92,13 @@ class RopCompNode(OXNode):
         self.parm_vm_image_tiff_compression = VmImageTiffCompressionMenu(parm=self.node.parm('vm_image_tiff_compression'))
         self.parm_vm_image_exr_compression = VmImageExrCompressionMenu(parm=self.node.parm('vm_image_exr_compression'))
         self.parm_pngtga_alpha_multiplication = PngtgaAlphaMultiplicationMenu(parm=self.node.parm('pngtga_alpha_multiplication'))
+        self.parm_prerender = PrerenderMenu(parm=self.node.parm('prerender'))
         self.parm_lprerender = LprerenderMenu(parm=self.node.parm('lprerender'))
+        self.parm_preframe = PreframeMenu(parm=self.node.parm('preframe'))
         self.parm_lpreframe = LpreframeMenu(parm=self.node.parm('lpreframe'))
+        self.parm_postframe = PostframeMenu(parm=self.node.parm('postframe'))
         self.parm_lpostframe = LpostframeMenu(parm=self.node.parm('lpostframe'))
+        self.parm_postrender = PostrenderMenu(parm=self.node.parm('postrender'))
         self.parm_lpostrender = LpostrenderMenu(parm=self.node.parm('lpostrender'))
 
 
@@ -111,338 +111,374 @@ class TrangeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_render_current_frame = "off"
-        self.menu_render_frame_range = "normal"
-        self.menu_render_frame_range_only__strict_ = "on"
+        self.menu_render_current_frame = ("off", 0)
+        self.menu_render_frame_range = ("normal", 1)
+        self.menu_render_frame_range_only__strict_ = ("on", 2)
 
 
 class TakeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__current_ = "_current_"
-        self.menu_main = "Main"
+        self.menu__current_ = ("_current_", 0)
+        self.menu_main = ("Main", 1)
 
 
 class TresMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__8_resolution_1 = "proxy12"
-        self.menu__4_resolution_1 = "proxy25"
-        self.menu__3_resolution_1 = "proxy33"
-        self.menu__2_resolution_1 = "proxy50"
-        self.menu__3_resolution_2 = "proxy66"
-        self.menu__4_resolution_3 = "proxy75"
-        self.menu_natural_resolution = "natural"
-        self.menu_project_resolution = "project"
-        self.menu_project_proxy_res = "proxy"
-        self.menu_specify_resolution = "specify"
-        self.menu__33x_resolution_1 = "proxy133x"
-        self.menu__5x_resolution_1 = "proxy15x"
-        self.menu_x_resolution_2 = "proxy2x"
-        self.menu_x_resolution_4 = "proxy4x"
-        self.menu_x_resolution_8 = "proxy8x"
+        self.menu__8_resolution_1 = ("proxy12", 0)
+        self.menu__4_resolution_1 = ("proxy25", 1)
+        self.menu__3_resolution_1 = ("proxy33", 2)
+        self.menu__2_resolution_1 = ("proxy50", 3)
+        self.menu__3_resolution_2 = ("proxy66", 4)
+        self.menu__4_resolution_3 = ("proxy75", 5)
+        self.menu_natural_resolution = ("natural", 6)
+        self.menu_project_resolution = ("project", 7)
+        self.menu_project_proxy_res = ("proxy", 8)
+        self.menu_specify_resolution = ("specify", 9)
+        self.menu__33x_resolution_1 = ("proxy133x", 10)
+        self.menu__5x_resolution_1 = ("proxy15x", 11)
+        self.menu_x_resolution_2 = ("proxy2x", 12)
+        self.menu_x_resolution_4 = ("proxy4x", 13)
+        self.menu_x_resolution_8 = ("proxy8x", 14)
 
 
 class ResmenuMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_x_480_640 = "640 480 1"
-        self.menu_hdtv_720 = "1280 720 1"
-        self.menu_hdtv_1080 = "1920 1080 1"
-        self.menu_hdtv_2160__4k_ = "3840 2160 1"
-        self.menu__________ = "_separator_"
-        self.menu_ntsc = "640 486 1"
-        self.menu_ntsc_d1 = "720 486 0.9"
-        self.menu_pal = "768 576 1"
-        self.menu_pal_d1 = "720 576 1.067"
-        self.menu_pal_16_9_anamorphic = "720 576 1.422"
-        self.menu_pal_16_9__1_to_1_ = "1024 576 1"
-        self.menu__________ = "_separator_"
-        self.menu_full_ap_4k = "4096 3112 1"
-        self.menu_full_ap_2k = "2048 1556 1"
-        self.menu_acad_4k = "3656 2664 1"
-        self.menu_acad_2k = "1828 1332 1"
-        self.menu_scope_4k = "3656 3112 1"
-        self.menu_scope_2k = "1828 1556 1"
-        self.menu_vista_4k = "6144 4096 1"
-        self.menu_vista_2k = "3072 2048 1"
-        self.menu__________ = "_separator_"
-        self.menu__2_256 = "256 256 1"
-        self.menu__2_512 = "512 512 1"
-        self.menu__2_1024 = "1024 1024 1"
-        self.menu__2_2048 = "2048 2048 1"
-        self.menu__2_4096 = "4096 4096 1"
-        self.menu__2_8192 = "8192 8192 1"
+        self.menu_x_480_640 = ("640 480 1", 0)
+        self.menu_hdtv_720 = ("1280 720 1", 1)
+        self.menu_hdtv_1080 = ("1920 1080 1", 2)
+        self.menu_hdtv_2160__4k_ = ("3840 2160 1", 3)
+        self.menu__________ = ("_separator_", 4)
+        self.menu_ntsc = ("640 486 1", 5)
+        self.menu_ntsc_d1 = ("720 486 0.9", 6)
+        self.menu_pal = ("768 576 1", 7)
+        self.menu_pal_d1 = ("720 576 1.067", 8)
+        self.menu_pal_16_9_anamorphic = ("720 576 1.422", 9)
+        self.menu_pal_16_9__1_to_1_ = ("1024 576 1", 10)
+        self.menu__________ = ("_separator_", 11)
+        self.menu_full_ap_4k = ("4096 3112 1", 12)
+        self.menu_full_ap_2k = ("2048 1556 1", 13)
+        self.menu_acad_4k = ("3656 2664 1", 14)
+        self.menu_acad_2k = ("1828 1332 1", 15)
+        self.menu_scope_4k = ("3656 3112 1", 16)
+        self.menu_scope_2k = ("1828 1556 1", 17)
+        self.menu_vista_4k = ("6144 4096 1", 18)
+        self.menu_vista_2k = ("3072 2048 1", 19)
+        self.menu__________ = ("_separator_", 20)
+        self.menu__2_256 = ("256 256 1", 21)
+        self.menu__2_512 = ("512 512 1", 22)
+        self.menu__2_1024 = ("1024 1024 1", 23)
+        self.menu__2_2048 = ("2048 2048 1", 24)
+        self.menu__2_4096 = ("4096 4096 1", 25)
+        self.menu__2_8192 = ("8192 8192 1", 26)
 
 
 class CopoutputMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_mplay__interactive_ = "ip"
-        self.menu_mplay__non_interactive_ = "md"
-        self.menu_sequence_of__pic_files = "$HIP/render/$HIPNAME.$OS.$F4.pic"
-        self.menu_sequence_of__tif_files = "$HIP/render/$HIPNAME.$OS.$F4.tif"
-        self.menu_sequence_of__exr_files = "$HIP/render/$HIPNAME.$OS.$F4.exr"
+        self.menu_mplay__interactive_ = ("ip", 0)
+        self.menu_mplay__non_interactive_ = ("md", 1)
+        self.menu_sequence_of__pic_files = ("$HIP/render/$HIPNAME.$OS.$F4.pic", 2)
+        self.menu_sequence_of__tif_files = ("$HIP/render/$HIPNAME.$OS.$F4.tif", 3)
+        self.menu_sequence_of__exr_files = ("$HIP/render/$HIPNAME.$OS.$F4.exr", 4)
 
 
 class ColorMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__none_ = "(none)"
+        self.menu__none_ = ("(none)", 0)
 
 
 class AlphaMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__none_ = "(none)"
+        self.menu__none_ = ("(none)", 0)
 
 
 class ScopeplanesMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__ = "*"
+        self.menu__ = ("*", 0)
 
 
 class OutputareaMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_frame = "frame"
-        self.menu_crop_region = "crop"
-        self.menu_frame___surrounding_canvas = "canvas"
+        self.menu_frame = ("frame", 0)
+        self.menu_crop_region = ("crop", 1)
+        self.menu_frame___surrounding_canvas = ("canvas", 2)
 
 
 class Copaux1Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_mplay__interactive_ = "ip"
-        self.menu_mplay__non_interactive_ = "md"
-        self.menu_sequence_of__pic_files = "$HIP/render/$HIPNAME.$OS.$F4.pic"
-        self.menu_sequence_of__tif_files = "$HIP/render/$HIPNAME.$OS.$F4.tif"
-        self.menu_sequence_of__exr_files = "$HIP/render/$HIPNAME.$OS.$F4.exr"
+        self.menu_mplay__interactive_ = ("ip", 0)
+        self.menu_mplay__non_interactive_ = ("md", 1)
+        self.menu_sequence_of__pic_files = ("$HIP/render/$HIPNAME.$OS.$F4.pic", 2)
+        self.menu_sequence_of__tif_files = ("$HIP/render/$HIPNAME.$OS.$F4.tif", 3)
+        self.menu_sequence_of__exr_files = ("$HIP/render/$HIPNAME.$OS.$F4.exr", 4)
 
 
 class Color1Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__none_ = "(none)"
+        self.menu__none_ = ("(none)", 0)
 
 
 class Alpha1Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__none_ = "(none)"
+        self.menu__none_ = ("(none)", 0)
 
 
 class Scopeplanes1Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__ = "*"
+        self.menu__ = ("*", 0)
 
 
 class Copaux2Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_mplay__interactive_ = "ip"
-        self.menu_mplay__non_interactive_ = "md"
-        self.menu_sequence_of__pic_files = "$HIP/render/$HIPNAME.$OS.$F4.pic"
-        self.menu_sequence_of__tif_files = "$HIP/render/$HIPNAME.$OS.$F4.tif"
-        self.menu_sequence_of__exr_files = "$HIP/render/$HIPNAME.$OS.$F4.exr"
+        self.menu_mplay__interactive_ = ("ip", 0)
+        self.menu_mplay__non_interactive_ = ("md", 1)
+        self.menu_sequence_of__pic_files = ("$HIP/render/$HIPNAME.$OS.$F4.pic", 2)
+        self.menu_sequence_of__tif_files = ("$HIP/render/$HIPNAME.$OS.$F4.tif", 3)
+        self.menu_sequence_of__exr_files = ("$HIP/render/$HIPNAME.$OS.$F4.exr", 4)
 
 
 class Color2Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__none_ = "(none)"
+        self.menu__none_ = ("(none)", 0)
 
 
 class Alpha2Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__none_ = "(none)"
+        self.menu__none_ = ("(none)", 0)
 
 
 class Scopeplanes2Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__ = "*"
+        self.menu__ = ("*", 0)
 
 
 class Copaux3Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_mplay__interactive_ = "ip"
-        self.menu_mplay__non_interactive_ = "md"
-        self.menu_sequence_of__pic_files = "$HIP/render/$HIPNAME.$OS.$F4.pic"
-        self.menu_sequence_of__tif_files = "$HIP/render/$HIPNAME.$OS.$F4.tif"
-        self.menu_sequence_of__exr_files = "$HIP/render/$HIPNAME.$OS.$F4.exr"
+        self.menu_mplay__interactive_ = ("ip", 0)
+        self.menu_mplay__non_interactive_ = ("md", 1)
+        self.menu_sequence_of__pic_files = ("$HIP/render/$HIPNAME.$OS.$F4.pic", 2)
+        self.menu_sequence_of__tif_files = ("$HIP/render/$HIPNAME.$OS.$F4.tif", 3)
+        self.menu_sequence_of__exr_files = ("$HIP/render/$HIPNAME.$OS.$F4.exr", 4)
 
 
 class Color3Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__none_ = "(none)"
+        self.menu__none_ = ("(none)", 0)
 
 
 class Alpha3Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__none_ = "(none)"
+        self.menu__none_ = ("(none)", 0)
 
 
 class Scopeplanes3Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__ = "*"
+        self.menu__ = ("*", 0)
 
 
 class Copaux4Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_mplay__interactive_ = "ip"
-        self.menu_mplay__non_interactive_ = "md"
-        self.menu_sequence_of__pic_files = "$HIP/render/$HIPNAME.$OS.$F4.pic"
-        self.menu_sequence_of__tif_files = "$HIP/render/$HIPNAME.$OS.$F4.tif"
-        self.menu_sequence_of__exr_files = "$HIP/render/$HIPNAME.$OS.$F4.exr"
+        self.menu_mplay__interactive_ = ("ip", 0)
+        self.menu_mplay__non_interactive_ = ("md", 1)
+        self.menu_sequence_of__pic_files = ("$HIP/render/$HIPNAME.$OS.$F4.pic", 2)
+        self.menu_sequence_of__tif_files = ("$HIP/render/$HIPNAME.$OS.$F4.tif", 3)
+        self.menu_sequence_of__exr_files = ("$HIP/render/$HIPNAME.$OS.$F4.exr", 4)
 
 
 class Color4Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__none_ = "(none)"
+        self.menu__none_ = ("(none)", 0)
 
 
 class Alpha4Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__none_ = "(none)"
+        self.menu__none_ = ("(none)", 0)
 
 
 class Scopeplanes4Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__ = "*"
+        self.menu__ = ("*", 0)
 
 
 class Copaux5Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_mplay__interactive_ = "ip"
-        self.menu_mplay__non_interactive_ = "md"
-        self.menu_sequence_of__pic_files = "$HIP/render/$HIPNAME.$OS.$F4.pic"
-        self.menu_sequence_of__tif_files = "$HIP/render/$HIPNAME.$OS.$F4.tif"
-        self.menu_sequence_of__exr_files = "$HIP/render/$HIPNAME.$OS.$F4.exr"
+        self.menu_mplay__interactive_ = ("ip", 0)
+        self.menu_mplay__non_interactive_ = ("md", 1)
+        self.menu_sequence_of__pic_files = ("$HIP/render/$HIPNAME.$OS.$F4.pic", 2)
+        self.menu_sequence_of__tif_files = ("$HIP/render/$HIPNAME.$OS.$F4.tif", 3)
+        self.menu_sequence_of__exr_files = ("$HIP/render/$HIPNAME.$OS.$F4.exr", 4)
 
 
 class Color5Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__none_ = "(none)"
+        self.menu__none_ = ("(none)", 0)
 
 
 class Alpha5Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__none_ = "(none)"
+        self.menu__none_ = ("(none)", 0)
 
 
 class Scopeplanes5Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__ = "*"
+        self.menu__ = ("*", 0)
 
 
 class VmImageTiffCompressionMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_compression = "None"
-        self.menu_lzw_compression = "LZW"
-        self.menu_adobe_deflate = "AdobeDeflate"
-        self.menu_packbits = "PackBits"
+        self.menu_no_compression = ("None", 0)
+        self.menu_lzw_compression = ("LZW", 1)
+        self.menu_adobe_deflate = ("AdobeDeflate", 2)
+        self.menu_packbits = ("PackBits", 3)
 
 
 class VmImageExrCompressionMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_none = "none"
-        self.menu_rle = "rle"
-        self.menu_zip__single_scanline = "zips"
-        self.menu_zip__multi_scanline_blocks = "zip"
-        self.menu_piz_wavelet = "piz"
-        self.menu_pxr24__32_bit_float_compression__lossy_ = "pix"
-        self.menu_b44__4x4_block_compression__lossy_ = "b44"
-        self.menu_b44a__4x4_block_extra_compression__lossy_ = "b44a"
-        self.menu_dwa_a__32_scanline_block_compression__lossy_ = "dwaa"
-        self.menu_dwa_b__256_scanline_block_compression__lossy_ = "dwab"
+        self.menu_none = ("none", 0)
+        self.menu_rle = ("rle", 1)
+        self.menu_zip__single_scanline = ("zips", 2)
+        self.menu_zip__multi_scanline_blocks = ("zip", 3)
+        self.menu_piz_wavelet = ("piz", 4)
+        self.menu_pxr24__32_bit_float_compression__lossy_ = ("pix", 5)
+        self.menu_b44__4x4_block_compression__lossy_ = ("b44", 6)
+        self.menu_b44a__4x4_block_extra_compression__lossy_ = ("b44a", 7)
+        self.menu_dwa_a__32_scanline_block_compression__lossy_ = ("dwaa", 8)
+        self.menu_dwa_b__256_scanline_block_compression__lossy_ = ("dwab", 9)
 
 
 class PngtgaAlphaMultiplicationMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_premultiplied = "premult"
-        self.menu_unpremultiplied = "unpremult"
+        self.menu_premultiplied = ("premult", 0)
+        self.menu_unpremultiplied = ("unpremult", 1)
+
+
+class PrerenderMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__renders_houdi___name__os__f4_exr = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr", 0)
+        self.menu_e__renders_houdi___r_magic_prev__f3 = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3", 1)
+        self.menu_e__art_projects____y_first_hdrlight = ("E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight", 2)
 
 
 class LprerenderMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_hscript = "hscript"
-        self.menu_python = "python"
+        self.menu_hscript = ("hscript", 0)
+        self.menu_python = ("python", 1)
+
+
+class PreframeMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__renders_houdi___name__os__f4_exr = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr", 0)
+        self.menu_e__renders_houdi___r_magic_prev__f3 = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3", 1)
+        self.menu_e__art_projects____y_first_hdrlight = ("E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight", 2)
 
 
 class LpreframeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_hscript = "hscript"
-        self.menu_python = "python"
+        self.menu_hscript = ("hscript", 0)
+        self.menu_python = ("python", 1)
+
+
+class PostframeMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__renders_houdi___name__os__f4_exr = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr", 0)
+        self.menu_e__renders_houdi___r_magic_prev__f3 = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3", 1)
+        self.menu_e__art_projects____y_first_hdrlight = ("E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight", 2)
 
 
 class LpostframeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_hscript = "hscript"
-        self.menu_python = "python"
+        self.menu_hscript = ("hscript", 0)
+        self.menu_python = ("python", 1)
+
+
+class PostrenderMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__renders_houdi___name__os__f4_exr = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr", 0)
+        self.menu_e__renders_houdi___r_magic_prev__f3 = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3", 1)
+        self.menu_e__art_projects____y_first_hdrlight = ("E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight", 2)
 
 
 class LpostrenderMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_hscript = "hscript"
-        self.menu_python = "python"
+        self.menu_hscript = ("hscript", 0)
+        self.menu_python = ("python", 1)
 
 
 

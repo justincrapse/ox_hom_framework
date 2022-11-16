@@ -7,7 +7,7 @@ class Parameter:
         will not evaluate its common properties. We can then get those properties useing the "get" methods. If a paremeter instance was
         instantiated with a "None" from the automated code, you will need to reinstantiate the node class. This is done by simply creating the
         class instance after you know the parameter is present for the houdini node you are using to instantiate the class with."""
-        self.parm = parm
+        self.parm: hou.Parm = parm
 
     def get_path(self):
         return self.parm.path()

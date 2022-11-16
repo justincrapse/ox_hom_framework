@@ -130,139 +130,139 @@ class UpdatetintingMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_change = "unchanged"
-        self.menu_default_tinting = "default"
-        self.menu_custom_tinting = "custom"
-        self.menu_remove_tinting = "none"
+        self.menu_no_change = ("unchanged", 0)
+        self.menu_default_tinting = ("default", 1)
+        self.menu_custom_tinting = ("custom", 2)
+        self.menu_remove_tinting = ("none", 3)
 
 
 class CdrampmodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_ramp = "none"
-        self.menu_clamped_ramp = "clamp"
-        self.menu_periodic_ramp = "periodic"
+        self.menu_no_ramp = ("none", 0)
+        self.menu_clamped_ramp = ("clamp", 1)
+        self.menu_periodic_ramp = ("periodic", 2)
 
 
 class CdpresetMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_presets = "none"
-        self.menu_infra_red = "false"
-        self.menu_white_to_red = "pink"
-        self.menu_grayscale = "mono"
-        self.menu_blackbody = "blackbody"
-        self.menu_two_tone = "bipartite"
+        self.menu_presets = ("none", 0)
+        self.menu_infra_red = ("false", 1)
+        self.menu_white_to_red = ("pink", 2)
+        self.menu_grayscale = ("mono", 3)
+        self.menu_blackbody = ("blackbody", 4)
+        self.menu_two_tone = ("bipartite", 5)
 
 
 class UpdatematerialMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_change = "unchanged"
-        self.menu_custom_material = "custom"
-        self.menu_remove_material = "none"
+        self.menu_no_change = ("unchanged", 0)
+        self.menu_custom_material = ("custom", 1)
+        self.menu_remove_material = ("none", 2)
 
 
 class VisProjectionMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_y_up = "y"
-        self.menu_z_up = "z"
+        self.menu_y_up = ("y", 0)
+        self.menu_z_up = ("z", 1)
 
 
 class Cdramp1InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Cdramp2InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class VisHeightramp1InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class VisHeightramp2InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class VisHeightramp3InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class VisHeightramp4InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class VisHeightramp5InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 

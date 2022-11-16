@@ -56,58 +56,58 @@ class GrouptypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_guess_from_group = "guess"
-        self.menu_vertices = "vertices"
-        self.menu_edges = "edges"
-        self.menu_points = "points"
-        self.menu_primitives = "prims"
+        self.menu_guess_from_group = ("guess", 0)
+        self.menu_vertices = ("vertices", 1)
+        self.menu_edges = ("edges", 2)
+        self.menu_points = ("points", 3)
+        self.menu_primitives = ("prims", 4)
 
 
 class ClassAltMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_detail = "detail"
-        self.menu_primitive = "primitive"
-        self.menu_point = "point"
-        self.menu_vertex = "vertex"
+        self.menu_detail = ("detail", 0)
+        self.menu_primitive = ("primitive", 1)
+        self.menu_point = ("point", 2)
+        self.menu_vertex = ("vertex", 3)
 
 
 class ColortypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "0"
-        self.menu_bounding_box = "1"
-        self.menu_random = "2"
-        self.menu_ramp_from_attribute = "3"
-        self.menu_random_from_attribute = "4"
+        self.menu_constant = ("0", 0)
+        self.menu_bounding_box = ("1", 1)
+        self.menu_random = ("2", 2)
+        self.menu_ramp_from_attribute = ("3", 3)
+        self.menu_random_from_attribute = ("4", 4)
 
 
 class Ramp1InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Ramp2InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 

@@ -18,7 +18,6 @@ class MtlximageNode(OXNode):
         super().__init__(node=self.node)
         
         # parm vars:
-        self.parm_file = Parameter(parm=self.node.parm('file'))
         self.parm_layer = Parameter(parm=self.node.parm('layer'))
         self.parm_default = Parameter(parm=self.node.parm('default'))
         self.parm_texcoordx = Parameter(parm=self.node.parm('texcoordx'))
@@ -45,6 +44,7 @@ class MtlximageNode(OXNode):
         
         # parm menu vars:
         self.parm_signature = SignatureMenu(parm=self.node.parm('signature'))
+        self.parm_file = FileMenu(parm=self.node.parm('file'))
         self.parm_filecolorspace = FilecolorspaceMenu(parm=self.node.parm('filecolorspace'))
         self.parm_uaddressmode = UaddressmodeMenu(parm=self.node.parm('uaddressmode'))
         self.parm_vaddressmode = VaddressmodeMenu(parm=self.node.parm('vaddressmode'))
@@ -62,59 +62,77 @@ class SignatureMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_float = "default"
-        self.menu_color = "color3"
-        self.menu_color_4 = "color4"
-        self.menu_vector_2 = "vector2"
-        self.menu_vector_3 = "vector3"
-        self.menu_vector_4 = "vector4"
+        self.menu_float = ("default", 0)
+        self.menu_color = ("color3", 1)
+        self.menu_color_4 = ("color4", 2)
+        self.menu_vector_2 = ("vector2", 3)
+        self.menu_vector_3 = ("vector3", 4)
+        self.menu_vector_4 = ("vector4", 5)
+
+
+class FileMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__art_old_proje___quarry_02_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/quarry_02_4k.exr", 0)
+        self.menu_e__art_old_proje____1d_clear_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr", 1)
+        self.menu_e__art_old_proje___a_sunrise_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr", 2)
+        self.menu_d__art_projects____e_background_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/hdri_exrs/subtle_background.exr", 3)
+        self.menu_e__art_old_proje___s_on_fire_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr", 4)
+        self.menu_e__art_old_proje___enheim_05_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr", 5)
+        self.menu_e__art_old_proje___anga_veld_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr", 6)
+        self.menu_e__art_old_proje___oon_grass_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/noon_grass_4k.exr", 7)
+        self.menu_d__art_projects____arfield_hdri_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/first_starfield_hdri.exr", 8)
+        self.menu_e__art_old_proje___e_purple_neb_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/purple_neb.jpg", 9)
+        self.menu_e__art_old_proje___xl_128051940_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/dreamstime_xxl_128051940.jpg", 10)
+        self.menu_d__art_projects____s_flare_star_png = ("D:/ART/PROJECTS/stars_rnd/starfields/my_star_sprites/blue_lens_flare_star.png", 11)
 
 
 class FilecolorspaceMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_linear___rec_709 = "lin_rec709"
-        self.menu_linear_texture___srgb = "srgb_texture"
+        self.menu_linear___rec_709 = ("lin_rec709", 0)
+        self.menu_linear_texture___srgb = ("srgb_texture", 1)
 
 
 class UaddressmodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_clamp = "clamp"
-        self.menu_periodic = "periodic"
-        self.menu_mirror = "mirror"
+        self.menu_constant = ("constant", 0)
+        self.menu_clamp = ("clamp", 1)
+        self.menu_periodic = ("periodic", 2)
+        self.menu_mirror = ("mirror", 3)
 
 
 class VaddressmodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_clamp = "clamp"
-        self.menu_periodic = "periodic"
-        self.menu_mirror = "mirror"
+        self.menu_constant = ("constant", 0)
+        self.menu_clamp = ("clamp", 1)
+        self.menu_periodic = ("periodic", 2)
+        self.menu_mirror = ("mirror", 3)
 
 
 class FiltertypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_closest = "closest"
-        self.menu_linear = "linear"
-        self.menu_cubic = "cubic"
+        self.menu_closest = ("closest", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_cubic = ("cubic", 2)
 
 
 class FrameendactionMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_clamp = "clamp"
-        self.menu_periodic = "periodic"
-        self.menu_mirror = "mirror"
+        self.menu_constant = ("constant", 0)
+        self.menu_clamp = ("clamp", 1)
+        self.menu_periodic = ("periodic", 2)
+        self.menu_mirror = ("mirror", 3)
 
 
 

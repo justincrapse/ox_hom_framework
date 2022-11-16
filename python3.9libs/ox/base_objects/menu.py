@@ -17,9 +17,12 @@ class Menu(Parameter, object):
         if "menu_" not in item:
             return object.__getattribute__(self, item)
         else:
-            attr_val = object.__getattribute__(self, item)
-            ox_logger.debug(f"Setting {self.parm.name()} menu parameter to {attr_val}")
+            attr_tup = object.__getattribute__(self, item)
+            str_attr = attr_tup[0]
+            int_attr = attr_tup[1]
+            ox_logger.debug(f"Setting {self.parm.name()} menu parameter to {str_attr}")
             try:
-                self.parm.set(str(attr_val))
-            except OperationFailed:
-                self.parm.set(attr_val)
+                self.parm.set(str_attr)
+            except (TypeError, OperationFailed):
+                ox_logger.debug(f"Failed to set {self.parm.name()} menu parameter to {str_attr}. trying int")
+                self.parm.set(int_attr)

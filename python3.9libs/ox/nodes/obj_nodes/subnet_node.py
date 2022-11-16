@@ -56,7 +56,6 @@ class SubnetNode(OXNode):
         self.parm_tdisplay = Parameter(parm=self.node.parm('tdisplay'))
         self.parm_display = Parameter(parm=self.node.parm('display'))
         self.parm_picking = Parameter(parm=self.node.parm('picking'))
-        self.parm_pickscript = Parameter(parm=self.node.parm('pickscript'))
         self.parm_caching = Parameter(parm=self.node.parm('caching'))
         self.parm_use_dcolor = Parameter(parm=self.node.parm('use_dcolor'))
         self.parm_dcolorr = Parameter(parm=self.node.parm('dcolorr'))
@@ -72,6 +71,7 @@ class SubnetNode(OXNode):
         self.parm_uparmtype = UparmtypeMenu(parm=self.node.parm('uparmtype'))
         self.parm_outputobj = OutputobjMenu(parm=self.node.parm('outputobj'))
         self.parm_visibleobjects = VisibleobjectsMenu(parm=self.node.parm('visibleobjects'))
+        self.parm_pickscript = PickscriptMenu(parm=self.node.parm('pickscript'))
 
 
         # input vars:
@@ -86,74 +86,83 @@ class XordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_scale_rot_trans = "srt"
-        self.menu_scale_trans_rot = "str"
-        self.menu_rot_scale_trans = "rst"
-        self.menu_rot_trans_scale = "rts"
-        self.menu_trans_scale_rot = "tsr"
-        self.menu_trans_rot_scale = "trs"
+        self.menu_scale_rot_trans = ("srt", 0)
+        self.menu_scale_trans_rot = ("str", 1)
+        self.menu_rot_scale_trans = ("rst", 2)
+        self.menu_rot_trans_scale = ("rts", 3)
+        self.menu_trans_scale_rot = ("tsr", 4)
+        self.menu_trans_rot_scale = ("trs", 5)
 
 
 class RordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_rx_ry_rz = "xyz"
-        self.menu_rx_rz_ry = "xzy"
-        self.menu_ry_rx_rz = "yxz"
-        self.menu_ry_rz_rx = "yzx"
-        self.menu_rz_rx_ry = "zxy"
-        self.menu_rz_ry_rx = "zyx"
+        self.menu_rx_ry_rz = ("xyz", 0)
+        self.menu_rx_rz_ry = ("xzy", 1)
+        self.menu_ry_rx_rz = ("yxz", 2)
+        self.menu_ry_rz_rx = ("yzx", 3)
+        self.menu_rz_rx_ry = ("zxy", 4)
+        self.menu_rz_ry_rx = ("zyx", 5)
 
 
 class PreXformMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_clean_transform = "clean"
-        self.menu_clean_translates = "cleantrans"
-        self.menu_clean_rotates = "cleanrot"
-        self.menu_clean_scales = "cleanscales"
-        self.menu_extract_pre_transform = "extract"
-        self.menu_reset_pre_transform = "reset"
+        self.menu_clean_transform = ("clean", 0)
+        self.menu_clean_translates = ("cleantrans", 1)
+        self.menu_clean_rotates = ("cleanrot", 2)
+        self.menu_clean_scales = ("cleanscales", 3)
+        self.menu_extract_pre_transform = ("extract", 4)
+        self.menu_reset_pre_transform = ("reset", 5)
 
 
 class LookupMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_don_t_use_up_vector = "off"
-        self.menu_use_up_vector = "on"
-        self.menu_use_quaternions = "quat"
-        self.menu_use_global_position = "pos"
-        self.menu_use_up_object = "obj"
+        self.menu_don_t_use_up_vector = ("off", 0)
+        self.menu_use_up_vector = ("on", 1)
+        self.menu_use_quaternions = ("quat", 2)
+        self.menu_use_global_position = ("pos", 3)
+        self.menu_use_up_object = ("obj", 4)
 
 
 class UparmtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_uniform = "uniform"
-        self.menu_arc_length = "arc"
+        self.menu_uniform = ("uniform", 0)
+        self.menu_arc_length = ("arc", 1)
 
 
 class OutputobjMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_object = ""
-        self.menu_input_object_1 = "_input1_obj_"
-        self.menu_input_object_2 = "_input2_obj_"
-        self.menu_input_object_3 = "_input3_obj_"
-        self.menu_input_object_4 = "_input4_obj_"
-        self.menu__separator_ = "_separator_"
+        self.menu_no_object = ("", 0)
+        self.menu_input_object_1 = ("_input1_obj_", 1)
+        self.menu_input_object_2 = ("_input2_obj_", 2)
+        self.menu_input_object_3 = ("_input3_obj_", 3)
+        self.menu_input_object_4 = ("_input4_obj_", 4)
+        self.menu__separator_ = ("_separator_", 5)
 
 
 class VisibleobjectsMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_bundles_defined = ""
+        self.menu_no_bundles_defined = ("", 0)
+
+
+class PickscriptMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__renders_houdi___name__os__f4_exr = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr", 0)
+        self.menu_e__renders_houdi___r_magic_prev__f3 = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3", 1)
+        self.menu_e__art_projects____y_first_hdrlight = ("E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight", 2)
 
 
 

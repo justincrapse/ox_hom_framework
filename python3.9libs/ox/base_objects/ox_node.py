@@ -94,7 +94,19 @@ class OXNode(ParmTemplate):  # mixins
         except ValueError:
             raise ValueError(f"Label: {label}. Was not found in node: {self.path}")
 
+    def get_input_connections_node_name_list(self):
+        connections = self.node.inputConnections()
+        node_name_list = [i.inputItem().name() for i in connections]
+        return node_name_list
+
+    def get_connected_output_node_by_index(self, index=0) -> hou.Node:
+        out_cons = self.node.outputConnections()
+        connected_node = out_cons[index].outputItem()
+        return connected_node
+
     def create_node(self, node_type_name, node_name=None) -> hou.Node:
+        if node_name:
+            node_name = node_name.replace(" ", "_")
         new_node = self.node.createNode(node_type_name, node_name)
         return new_node
 
@@ -125,6 +137,9 @@ class OXNode(ParmTemplate):  # mixins
     def has_child_with_name(self, child_name):
         return bool(self.get_child_by_name(child_name=child_name))
 
+    def has_child_with_node_type(self, node_type, expect_match):
+        return bool(self.get_child_by_node_type(node_type=node_type, expect_match=expect_match))
+
     def get_children_paths_by_partial_name(self, substring):
         path_list = []
         for node in self.get_children_nodes():
@@ -143,13 +158,13 @@ class OXNode(ParmTemplate):  # mixins
         children_node_list = self.node.children()
         return children_node_list
 
-    def get_child_nodes_by_type(self, node_type, expect_match=True):
+    def get_child_nodes_by_type(self, node_type, expect_match=False):
         matching_nodes = [i for i in self.get_children_nodes() if i.type().name() == node_type]
         if not matching_nodes and expect_match:
             raise ValueError(f'Expected child node of type "{node_type}" but no matches were found')
         return matching_nodes
 
-    def get_child_by_node_type(self, node_type, expect_match=True, only_one_match=True):
+    def get_child_by_node_type(self, node_type, expect_match=False, only_one_match=True):
         matching_nodes = self.get_child_nodes_by_type(node_type=node_type, expect_match=expect_match)
         if matching_nodes and len(matching_nodes) > 1 and only_one_match:
             return ValueError(f"Expected only one match for child node type {node_type} but found many: {matching_nodes}")
@@ -182,7 +197,7 @@ class OXNode(ParmTemplate):  # mixins
     def layout_children(self):
         self.node.layoutChildren()
 
-    def move_node_relative_to(self, ox_node, x=0, y=-1, unit_multiplier=2):
+    def move_node_relative_to(self, ox_node, x=0, y=-1, unit_multiplier=1):
         """a handy method that will move this node relative to another node. The default moves the node below the relative node"""
         relative_position_vector = ox_node.node.position()
         r_x = relative_position_vector[0]
@@ -208,7 +223,7 @@ class OXNode(ParmTemplate):  # mixins
         self.set_display_flag(on=on)
         self.set_render_flag(on=on)
 
-    def set_bypass_flag(self, on):
+    def set_bypass_flag(self, on=True):
         self.node.bypass(on=on)
 
     def get_prim_groups(self):
@@ -218,22 +233,20 @@ class OXNode(ParmTemplate):  # mixins
     def load_preset(self, preset_name=None):
         """if no preset name specified, just use the node name. This is a good default for many use cases"""
         preset_name = preset_name if preset_name else self.name
-        LOAD_USER_PRESETS = session_utils.get_session_variable(sesh_vars.LOAD_USER_PRESETS)
-        if LOAD_USER_PRESETS:
-            script = f"oppresetload {self.path} {preset_name}"
-            result = hou.hscript(script)
-            if "Invalid preset name" not in result[1]:
-                ox_logger.info(f'Successfully Loaded Preset Name "{preset_name}" for node type {self.type}')
-            else:
-                ox_logger.debug(f'Preset Name "{preset_name}" Not Found for node type {self.type}. Result: {result}')
+        script = f"oppresetload {self.path} {preset_name}"
+        ox_logger.debug(f"Running script: {script}")
+        result = hou.hscript(script)
+        if "Invalid preset name" not in result[1]:
+            ox_logger.info(f'Successfully Loaded Preset Name "{preset_name}" for node type {self.type}')
         else:
-            ox_logger.debug(f"LOAD_USER_PRESETS is False: {LOAD_USER_PRESETS}")
+            ox_logger.info(f'Preset Name "{preset_name}" Not Found for node type {self.type}. Result: {result}')
 
-    def save_preset(self, node_path, preset_name, preset_path):
+    def save_preset(self, preset_name, preset_path, node_path=None):
+        node_path = node_path if node_path else self.path
         script = f'oppresetsave {node_path} "{preset_name}" {preset_path}'
         result = hou.hscript(script)
         if result[1]:
-            ox_logger.info(f"there was a result message: {result}")
+            ox_logger.debug(f"there was a result message: {result}")
         ox_logger.info(f"Saved preset {preset_name} to node {node_path} to folder: {preset_path} Result: {result}")
 
     def delete_preset(self, node_path, preset_name, preset_path=None):

@@ -123,248 +123,248 @@ class CombineMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_replace = "replace"
-        self.menu_add = "add"
-        self.menu_subtract = "subtract"
-        self.menu_difference = "diff"
-        self.menu_multiply = "multiply"
-        self.menu_maximum = "max"
-        self.menu_minimum = "min"
-        self.menu_blend = "blend"
+        self.menu_replace = ("replace", 0)
+        self.menu_add = ("add", 1)
+        self.menu_subtract = ("subtract", 2)
+        self.menu_difference = ("diff", 3)
+        self.menu_multiply = ("multiply", 4)
+        self.menu_maximum = ("max", 5)
+        self.menu_minimum = ("min", 6)
+        self.menu_blend = ("blend", 7)
 
 
 class Sloperamp1InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Sloperamp2InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Sloperamp3InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Sloperamp4InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Heightramp1InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Heightramp2InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Heightramp3InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Heightramp4InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Curvatureramp1InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Curvatureramp2InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Curvatureramp3InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Curvatureramp4InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Dirramp1InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Dirramp2InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Dirramp3InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Dirramp4InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Ramp1InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 class Ramp2InterpMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_constant = "constant"
-        self.menu_linear = "linear"
-        self.menu_catmull_rom = "catmull-rom"
-        self.menu_monotone_cubic = "monotonecubic"
-        self.menu_bezier = "bezier"
-        self.menu_b_spline = "bspline"
-        self.menu_hermite = "hermite"
+        self.menu_constant = ("constant", 0)
+        self.menu_linear = ("linear", 1)
+        self.menu_catmull_rom = ("catmull-rom", 2)
+        self.menu_monotone_cubic = ("monotonecubic", 3)
+        self.menu_bezier = ("bezier", 4)
+        self.menu_b_spline = ("bspline", 5)
+        self.menu_hermite = ("hermite", 6)
 
 
 

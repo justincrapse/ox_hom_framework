@@ -56,7 +56,6 @@ class CamNode(OXNode):
         self.parm_dcolorg = Parameter(parm=self.node.parm('dcolorg'))
         self.parm_dcolorb = Parameter(parm=self.node.parm('dcolorb'))
         self.parm_picking = Parameter(parm=self.node.parm('picking'))
-        self.parm_pickscript = Parameter(parm=self.node.parm('pickscript'))
         self.parm_caching = Parameter(parm=self.node.parm('caching'))
         self.parm_stdswitcher31 = Parameter(parm=self.node.parm('stdswitcher31'))
         self.parm_iconscale = Parameter(parm=self.node.parm('iconscale'))
@@ -70,7 +69,6 @@ class CamNode(OXNode):
         self.parm_near = Parameter(parm=self.node.parm('near'))
         self.parm_far = Parameter(parm=self.node.parm('far'))
         self.parm_vm_bgenable = Parameter(parm=self.node.parm('vm_bgenable'))
-        self.parm_vm_background = Parameter(parm=self.node.parm('vm_background'))
         self.parm_winx = Parameter(parm=self.node.parm('winx'))
         self.parm_winy = Parameter(parm=self.node.parm('winy'))
         self.parm_winsizex = Parameter(parm=self.node.parm('winsizex'))
@@ -81,11 +79,9 @@ class CamNode(OXNode):
         self.parm_cropb = Parameter(parm=self.node.parm('cropb'))
         self.parm_cropt = Parameter(parm=self.node.parm('cropt'))
         self.parm_cropmask = Parameter(parm=self.node.parm('cropmask'))
-        self.parm_fgimage = Parameter(parm=self.node.parm('fgimage'))
         self.parm_shutter = Parameter(parm=self.node.parm('shutter'))
         self.parm_focus = Parameter(parm=self.node.parm('focus'))
         self.parm_fstop = Parameter(parm=self.node.parm('fstop'))
-        self.parm_vm_bokehfile = Parameter(parm=self.node.parm('vm_bokehfile'))
         self.parm_vm_bokehrotation = Parameter(parm=self.node.parm('vm_bokehrotation'))
         self.parm_rs_camprop_switcher1 = Parameter(parm=self.node.parm('RS_camprop_switcher1'))
         self.parm_rs_campro_first = Parameter(parm=self.node.parm('RS_campro_first'))
@@ -118,7 +114,6 @@ class CamNode(OXNode):
         self.parm_rs_campro_dofbladescount = Parameter(parm=self.node.parm('RS_campro_dofBladesCount'))
         self.parm_rs_campro_dofbladesangle = Parameter(parm=self.node.parm('RS_campro_dofBladesAngle'))
         self.parm_rs_campro_dofbokeh = Parameter(parm=self.node.parm('RS_campro_dofBokeh'))
-        self.parm_rs_campro_dofbokehimage = Parameter(parm=self.node.parm('RS_campro_dofBokehImage'))
         self.parm_rs_campro_label5 = Parameter(parm=self.node.parm('RS_campro_label5'))
         self.parm_rs_campro_pycamenable = Parameter(parm=self.node.parm('RS_campro_PyCamEnable'))
         self.parm_rs_campro_label5b = Parameter(parm=self.node.parm('RS_campro_label5b'))
@@ -141,7 +136,6 @@ class CamNode(OXNode):
         self.parm_rs_campro_ocioswitcher = Parameter(parm=self.node.parm('RS_campro_ocioSwitcher'))
         self.parm_rs_campro_lutswitcher = Parameter(parm=self.node.parm('RS_campro_lutSwitcher'))
         self.parm_rs_campro_lutenable = Parameter(parm=self.node.parm('RS_campro_lutEnable'))
-        self.parm_rs_campro_lutfile = Parameter(parm=self.node.parm('RS_campro_lutFile'))
         self.parm_rs_campro_lutbeforecm = Parameter(parm=self.node.parm('RS_campro_lutBeforeCM'))
         self.parm_rs_campro_lutislog = Parameter(parm=self.node.parm('RS_campro_lutIsLog'))
         self.parm_rs_campro_lutstrength = Parameter(parm=self.node.parm('RS_campro_lutStrength'))
@@ -212,7 +206,6 @@ class CamNode(OXNode):
         self.parm_rs_campro_streakintensity = Parameter(parm=self.node.parm('RS_campro_streakIntensity'))
         self.parm_rs_campro_label6 = Parameter(parm=self.node.parm('RS_campro_label6'))
         self.parm_rs_campro_distortionenable = Parameter(parm=self.node.parm('RS_campro_distortionEnable'))
-        self.parm_rs_campro_distortionimage = Parameter(parm=self.node.parm('RS_campro_distortionImage'))
         self.parm_rs_campro_last = Parameter(parm=self.node.parm('RS_campro_last'))
 
         
@@ -222,15 +215,22 @@ class CamNode(OXNode):
         self.parm_pre_xform = PreXformMenu(parm=self.node.parm('pre_xform'))
         self.parm_lookup = LookupMenu(parm=self.node.parm('lookup'))
         self.parm_uparmtype = UparmtypeMenu(parm=self.node.parm('uparmtype'))
+        self.parm_pickscript = PickscriptMenu(parm=self.node.parm('pickscript'))
         self.parm_resmenu = ResmenuMenu(parm=self.node.parm('resMenu'))
         self.parm_projection = ProjectionMenu(parm=self.node.parm('projection'))
         self.parm_focalunits = FocalunitsMenu(parm=self.node.parm('focalunits'))
+        self.parm_vm_background = VmBackgroundMenu(parm=self.node.parm('vm_background'))
+        self.parm_fgimage = FgimageMenu(parm=self.node.parm('fgimage'))
         self.parm_vm_bokeh = VmBokehMenu(parm=self.node.parm('vm_bokeh'))
+        self.parm_vm_bokehfile = VmBokehfileMenu(parm=self.node.parm('vm_bokehfile'))
         self.parm_rs_campro_projection = RsCamproProjectionMenu(parm=self.node.parm('RS_campro_projection'))
         self.parm_rs_campro_stereomode = RsCamproStereomodeMenu(parm=self.node.parm('RS_campro_stereoMode'))
         self.parm_rs_campro_dofbokehnorm = RsCamproDofbokehnormMenu(parm=self.node.parm('RS_campro_dofBokehNorm'))
+        self.parm_rs_campro_dofbokehimage = RsCamproDofbokehimageMenu(parm=self.node.parm('RS_campro_dofBokehImage'))
         self.parm_rs_campro_ociodisplay = RsCamproOciodisplayMenu(parm=self.node.parm('RS_campro_ocioDisplay'))
         self.parm_rs_campro_ocioview = RsCamproOcioviewMenu(parm=self.node.parm('RS_campro_ocioView'))
+        self.parm_rs_campro_lutfile = RsCamproLutfileMenu(parm=self.node.parm('RS_campro_lutFile'))
+        self.parm_rs_campro_distortionimage = RsCamproDistortionimageMenu(parm=self.node.parm('RS_campro_distortionImage'))
 
 
         # input vars:
@@ -242,165 +242,273 @@ class XordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_scale_rot_trans = "srt"
-        self.menu_scale_trans_rot = "str"
-        self.menu_rot_scale_trans = "rst"
-        self.menu_rot_trans_scale = "rts"
-        self.menu_trans_scale_rot = "tsr"
-        self.menu_trans_rot_scale = "trs"
+        self.menu_scale_rot_trans = ("srt", 0)
+        self.menu_scale_trans_rot = ("str", 1)
+        self.menu_rot_scale_trans = ("rst", 2)
+        self.menu_rot_trans_scale = ("rts", 3)
+        self.menu_trans_scale_rot = ("tsr", 4)
+        self.menu_trans_rot_scale = ("trs", 5)
 
 
 class RordMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_rx_ry_rz = "xyz"
-        self.menu_rx_rz_ry = "xzy"
-        self.menu_ry_rx_rz = "yxz"
-        self.menu_ry_rz_rx = "yzx"
-        self.menu_rz_rx_ry = "zxy"
-        self.menu_rz_ry_rx = "zyx"
+        self.menu_rx_ry_rz = ("xyz", 0)
+        self.menu_rx_rz_ry = ("xzy", 1)
+        self.menu_ry_rx_rz = ("yxz", 2)
+        self.menu_ry_rz_rx = ("yzx", 3)
+        self.menu_rz_rx_ry = ("zxy", 4)
+        self.menu_rz_ry_rx = ("zyx", 5)
 
 
 class PreXformMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_clean_transform = "clean"
-        self.menu_clean_translates = "cleantrans"
-        self.menu_clean_rotates = "cleanrot"
-        self.menu_clean_scales = "cleanscales"
-        self.menu_extract_pre_transform = "extract"
-        self.menu_reset_pre_transform = "reset"
+        self.menu_clean_transform = ("clean", 0)
+        self.menu_clean_translates = ("cleantrans", 1)
+        self.menu_clean_rotates = ("cleanrot", 2)
+        self.menu_clean_scales = ("cleanscales", 3)
+        self.menu_extract_pre_transform = ("extract", 4)
+        self.menu_reset_pre_transform = ("reset", 5)
 
 
 class LookupMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_don_t_use_up_vector = "off"
-        self.menu_use_up_vector = "on"
-        self.menu_use_quaternions = "quat"
-        self.menu_use_global_position = "pos"
-        self.menu_use_up_object = "obj"
+        self.menu_don_t_use_up_vector = ("off", 0)
+        self.menu_use_up_vector = ("on", 1)
+        self.menu_use_quaternions = ("quat", 2)
+        self.menu_use_global_position = ("pos", 3)
+        self.menu_use_up_object = ("obj", 4)
 
 
 class UparmtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_uniform = "uniform"
-        self.menu_arc_length = "arc"
+        self.menu_uniform = ("uniform", 0)
+        self.menu_arc_length = ("arc", 1)
+
+
+class PickscriptMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__renders_houdi___name__os__f4_exr = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr", 0)
+        self.menu_e__renders_houdi___r_magic_prev__f3 = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3", 1)
+        self.menu_e__art_projects____y_first_hdrlight = ("E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight", 2)
 
 
 class ResmenuMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_x_480_640 = "640 480 1"
-        self.menu_hdtv_720 = "1280 720 1"
-        self.menu_hdtv_1080 = "1920 1080 1"
-        self.menu_hdtv_2160__4k_ = "3840 2160 1"
-        self.menu__________ = "_separator_"
-        self.menu_ntsc = "640 486 1"
-        self.menu_ntsc_d1 = "720 486 0.9"
-        self.menu_pal = "768 576 1"
-        self.menu_pal_d1 = "720 576 1.067"
-        self.menu_pal_16_9_anamorphic = "720 576 1.422"
-        self.menu_pal_16_9__1_to_1_ = "1024 576 1"
-        self.menu__________ = "_separator_"
-        self.menu_full_ap_4k = "4096 3112 1"
-        self.menu_full_ap_2k = "2048 1556 1"
-        self.menu_acad_4k = "3656 2664 1"
-        self.menu_acad_2k = "1828 1332 1"
-        self.menu_scope_4k = "3656 3112 1"
-        self.menu_scope_2k = "1828 1556 1"
-        self.menu_vista_4k = "6144 4096 1"
-        self.menu_vista_2k = "3072 2048 1"
-        self.menu__________ = "_separator_"
-        self.menu__2_256 = "256 256 1"
-        self.menu__2_512 = "512 512 1"
-        self.menu__2_1024 = "1024 1024 1"
-        self.menu__2_2048 = "2048 2048 1"
-        self.menu__2_4096 = "4096 4096 1"
-        self.menu__2_8192 = "8192 8192 1"
+        self.menu_x_480_640 = ("640 480 1", 0)
+        self.menu_hdtv_720 = ("1280 720 1", 1)
+        self.menu_hdtv_1080 = ("1920 1080 1", 2)
+        self.menu_hdtv_2160__4k_ = ("3840 2160 1", 3)
+        self.menu__________ = ("_separator_", 4)
+        self.menu_ntsc = ("640 486 1", 5)
+        self.menu_ntsc_d1 = ("720 486 0.9", 6)
+        self.menu_pal = ("768 576 1", 7)
+        self.menu_pal_d1 = ("720 576 1.067", 8)
+        self.menu_pal_16_9_anamorphic = ("720 576 1.422", 9)
+        self.menu_pal_16_9__1_to_1_ = ("1024 576 1", 10)
+        self.menu__________ = ("_separator_", 11)
+        self.menu_full_ap_4k = ("4096 3112 1", 12)
+        self.menu_full_ap_2k = ("2048 1556 1", 13)
+        self.menu_acad_4k = ("3656 2664 1", 14)
+        self.menu_acad_2k = ("1828 1332 1", 15)
+        self.menu_scope_4k = ("3656 3112 1", 16)
+        self.menu_scope_2k = ("1828 1556 1", 17)
+        self.menu_vista_4k = ("6144 4096 1", 18)
+        self.menu_vista_2k = ("3072 2048 1", 19)
+        self.menu__________ = ("_separator_", 20)
+        self.menu__2_256 = ("256 256 1", 21)
+        self.menu__2_512 = ("512 512 1", 22)
+        self.menu__2_1024 = ("1024 1024 1", 23)
+        self.menu__2_2048 = ("2048 2048 1", 24)
+        self.menu__2_4096 = ("4096 4096 1", 25)
+        self.menu__2_8192 = ("8192 8192 1", 26)
 
 
 class ProjectionMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_perspective = "perspective"
-        self.menu_orthographic = "ortho"
-        self.menu_polar__panoramic_ = "sphere"
-        self.menu_cylindrical__panoramic_ = "cylinder"
-        self.menu_lens_shader = "lens"
+        self.menu_perspective = ("perspective", 0)
+        self.menu_orthographic = ("ortho", 1)
+        self.menu_polar__panoramic_ = ("sphere", 2)
+        self.menu_cylindrical__panoramic_ = ("cylinder", 3)
+        self.menu_lens_shader = ("lens", 4)
 
 
 class FocalunitsMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_millimeters = "mm"
-        self.menu_meters = "m"
-        self.menu_nanometers = "nm"
-        self.menu_inches = "in"
-        self.menu_feet = "ft"
+        self.menu_millimeters = ("mm", 0)
+        self.menu_meters = ("m", 1)
+        self.menu_nanometers = ("nm", 2)
+        self.menu_inches = ("in", 3)
+        self.menu_feet = ("ft", 4)
+
+
+class VmBackgroundMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__art_old_proje___quarry_02_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/quarry_02_4k.exr", 0)
+        self.menu_e__art_old_proje____1d_clear_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr", 1)
+        self.menu_e__art_old_proje___a_sunrise_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr", 2)
+        self.menu_d__art_projects____e_background_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/hdri_exrs/subtle_background.exr", 3)
+        self.menu_e__art_old_proje___s_on_fire_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr", 4)
+        self.menu_e__art_old_proje___enheim_05_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr", 5)
+        self.menu_e__art_old_proje___anga_veld_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr", 6)
+        self.menu_e__art_old_proje___oon_grass_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/noon_grass_4k.exr", 7)
+        self.menu_d__art_projects____arfield_hdri_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/first_starfield_hdri.exr", 8)
+        self.menu_e__art_old_proje___e_purple_neb_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/purple_neb.jpg", 9)
+        self.menu_e__art_old_proje___xl_128051940_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/dreamstime_xxl_128051940.jpg", 10)
+        self.menu_d__art_projects____s_flare_star_png = ("D:/ART/PROJECTS/stars_rnd/starfields/my_star_sprites/blue_lens_flare_star.png", 11)
+
+
+class FgimageMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__art_old_proje___quarry_02_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/quarry_02_4k.exr", 0)
+        self.menu_e__art_old_proje____1d_clear_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr", 1)
+        self.menu_e__art_old_proje___a_sunrise_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr", 2)
+        self.menu_d__art_projects____e_background_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/hdri_exrs/subtle_background.exr", 3)
+        self.menu_e__art_old_proje___s_on_fire_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr", 4)
+        self.menu_e__art_old_proje___enheim_05_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr", 5)
+        self.menu_e__art_old_proje___anga_veld_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr", 6)
+        self.menu_e__art_old_proje___oon_grass_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/noon_grass_4k.exr", 7)
+        self.menu_d__art_projects____arfield_hdri_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/first_starfield_hdri.exr", 8)
+        self.menu_e__art_old_proje___e_purple_neb_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/purple_neb.jpg", 9)
+        self.menu_e__art_old_proje___xl_128051940_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/dreamstime_xxl_128051940.jpg", 10)
+        self.menu_d__art_projects____s_flare_star_png = ("D:/ART/PROJECTS/stars_rnd/starfields/my_star_sprites/blue_lens_flare_star.png", 11)
 
 
 class VmBokehMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_radial_bokeh = "radial"
-        self.menu_image_file_bokeh = "file"
-        self.menu_box_filter_bokeh = "box"
-        self.menu_disable_bokeh = "null"
+        self.menu_radial_bokeh = ("radial", 0)
+        self.menu_image_file_bokeh = ("file", 1)
+        self.menu_box_filter_bokeh = ("box", 2)
+        self.menu_disable_bokeh = ("null", 3)
+
+
+class VmBokehfileMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__art_old_proje___quarry_02_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/quarry_02_4k.exr", 0)
+        self.menu_e__art_old_proje____1d_clear_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr", 1)
+        self.menu_e__art_old_proje___a_sunrise_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr", 2)
+        self.menu_d__art_projects____e_background_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/hdri_exrs/subtle_background.exr", 3)
+        self.menu_e__art_old_proje___s_on_fire_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr", 4)
+        self.menu_e__art_old_proje___enheim_05_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr", 5)
+        self.menu_e__art_old_proje___anga_veld_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr", 6)
+        self.menu_e__art_old_proje___oon_grass_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/noon_grass_4k.exr", 7)
+        self.menu_d__art_projects____arfield_hdri_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/first_starfield_hdri.exr", 8)
+        self.menu_e__art_old_proje___e_purple_neb_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/purple_neb.jpg", 9)
+        self.menu_e__art_old_proje___xl_128051940_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/dreamstime_xxl_128051940.jpg", 10)
+        self.menu_d__art_projects____s_flare_star_png = ("D:/ART/PROJECTS/stars_rnd/starfields/my_star_sprites/blue_lens_flare_star.png", 11)
 
 
 class RsCamproProjectionMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_houdini_camera_projection = "houdini_camera"
-        self.menu_fisheye_projection = "fisheye"
-        self.menu_stereo_spherical_projection = "stereo_spherical"
+        self.menu_houdini_camera_projection = ("houdini_camera", 0)
+        self.menu_fisheye_projection = ("fisheye", 1)
+        self.menu_stereo_spherical_projection = ("stereo_spherical", 2)
 
 
 class RsCamproStereomodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_side_by_side = "side_by_side"
-        self.menu_top_botton = "top_botton"
-        self.menu_left_only = "left_only"
-        self.menu_right_only = "right_only"
+        self.menu_side_by_side = ("side_by_side", 0)
+        self.menu_top_botton = ("top_botton", 1)
+        self.menu_left_only = ("left_only", 2)
+        self.menu_right_only = ("right_only", 3)
 
 
 class RsCamproDofbokehnormMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_none = "1"
-        self.menu_unit_intensity = "2"
-        self.menu_white_color_sum = "3"
+        self.menu_none = ("1", 0)
+        self.menu_unit_intensity = ("2", 1)
+        self.menu_white_color_sum = ("3", 2)
+
+
+class RsCamproDofbokehimageMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__art_old_proje___quarry_02_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/quarry_02_4k.exr", 0)
+        self.menu_e__art_old_proje____1d_clear_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr", 1)
+        self.menu_e__art_old_proje___a_sunrise_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr", 2)
+        self.menu_d__art_projects____e_background_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/hdri_exrs/subtle_background.exr", 3)
+        self.menu_e__art_old_proje___s_on_fire_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr", 4)
+        self.menu_e__art_old_proje___enheim_05_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr", 5)
+        self.menu_e__art_old_proje___anga_veld_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr", 6)
+        self.menu_e__art_old_proje___oon_grass_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/noon_grass_4k.exr", 7)
+        self.menu_d__art_projects____arfield_hdri_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/first_starfield_hdri.exr", 8)
+        self.menu_e__art_old_proje___e_purple_neb_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/purple_neb.jpg", 9)
+        self.menu_e__art_old_proje___xl_128051940_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/dreamstime_xxl_128051940.jpg", 10)
+        self.menu_d__art_projects____s_flare_star_png = ("D:/ART/PROJECTS/stars_rnd/starfields/my_star_sprites/blue_lens_flare_star.png", 11)
 
 
 class RsCamproOciodisplayMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_srgb = "sRGB"
+        self.menu_srgb = ("sRGB", 0)
 
 
 class RsCamproOcioviewMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_aces_1_0_sdr_video = "ACES 1.0 SDR-video"
-        self.menu_un_tone_mapped = "Un-tone-mapped"
-        self.menu_log = "Log"
-        self.menu_raw = "Raw"
+        self.menu_aces_1_0_sdr_video = ("ACES 1.0 SDR-video", 0)
+        self.menu_un_tone_mapped = ("Un-tone-mapped", 1)
+        self.menu_log = ("Log", 2)
+        self.menu_raw = ("Raw", 3)
+
+
+class RsCamproLutfileMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__renders_houdi___name__os__f4_exr = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr", 0)
+        self.menu_e__renders_houdi___r_magic_prev__f3 = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3", 1)
+        self.menu_e__art_projects____y_first_hdrlight = ("E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight", 2)
+
+
+class RsCamproDistortionimageMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_e__art_old_proje___quarry_02_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/quarry_02_4k.exr", 0)
+        self.menu_e__art_old_proje____1d_clear_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/syferfontein_1d_clear_4k.exr", 1)
+        self.menu_e__art_old_proje___a_sunrise_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr", 2)
+        self.menu_d__art_projects____e_background_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/hdri_exrs/subtle_background.exr", 3)
+        self.menu_e__art_old_proje___s_on_fire_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr", 4)
+        self.menu_e__art_old_proje___enheim_05_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/kloppenheim_05_4k.exr", 5)
+        self.menu_e__art_old_proje___anga_veld_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/mpumalanga_veld_4k.exr", 6)
+        self.menu_e__art_old_proje___oon_grass_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/noon_grass_4k.exr", 7)
+        self.menu_d__art_projects____arfield_hdri_exr = ("D:/ART/PROJECTS/stars_rnd/starfields/first_starfield_hdri.exr", 8)
+        self.menu_e__art_old_proje___e_purple_neb_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/purple_neb.jpg", 9)
+        self.menu_e__art_old_proje___xl_128051940_jpg = ("E:/ART_OLD/PROJECTS/00_hdri_hd/hdri_space/dreamstime_xxl_128051940.jpg", 10)
+        self.menu_d__art_projects____s_flare_star_png = ("D:/ART/PROJECTS/stars_rnd/starfields/my_star_sprites/blue_lens_flare_star.png", 11)
 
 
 

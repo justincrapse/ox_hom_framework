@@ -57,33 +57,33 @@ class TypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_polygon = "poly"
-        self.menu_mesh = "mesh"
-        self.menu_nurbs = "nurbs"
-        self.menu_bezier = "bezier"
-        self.menu_polygon_soup = "polysoup"
+        self.menu_polygon = ("poly", 0)
+        self.menu_mesh = ("mesh", 1)
+        self.menu_nurbs = ("nurbs", 2)
+        self.menu_bezier = ("bezier", 3)
+        self.menu_polygon_soup = ("polysoup", 4)
 
 
 class SurftypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_rows = "rows"
-        self.menu_columns = "cols"
-        self.menu_rows_and_columns = "rowcol"
-        self.menu_triangles = "triangles"
-        self.menu_quadrilaterals = "quads"
-        self.menu_alternating_triangles = "alttriangles"
-        self.menu_reverse_triangles = "revtriangles"
+        self.menu_rows = ("rows", 0)
+        self.menu_columns = ("cols", 1)
+        self.menu_rows_and_columns = ("rowcol", 2)
+        self.menu_triangles = ("triangles", 3)
+        self.menu_quadrilaterals = ("quads", 4)
+        self.menu_alternating_triangles = ("alttriangles", 5)
+        self.menu_reverse_triangles = ("revtriangles", 6)
 
 
 class OrientMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_x_axis = "x"
-        self.menu_y_axis = "y"
-        self.menu_z_axis = "z"
+        self.menu_x_axis = ("x", 0)
+        self.menu_y_axis = ("y", 1)
+        self.menu_z_axis = ("z", 2)
 
 
 

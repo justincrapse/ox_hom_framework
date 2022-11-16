@@ -45,30 +45,30 @@ class GrouptypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_guess_from_group = "guess"
-        self.menu_vertices = "vertices"
-        self.menu_edges = "edges"
-        self.menu_points = "points"
-        self.menu_primitives = "prims"
+        self.menu_guess_from_group = ("guess", 0)
+        self.menu_vertices = ("vertices", 1)
+        self.menu_edges = ("edges", 2)
+        self.menu_points = ("points", 3)
+        self.menu_primitives = ("prims", 4)
 
 
 class TypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_points = "typepoint"
-        self.menu_vertices = "typevertex"
-        self.menu_primitives = "typeprim"
-        self.menu_detail = "typedetail"
+        self.menu_points = ("typepoint", 0)
+        self.menu_vertices = ("typevertex", 1)
+        self.menu_primitives = ("typeprim", 2)
+        self.menu_detail = ("typedetail", 3)
 
 
 class MethodMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_each_vertex_equally = "uniform"
-        self.menu_by_vertex_angle = "angle"
-        self.menu_by_face_area = "area"
+        self.menu_each_vertex_equally = ("uniform", 0)
+        self.menu_by_vertex_angle = ("angle", 1)
+        self.menu_by_face_area = ("area", 2)
 
 
 

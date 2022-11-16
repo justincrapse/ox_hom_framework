@@ -42,10 +42,10 @@ class DetailAttributesMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_no_promotion = "detail"
-        self.menu_promote_to_primitive_attributes = "primitive"
-        self.menu_promote_to_point_attributes = "point"
-        self.menu_promote_to_vertex_attributes = "vertex"
+        self.menu_no_promotion = ("detail", 0)
+        self.menu_promote_to_primitive_attributes = ("primitive", 1)
+        self.menu_promote_to_point_attributes = ("point", 2)
+        self.menu_promote_to_vertex_attributes = ("vertex", 3)
 
 
 

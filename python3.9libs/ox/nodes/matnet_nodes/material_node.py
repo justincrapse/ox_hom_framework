@@ -253,106 +253,106 @@ class PresetMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_custom = "-1"
-        self.menu_glass = "0"
-        self.menu_tinted_glass = "13"
-        self.menu_water = "1"
-        self.menu_plastic = "2"
-        self.menu_aluminium = "3"
-        self.menu_copper = "4"
-        self.menu_gold = "5"
-        self.menu_iron = "6"
-        self.menu_lead = "7"
-        self.menu_platinum = "8"
-        self.menu_silver = "9"
-        self.menu_milky_coffee = "10"
-        self.menu_jade = "11"
-        self.menu_paper = "12"
+        self.menu_custom = ("-1", 0)
+        self.menu_glass = ("0", 1)
+        self.menu_tinted_glass = ("13", 2)
+        self.menu_water = ("1", 3)
+        self.menu_plastic = ("2", 4)
+        self.menu_aluminium = ("3", 5)
+        self.menu_copper = ("4", 6)
+        self.menu_gold = ("5", 7)
+        self.menu_iron = ("6", 8)
+        self.menu_lead = ("7", 9)
+        self.menu_platinum = ("8", 10)
+        self.menu_silver = ("9", 11)
+        self.menu_milky_coffee = ("10", 12)
+        self.menu_jade = ("11", 13)
+        self.menu_paper = ("12", 14)
 
 
 class ReflBrdfMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_beckmann__cook_torrance_ = "0"
-        self.menu_ggx = "1"
-        self.menu_ashikhmin_shirley = "2"
+        self.menu_beckmann__cook_torrance_ = ("0", 0)
+        self.menu_ggx = ("1", 1)
+        self.menu_ashikhmin_shirley = ("2", 2)
 
 
 class ReflFresnelModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_ior__advanced_ = "0"
-        self.menu_color___edge_tint = "1"
-        self.menu_metalness = "2"
-        self.menu_ior = "3"
+        self.menu_ior__advanced_ = ("0", 0)
+        self.menu_color___edge_tint = ("1", 1)
+        self.menu_metalness = ("2", 2)
+        self.menu_ior = ("3", 3)
 
 
 class SsUnitsmodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_transmittance = "0"
-        self.menu_extinction = "1"
+        self.menu_transmittance = ("0", 0)
+        self.menu_extinction = ("1", 1)
 
 
 class MsModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_point_based = "0"
-        self.menu_ray_traced = "1"
+        self.menu_point_based = ("0", 0)
+        self.menu_ray_traced = ("1", 1)
 
 
 class MsIncludeModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_all_objects = "0"
-        self.menu_only_self = "1"
+        self.menu_all_objects = ("0", 0)
+        self.menu_only_self = ("1", 1)
 
 
 class CoatBrdfMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_beckmann__cook_torrance_ = "0"
-        self.menu_ggx = "1"
-        self.menu_ashikhmin_shirley = "2"
+        self.menu_beckmann__cook_torrance_ = ("0", 0)
+        self.menu_ggx = ("1", 1)
+        self.menu_ashikhmin_shirley = ("2", 2)
 
 
 class CoatFresnelModeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_ior__advanced_ = "0"
-        self.menu_color = "1"
-        self.menu_ior = "3"
+        self.menu_ior__advanced_ = ("0", 0)
+        self.menu_color = ("1", 1)
+        self.menu_ior = ("3", 2)
 
 
 class EnergycompmodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_mono = "0"
-        self.menu_rgb = "1"
+        self.menu_mono = ("0", 0)
+        self.menu_rgb = ("1", 1)
 
 
 class ReflEndmodeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_environment = "0"
-        self.menu_diffuse = "1"
+        self.menu_environment = ("0", 0)
+        self.menu_diffuse = ("1", 1)
 
 
 class AnisotropyOrientationMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_none = "2"
-        self.menu_from_tangent_channel = "1"
+        self.menu_none = ("2", 0)
+        self.menu_from_tangent_channel = ("1", 1)
 
 
 

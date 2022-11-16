@@ -41,16 +41,16 @@ class ConnecttypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_point = "point"
-        self.menu_primitive = "prim"
+        self.menu_point = ("point", 0)
+        self.menu_primitive = ("prim", 1)
 
 
 class AttribtypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_integer = "int"
-        self.menu_string = "string"
+        self.menu_integer = ("int", 0)
+        self.menu_string = ("string", 1)
 
 
 

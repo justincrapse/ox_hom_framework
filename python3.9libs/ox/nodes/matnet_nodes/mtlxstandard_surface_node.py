@@ -143,7 +143,7 @@ class SignatureMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_surfacesurfaceshader__1_0_1_ = "default"
+        self.menu_surfacesurfaceshader__1_0_1_ = ("default", 0)
 
 
 

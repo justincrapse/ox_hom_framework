@@ -114,9 +114,11 @@ for node in selected_nodes:
     parent_type = node.parent().type().name()
     node_type = node.type().name()
     if node_type == "labs::hf_combine_masks":
-        ui.display_confirmation(f'This node type "{node_type}" should have parm "folder0" parm to at least 1. cancel to exit, otherwise accept node \
-        as it is')
-        node.parm('folder0').set(1)
+        ui.display_confirmation(
+            f'This node type "{node_type}" should have parm "folder0" parm to at least 1. cancel to exit, otherwise accept node \
+        as it is'
+        )
+        node.parm("folder0").set(1)
     try:
         sub_dir = node_to_folder_map[parent_type]
     except KeyError:

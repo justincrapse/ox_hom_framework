@@ -76,44 +76,44 @@ class CombineMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_replace = "replace"
-        self.menu_add = "add"
-        self.menu_subtract = "subtract"
-        self.menu_difference = "diff"
-        self.menu_multiply = "multiply"
-        self.menu_maximum = "max"
-        self.menu_minimum = "min"
-        self.menu_blend = "blend"
+        self.menu_replace = ("replace", 0)
+        self.menu_add = ("add", 1)
+        self.menu_subtract = ("subtract", 2)
+        self.menu_difference = ("diff", 3)
+        self.menu_multiply = ("multiply", 4)
+        self.menu_maximum = ("max", 5)
+        self.menu_minimum = ("min", 6)
+        self.menu_blend = ("blend", 7)
 
 
 class BasisMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_sinusoid = "sine"
-        self.menu_perlin = "perlin"
-        self.menu_periodic_perlin = "pperlin"
-        self.menu_simplex = "simplex"
-        self.menu_sparse_convolution = "sparse"
-        self.menu_perlin_flow = "flow"
-        self.menu_periodic_perlin_flow = "pflow"
-        self.menu_worley_cellular_f1 = "worleyFA"
-        self.menu_worley_cellular_f2_f1 = "worleyFB"
-        self.menu_manhattan_cellular_f1 = "mworleyFA"
-        self.menu_manhattan_cellular_f2_f1 = "mworleyFB"
-        self.menu_chebyshev_cellular_f1 = "cworleyFA"
-        self.menu_chebyshev_cellular_f2_f1 = "cworleyFB"
-        self.menu_alligator = "alligator"
+        self.menu_sinusoid = ("sine", 0)
+        self.menu_perlin = ("perlin", 1)
+        self.menu_periodic_perlin = ("pperlin", 2)
+        self.menu_simplex = ("simplex", 3)
+        self.menu_sparse_convolution = ("sparse", 4)
+        self.menu_perlin_flow = ("flow", 5)
+        self.menu_periodic_perlin_flow = ("pflow", 6)
+        self.menu_worley_cellular_f1 = ("worleyFA", 7)
+        self.menu_worley_cellular_f2_f1 = ("worleyFB", 8)
+        self.menu_manhattan_cellular_f1 = ("mworleyFA", 9)
+        self.menu_manhattan_cellular_f2_f1 = ("mworleyFB", 10)
+        self.menu_chebyshev_cellular_f1 = ("cworleyFA", 11)
+        self.menu_chebyshev_cellular_f2_f1 = ("cworleyFB", 12)
+        self.menu_alligator = ("alligator", 13)
 
 
 class FractalMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_none = "none"
-        self.menu_standard__fbm_ = "fBm"
-        self.menu_terrain = "mfT"
-        self.menu_hybrid_terrain = "hmfT"
+        self.menu_none = ("none", 0)
+        self.menu_standard__fbm_ = ("fBm", 1)
+        self.menu_terrain = ("mfT", 2)
+        self.menu_hybrid_terrain = ("hmfT", 3)
 
 
 

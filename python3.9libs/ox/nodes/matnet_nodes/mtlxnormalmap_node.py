@@ -46,8 +46,8 @@ class SpaceMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_tangent = "tangent"
-        self.menu_object = "object"
+        self.menu_tangent = ("tangent", 0)
+        self.menu_object = ("object", 1)
 
 
 

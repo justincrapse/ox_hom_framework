@@ -58,72 +58,72 @@ class GrouptypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_guess_from_group = "guess"
-        self.menu_vertices = "vertices"
-        self.menu_edges = "edges"
-        self.menu_points = "points"
-        self.menu_primitives = "prims"
+        self.menu_guess_from_group = ("guess", 0)
+        self.menu_vertices = ("vertices", 1)
+        self.menu_edges = ("edges", 2)
+        self.menu_points = ("points", 3)
+        self.menu_primitives = ("prims", 4)
 
 
 class Existing1Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_generate_error_on_mis_matched_attribute = "error"
-        self.menu_generate_warning_on_mis_matched_attribute = "warn"
-        self.menu_replace_existing_attribute = "replace"
-        self.menu_use_the_better_type__size_and_precision = "better"
+        self.menu_generate_error_on_mis_matched_attribute = ("error", 0)
+        self.menu_generate_warning_on_mis_matched_attribute = ("warn", 1)
+        self.menu_replace_existing_attribute = ("replace", 2)
+        self.menu_use_the_better_type__size_and_precision = ("better", 3)
 
 
 class Class1Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_detail = "detail"
-        self.menu_primitive = "primitive"
-        self.menu_point = "point"
-        self.menu_vertex = "vertex"
+        self.menu_detail = ("detail", 0)
+        self.menu_primitive = ("primitive", 1)
+        self.menu_point = ("point", 2)
+        self.menu_vertex = ("vertex", 3)
 
 
 class Type1Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_float = "float"
-        self.menu_integer = "int"
-        self.menu_vector = "vector"
-        self.menu_string = "index"
-        self.menu_float_array = "floatarray"
-        self.menu_integer_array = "intarray"
-        self.menu_string_array = "stringarray"
-        self.menu_dictionary = "dict"
-        self.menu_dictionary_array = "dictarray"
+        self.menu_float = ("float", 0)
+        self.menu_integer = ("int", 1)
+        self.menu_vector = ("vector", 2)
+        self.menu_string = ("index", 3)
+        self.menu_float_array = ("floatarray", 4)
+        self.menu_integer_array = ("intarray", 5)
+        self.menu_string_array = ("stringarray", 6)
+        self.menu_dictionary = ("dict", 7)
+        self.menu_dictionary_array = ("dictarray", 8)
 
 
 class Typeinfo1Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_guess_from_name = "guess"
-        self.menu_none = "none"
-        self.menu_position = "point"
-        self.menu_vector = "vector"
-        self.menu_normal = "normal"
-        self.menu_color = "color"
-        self.menu_quaternion = "quaternion"
-        self.menu_transform_matrix = "tranform"
-        self.menu_texture_coordinate = "texturecoord"
+        self.menu_guess_from_name = ("guess", 0)
+        self.menu_none = ("none", 1)
+        self.menu_position = ("point", 2)
+        self.menu_vector = ("vector", 3)
+        self.menu_normal = ("normal", 4)
+        self.menu_color = ("color", 5)
+        self.menu_quaternion = ("quaternion", 6)
+        self.menu_transform_matrix = ("tranform", 7)
+        self.menu_texture_coordinate = ("texturecoord", 8)
 
 
 class Precision1Menu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_bit_8 = "8"
-        self.menu_bit_16 = "16"
-        self.menu_bit_32 = "32"
-        self.menu_bit_64 = "64"
-        self.menu_auto = "auto"
+        self.menu_bit_8 = ("8", 0)
+        self.menu_bit_16 = ("16", 1)
+        self.menu_bit_32 = ("32", 2)
+        self.menu_bit_64 = ("64", 3)
+        self.menu_auto = ("auto", 4)
 
 
 

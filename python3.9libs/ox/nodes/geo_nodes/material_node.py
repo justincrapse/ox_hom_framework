@@ -42,17 +42,17 @@ class StyleMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_point_attributes = "point"
-        self.menu_primitive_attributes = "primitive"
-        self.menu_detail_attribute = "detail"
+        self.menu_point_attributes = ("point", 0)
+        self.menu_primitive_attributes = ("primitive", 1)
+        self.menu_detail_attribute = ("detail", 2)
 
 
 class UselabelsMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_use_parameter_labels_for_override_menu = "uselabels"
-        self.menu_use_parameter_names_for_override_menu = "usenames"
+        self.menu_use_parameter_labels_for_override_menu = ("uselabels", 0)
+        self.menu_use_parameter_names_for_override_menu = ("usenames", 1)
 
 
 

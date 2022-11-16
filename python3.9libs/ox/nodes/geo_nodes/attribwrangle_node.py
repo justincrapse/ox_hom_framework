@@ -55,22 +55,22 @@ class GrouptypeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_guess_from_group = "guess"
-        self.menu_vertices = "vertices"
-        self.menu_edges = "edges"
-        self.menu_points = "points"
-        self.menu_primitives = "prims"
+        self.menu_guess_from_group = ("guess", 0)
+        self.menu_vertices = ("vertices", 1)
+        self.menu_edges = ("edges", 2)
+        self.menu_points = ("points", 3)
+        self.menu_primitives = ("prims", 4)
 
 
 class ClassAltMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_detail__only_once_ = "detail"
-        self.menu_primitives = "primitive"
-        self.menu_points = "point"
-        self.menu_vertices = "vertex"
-        self.menu_numbers = "number"
+        self.menu_detail__only_once_ = ("detail", 0)
+        self.menu_primitives = ("primitive", 1)
+        self.menu_points = ("point", 2)
+        self.menu_vertices = ("vertex", 3)
+        self.menu_numbers = ("number", 4)
 
 
 class SnippetMenu(Menu):
@@ -179,9 +179,9 @@ class VexPrecisionMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_auto = "auto"
-        self.menu_bit_32 = "32"
-        self.menu_bit_64 = "64"
+        self.menu_auto = ("auto", 0)
+        self.menu_bit_32 = ("32", 1)
+        self.menu_bit_64 = ("64", 2)
 
 
 

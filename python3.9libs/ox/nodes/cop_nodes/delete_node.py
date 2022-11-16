@@ -36,15 +36,15 @@ class DeleteMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_scoped_planes___components = "scoped"
-        self.menu_non_scoped_planes___components = "nonscoped"
+        self.menu_scoped_planes___components = ("scoped", 0)
+        self.menu_non_scoped_planes___components = ("nonscoped", 1)
 
 
 class ScopeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__ = "*"
+        self.menu__ = ("*", 0)
 
 
 

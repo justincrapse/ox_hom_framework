@@ -130,6 +130,7 @@ class OXNode(ParmTemplate):  # mixins
         self.node.setInput(input_index=input_index, item_to_become_input=other_hou_node, output_index=out_index)
 
     def get_child_by_name(self, child_name):
+        child_name = child_name.replace(" ", "_")
         for child in self.get_children_nodes():
             if child.name() == child_name:
                 return child
@@ -181,18 +182,27 @@ class OXNode(ParmTemplate):  # mixins
     def set_name(self, new_name):
         self.node.setName(new_name)
 
-    def get_prim_values(self, field):
+    def get_prim_values(self, field, filter_out_blank_values=True):
         value_list = [i.attribValue(field) for i in self.node.geometry().prims()]
+        if filter_out_blank_values:
+            value_list = [i for i in value_list if i]
         return value_list
 
     def get_planes(self):
         planes = self.node.planes()
-        return planes
+        ox_logger.debug(f"planes returned by get_planse for node {self.name}: {planes}")
+        planes_clean = [i for i in planes if i]
+        ox_logger.debug(f"clean planes returned by get_planse for node {self.name}: {planes}")
+
+        return planes_clean
 
     def get_displayed_child_node(self):
         for node in self.get_children_nodes():
             if node.isDisplayFlagSet():
                 return node
+
+    def is_display_flag_set(self):
+        return self.node.isDisplayFlagSet()
 
     def layout_children(self):
         self.node.layoutChildren()

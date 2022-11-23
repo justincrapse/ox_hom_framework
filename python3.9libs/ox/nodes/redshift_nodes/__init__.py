@@ -15,3 +15,4 @@ from .displacementblender_node import DisplacementblenderNode
 from .bumpblender_node import BumpblenderNode
 from .materialblender_node import MaterialblenderNode
 from .material_node import MaterialNode
+from .rscolorcorrection_node import RscolorcorrectionNode

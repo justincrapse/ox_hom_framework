@@ -53,6 +53,7 @@ class ParmTemplate:
         insert_after_parm=None,
         insert_before_parm=None,
         return_type=None,
+        supress_logger=False,
     ) -> hou.Parm:
         """if folder_label is specified, as_first, insert_after_parm, and insert_before_parm are not relavant as those will dictate which
         folder a parm template is added to."""
@@ -69,7 +70,8 @@ class ParmTemplate:
         elif insert_after_parm:
             parm_to_follow = insert_after_parm if isinstance(insert_after_parm, hou.Parm) else self.node.parm(insert_after_parm)
             if not parm_to_follow:
-                ox_logger.error(f'No parm_to_follow found for parm "{insert_after_parm}"')
+                if not supress_logger:
+                    ox_logger.error(f'No parm_to_follow found for parm "{insert_after_parm}"')
             ptf_pt = parm_to_follow.parmTemplate()
             ox_logger.debug(f"Adding parm insert after: {parm_to_follow.name()}")
             self.parm_template_group.insertAfter(ptf_pt, parm_template)
@@ -92,7 +94,8 @@ class ParmTemplate:
             return return_parm_tuple
         new_parm = self.node.parm(parm_template.name())
         if not new_parm:
-            ox_logger.error(f"No new parm created for parm_template: {parm_template}.")
+            if not supress_logger:
+                ox_logger.error(f"No new parm created for parm_template: {parm_template}.")
         return new_parm
 
     def add_parm_template_with_override(
@@ -109,7 +112,8 @@ class ParmTemplate:
         This method will delete the parm method if it already exists and can reapply that value to the newly created parm
         """
         existing_parm: hou.Parm = self.node.parm(parm_template.name())
-        if existing_parm:
+        ox_logger.debug(f"existing parm for {parm_template.name()}: {existing_parm}")
+        if existing_parm and keep_original_value:
             original_value = existing_parm.eval()
             self.remove_parm_template_by_name(parm_name=parm_template.name())
         new_parm = self.add_parm_template(
@@ -123,6 +127,13 @@ class ParmTemplate:
         if existing_parm and keep_original_value:
             new_parm.set(original_value)
         return new_parm
+
+    def add_parm_template_if_not_exist(self, parm_template, **kwargs):
+        existing_parm: hou.Parm = self.node.parm(parm_template.name())
+        if existing_parm:
+            return
+        else:
+            self.add_parm_template(parm_template=parm_template, **kwargs)
 
     def add_parm_template_to_sub_folder():
         pass

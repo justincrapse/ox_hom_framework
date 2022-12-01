@@ -3,10 +3,7 @@
 Practice
 ========
 
-.. _installation:
 
-Installation
-------------
 
 *this should be in italics*
 **this should be bold**

@@ -12,13 +12,27 @@ Welcome to OX HOM Framework for Houdini documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   welcome
+   installation
    getting_started
    rest_practice
 
 The OX HOM Framework is an abstraction layer framework build on top of Houdini's HOM API. 
-This framework makes it easy to organize many low-level steps into simple, high-level rerunnable code. 
-The following is an example of how we can call a method on any node that can run any code and leverage the HOM in a
-way that requires the least amount of boilerplate code as possible. 
+This framework makes it easy to organize many low-level steps into simple, high-level rerunnable functions such as the following:
+
+* connecting nodes together by input and output labels (with auto complete for those labels)
+* Easy adding and deleting parm templates from nodes
+* Setting menu parm values by label (with auto complete)
+* Search for child nodes by substring or regex (returns a list of nodes)
+* Handling saving and loading of presets
+* Simple logging system for helpful debugging (no print statements needed!)
+
+   * Easily change logging level
+
+* Easily extendible framework. 
+* And many more helpful functions and improved workflows
+
+The following is an example of how we can call a method on any node that can leverage the HOM under the hood. 
 
 .. image:: images/index/abstract_code_example.png
    :width: 1125
@@ -29,13 +43,4 @@ for all nodes and parameter
 .. image:: images/index/auto_complete_parm.jpg
    :width: 615
 
-You might have noticed the OOP class in the image above and think "writing classes for each node and including every parm is insane
-and there is no way this project can be maintained." If I or anyone else were to code these classes, yes, that would be unsustainable. 
-However, these classes are auto-generated and require very little additional work compared to the benefits yielded with the framework. 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+This OOP class structure is posible through automatic class generation (and member registration) and require very little additional setup per node. 

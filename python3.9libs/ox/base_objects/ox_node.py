@@ -148,11 +148,23 @@ class OXNode(ParmTemplate):  # mixins
                 path_list.append(node.path())
         return path_list
 
-    def get_children_nodes_by_partial_name(self, substring) -> List[hou.Node]:
+    def get_children_nodes_by_partial_name(self, substring, exclude_substring=None, case_sensitive=True) -> List[hou.Node]:
         node_list = []
         for node in self.get_children_nodes():
-            if substring in node.name():
-                node_list.append(node)
+            node_name = node.name()
+            node_name_lower = node_name.lower()
+            if not case_sensitive and exclude_substring:
+                if substring.lower() in node_name_lower and exclude_substring.lower() not in node_name_lower:
+                    node_list.append(node)
+            elif not case_sensitive:
+                if substring.lower() in node_name_lower:
+                    node_list.append(node)
+            elif exclude_substring:
+                if substring in node_name and exclude_substring not in node_name:
+                    node_list.append(node)
+            else:
+                if substring in node_name:
+                    node_list.append(node)
         return node_list
 
     def get_children_nodes(self) -> List[hou.Node]:

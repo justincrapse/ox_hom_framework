@@ -35,7 +35,7 @@ class TerrainHelper:
         return user_masks
 
     def get_scatter_nodes(self, node_name_substring="mask_hf_scatter"):
-        scatter_nodes = self.terrain_node.get_children_nodes_by_partial_name(substring=node_name_substring)
+        scatter_nodes = self.terrain_node.get_child_nodes_by_partial_name(substring=node_name_substring)
         return scatter_nodes
 
     def get_scatter_node_names(self):
@@ -64,7 +64,7 @@ class TerrainHelper:
         return available_masks_list
 
     def get_scatter_set_nodes(self):
-        scatter_set_nodes = self.obj_node.get_children_nodes_by_partial_name("scatter_set")
+        scatter_set_nodes = self.obj_node.get_child_nodes_by_partial_name("scatter_set")
         return scatter_set_nodes
 
     def get_scatter_set_node(self, scatter_set_name):
@@ -78,7 +78,7 @@ class TerrainHelper:
         This will get all nodes containing 'OUT_' and port them over to the scatter bridge.
         """
         scatter_set_node = OXNode(node=scatter_set_hou_node)
-        path_list = scatter_set_node.get_children_paths_by_partial_name(substring=postfix)
+        path_list = scatter_set_node.get_child_node_paths_by_partial_name(substring=postfix)
         geo_node_name = scatter_set_hou_node.name()
         node_name = f"{geo_node_name}_import"
         merge_object_node = self.scatter_bridge_ox_node.create_node_if_not_exists(
@@ -92,7 +92,7 @@ class TerrainHelper:
 
     def get_scatter_set_node_names_list(self):
         """gets the scatter set node names from the obj node network"""
-        scatter_set_hou_nodes = self.obj_node.get_children_nodes_by_partial_name("_scatter_set")
+        scatter_set_hou_nodes = self.obj_node.get_child_nodes_by_partial_name("_scatter_set")
         scatter_set_node_name_list = [i.name() for i in scatter_set_hou_nodes]
         return scatter_set_node_name_list
 
@@ -102,7 +102,7 @@ class TerrainHelper:
         return matches
 
     def get_scatter_set_hou_nodes(self):
-        scatter_set_hou_nodes = self.obj_node.get_children_nodes_by_partial_name("_scatter_set")
+        scatter_set_hou_nodes = self.obj_node.get_child_nodes_by_partial_name("_scatter_set")
         return scatter_set_hou_nodes
 
     def finish_scatter_set_bridge_to(self, mask_name):
@@ -140,7 +140,7 @@ class TerrainHelper:
     def create_scatter_node(
         self,
         user_mask,
-            user_source_points,
+        user_source_points,
         prev_hf_node,
         next_mask=None,
         is_first_mask=False,
@@ -313,7 +313,7 @@ class TerrainHelper:
             master_merge_node.connect_from(sub_transform_node, input_index=scatter_set_index)
             if scatter_set_hou_node:
                 scatter_set_node = nodes.obj_nodes.GeoNode(node=scatter_set_hou_node)
-                scatter_set_out_hou_nodes = scatter_set_node.get_children_paths_by_partial_name("OUT")
+                scatter_set_out_hou_nodes = scatter_set_node.get_child_node_paths_by_partial_name("OUT")
                 for variant_index, variant_out_path in enumerate(scatter_set_out_hou_nodes, start=index_offset):
                     obj_merge_node = nodes.geo_nodes.ObjectMergeNode(ox_parent=user_mask_controller_node)
                     obj_merge_node.parm_objpath1 = variant_out_path

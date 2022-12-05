@@ -37,6 +37,9 @@ def delete_all_downstream_nodes(node: hou.Node):
 
 
 def reference_copy_nodes_to_source(source_hou_nodes, copied_hou_nodes):
+    """
+    this method takes two lists of hou nodes and references copied nodes to source nodes. 
+    """
     copied_hou_nodes = copied_hou_nodes if isinstance(copied_hou_nodes, list) else list(copied_hou_nodes)
     source_hou_nodes = source_hou_nodes if isinstance(source_hou_nodes, list) else list(source_hou_nodes)
     source_hou_nodes.sort(key=lambda x: x.name())

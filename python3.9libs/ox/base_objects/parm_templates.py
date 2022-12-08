@@ -248,13 +248,14 @@ class ParmTemplate:
     # creating parm templates
 
     def create_int_parm_template(
-        self, name, label=None, num_components=1, min=0, max=10, help=None, is_label_hidden=False, join_with_next=False, **kwargs
+        self, name, label=None, num_components=1, default_value=(), min=0, max=10, help=None, is_label_hidden=False, join_with_next=False, **kwargs
     ):
         label = label if label else name.replace(" ", "_")
         new_parm_template = hou.IntParmTemplate(
             name=name,
             label=label,
             num_components=num_components,
+            default_value=default_value,
             min=min,
             max=max,
             help=help,
@@ -269,6 +270,7 @@ class ParmTemplate:
         name,
         label=None,
         num_components=1,
+        default_value=(),
         min=0.0,
         max=10.0,
         min_is_strict=False,
@@ -282,6 +284,7 @@ class ParmTemplate:
             name=name,
             label=label,
             num_components=num_components,
+            default_value=default_value,
             min=min,
             max=max,
             min_is_strict=min_is_strict,

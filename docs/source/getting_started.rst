@@ -3,60 +3,79 @@
 Getting Started
 ===============
 
+Working With Nodes
+------------------
+
+The OX Framework uses a basic class structure to handle nodes. On top of a shared OXNode class, each node within houdini also has a class associated
+with it within the framework. These node classes are generated from the nodes themselves using the OX:Admin toolbar (included with the plugin.) Most
+node classes should already be in place, but we can easily add new nodes to the framework as well as regenerate the classes for any node updates for
+new versions of Houdini. 
+
+Whenever the text "node" is expressed in the framework, it is reffering to hou.Node nodes. In the framework, as well as in all scripts written using
+the framework, you should prepend "ox_" to any variable refering to "node[s]" to distiguish it from hou.Node nodes. See script below for an example. 
 
 
-*this should be in italics*
-**this should be bold**
-``this is a code example``
-text with **bold text** in the middle 
-text with\ **bold text**\ in the middle with escaped spaces
+Parameters
+----------
+Accessing and modifying node parameters in the OX Framework is trivial. All parameters exist as class members starting with "parm_" and ending with
+the name of the parameter. You may need to go into houdini and hover over a parm label to see its name (which can be quite different from the label,)
+or just type my_ox_node.parm_ and let autocorrect give you all the parameter options for that node. 
 
-* this
-* is a list
+Instead of:
 
-    * and this is nested
+.. code-block:: python
+    node.parm('some_parm_name').set(some_value)
 
-* and this is original list 
+You can do:
 
-#. This is a numbered list
-#. another entry
+.. code-block:: python
+    som_ox_node.parm_<some_parm_name> = some_value
 
-    #. sub entry in numbered list
 
-My Term
-    definition of my Term
+Menu Parameters
+---------------
 
-    more stuff
+Menu parameters can be a pain to set using the HOM. Some menus use integer numbers and some use string values. Instead of dealing with any of that, 
+we can simple access the menu parameter label to set it like so:
 
-Next Term
-    description
+.. code-block:: python
+    some_ox_node.parm_some_menu_parameter.menu_<some_menu_value_label>
 
-.. code-block:: console
+The code above will figure out what value to set that menu parameter. Just that one line of code will set it to that menu value. This is not a
+conventional way to modify an attribute, but it is incredibly simple and works well. See the code below for a real example of this in action. 
 
-   (.venv) $ pip install lumache
 
-Creating recipes
+
+Here is a simple code snippet to illustrate the basic workflow for working with Nodes:
+
+
+.. code-block:: python
+    :emphasize-lines: 7, 9, 11, 21, 23
+
+    import hou
+    from ox import OXNode
+    from ox import nodes
+    from ox.helpers import ox_helperc
+
+    obj_node = hou.node("/obj")
+    obj_ox_node = OXNode(node=obj_node)
+
+    geo_ox_node = nodes.obj_nodes.GeoNode(ox_parent=obj_ox_node, node_name="my_geo")
+    cube_ox_node = nodes.geo_nodes.BoxNode(ox_parent=geo_ox_node, node_name="my_cube")
+    cube_ox_node.parm_scale = 2
+
+    cube_trans_ox_node = nodes.geo_nodes.TransformNode(ox_parent=geo_ox_node, node_name="cube_trans")
+    cube_trans_ox_node.connect_from(cube_ox_node)
+
+    cube_normal_ox_node = nodes.geo_nodes.NormalNode(ox_parent=geo_ox_node, node_name="cube_norm")
+    cube_normal_ox_node.connect_from(cube_trans_ox_node)
+
+    cube_uv_ox_node = nodes.geo_nodes.UvtextureNode(ox_parent=geo_ox_node, node_name="cube_uv")
+    cube_uv_ox_node.connect_from(cube_normal_ox_node)
+    cube_uv_ox_node.parm_type.menu_face
+    cube_uv_ox_node.parm_sv = cube_uv_ox_node.parm_su.parm  # this will copy by reference
+    cube_uv_ox_node.parm_sw = cube_uv_ox_node.parm_su.parm  # this will copy by reference
+
+   
+The OXNode Class
 ----------------
-
-To retrieve a list of random ingredients,
-you can use the ``lumache.get_random_ingredients()`` function:
-
-.. autofunction:: lumache.get_random_ingredients
-
-The ``kind`` parameter should be either ``"meat"``, ``"fish"``,
-or ``"veggies"``. Otherwise, :py:func:`lumache.get_random_ingredients`
-will raise an exception.
-
-.. autoexception:: lumache.InvalidKindError
-
-For example:
-
-.. image:: images/my_test.jpg
-   :width: 600
-   :alt: alt text here
-
->>> import lumache
->>> lumache.get_random_ingredients()
-['shells', 'gorgonzola', 'parsley']
-bloogers
-

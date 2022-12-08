@@ -38,7 +38,7 @@ def delete_all_downstream_nodes(node: hou.Node):
 
 def reference_copy_nodes_to_source(source_hou_nodes, copied_hou_nodes):
     """
-    this method takes two lists of hou nodes and references copied nodes to source nodes. 
+    this method takes two lists of hou nodes and references copied nodes to source nodes.
     """
     copied_hou_nodes = copied_hou_nodes if isinstance(copied_hou_nodes, list) else list(copied_hou_nodes)
     source_hou_nodes = source_hou_nodes if isinstance(source_hou_nodes, list) else list(source_hou_nodes)
@@ -48,3 +48,9 @@ def reference_copy_nodes_to_source(source_hou_nodes, copied_hou_nodes):
         for source_parm, copied_parm in zip(source_hou_node.parms(), copied_hou_node.parms()):
             ox_logger.debug(f"setting {copied_parm.name()} to {source_parm.name()}")
             copied_parm.set(source_parm)
+
+
+def reference_node(source_node: hou.Node, destination_node: hou.Node):
+    for source_parm, dest_parm in zip(source_node.parms(), destination_node.parms()):
+        ox_logger.debug(f"setting {dest_parm.name()} to {source_parm.name()}")
+        dest_parm.set(source_parm)

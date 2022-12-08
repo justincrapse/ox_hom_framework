@@ -43,17 +43,18 @@ class OXNode(ParmTemplate):  # mixins
         instance value, which would do nothing in Houdini, this gets the actual parameter and sets it to some_new_value
         """
         skip_list = ["node", "name", "path", "type"]
-        clean_key = self.clean_parm_key(raw_key=name)
+        clean_key = self.__clean_parm_key(raw_key=name)
         if clean_key in self.parm_lookup_dict and clean_key not in skip_list and hasattr(self, name):
             hou_parm_string = self.parm_lookup_dict[clean_key]
             parm = self.node.parm(hou_parm_string)
             parm.deleteAllKeyframes()  # TODO: don't remember why this is here and it probably needs to change or add an accurate comment
+            ox_logger.debug(f'Setting parm "{parm}" to value "{value}" of type: "{type(value)}"')
             parm.set(value)
         else:
             super().__setattr__(name, value)
 
     @staticmethod
-    def clean_parm_key(raw_key):
+    def __clean_parm_key(raw_key):
         """Cleans the parm attribute name to match the key in the child ox node class parm_lookup_dict so that it can get the actual name of the
         parameter before it was modified to be a python-valid attribute name"""
         del_list = ["parm_"]
@@ -76,7 +77,7 @@ class OXNode(ParmTemplate):  # mixins
         elif expect_child_node:
             raise ValueError(f'Expected child node with name "{child_name}"')
 
-    def delete_all_children(self):
+    def delete_all_child_nodes(self):
         """delete all children nodes. Keep in mind this might not delete everything within a node network. See "delete_all_items" method for that"""
         for child_node in self.get_child_nodes():
             child_node.destroy()
@@ -183,7 +184,7 @@ class OXNode(ParmTemplate):  # mixins
     def get_child_by_node_type(self, node_type, expect_match=False, only_one_match=True):
         matching_nodes = self.get_child_nodes_by_type(node_type=node_type, expect_match=expect_match)
         if matching_nodes and len(matching_nodes) > 1 and only_one_match:
-            return ValueError(f"Expected only one match for child node type {node_type} but found many: {matching_nodes}")
+            raise ValueError(f"Expected only one match for child node type {node_type} but found many: {matching_nodes}")
         if matching_nodes and len(matching_nodes) == 1:
             return matching_nodes[0]
 
@@ -210,7 +211,7 @@ class OXNode(ParmTemplate):  # mixins
         ox_logger.debug(f"clean planes returned by get_planse for node {self.name}: {planes}")
         return planes_clean
 
-    def get_displayed_child_node(self):
+    def get_displayed_child_node(self) -> hou.Node:
         for node in self.get_child_nodes():
             if node.isDisplayFlagSet():
                 return node
@@ -297,6 +298,34 @@ class OXNode(ParmTemplate):  # mixins
         input_count = len(self.node.inputConnections())
         return input_count
 
+    # def copy_node(self, new_name_postfix=None, destination_node: hou.Node=None):
+    #     new_name = f"{self.name}_{new_name_postfix}" if new_name_postfix else self.name
+    #     destination_node = destination_node if destination_node else self.node.parent()
+    #     copied_node = hou.copyNodesTo(nodes=[self.node], destination_node=destination_node)
+
+    def copy_node(
+        self, new_name_postfix=None, destination_node: hou.Node = None, delete_if_exists=False, keep_existing_parm_values=False, return_ox=True
+    ):
+        parent_node = self.node.parent()
+        parent_ox_node = OXNode(parent_node)
+        new_name = f"{self.name}_{new_name_postfix}" if new_name_postfix else self.name
+        has_existing = parent_ox_node.has_child_with_name(child_name=new_name)
+        if has_existing and not delete_if_exists:
+            raise ValueError(f'Node with name "{new_name}" already exists')
+        if has_existing:
+            existing_node = parent_ox_node.get_child_by_name(child_name=new_name)
+            existing_ox_node = OXNode(existing_node)
+            child_parms_dict = existing_ox_node.get_child_parms_dict()
+            if delete_if_exists:
+                existing_ox_node.destroy_node()
+        destination_node = destination_node if destination_node else parent_node
+        copied_node = hou.copyNodesTo(nodes=[self.node], destination_node=destination_node)
+        copied_ox_node = OXNode(copied_node[0])
+        copied_ox_node.set_name(new_name=new_name)
+        if has_existing and keep_existing_parm_values:
+            copied_ox_node.apply_child_parms_dict(children_parms_dict=child_parms_dict)
+        return copied_ox_node if return_ox else copied_node
+
     ##################################################################################################################################################
     # parm methods
     def get_parms(self) -> List[hou.Parm]:
@@ -310,7 +339,6 @@ class OXNode(ParmTemplate):  # mixins
         elif starts_with:
             parm_sublist = [i for i in parameters if i.name().startswith(substring)]
         else:
-            # parm_sublist = [i for i in parameters if substring in i.name()]  # why in the world is this matching things it shouldn't???
             parm_sublist = []
             for item in parameters:
                 if substring in item.name():

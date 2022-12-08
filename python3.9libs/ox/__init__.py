@@ -7,6 +7,7 @@ import logging
 from ox.constants.ox_conf import sesh_vars
 from ox.utils import session_utils
 from ox.utils.ox_logger_util import *
+from ox.base_objects.ox_node import OXNode
 
 session_utils.set_session_variable(var_name=sesh_vars.LOAD_USER_PRESETS, value=True)
 ox_logger = logging.getLogger("ox_logger")

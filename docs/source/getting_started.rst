@@ -79,3 +79,45 @@ Here is a simple code snippet to illustrate the basic workflow for working with 
    
 The OXNode Class
 ----------------
+
+The "OXNode" class:
+
+.. code-block:: python
+
+    from ox import OXNode
+
+This OXNode class contains the common methods for most nodes. All node classes inherit from OXNode. 
+
+The OXNode class inherits from the "ParmTemplate"
+base_objects class as a mix-in. Mix-ins are an uncommon Python inheritance pattern best avoided. In this case, it serves as a way to organize the 
+parm template code into its own document as to not convolute the OXNode namespace. 
+
+When automating scripts, you won't always know what type of node you are dealing with, but you'll still want the functionality of the framework. In 
+these cases, you can simply use the OXNode class:
+
+.. code-block:: python
+
+    from ox import OXNode
+
+    connected_node = some_ox_node.get_connected_output_node_by_index(index=0)
+    connected_ox_node = OXNode(node=connected_node)
+
+    connected_ox_node.run_some_oxnode_function()
+
+
+Note that I passed in "connected_node" as a keyward agrument. While this is the general rule to live by, the "node" keyword can be omitted as it is A
+common access pattern that will not change as the first parameter arg. 
+
+The OX:Admin toolbar
+--------------------
+
+The administrative toolbar "OX:Admin" contains a couple of important node class generator tools and a sandbox tool See "Adding Node Classes" for more
+information.
+
+
+Logging/Debugging
+-----------------
+
+The framework uses a simple Python logging configuration that greatly helps debugging efforts as the Python framework is only loaded at Houdini 
+Startup (so you cannot add print statements without restarted the software to see the output.)
+

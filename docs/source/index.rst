@@ -15,7 +15,8 @@ Welcome to OX HOM Framework for Houdini documentation!
    welcome
    installation
    getting_started
-   rest_practice
+   adding_node_classes
+   appendix
 
 The OX HOM Framework is an abstraction layer framework build on top of Houdini's HOM API. 
 This framework makes it easy to organize many low-level steps into simple, high-level rerunnable functions such as the following:

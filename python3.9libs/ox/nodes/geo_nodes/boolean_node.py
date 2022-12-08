@@ -19,6 +19,7 @@ class BooleanNode(OXNode):
         
         # parm vars:
         self.parm_inputa = Parameter(parm=self.node.parm('inputa'))
+        self.parm_agroup = Parameter(parm=self.node.parm('agroup'))
         self.parm_resolvea = Parameter(parm=self.node.parm('resolvea'))
         self.parm_inputb = Parameter(parm=self.node.parm('inputb'))
         self.parm_bgroup = Parameter(parm=self.node.parm('bgroup'))
@@ -79,7 +80,6 @@ class BooleanNode(OXNode):
 
         
         # parm menu vars:
-        self.parm_agroup = AgroupMenu(parm=self.node.parm('agroup'))
         self.parm_asurface = AsurfaceMenu(parm=self.node.parm('asurface'))
         self.parm_bsurface = BsurfaceMenu(parm=self.node.parm('bsurface'))
         self.parm_booleanop = BooleanopMenu(parm=self.node.parm('booleanop'))
@@ -95,14 +95,6 @@ class BooleanNode(OXNode):
 
 
 # parm menu classes:
-class AgroupMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu__name = ("", 0)
-        self.menu_height = ("@name=height", 1)
-
-
 class AsurfaceMenu(Menu):
     def __init__(self, parm):
         self.parm = parm

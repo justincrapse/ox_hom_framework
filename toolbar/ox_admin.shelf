@@ -191,10 +191,11 @@ node_class_list = [getattr(node_cat, i) for i in node_name_list if inspect.iscla
 for node in node_class_list:
     ox_logger.info(f"Node type: {node.node_type}")
     new_node = source_node.createNode(node.node_type)
-    
+
     # handle dynamic parms:
     if node.node_type == "labs::hf_combine_masks":
         new_node.parm("folder0").set(10)
+
     ox_logger.info(new_node.name())
     gen_node_classes.generate_node_class(node=new_node, sub_dir=node_dir)
     created_node_dict[node_dir].append(node.node_type)
@@ -212,8 +213,10 @@ extra_node = source_node.createNode("mtlxstandard_surface")
 for node in node_class_list:
     ox_logger.info(f"Node type: {node.node_type}")
     new_node = source_node.createNode(node.node_type)
+
     if node.node_type == "collect":
         new_node.setInput(input_index=0, item_to_become_input=extra_node, output_index=0)
+        
     ox_logger.info(new_node.name())
     gen_node_classes.generate_node_class(node=new_node, sub_dir=node_dir)
     created_node_dict[node_dir].append(node.node_type)

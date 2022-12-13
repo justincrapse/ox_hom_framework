@@ -324,17 +324,15 @@ from ox import OXNode
 from ox import nodes
 from ox.helpers import ox_helper
 
+root_node = hou.node(".")
+print(f"root node: {root_node.name()}")
+root_ox_node = OXNode(node=root_node)
+print(root_ox_node.get_child_nodes())
+exit()
+
+
 obj_node = hou.node("/obj")
 obj_ox_node = OXNode(node=obj_node)
-
-
-# create nodes
-# set values
-# connect nodes
-
-# link uv texture scale parms to x
-# copy entire node reference
-
 
 geo_ox_node = nodes.obj_nodes.GeoNode(ox_parent=obj_ox_node, node_name="my_geo")
 cube_ox_node = nodes.geo_nodes.BoxNode(ox_parent=geo_ox_node, node_name="my_cube")

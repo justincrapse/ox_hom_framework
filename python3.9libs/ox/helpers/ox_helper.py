@@ -8,7 +8,7 @@ ox_logger = logging.getLogger("ox_logger")
 
 
 def delete_nodes_by_name_list(ox_parent_node: OXNode, node_name_list, debug=False):
-    hou_nodes_list = {name: ox_parent_node.get_child_by_name(name) for name in node_name_list}
+    hou_nodes_list = {name: ox_parent_node.get_child_node_by_name(name) for name in node_name_list}
     for name, node in hou_nodes_list.items():
         if debug:
             print(f"Node name:{name}, Node: {node}")

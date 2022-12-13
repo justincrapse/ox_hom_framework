@@ -200,8 +200,8 @@ class TerrainHelper:
             inner_vex_node = nodes.geo_nodes.AttribwrangleNode(ox_parent=scatter_node, node_name=f"{user_mask}_inner_vex")
             inner_vex_node.parm_snippet = new_vex_hou_parm
             # get the prev and next inner nodes
-            prev_inner_hou_node = scatter_node.get_child_by_name("generate_rand_id")
-            next_inner_hou_node = scatter_node.get_child_by_name("foreach_begin2")
+            prev_inner_hou_node = scatter_node.get_child_node_by_name("generate_rand_id")
+            next_inner_hou_node = scatter_node.get_child_node_by_name("foreach_begin2")
             prev_inner_node = OXNode(node=prev_inner_hou_node)
             next_inner_node = OXNode(node=next_inner_hou_node)
             inner_vex_node.connect_from(prev_inner_node)
@@ -274,7 +274,7 @@ class TerrainHelper:
                 user_mask_controller_node.parm_rs_objprop_inst_packedpriminstancing = True
             except Exception as e:
                 print(e)
-        scatter_import_hou_node = user_mask_controller_node.get_child_by_name(child_name=f"{scatter_set_name}_scatter_import")
+        scatter_import_hou_node = user_mask_controller_node.get_child_node_by_name(child_name=f"{scatter_set_name}_scatter_import")
         if scatter_import_hou_node:
             return
 

@@ -41,3 +41,4 @@ from .heightfield_node import HeightfieldNode
 from .heightfield_cutoutbyobject_node import HeightfieldCutoutbyobjectNode
 from .convertheightfield_node import ConvertheightfieldNode
 from .boolean_node import BooleanNode
+from .delete_node import DeleteNode

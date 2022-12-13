@@ -117,7 +117,7 @@ def display_confirmation(message, title="Confirmation Display", require_confirma
     return result
 
 
-def get_selected_nodes(expect_selected=True, expected_message="Tool Expected Node Selection", only_one=False) -> List:
+def get_selected_nodes(expect_selected=True, expected_message="Tool Expected Node Selection", only_one=False) -> List[hou.Node]:
     hou_node_list = [i for i in hou.selectedNodes()]
     if not hou_node_list and expect_selected:
         display_message(message=f"{expected_message}")
@@ -127,11 +127,11 @@ def get_selected_nodes(expect_selected=True, expected_message="Tool Expected Nod
     return hou_node_list
 
 
-def get_selected_node(expected_message="Tool Expected Node Selection", expect_selected=True):
+def get_selected_node(expected_message="Tool Expected Node Selection", expect_selected=True) -> hou.Node:
     return get_single_selected_node(expected_message=expected_message, expect_selected=expect_selected)
 
 
-def get_single_selected_node(expected_message="Tool Expected Node Selection", expect_selected=True):
+def get_single_selected_node(expected_message="Tool Expected Node Selection", expect_selected=True) -> hou.Node:
     nodes_list = get_selected_nodes(only_one=True, expected_message=expected_message, expect_selected=expect_selected)
     return nodes_list[0] if nodes_list else None
 

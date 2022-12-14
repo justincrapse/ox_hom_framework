@@ -158,6 +158,9 @@ class ParmTemplate:
         ox_logger.info(f"\nNo matching folder label for {folder_label} for method get_folder_parm_templates_by_label")
 
     def remove_subfolder_by_labels(self, parent_folder_label, folder_label):
+        """
+        using labels (plural) as we are using multiple labels to drill down to the subfolder.
+        """
         parent_folder_parm_templates = self.get_folder_parm_templates_by_label(folder_label=parent_folder_label)
         ox_logger.info(f"\nParent Folder Parm Templates: {parent_folder_parm_templates}")
         pt: hou.ParmTemplate
@@ -248,13 +251,14 @@ class ParmTemplate:
     # creating parm templates
 
     def create_int_parm_template(
-        self, name, label=None, num_components=1, min=0, max=10, help=None, is_label_hidden=False, join_with_next=False, **kwargs
+        self, name, label=None, num_components=1, default_value=(), min=0, max=10, help=None, is_label_hidden=False, join_with_next=False, **kwargs
     ):
         label = label if label else name.replace(" ", "_")
         new_parm_template = hou.IntParmTemplate(
             name=name,
             label=label,
             num_components=num_components,
+            default_value=default_value,
             min=min,
             max=max,
             help=help,
@@ -269,6 +273,7 @@ class ParmTemplate:
         name,
         label=None,
         num_components=1,
+        default_value=(),
         min=0.0,
         max=10.0,
         min_is_strict=False,
@@ -282,6 +287,7 @@ class ParmTemplate:
             name=name,
             label=label,
             num_components=num_components,
+            default_value=default_value,
             min=min,
             max=max,
             min_is_strict=min_is_strict,
@@ -292,9 +298,11 @@ class ParmTemplate:
         )
         return new_parm_template
 
-    def create_toggle_parm_template(self, name, label=None, is_label_hidden=False, join_with_next=False, **kwargs):
+    def create_toggle_parm_template(self, name, label=None, default_value=False, is_label_hidden=False, join_with_next=False, **kwargs):
         label = label if label else name.replace(" ", "_")
-        new_parm_template = hou.ToggleParmTemplate(name=name, label=label, is_label_hidden=is_label_hidden, join_with_next=join_with_next, **kwargs)
+        new_parm_template = hou.ToggleParmTemplate(
+            name=name, label=label, default_value=default_value, is_label_hidden=is_label_hidden, join_with_next=join_with_next, **kwargs
+        )
         return new_parm_template
 
     def create_button_parm_template(
@@ -384,9 +392,28 @@ class ParmTemplate:
         new_parm_template = hou.FolderParmTemplate(name=name, label=label)
         return new_parm_template
 
+    ##################################################################################################################################################
+    # creating special parm templates
+    def create_color_tuple_parm_template(self, name, label=None, default_value=([1, 1, 1]), is_label_hidden=False, join_with_next=False):
+        new_parm_template = self.create_float_parm_template(
+            name=name,
+            label=label,
+            num_components=3,
+            default_value=default_value,
+            min=0,
+            max=1,
+            min_is_strict=False,
+            look=hou.parmLook.ColorSquare,
+            naming_scheme=hou.parmNamingScheme.RGBA,
+            is_label_hidden=is_label_hidden,
+            join_with_next=join_with_next,
+        )
+        return new_parm_template
+
     def create_vex_snippet_parm_template(self, name, label=None, **kwargs) -> hou.StringParmTemplate:
         """
         This is pretty much just the attribute wrangle vex parameter .asCode()
+        I have not been able to get this to work properly.
         """
         label = label if label else name.replace(" ", "_")
         new_parm_template = hou.StringParmTemplate(
@@ -419,23 +446,5 @@ vexpressionmenu.createSpareParmsFromChCalls(node, parmname)""",
                 "script_action_help": "Creates spare parameters for each unique call of ch() ",
                 "script_action_icon": "BUTTONS_create_parm_from_ch",
             }
-        )
-        return new_parm_template
-
-    ##################################################################################################################################################
-    # creating special parm templates
-    def create_color_tuple_parm_template(self, name, label=None, default_value=([1, 1, 1]), is_label_hidden=False, join_with_next=False):
-        new_parm_template = self.create_float_parm_template(
-            name=name,
-            label=label,
-            num_components=3,
-            default_value=default_value,
-            min=0,
-            max=1,
-            min_is_strict=False,
-            look=hou.parmLook.ColorSquare,
-            naming_scheme=hou.parmNamingScheme.RGBA,
-            is_label_hidden=is_label_hidden,
-            join_with_next=join_with_next,
         )
         return new_parm_template

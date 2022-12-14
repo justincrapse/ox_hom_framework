@@ -36,3 +36,9 @@ from .matchsize_node import MatchsizeNode
 from .sphere_node import SphereNode
 from .torus_node import TorusNode
 from .alembic_node import AlembicNode
+from .uvtexture_node import UvtextureNode
+from .heightfield_node import HeightfieldNode
+from .heightfield_cutoutbyobject_node import HeightfieldCutoutbyobjectNode
+from .convertheightfield_node import ConvertheightfieldNode
+from .boolean_node import BooleanNode
+from .delete_node import DeleteNode

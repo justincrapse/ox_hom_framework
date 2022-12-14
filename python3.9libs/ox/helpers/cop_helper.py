@@ -10,7 +10,7 @@ class COPHelper:
         self.ox_cop_node: nodes.obj_nodes.CopNetNode = ox_cop_node
 
     def create_output_for_each_plane(self, ox_copnet_node, rename_layer_name="C"):
-        """ ox_copnet_node is a node within the coptnet network that holds the planes, such as the sop import node """
+        """ox_copnet_node is a node within the coptnet network that holds the planes, such as the sop import node"""
         planes = ox_copnet_node.get_planes()
         for plane in planes:
             delete_node = nodes.cop_nodes.DeleteNode(ox_parent=self.ox_cop_node, node_name=f"{plane}_delete")
@@ -38,5 +38,5 @@ class COPHelper:
         return planes
 
     def get_output_hou_nodes(self):
-        out_hou_nodes = self.ox_cop_node.get_children_nodes_by_partial_name(substring="OUT_")
+        out_hou_nodes = self.ox_cop_node.get_child_nodes_by_partial_name(substring="OUT_")
         return out_hou_nodes

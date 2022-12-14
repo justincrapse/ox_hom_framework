@@ -1,5 +1,3 @@
-.. image:: images/index/under_construction.jpg
-    
 Appendix
 ===============
 
@@ -16,7 +14,7 @@ Black Installation and Configuration:
 Configure the hou and ox Module for Auto-Complete
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Add the following code to your settings.json file (I recommend doing this at the user level.) Don't know how to do that? Here you go:
+Add the following code to your settings.json file (I recommend doing this at the user level.) Don't know how to do that? Check this stack overflow:
 https://stackoverflow.com/questions/65908987/how-can-i-open-visual-studio-codes-settings-json-file
 
 .. code-block:: json
@@ -36,6 +34,9 @@ https://stackoverflow.com/questions/65908987/how-can-i-open-visual-studio-codes-
           ]
      }
 
+Make sure you adjust the paths above to wherever your Houdini installation lives and also the python3.xlibs path for the ox framework. 
+Note: It was difficult to figure out how to get this to work and I couldn't find how from a single source. This may or may not work for you, but if 
+it does not, search the internet for "houdini hou autocomplete VSCode" or equivalent. 
 
 PyCharm IDE Setup
 -----------------
@@ -52,11 +53,17 @@ Learning Resources
 
 
 
+
 Houdini HOM
 ^^^^^^^^^^^
 
-Intro to Python in Houdini by Socratica FX:
+SideFX HOM Documentation: https://www.sidefx.com/docs/houdini/hom/intro.html
+
+Recommended beginner Houdini Automation Tutorial: Intro to Python in Houdini by Socratica FX:
 
 .. raw:: html
     
      <iframe width="560" height="315" src="https://www.youtube.com/embed/59vetivUGes" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+

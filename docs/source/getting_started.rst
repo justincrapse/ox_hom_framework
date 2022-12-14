@@ -1,5 +1,3 @@
-.. image:: images/index/under_construction.jpg
-    
 Getting Started
 ===============
 
@@ -7,9 +5,46 @@ Working With Nodes
 ------------------
 
 The OX Framework uses a basic class structure to handle nodes. On top of a shared OXNode class, each node within houdini also has a class associated
-with it within the framework. These node classes are generated from the nodes themselves using the OX:Admin toolbar (included with the plugin.) Most
+with it within the framework. These node classes are generated from the nodes themselves using the OX:Admin toolbar (included with the plugin.) Many
 node classes should already be in place, but we can easily add new nodes to the framework as well as regenerate the classes for any node updates for
 new versions of Houdini. 
+
+Here is an example of creating new nodes in the framework:
+
+.. code-block:: Python
+
+    import hou
+
+    from ox import nodes, OXNode
+
+
+    obj_ox_node = OXNode(hou.node('/obj'))
+
+    geo_ox_node = nodes.obj_nodes.GeoNode(ox_parent=obj_ox_node, node_name='my_geo_node')
+    box_node = nodes.geo_nodes.BoxNode(ox_parent=geo_ox_node, node_name='my_box_node')
+
+Instead of creating a node from a HOM node's .createNode() method and passing in the name of a node, we can leverage autocomplete to find the node
+we want to create and simply pass the parent OX node in as a parameter. 
+The node classes reside within their node context as seen above. With autocomplete, you can easily see all the contexts (obj_nodes, geo_nodes,
+redshift_nodes etc.) as well as all the possible child nodes for those contexts.
+
+To get a framework node for an existing node, you can use a number of methods to find the node from the parent and pass it in to the node class:
+
+.. code-block:: python
+    
+    import hou
+
+    from ox import nodes, OXNode
+
+
+    obj_ox_node = OXNode(hou.node("/obj"))
+
+    my_geo_node = obj_ox_node.get_child_node_by_name(child_name='my_geo_node')
+    geo_ox_node = nodes.obj_nodes.GeoNode(my_geo_node)
+
+Note that in the example above, I did not pass in a keyward argument into the GeoNode class. This is because the first positional argument is a hou
+node. Because this a common and intiutive way to pass in this node, it is okay to break the regular rules of always passing in keyword arguments when
+calling methods and instantiating classes. 
 
 Best Practice For "ox_node" vs. "node"
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

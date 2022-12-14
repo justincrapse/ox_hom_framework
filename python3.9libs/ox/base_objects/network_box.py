@@ -22,6 +22,10 @@ class NetworkBox:
         result = self.network_box.addItem(item=node)
         ox_logger.debug(f'Added item {node} to network box: {self.network_box}: result: {result}')
 
+    def add_nodes(self, node_list: List[hou.Node]):
+        for node in node_list:
+            self.add_node(node=node)
+
     def get_network_node_by_type(self, node_type, raise_value_error=True) -> hou.Node:
         node: hou.Node
         matching_nodes = []

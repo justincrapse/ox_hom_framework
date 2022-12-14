@@ -1,5 +1,3 @@
-.. image:: images/index/under_construction.jpg
-    
 Working with Parm Templates
 ===========================
 

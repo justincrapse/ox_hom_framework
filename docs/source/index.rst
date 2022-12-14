@@ -3,8 +3,6 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. image:: images/index/under_construction.jpg
-
 Welcome to OX HOM Framework for Houdini documentation!
 ======================================================
 
@@ -12,8 +10,6 @@ Welcome to OX HOM Framework for Houdini documentation!
    :caption: Contents:
    :maxdepth: 2
 
-
-   welcome
    installation
    getting_started
    adding_node_classes

@@ -270,7 +270,6 @@ class OXNode(ParmTemplate):  # mixins
         value_tup = geo.primIntAttribValues(prim_name)
         return value_tup
 
-
     def load_preset(self, preset_name=None):
         """if no preset name specified, just use the node name. This is a good default for many use cases"""
         preset_name = preset_name if preset_name else self.name
@@ -465,3 +464,8 @@ class OXNode(ParmTemplate):  # mixins
                 parm.set(parm_value)
 
     ##################################################################################################################################################
+    # network box node stuff. Put dedicated network box methods in the network box base object.
+
+    def get_parent_network_box(self):
+        parent_network_box = self.node.parentNetworkBox()
+        return parent_network_box

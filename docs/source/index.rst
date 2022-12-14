@@ -12,6 +12,7 @@ Welcome to OX HOM Framework for Houdini documentation!
 
    installation
    getting_started
+   ox_node
    adding_node_classes
    parm_templates
    appendix

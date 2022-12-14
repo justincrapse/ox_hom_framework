@@ -64,13 +64,21 @@ class OXNode(ParmTemplate):  # mixins
     ##################################################################################################################################################
     # node opperations
     def delete_node(self):
+        """ A simple method to delete the current node. Also see destroy_node method """
         self.destroy_node()
 
     def destroy_node(self):
+        """ A simple method to delete the current node. Also see delete_node method """
+
         result = self.node.destroy()
         ox_logger.debug(f'Result for delete node "{self.name}": {result}')
 
     def delete_child_node_by_name(self, child_name, expect_child_node=True):
+        """
+        Deletes a child node matching the child_name. will raise an exception if no child is found and excpect_child_node is True
+
+        :param expect_child_node: this is another parm
+        """
         child_hou_node = self.get_child_node_by_name(child_name=child_name)
         if child_hou_node:
             child_hou_node.destroy()
@@ -78,11 +86,12 @@ class OXNode(ParmTemplate):  # mixins
             raise ValueError(f'Expected child node with name "{child_name}"')
 
     def delete_all_child_nodes(self):
-        """delete all children nodes. Keep in mind this might not delete everything within a node network. See "delete_all_items" method for that"""
+        """ delete all child nodes. Keep in mind this might not delete everything within a node network. See "delete_all_items" method """
         for child_node in self.get_child_nodes():
             child_node.destroy()
 
     def delete_all_items(self):
+        """ deletes all items within the node """
         all_items = self.node.allItems()
         self.node.deleteItems(all_items)
 

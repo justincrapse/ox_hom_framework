@@ -47,7 +47,7 @@ class OXNode(ParmTemplate):  # mixins
         if clean_key in self.parm_lookup_dict and clean_key not in skip_list and hasattr(self, name):
             hou_parm_string = self.parm_lookup_dict[clean_key]
             parm = self.node.parm(hou_parm_string)
-            parm.deleteAllKeyframes()  # TODO: don't remember why this is here and it probably needs to change or add an accurate comment
+            parm.deleteAllKeyframes()  # this is for channel referencing. lots of issues with channel referencing otherwise.
             ox_logger.debug(f'Setting parm "{parm}" to value "{value}" of type: "{type(value)}"')
             parm.set(value)
         else:
@@ -64,11 +64,11 @@ class OXNode(ParmTemplate):  # mixins
     ##################################################################################################################################################
     # node opperations
     def delete_node(self):
-        """ A simple method to delete the current node. Also see destroy_node method """
+        """A simple method to delete the current node. Also see destroy_node method"""
         self.destroy_node()
 
     def destroy_node(self):
-        """ A simple method to delete the current node. Also see delete_node method """
+        """A simple method to delete the current node. Also see delete_node method"""
 
         result = self.node.destroy()
         ox_logger.debug(f'Result for delete node "{self.name}": {result}')
@@ -86,20 +86,22 @@ class OXNode(ParmTemplate):  # mixins
             raise ValueError(f'Expected child node with name "{child_name}"')
 
     def delete_all_child_nodes(self):
-        """ delete all child nodes. Keep in mind this might not delete everything within a node network. See "delete_all_items" method """
+        """delete all child nodes. Keep in mind this might not delete everything within a node network. See "delete_all_items" method"""
         for child_node in self.get_child_nodes():
             child_node.destroy()
 
     def delete_all_items(self):
-        """ deletes all items within the node """
+        """deletes all items within the node"""
         all_items = self.node.allItems()
         self.node.deleteItems(all_items)
 
     def get_input_labels(self):
+        """Gets all input labels for the node"""
         labels = self.node.inputLabels()
         return list(labels)
 
     def get_input_label_index(self, label):
+        """Given an input label, returns the input index value"""
         labels = self.get_input_labels()
         try:
             index = labels.index(label)
@@ -108,27 +110,32 @@ class OXNode(ParmTemplate):  # mixins
             raise ValueError(f"Label: {label}. Was not found in node: {self.path}")
 
     def get_input_connections_node_name_list(self):
+        """Returns a list of node names of the connected input nodes"""
         connections = self.node.inputConnections()
         node_name_list = [i.inputItem().name() for i in connections]
         return node_name_list
 
     def get_connected_output_node_by_index(self, index=0) -> hou.Node:
+        """Returns the node connected to the specified output index"""
         out_cons = self.node.outputConnections()
         connected_node = out_cons[index].outputItem()
         return connected_node
 
     def get_connected_input_node_by_index(self, index=0) -> hou.Node:
+        """Returns the node connected to the specified input index"""
         in_cons = self.node.inputConnections()
         connected_node = in_cons[index].inputItem()
         return connected_node
 
     def create_node(self, node_type_name, node_name=None) -> hou.Node:
+        """Creates a child node. It's better to create nodes using the 'nodes' package."""
         if node_name:
             node_name = node_name.replace(" ", "_")
         new_node = self.node.createNode(node_type_name, node_name)
         return new_node
 
-    def create_node_if_not_exists(self, ox_node_class, node_name=None):
+    def create_node_if_not_exists(self, ox_node_class, node_name=None) -> hou.Node:
+        """Creates a child node, but only if it does not already exist."""
         node_type_name = ox_node_class.node_type
         child_node = self.get_child_node_by_name(child_name=node_name)
         if not child_node:
@@ -136,35 +143,40 @@ class OXNode(ParmTemplate):  # mixins
         return child_node
 
     def create_ox_node_if_not_exists(self, ox_node_class, node_name=None):
-        """shortcut method that will go ahead and create an ox node"""
+        """shortcut method that will go ahead and create and return an ox node"""
         child_node = self.create_node_if_not_exists(ox_node_class=ox_node_class, node_name=node_name)
         return ox_node_class(node=child_node)
 
     def connect_from(self, ox_node, input_index=0, out_index=0, input_label=None):
-        """use input_label over input_index whenever possible"""
+        """Connects to this node's input from another ox node's output. use input_label over input_index whenever possible."""
         other_hou_node = ox_node.node
         if input_label:
             input_index = self.get_input_label_index(label=input_label)
         self.node.setInput(input_index=input_index, item_to_become_input=other_hou_node, output_index=out_index)
 
-    def get_child_node_by_name(self, child_name):
-        child_name = child_name.replace(" ", "_")
+    def get_child_node_by_name(self, child_name) -> hou.Node:
+        """Returns a matching child node, if it exists, else None is returned"""
+        child_name = child_name.replace(" ", "_")  # in case someone accidentally includes spaces.
         for child in self.get_child_nodes():
             if child.name() == child_name:
                 return child
 
-    def get_child_node_by_partial_name(self, substring, exclude_substring=None, case_sensitive=True):
+    def get_child_node_by_partial_name(self, substring, exclude_substring=None, case_sensitive=True) -> hou.Node:
+        """Searches for a child node by substring. Returns the first match."""
         all_matches = self.get_child_nodes_by_partial_name(substring=substring, exclude_substring=exclude_substring, case_sensitive=case_sensitive)
         first_match = all_matches[0]
         return first_match
 
-    def has_child_with_name(self, child_name):
+    def has_child_with_name(self, child_name) -> bool:
+        """Checks for child match by exact name"""
         return bool(self.get_child_node_by_name(child_name=child_name))
 
-    def has_child_with_node_type(self, node_type, expect_match):
+    def has_child_with_node_type(self, node_type, expect_match) -> bool:
+        """Checks for a child match by node type"""
         return bool(self.get_child_by_node_type(node_type=node_type, expect_match=expect_match))
 
-    def get_child_node_paths_by_partial_name(self, substring):
+    def get_child_node_paths_by_partial_name(self, substring) -> List[str]:
+        """Returns child node paths based on child nodes matched to the substring"""
         path_list = []
         for node in self.get_child_nodes():
             if substring in node.name():
@@ -172,6 +184,7 @@ class OXNode(ParmTemplate):  # mixins
         return path_list
 
     def get_child_nodes_by_partial_name(self, substring, exclude_substring=None, case_sensitive=True) -> List[hou.Node]:
+        """Returns a list of child nodes matched by substring"""
         node_list = []
         for node in self.get_child_nodes():
             node_name = node.name()
@@ -191,16 +204,19 @@ class OXNode(ParmTemplate):  # mixins
         return node_list
 
     def get_child_nodes(self) -> List[hou.Node]:
+        """Returns all child nodes"""
         children_node_list = self.node.children()
         return children_node_list
 
     def get_child_nodes_by_type(self, node_type, expect_match=False):
+        """Returns all child nodes mathcing specified type."""
         matching_nodes = [i for i in self.get_child_nodes() if i.type().name() == node_type]
         if not matching_nodes and expect_match:
             raise ValueError(f'Expected child node of type "{node_type}" but no matches were found')
         return matching_nodes
 
     def get_child_by_node_type(self, node_type, expect_match=False, only_one_match=True):
+        """Returns first matching child node matched by type, unless only_one_match=True"""
         matching_nodes = self.get_child_nodes_by_type(node_type=node_type, expect_match=expect_match)
         if matching_nodes and len(matching_nodes) > 1 and only_one_match:
             raise ValueError(f"Expected only one match for child node type {node_type} but found many: {matching_nodes}")
@@ -208,37 +224,42 @@ class OXNode(ParmTemplate):  # mixins
             return matching_nodes[0]
 
     def set_color(self, color):
-        """
-        Can pass in a tuple for RGB values or a hou.Color object.
-        """
+        """Can pass in a tuple for RGB values or a hou.Color object."""
         color = color if isinstance(color, hou.Color) else hou.Color(color)
         self.node.setColor(color)
 
     def set_name(self, new_name):
+        """Sets the node name"""
         self.node.setName(new_name)
+        self.name = new_name
 
-    def get_prim_values(self, field, filter_out_blank_values=True):
+    def get_prim_values_by_field(self, field, filter_out_blank_values=True):
+        """Returns primative values by specified field"""
         value_list = [i.attribValue(field) for i in self.node.geometry().prims()]
         if filter_out_blank_values:
             value_list = [i for i in value_list if i]
         return value_list
 
     def get_planes(self):
+        """Returns planes. Heightfield Masks are held as planes. Not sure what else this is fore."""
         planes = self.node.planes()
-        ox_logger.debug(f"planes returned by get_planse for node {self.name}: {planes}")
+        ox_logger.debug(f"planes returned by get_planes for node {self.name}: {planes}")
         planes_clean = [i for i in planes if i]
         ox_logger.debug(f"clean planes returned by get_planse for node {self.name}: {planes}")
         return planes_clean
 
     def get_displayed_child_node(self) -> hou.Node:
+        """Returns displayed child node."""
         for node in self.get_child_nodes():
             if node.isDisplayFlagSet():
                 return node
 
     def is_display_flag_set(self):
+        """Checks to see if display flag is set"""
         return self.node.isDisplayFlagSet()
 
     def layout_children(self):
+        """Auto-layout children"""
         self.node.layoutChildren()
 
     def move_node_relative_to(self, ox_node, x=0, y=-1, unit_multiplier=1):
@@ -250,37 +271,45 @@ class OXNode(ParmTemplate):  # mixins
         self.node.setPosition(vector)
 
     def unlock_node(self):
+        """Allows editing of node contents."""
         self.node.allowEditingOfContents()
 
     def get_folder_labels(self):
+        """Returns top-level folder labels."""
         templates = self.get_parm_templates_by_type(template_type=parm_template_types.FOLDER)
         labels = [i.label() for i in templates]
         return labels
 
     def set_display_flag(self, on=True):
+        """Sets the display flag"""
         self.node.setDisplayFlag(on=on)
 
     def set_render_flag(self, on=True):
+        """Sets the render flag"""
         self.node.setRenderFlag(on=on)
 
     def set_display_and_render_flags(self, on=True):
+        """Sets the display and render flags"""
         self.set_display_flag(on=on)
         self.set_render_flag(on=on)
 
     def set_bypass_flag(self, on=True):
+        """Sets the bypass flag"""
         self.node.bypass(on=on)
 
     def get_prim_groups(self):
+        """Returns the primative group names"""
         group_list = [i.name() for i in self.node.geometry().primGroups()]
         return group_list
 
     def get_prim_int_values(self, prim_name):
+        """Returns primative integer values by prim name"""
         geo = self.node.geometry()
         value_tup = geo.primIntAttribValues(prim_name)
         return value_tup
 
     def load_preset(self, preset_name=None):
-        """if no preset name specified, just use the node name. This is a good default for many use cases"""
+        """Loads a preset. if no preset name specified, just use the node name. This is a good default for many use cases"""
         preset_name = preset_name if preset_name else self.name
         script = f"oppresetload {self.path} {preset_name}"
         ox_logger.debug(f"Running script: {script}")
@@ -291,6 +320,7 @@ class OXNode(ParmTemplate):  # mixins
             ox_logger.info(f'Preset Name "{preset_name}" Not Found for node type {self.type}. Result: {result}')
 
     def save_preset(self, preset_name, preset_path, node_path=None):
+        """Saves a preset"""
         node_path = node_path if node_path else self.path
         script = f'oppresetsave {node_path} "{preset_name}" {preset_path}'
         result = hou.hscript(script)
@@ -299,7 +329,7 @@ class OXNode(ParmTemplate):  # mixins
         ox_logger.info(f"Saved preset {preset_name} to node {node_path} to folder: {preset_path} Result: {result}")
 
     def delete_preset(self, node_path, preset_name, preset_path=None):
-        """uses default preset path when preset_path not specified"""
+        """Deletes a preset. uses default preset path when preset_path not specified"""
         if preset_path:
             script = f'oppresetrm {node_path} "{preset_name}" {preset_path}'
         else:
@@ -310,26 +340,31 @@ class OXNode(ParmTemplate):  # mixins
         ox_logger.info(f"Deleted preset {preset_name} on node {node_path} on folder: {preset_path} Result: {result}")
 
     def select_node(self, on=True):
+        """ " Set node as selected"""
         self.node.setSelected(on=on)
 
     def rename_node(self, new_name):
+        """Alternative to 'set_name' with more debugging if needed."""
         ox_logger.info(f'renaming node from "{self.name}" to "{new_name}"')
         result = self.node.setName(name=new_name)
         self.name = new_name
         ox_logger.debug(f"rename node result: {result}")
 
     def get_input_connections_count(self):
+        """returns number of connected input connections"""
         input_count = len(self.node.inputConnections())
         return input_count
 
-    # def copy_node(self, new_name_postfix=None, destination_node: hou.Node=None):
-    #     new_name = f"{self.name}_{new_name_postfix}" if new_name_postfix else self.name
-    #     destination_node = destination_node if destination_node else self.node.parent()
-    #     copied_node = hou.copyNodesTo(nodes=[self.node], destination_node=destination_node)
-
     def copy_node(
-        self, new_name_postfix=None, destination_node: hou.Node = None, delete_if_exists=False, keep_existing_parm_values=False, return_ox=True
+        self,
+        new_name_postfix=None,
+        destination_node: hou.Node = None,
+        delete_if_exists=False,
+        keep_existing_parm_values=False,
+        return_ox=True,
+        keep_existing_children_parm_values=False,
     ):
+        """Copies a node to a destination with optional behaviors"""
         parent_node = self.node.parent()
         parent_ox_node = OXNode(parent_node)
         new_name = f"{self.name}_{new_name_postfix}" if new_name_postfix else self.name
@@ -339,24 +374,32 @@ class OXNode(ParmTemplate):  # mixins
         if has_existing:
             existing_node = parent_ox_node.get_child_node_by_name(child_name=new_name)
             existing_ox_node = OXNode(existing_node)
-            child_parms_dict = existing_ox_node.get_child_parms_dict()
+            if keep_existing_children_parm_values:
+                child_parms_dict = existing_ox_node.get_child_parms_dict()
+            if keep_existing_parm_values:
+                node_parm_values_dict = existing_ox_node.get_parms_as_dict()
             if delete_if_exists:
                 existing_ox_node.destroy_node()
+
         destination_node = destination_node if destination_node else parent_node
         copied_node = hou.copyNodesTo(nodes=[self.node], destination_node=destination_node)
         copied_ox_node = OXNode(copied_node[0])
         copied_ox_node.set_name(new_name=new_name)
-        if has_existing and keep_existing_parm_values:
+        if has_existing and keep_existing_children_parm_values:
             copied_ox_node.apply_child_parms_dict(children_parms_dict=child_parms_dict)
+        if has_existing and keep_existing_parm_values:
+            copied_ox_node.apply_parms_dict(parms_dict=node_parm_values_dict)
         return copied_ox_node if return_ox else copied_node
 
     ##################################################################################################################################################
     # parm methods
     def get_parms(self) -> List[hou.Parm]:
+        """Gets all parms"""
         parameters = self.node.parms()
         return parameters
 
-    def get_parms_by_name_substring(self, substring, ends_with=False, starts_with=False):
+    def get_parms_by_name_substring(self, substring, ends_with=False, starts_with=False) -> List[hou.parm]:
+        """Returns all parms that match the specified substring"""
         parameters = self.get_parms()
         if ends_with:
             parm_sublist = [i for i in parameters if i.name().endswith(substring)]
@@ -372,6 +415,7 @@ class OXNode(ParmTemplate):  # mixins
         return parm_sublist
 
     def remove_parms_by_name_substring(self, substring, ends_with=False, starts_with=False):
+        """Removes all parms by name that match a substring"""
         parm_list = self.get_parms_by_name_substring(substring=substring, ends_with=ends_with, starts_with=starts_with)
         for parm in parm_list:
             ox_logger.info(f"removing parm by name: {parm.name()} for substring: {substring}")
@@ -379,26 +423,31 @@ class OXNode(ParmTemplate):  # mixins
         self._save_template_group()
 
     def get_parms_by_regex(self, regex_str):
+        """Returns all parms that match the regular expression"""
         parameters = self.get_parms()
         parm_sublist = [i for i in parameters if re.match(regex_str, i.name())]
         return parm_sublist
 
     def get_parm_labels(self):
+        """Returns all parm labels"""
         parameters = self.get_parms()
         parm_label_list = [i.label() for i in parameters]
         return parm_label_list
 
     def get_parm_names(self):
+        """Returns all parm names"""
         parameters = self.get_parms()
         parm_name_list = [i.name() for i in parameters]
         return parm_name_list
 
     def get_parm_names_by_substring(self, substring):
+        """Returns all parm names that match the substring"""
         parm_names = self.get_parm_names()
         parm_sublist = [i for i in parm_names if substring in i]
         return parm_sublist
 
-    def delete_parms_by_name(self, parm_name_list):
+    def delete_parms_by_name(self, parm_name_list: List[str]):
+        """Deletes all parameters by list of parm names"""
         for parm_name in parm_name_list:
             self.remove_parm_template_by_name(parm_name=parm_name)
 
@@ -418,6 +467,7 @@ class OXNode(ParmTemplate):  # mixins
         return parm_dict
 
     def apply_parms_dict(self, parms_dict):
+        """Applies the values from a parm dictionary returned by get_parms_as_dict"""
         for parm_name, parm_value in parms_dict.items():
             ox_logger.debug(f'Setting parameter "{parm_name}" to value "{parm_value}"')
             parm = self.node.parm(parm_name)
@@ -425,15 +475,6 @@ class OXNode(ParmTemplate):  # mixins
                 parm.set(parm_value)
             else:
                 ox_logger.debug(f'No parameter "{parm_name}" to set value to: {parm_value}')
-
-    # def get_node_parms_dict(self, node_list: List[hou.Node]):
-    #     node_parms_dict = defaultdict(dict)
-    #     for node in node_list:
-    #         node_name = node.name()
-    #         parms = node.parms()
-    #         for parm in parms:
-    #             node_parms_dict[node_name][parm.name()] = parm.eval()
-    #     return node_parms_dict
 
     def get_child_parms_dict(self, node_list: List[hou.Node] = None, exclude_type_list: List[str] = None):
         """
@@ -460,6 +501,7 @@ class OXNode(ParmTemplate):  # mixins
         return child_parms_dict
 
     def apply_child_parms_dict(self, children_parms_dict):
+        """Applies a dictionary of child nodes and their parameter values as returned from get_child_parms_dict method"""
         for key, value in children_parms_dict.items():
             ox_logger.debug(f"Getting child node by key: ({key}) to apply children parms to")
             key_node: hou.Node = self.get_child_node_by_name(key)
@@ -476,5 +518,6 @@ class OXNode(ParmTemplate):  # mixins
     # network box node stuff. Put dedicated network box methods in the network box base object.
 
     def get_parent_network_box(self):
+        """Returns the parent Network box this node is contained in."""
         parent_network_box = self.node.parentNetworkBox()
         return parent_network_box

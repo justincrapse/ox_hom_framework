@@ -59,12 +59,14 @@ class ParmTemplate:
         """
         Adds a parm template to a node. if folder_label is specified, as_first, insert_after_parm, and insert_before_parm are not relavant as those
         will dictate which folder a parm template is added to.
+
         :param folder_label: When specified, the parm_template will be added to the folder by label string.
         :param as_first: Will insert this parameter as the first in the node.
         :param insert_after_parm: This can be a parm object or the name of a parm after which you insert the new parm template
         :param insert_before_parm: same as insert_after_parm but before.
         :param return_type: Return types may vary depending on the type of parm template. Add logic as neccisary.
         :param supress_logger: For specific expected error logging that may intentionally be supressed
+
         """
         parm_template: hou.ParmTemplate
         if folder_label:
@@ -150,6 +152,7 @@ class ParmTemplate:
     def remove_parm_template_by_name(self, parm_name, save_template_group=True):
         """
         removes a parm template by name
+        
         :param save_template_group: This parameter lets you hold off on saving the template group, which may behave better when removing many parms
         """
         result = self.parm_template_group.remove(parm_name)

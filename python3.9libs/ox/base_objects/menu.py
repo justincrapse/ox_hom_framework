@@ -24,5 +24,7 @@ class Menu(Parameter, object):
             try:
                 self.parm.set(str_attr)
             except (TypeError, OperationFailed):
-                ox_logger.debug(f"Failed to set {self.parm.name()} menu parameter to {str_attr}. trying int")
+                ox_logger.debug(
+                    f"Failed to set {self.parm.name()} menu parameter to {str_attr}. trying int"
+                )
                 self.parm.set(int_attr)

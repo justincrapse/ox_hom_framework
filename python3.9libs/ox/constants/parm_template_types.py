@@ -1,18 +1,31 @@
-BUTTON = 'Button'
-DATA = 'Data'
-FLOAT = 'Float'
-FOLDER = 'Folder'
-FOLDERSET = 'FolderSet'
-INT = 'Int'
-LABEL = 'Label'
-MENU = 'Menu'
-RAMP = 'Ramp'
-SEPARATOR = 'Separator'
-STRING = 'String'
-TOGGLE = 'Toggle'
-PARM_TEMPLATE_LIST = ['Button', 'Data', 'Float', 'Folder', 'FolderSet', 'Int', 'Label', 'Menu', 'Ramp', 'Separator', 'String', 'Toggle']
+BUTTON = "Button"
+DATA = "Data"
+FLOAT = "Float"
+FOLDER = "Folder"
+FOLDERSET = "FolderSet"
+INT = "Int"
+LABEL = "Label"
+MENU = "Menu"
+RAMP = "Ramp"
+SEPARATOR = "Separator"
+STRING = "String"
+TOGGLE = "Toggle"
+PARM_TEMPLATE_LIST = [
+    "Button",
+    "Data",
+    "Float",
+    "Folder",
+    "FolderSet",
+    "Int",
+    "Label",
+    "Menu",
+    "Ramp",
+    "Separator",
+    "String",
+    "Toggle",
+]
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """
     Shortcut for printing the code above is needed
     """
@@ -29,11 +42,13 @@ if __name__ == '__main__':
     hou.StringParmTemplate
     hou.ToggleParmTemplate"""
 
-    lines = blue.split('ParmTemplate')
-    list_print = [line.replace('hou.', '').replace('\n', '').strip().replace('\t', '') for line in lines]
+    lines = blue.split("ParmTemplate")
+    list_print = [
+        line.replace("hou.", "").replace("\n", "").strip().replace("\t", "")
+        for line in lines
+    ]
     list_print = [i for i in list_print if i]
     for line in lines:
-        type_str = line.replace('hou.', '').replace('\n', '').strip()
+        type_str = line.replace("hou.", "").replace("\n", "").strip()
         print(f"{type_str.upper()} = '{type_str}'")
-    print(f'PARM_TEMPLATE_LIST = {list_print}')
-
+    print(f"PARM_TEMPLATE_LIST = {list_print}")

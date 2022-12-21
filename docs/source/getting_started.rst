@@ -4,12 +4,10 @@ Getting Started
 Working With Nodes
 ------------------
 
-The OX Framework uses a basic class structure to handle nodes. On top of a shared OXNode class, each node within houdini also has a class associated
-with it within the framework. These node classes are generated from the nodes themselves using the OX:Admin toolbar (included with the plugin.) Many
-node classes should already be in place, but we can easily add new nodes to the framework as well as regenerate the classes for any node updates for
-new versions of Houdini. 
+The OX Framework uses a basic class structure to work with nodes. Each node within houdini has a class associated with it within the framework. 
+These node classes are generated from the nodes themselves. Any node can easily be added to the frameowrk or updated for new versions of Houdini. 
 
-Here is an example of creating new nodes in the framework:
+Here is an example of working with nodes in the framework:
 
 .. code-block:: Python
 

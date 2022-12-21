@@ -1,9 +1,10 @@
-Adding Node Classes
-===================
+Adding Nodes To The Framework
+=============================
 
 
-The node classes in the framework are auto-generated based on live Houdini nodes. Because houdini's node parameters and options change over time, the 
-framework can also re-run all existing node classes. 
+The node classes in the framework are generated using admin tools that gather information from a live Houdini session. Not all nodes have been added, 
+but it is very easy and a mostly painless and automated process for 99% of the nodes. Because houdini's node parameters and options change over time 
+with updated versions of Houdini, the framework can also re-run all existing node classes at once (See admin toolbar.)
 
 Adding A New Node Class To The Framework
 ----------------------------------------

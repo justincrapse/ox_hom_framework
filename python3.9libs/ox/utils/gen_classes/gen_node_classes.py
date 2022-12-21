@@ -30,30 +30,54 @@ def generate_node_class(node, sub_dir):
     parms_list = [i.name() for i in node.parms()]
     ox_logger.debug(f"parms names list: {parms_list}")
     parm_vars_list = [data_lover.get_str_as_py_var(i) for i in parms_list]
-    parm_no_menu_list = [i for i in parms_list if not get_parm_menu_labels(node.parm(i))]
-    parm_vars_no_menu_list = [data_lover.get_str_as_py_var(i) for i in parm_no_menu_list]
+    parm_no_menu_list = [
+        i for i in parms_list if not get_parm_menu_labels(node.parm(i))
+    ]
+    parm_vars_no_menu_list = [
+        data_lover.get_str_as_py_var(i) for i in parm_no_menu_list
+    ]
     parm_lookup_dict = dict(zip(parm_vars_list, parms_list))
     parm_var_lines_list = "".join(
-        [f"\t\tself.parm_{i} = Parameter(parm=self.node.parm('{j}'))\n" for i, j in zip(parm_vars_no_menu_list, parm_no_menu_list)]
+        [
+            f"\t\tself.parm_{i} = Parameter(parm=self.node.parm('{j}'))\n"
+            for i, j in zip(parm_vars_no_menu_list, parm_no_menu_list)
+        ]
     )
 
     # menu parm lines:
     menu_list = [i for i in parms_list if get_parm_menu_labels(node.parm(i))]
     menu_vars_list = [data_lover.get_str_as_py_var(i) for i in menu_list]
     menu_var_lines_list = "".join(
-        [f"\t\tself.parm_{i} = {data_lover.get_str_as_class(i)}Menu(parm=self.node.parm('{j}'))\n" for i, j in zip(menu_vars_list, menu_list)]
+        [
+            f"\t\tself.parm_{i} = {data_lover.get_str_as_class(i)}Menu(parm=self.node.parm('{j}'))\n"
+            for i, j in zip(menu_vars_list, menu_list)
+        ]
     )
-    menu_class_lines_list = "".join([f"{gen_menu_classes.gen_menu_class_as_string(parm=node.parm(i))}\n" for i in menu_list])
+    menu_class_lines_list = "".join(
+        [
+            f"{gen_menu_classes.gen_menu_class_as_string(parm=node.parm(i))}\n"
+            for i in menu_list
+        ]
+    )
 
     # inputs:
     input_list = node.inputLabels()
     input_vars_list = [data_lover.get_str_as_py_var(i) for i in input_list]
     # input_lines_list = ''.join([f'\t\tself.input_{label} = {index}\n' for index, label in enumerate(input_vars_list)]) #  delete soon (11/30/21)
-    input_lines_list = "".join([f"\t\tself.input_{label_var} = '{label}'\n" for label_var, label in zip(input_vars_list, input_list)])
+    input_lines_list = "".join(
+        [
+            f"\t\tself.input_{label_var} = '{label}'\n"
+            for label_var, label in zip(input_vars_list, input_list)
+        ]
+    )
 
     # for class string:
-    class_name = data_lover.get_str_as_class(node_name=node_name, del_digit=True) + "Node"
-    file_name = data_lover.get_str_as_py_var(string_in=node_name, del_digit=True).lower()
+    class_name = (
+        data_lover.get_str_as_class(node_name=node_name, del_digit=True) + "Node"
+    )
+    file_name = data_lover.get_str_as_py_var(
+        string_in=node_name, del_digit=True
+    ).lower()
     file_name_node = f"{file_name}_node"
     file_name_ext = f"{file_name_node}.py"
     full_file_path = nodes_path.joinpath(sub_dir, file_name_ext)

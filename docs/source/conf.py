@@ -5,8 +5,9 @@
 
 import os
 import sys
-my_path = os.path.abspath('../../python3.9libs')
-print(f'my_path : {my_path}')
+
+my_path = os.path.abspath("../../python3.9libs")
+print(f"my_path : {my_path}")
 sys.path.insert(0, my_path)
 # sys.path.insert(1, "C:/Program Files/Side Effects Software/Houdini 19.5.303/houdini/python3.9libs")
 

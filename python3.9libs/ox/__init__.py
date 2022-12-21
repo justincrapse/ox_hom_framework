@@ -13,7 +13,7 @@ session_utils.set_session_variable(var_name=sesh_vars.LOAD_USER_PRESETS, value=T
 ox_logger = logging.getLogger("ox_logger")
 ox_log_handler = logging.StreamHandler()
 ox_log_handler.setLevel(logging.WARNING)
-ox_log_formatter = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
+ox_log_formatter = logging.Formatter("%(name)s - %(levelname)s - %(message)s")
 ox_log_handler.setFormatter(ox_log_formatter)
 ox_logger.addHandler(ox_log_handler)
 ox_logger.setLevel(logging.WARNING)

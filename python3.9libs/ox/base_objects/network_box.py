@@ -20,7 +20,9 @@ class NetworkBox:
 
     def add_node(self, node: hou.Node):
         result = self.network_box.addItem(item=node)
-        ox_logger.debug(f'Added item {node} to network box: {self.network_box}: result: {result}')
+        ox_logger.debug(
+            f"Added item {node} to network box: {self.network_box}: result: {result}"
+        )
 
     def add_nodes(self, node_list: List[hou.Node]):
         for node in node_list:
@@ -35,13 +37,19 @@ class NetworkBox:
             if hou_node_type == node_type:
                 matching_nodes.append(node)
         if not matching_nodes and raise_value_error:
-            raise ValueError(f'Node type "{node_type}" not found in network box "{self.name}"')
+            raise ValueError(
+                f'Node type "{node_type}" not found in network box "{self.name}"'
+            )
         if matching_nodes and len(matching_nodes) == 1:
             return matching_nodes[0]
         elif len(matching_nodes) > 1:
-            raise ValueError(f'Multiple nodes found for type "{node_type}": {matching_nodes}\n Did you mean to use "get_network_nodes_by_type?"')
+            raise ValueError(
+                f'Multiple nodes found for type "{node_type}": {matching_nodes}\n Did you mean to use "get_network_nodes_by_type?"'
+            )
 
-    def get_network_nodes_by_type(self, node_type, raise_value_error=True) -> List[hou.Node]:
+    def get_network_nodes_by_type(
+        self, node_type, raise_value_error=True
+    ) -> List[hou.Node]:
         node: hou.Node
         matching_nodes = []
         for node in self.get_network_nodes():
@@ -50,10 +58,11 @@ class NetworkBox:
             if hou_node_type == node_type:
                 matching_nodes.append(node)
         if not matching_nodes and raise_value_error:
-            raise ValueError(f'Node type "{node_type}" not found in network box "{self.name}"')
+            raise ValueError(
+                f'Node type "{node_type}" not found in network box "{self.name}"'
+            )
         else:
             return matching_nodes
 
     def get_nodes_parm_value_dict(self):
-        """ get a dict of dicts (node_name: {parm_name: parm_value}) for all nodes in network box """
-        
+        """get a dict of dicts (node_name: {parm_name: parm_value}) for all nodes in network box"""

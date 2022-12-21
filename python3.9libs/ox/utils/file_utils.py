@@ -20,7 +20,9 @@ def get_all_image_files(folder_path, image_extenstion_list=["jpg", "png"]):
 
 def contains_folders_only(folder_path):
     is_all_dirs = all([isdir(join(folder_path, i)) for i in listdir(folder_path)])
-    ox_logger.debug(f"contains folders only result: {is_all_dirs}. dir contents: {listdir(folder_path)}")
+    ox_logger.debug(
+        f"contains folders only result: {is_all_dirs}. dir contents: {listdir(folder_path)}"
+    )
     return is_all_dirs
 
 

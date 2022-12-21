@@ -1,7 +1,7 @@
 OX Node Class
 =============
 
-This page includes the class method documenatation OXNode class and ParmTemplate mix-in class. 
+This page includes the class method documenatation for the OXNode class and ParmTemplate mix-in class. 
 
 .. autoclass:: ox.base_objects.ox_node.OXNode     
    :members: 

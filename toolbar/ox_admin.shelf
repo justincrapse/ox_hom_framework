@@ -322,67 +322,23 @@ ox_sphere_node.add_parm_template(parm_template=button_pt, insert_after_parm=ox_s
     <script scriptType="python"><![CDATA[import hou
 from ox import OXNode
 from ox import nodes
-from ox.helpers import ox_helper
-
-root_node = hou.node(".")
-print(f"root node: {root_node.name()}")
-root_ox_node = OXNode(node=root_node)
-print(root_ox_node.get_child_nodes())
-exit()
 
 
 obj_node = hou.node("/obj")
 obj_ox_node = OXNode(node=obj_node)
 
-geo_ox_node = nodes.obj_nodes.GeoNode(ox_parent=obj_ox_node, node_name="my_geo")
-cube_ox_node = nodes.geo_nodes.BoxNode(ox_parent=geo_ox_node, node_name="my_cube")
-cube_ox_node.parm_scale = 2
+mtlx_matnet_ox_node = obj_ox_node.get_child_ox_node_by_name(child_name="mtlx_matnet")
 
-cube_trans_ox_node = nodes.geo_nodes.TransformNode(ox_parent=geo_ox_node, node_name="cube_trans")
-cube_trans_ox_node.connect_from(cube_ox_node)
+mtlx_image_ox_node = mtlx_matnet_ox_node.get_child_ox_node_by_type(node_class=nodes.matnet_nodes.MtlximageNode)
+mtlx_surface_ox_node = mtlx_matnet_ox_node.get_child_ox_node_by_type(node_class=nodes.matnet_nodes.MtlxstandardSurfaceNode)
 
-cube_normal_ox_node = nodes.geo_nodes.NormalNode(ox_parent=geo_ox_node, node_name="cube_norm")
-cube_normal_ox_node.connect_from(cube_trans_ox_node)
+mtlx_surface_ox_node.connect_from(mtlx_image_ox_node, input_label=mtlx_surface_ox_node.input_emission_color)
 
-cube_uv_ox_node = nodes.geo_nodes.UvtextureNode(ox_parent=geo_ox_node, node_name="cube_uv")
-cube_uv_ox_node.connect_from(cube_normal_ox_node)
-cube_uv_ox_node.parm_type.menu_face
-cube_uv_ox_node.parm_sv = cube_uv_ox_node.parm_su.parm
-cube_uv_ox_node.parm_sw = cube_uv_ox_node.parm_su.parm
 
-cube_match_size_ox_node = nodes.geo_nodes.MatchsizeNode(ox_parent=geo_ox_node, node_name="cube_match_size")
-cube_match_size_ox_node.connect_from(cube_uv_ox_node)
-cube_match_size_ox_node.parm_justify_y.menu_min
+# mtlx_image_node: hou.Node = hou.node("/obj/mtlx_matnet/mtlximage1")
+# mtlx_surface_node: hou.Node = hou.node("/obj/mtlx_matnet/mtlxstandard_surface1")
 
-sphere_ox_node = nodes.geo_nodes.SphereNode(ox_parent=geo_ox_node, node_name="my_sphere")
-sphere_trans_ox_node = nodes.geo_nodes.TransformNode(ox_parent=geo_ox_node, node_name="sphere_trans")
-sphere_trans_ox_node.connect_from(sphere_ox_node)
-
-sphere_normal_ox_node = nodes.geo_nodes.NormalNode(ox_parent=geo_ox_node, node_name="sphere_norm")
-sphere_normal_ox_node.connect_from(sphere_trans_ox_node)
-
-sphere_uv_ox_node = nodes.geo_nodes.UvtextureNode(ox_parent=geo_ox_node, node_name="sphere_uv")
-sphere_uv_ox_node.connect_from(sphere_normal_ox_node)
-sphere_uv_ox_node.parm_type.menu_face
-sphere_uv_ox_node.parm_sv = sphere_uv_ox_node.parm_su.parm
-sphere_uv_ox_node.parm_sw = sphere_uv_ox_node.parm_su.parm
-
-sphere_match_size_ox_node = nodes.geo_nodes.MatchsizeNode(ox_parent=geo_ox_node, node_name="sphere_match_size")
-sphere_match_size_ox_node.connect_from(sphere_uv_ox_node)
-sphere_match_size_ox_node.connect_from(
-    ox_node=cube_match_size_ox_node, input_label=sphere_match_size_ox_node.input_geometry_whose_bounding_box_is_to_be_matched
-)
-sphere_match_size_ox_node.parm_justify_y.menu_min
-sphere_match_size_ox_node.parm_goal_y.menu_max
-
-merge_ox_node = nodes.geo_nodes.MergeNode(ox_parent=geo_ox_node)
-merge_ox_node.connect_from(cube_match_size_ox_node)
-merge_ox_node.connect_from(sphere_match_size_ox_node, input_index=1)
-merge_ox_node.set_display_and_render_flags()
-
-ox_helper.reference_node(source_node=sphere_trans_ox_node.node, destination_node=cube_trans_ox_node.node)
-
-geo_ox_node.layout_children()
+# mtlx_surface_node.setInput(mtlx_surface_node.inputLabels().index("Emission Color"), mtlx_image_node)
 ]]></script>
   </tool>
 </shelfDocument>

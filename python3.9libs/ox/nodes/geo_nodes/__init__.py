@@ -1,4 +1,3 @@
-
 from .file_node import FileNode
 from .unpack_node import UnpackNode
 from .transform_node import TransformNode

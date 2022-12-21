@@ -39,9 +39,11 @@ def get_str_as_class(node_name: str, del_digit=False):
 
 def move_first_digit(string_in: str):
     if string_in[0].isdigit():
-        # replace anything that starts with a digit with the same string, but the digit comes after. 
+        # replace anything that starts with a digit with the same string, but the digit comes after.
         first_pass = re.sub(r"(^\d*)(.*)", r"\2_\1", string_in)
-        second_pass = re.sub(r"^_*", "", first_pass)  # don't want our new string starting with an underscore
+        second_pass = re.sub(
+            r"^_*", "", first_pass
+        )  # don't want our new string starting with an underscore
         if second_pass[0].isdigit():
             second_pass = f"_{second_pass}"  # here we give up if the second pass still starts with a digit. TODO: come up with better solution
         return second_pass

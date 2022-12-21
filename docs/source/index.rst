@@ -6,22 +6,10 @@
 Welcome to OX HOM Framework for Houdini documentation!
 ======================================================
 
-.. toctree::
-   :caption: Contents:
-   :maxdepth: 2
-
-   installation
-   getting_started
-   ox_node
-   adding_node_classes
-   parm_templates
-   appendix
-
-
 The OX HOM Framework is a light-weight Python Object Oriented Framework build on top of Houdini's HOM API. 
-This framework makes it easier to organize and write code for Houdini's hou module (HOM.)
+This framework makes it easier to organize and write code for Houdini's hou module (HOM.) A few highlighted features include:
 
-* connecting nodes together by input and output labels
+* Easy node connections by input and output labels (instead of index values)
 * Easy adding and deleting parm templates from nodes
 * Setting menu parm values by label instead of by index (with auto complete)
 * Search for child nodes by substring or regex (returns a list of nodes)
@@ -38,6 +26,17 @@ This framework makes it easier to organize and write code for Houdini's hou modu
    * node types organized by network context
 
 * And many more helpful functions and improved workflows
+
+.. toctree::
+   :caption: Contents:
+   :maxdepth: 2
+
+   installation
+   getting_started
+   parm_templates
+   ox_node
+   adding_node_classes
+   appendix
 
 The following is an example of how we can call a method on any node that can leverage the HOM under the hood. 
 

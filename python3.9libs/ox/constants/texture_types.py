@@ -9,6 +9,15 @@ class SpeedTree:
     Height = "Height"
     DIFFUSE = ""
 
-    texture_type_str_list = ["AO", "Gloss", "Normal", "Opacity", "SubsurfaceAmount", "SubsurfaceColor", "Displacement", "Height"]
+    texture_type_str_list = [
+        "AO",
+        "Gloss",
+        "Normal",
+        "Opacity",
+        "SubsurfaceAmount",
+        "SubsurfaceColor",
+        "Displacement",
+        "Height",
+    ]
 
     texture_file_types = ["png", "jpg", "bmp", "dds", "exr", "png", "tga", "tiff"]

@@ -1,4 +1,3 @@
-
 from .sopimport_node import SopimportNode
 from .null_node import NullNode
 from .rename_node import RenameNode

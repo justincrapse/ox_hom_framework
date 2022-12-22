@@ -1,105 +1,65 @@
 from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
-
 # node class version: 0.1
 
 
 class SopimportNode(OXNode):
-    node_type = "sopimport"
-    parm_lookup_dict = {
-        "stdswitcher1": "stdswitcher1",
-        "soppath": "soppath",
-        "importmask": "importmask",
-        "setres": "setres",
-        "setplanes": "setplanes",
-        "remap": "remap",
-        "remaprange1": "remaprange1",
-        "remaprange2": "remaprange2",
-        "effectamount": "effectamount",
-        "maskplane": "maskplane",
-        "maskresize": "maskresize",
-        "maskinvert": "maskinvert",
-        "overridesize": "overridesize",
-        "size1": "size1",
-        "size2": "size2",
-        "sizemenu": "sizemenu",
-        "overrideaspect": "overrideaspect",
-        "aspect": "aspect",
-        "planes": "planes",
-        "addplanes": "addplanes",
-        "addplaneop": "addplaneop",
-        "customplanes": "customplanes",
-        "depth": "depth",
-        "depthmenu": "depthmenu",
-        "depthglobal": "depthglobal",
-        "usebwpoints": "usebwpoints",
-        "bwpoints1": "bwpoints1",
-        "bwpoints2": "bwpoints2",
-        "interlace": "interlace",
-        "idominance": "idominance",
-        "overriderange": "overriderange",
-        "singleimage": "singleimage",
-        "start": "start",
-        "length": "length",
-        "preextend": "preextend",
-        "prehold": "prehold",
-        "postextend": "postextend",
-        "posthold": "posthold",
-    }
+    node_type = 'sopimport'
+    parm_lookup_dict = {'stdswitcher1': 'stdswitcher1', 'soppath': 'soppath', 'importmask': 'importmask', 'setres': 'setres', 'setplanes': 'setplanes', 'remap': 'remap', 'remaprange1': 'remaprange1', 'remaprange2': 'remaprange2', 'effectamount': 'effectamount', 'maskplane': 'maskplane', 'maskresize': 'maskresize', 'maskinvert': 'maskinvert', 'overridesize': 'overridesize', 'size1': 'size1', 'size2': 'size2', 'sizemenu': 'sizemenu', 'overrideaspect': 'overrideaspect', 'aspect': 'aspect', 'planes': 'planes', 'addplanes': 'addplanes', 'addplaneop': 'addplaneop', 'customplanes': 'customplanes', 'depth': 'depth', 'depthmenu': 'depthmenu', 'depthglobal': 'depthglobal', 'usebwpoints': 'usebwpoints', 'bwpoints1': 'bwpoints1', 'bwpoints2': 'bwpoints2', 'interlace': 'interlace', 'idominance': 'idominance', 'overriderange': 'overriderange', 'singleimage': 'singleimage', 'start': 'start', 'length': 'length', 'preextend': 'preextend', 'prehold': 'prehold', 'postextend': 'postextend', 'posthold': 'posthold'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
         if node:
             self.node = node
         else:
-            self.node = self.ox_parent.create_node(
-                node_type_name=self.node_type, node_name=node_name
-            )
+            self.node = self.ox_parent.create_node(node_type_name=self.node_type, node_name=node_name)
         self.node_name = self.node.name()
         super().__init__(node=self.node)
-
+        
         # parm vars:
-        self.parm_stdswitcher1 = Parameter(parm=self.node.parm("stdswitcher1"))
-        self.parm_soppath = Parameter(parm=self.node.parm("soppath"))
-        self.parm_importmask = Parameter(parm=self.node.parm("importmask"))
-        self.parm_setres = Parameter(parm=self.node.parm("setres"))
-        self.parm_setplanes = Parameter(parm=self.node.parm("setplanes"))
-        self.parm_remap = Parameter(parm=self.node.parm("remap"))
-        self.parm_remaprange1 = Parameter(parm=self.node.parm("remaprange1"))
-        self.parm_remaprange2 = Parameter(parm=self.node.parm("remaprange2"))
-        self.parm_effectamount = Parameter(parm=self.node.parm("effectamount"))
-        self.parm_maskresize = Parameter(parm=self.node.parm("maskresize"))
-        self.parm_maskinvert = Parameter(parm=self.node.parm("maskinvert"))
-        self.parm_overridesize = Parameter(parm=self.node.parm("overridesize"))
-        self.parm_size1 = Parameter(parm=self.node.parm("size1"))
-        self.parm_size2 = Parameter(parm=self.node.parm("size2"))
-        self.parm_overrideaspect = Parameter(parm=self.node.parm("overrideaspect"))
-        self.parm_aspect = Parameter(parm=self.node.parm("aspect"))
-        self.parm_customplanes = Parameter(parm=self.node.parm("customplanes"))
-        self.parm_depthglobal = Parameter(parm=self.node.parm("depthglobal"))
-        self.parm_usebwpoints = Parameter(parm=self.node.parm("usebwpoints"))
-        self.parm_bwpoints1 = Parameter(parm=self.node.parm("bwpoints1"))
-        self.parm_bwpoints2 = Parameter(parm=self.node.parm("bwpoints2"))
-        self.parm_overriderange = Parameter(parm=self.node.parm("overriderange"))
-        self.parm_singleimage = Parameter(parm=self.node.parm("singleimage"))
-        self.parm_start = Parameter(parm=self.node.parm("start"))
-        self.parm_length = Parameter(parm=self.node.parm("length"))
-        self.parm_prehold = Parameter(parm=self.node.parm("prehold"))
-        self.parm_posthold = Parameter(parm=self.node.parm("posthold"))
+        self.parm_stdswitcher1 = Parameter(parm=self.node.parm('stdswitcher1'))
+        self.parm_soppath = Parameter(parm=self.node.parm('soppath'))
+        self.parm_importmask = Parameter(parm=self.node.parm('importmask'))
+        self.parm_setres = Parameter(parm=self.node.parm('setres'))
+        self.parm_setplanes = Parameter(parm=self.node.parm('setplanes'))
+        self.parm_remap = Parameter(parm=self.node.parm('remap'))
+        self.parm_remaprange1 = Parameter(parm=self.node.parm('remaprange1'))
+        self.parm_remaprange2 = Parameter(parm=self.node.parm('remaprange2'))
+        self.parm_effectamount = Parameter(parm=self.node.parm('effectamount'))
+        self.parm_maskresize = Parameter(parm=self.node.parm('maskresize'))
+        self.parm_maskinvert = Parameter(parm=self.node.parm('maskinvert'))
+        self.parm_overridesize = Parameter(parm=self.node.parm('overridesize'))
+        self.parm_size1 = Parameter(parm=self.node.parm('size1'))
+        self.parm_size2 = Parameter(parm=self.node.parm('size2'))
+        self.parm_overrideaspect = Parameter(parm=self.node.parm('overrideaspect'))
+        self.parm_aspect = Parameter(parm=self.node.parm('aspect'))
+        self.parm_customplanes = Parameter(parm=self.node.parm('customplanes'))
+        self.parm_depthglobal = Parameter(parm=self.node.parm('depthglobal'))
+        self.parm_usebwpoints = Parameter(parm=self.node.parm('usebwpoints'))
+        self.parm_bwpoints1 = Parameter(parm=self.node.parm('bwpoints1'))
+        self.parm_bwpoints2 = Parameter(parm=self.node.parm('bwpoints2'))
+        self.parm_overriderange = Parameter(parm=self.node.parm('overriderange'))
+        self.parm_singleimage = Parameter(parm=self.node.parm('singleimage'))
+        self.parm_start = Parameter(parm=self.node.parm('start'))
+        self.parm_length = Parameter(parm=self.node.parm('length'))
+        self.parm_prehold = Parameter(parm=self.node.parm('prehold'))
+        self.parm_posthold = Parameter(parm=self.node.parm('posthold'))
 
+        
         # parm menu vars:
-        self.parm_maskplane = MaskplaneMenu(parm=self.node.parm("maskplane"))
-        self.parm_sizemenu = SizemenuMenu(parm=self.node.parm("sizemenu"))
-        self.parm_planes = PlanesMenu(parm=self.node.parm("planes"))
-        self.parm_addplanes = AddplanesMenu(parm=self.node.parm("addplanes"))
-        self.parm_addplaneop = AddplaneopMenu(parm=self.node.parm("addplaneop"))
-        self.parm_depth = DepthMenu(parm=self.node.parm("depth"))
-        self.parm_depthmenu = DepthmenuMenu(parm=self.node.parm("depthmenu"))
-        self.parm_interlace = InterlaceMenu(parm=self.node.parm("interlace"))
-        self.parm_idominance = IdominanceMenu(parm=self.node.parm("idominance"))
-        self.parm_preextend = PreextendMenu(parm=self.node.parm("preextend"))
-        self.parm_postextend = PostextendMenu(parm=self.node.parm("postextend"))
+        self.parm_maskplane = MaskplaneMenu(parm=self.node.parm('maskplane'))
+        self.parm_sizemenu = SizemenuMenu(parm=self.node.parm('sizemenu'))
+        self.parm_planes = PlanesMenu(parm=self.node.parm('planes'))
+        self.parm_addplanes = AddplanesMenu(parm=self.node.parm('addplanes'))
+        self.parm_addplaneop = AddplaneopMenu(parm=self.node.parm('addplaneop'))
+        self.parm_depth = DepthMenu(parm=self.node.parm('depth'))
+        self.parm_depthmenu = DepthmenuMenu(parm=self.node.parm('depthmenu'))
+        self.parm_interlace = InterlaceMenu(parm=self.node.parm('interlace'))
+        self.parm_idominance = IdominanceMenu(parm=self.node.parm('idominance'))
+        self.parm_preextend = PreextendMenu(parm=self.node.parm('preextend'))
+        self.parm_postextend = PostextendMenu(parm=self.node.parm('postextend'))
+
 
         # input vars:
 
@@ -275,3 +235,6 @@ class PostextendMenu(Menu):
         self.menu_mirror = ("mirror", 2)
         self.menu_hold = ("hold", 3)
         self.menu_hold_n_frames = ("holdn", 4)
+
+
+

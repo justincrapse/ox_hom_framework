@@ -1,210 +1,109 @@
 from ox.base_objects.ox_node import OXNode
 from ox.base_objects.parameter import Parameter
 from ox.base_objects.menu import Menu
-
 # node class version: 0.1
 
 
 class RopCompNode(OXNode):
-    node_type = "rop_comp"
-    parm_lookup_dict = {
-        "execute": "execute",
-        "renderdialog": "renderdialog",
-        "trange": "trange",
-        "f1": "f1",
-        "f2": "f2",
-        "f3": "f3",
-        "take": "take",
-        "copswitcher1": "copswitcher1",
-        "coppath": "coppath",
-        "tres": "tres",
-        "res1": "res1",
-        "res2": "res2",
-        "resmenu": "resmenu",
-        "copoutput": "copoutput",
-        "mkpath": "mkpath",
-        "color": "color",
-        "alpha": "alpha",
-        "scopeplanes": "scopeplanes",
-        "convertcolorspace": "convertcolorspace",
-        "gamma": "gamma",
-        "lut": "lut",
-        "framedepend": "framedepend",
-        "batchmode": "batchmode",
-        "batchsize": "batchsize",
-        "reloadfiles": "reloadfiles",
-        "outputarea": "outputarea",
-        "pixelcrop1": "pixelcrop1",
-        "pixelcrop2": "pixelcrop2",
-        "pixelcrop3": "pixelcrop3",
-        "pixelcrop4": "pixelcrop4",
-        "uvcrop1": "uvcrop1",
-        "uvcrop2": "uvcrop2",
-        "uvcrop3": "uvcrop3",
-        "uvcrop4": "uvcrop4",
-        "limitcanvaspixels": "limitcanvaspixels",
-        "canvaspixels": "canvaspixels",
-        "limitcanvaspercent": "limitcanvaspercent",
-        "canvaspercent": "canvaspercent",
-        "copaux1": "copaux1",
-        "color1": "color1",
-        "alpha1": "alpha1",
-        "scopeplanes1": "scopeplanes1",
-        "copaux2": "copaux2",
-        "color2": "color2",
-        "alpha2": "alpha2",
-        "scopeplanes2": "scopeplanes2",
-        "copaux3": "copaux3",
-        "color3": "color3",
-        "alpha3": "alpha3",
-        "scopeplanes3": "scopeplanes3",
-        "copaux4": "copaux4",
-        "color4": "color4",
-        "alpha4": "alpha4",
-        "scopeplanes4": "scopeplanes4",
-        "copaux5": "copaux5",
-        "color5": "color5",
-        "alpha5": "alpha5",
-        "scopeplanes5": "scopeplanes5",
-        "vm_image_artist": "vm_image_artist",
-        "vm_image_comment": "vm_image_comment",
-        "vm_image_hostname": "vm_image_hostname",
-        "vm_image_mplay_label": "vm_image_mplay_label",
-        "vm_image_mplay_gamma": "vm_image_mplay_gamma",
-        "vm_image_jpeg_quality": "vm_image_jpeg_quality",
-        "vm_image_tiff_compression": "vm_image_tiff_compression",
-        "vm_image_exr_compression": "vm_image_exr_compression",
-        "pngtga_alpha_multiplication": "pngtga_alpha_multiplication",
-        "tprerender": "tprerender",
-        "prerender": "prerender",
-        "lprerender": "lprerender",
-        "tpreframe": "tpreframe",
-        "preframe": "preframe",
-        "lpreframe": "lpreframe",
-        "tpostframe": "tpostframe",
-        "postframe": "postframe",
-        "lpostframe": "lpostframe",
-        "tpostrender": "tpostrender",
-        "postrender": "postrender",
-        "lpostrender": "lpostrender",
-    }
+    node_type = 'rop_comp'
+    parm_lookup_dict = {'execute': 'execute', 'renderdialog': 'renderdialog', 'trange': 'trange', 'f1': 'f1', 'f2': 'f2', 'f3': 'f3', 'take': 'take', 'copswitcher1': 'copswitcher1', 'coppath': 'coppath', 'tres': 'tres', 'res1': 'res1', 'res2': 'res2', 'resmenu': 'resmenu', 'copoutput': 'copoutput', 'mkpath': 'mkpath', 'color': 'color', 'alpha': 'alpha', 'scopeplanes': 'scopeplanes', 'convertcolorspace': 'convertcolorspace', 'gamma': 'gamma', 'lut': 'lut', 'framedepend': 'framedepend', 'batchmode': 'batchmode', 'batchsize': 'batchsize', 'reloadfiles': 'reloadfiles', 'outputarea': 'outputarea', 'pixelcrop1': 'pixelcrop1', 'pixelcrop2': 'pixelcrop2', 'pixelcrop3': 'pixelcrop3', 'pixelcrop4': 'pixelcrop4', 'uvcrop1': 'uvcrop1', 'uvcrop2': 'uvcrop2', 'uvcrop3': 'uvcrop3', 'uvcrop4': 'uvcrop4', 'limitcanvaspixels': 'limitcanvaspixels', 'canvaspixels': 'canvaspixels', 'limitcanvaspercent': 'limitcanvaspercent', 'canvaspercent': 'canvaspercent', 'copaux1': 'copaux1', 'color1': 'color1', 'alpha1': 'alpha1', 'scopeplanes1': 'scopeplanes1', 'copaux2': 'copaux2', 'color2': 'color2', 'alpha2': 'alpha2', 'scopeplanes2': 'scopeplanes2', 'copaux3': 'copaux3', 'color3': 'color3', 'alpha3': 'alpha3', 'scopeplanes3': 'scopeplanes3', 'copaux4': 'copaux4', 'color4': 'color4', 'alpha4': 'alpha4', 'scopeplanes4': 'scopeplanes4', 'copaux5': 'copaux5', 'color5': 'color5', 'alpha5': 'alpha5', 'scopeplanes5': 'scopeplanes5', 'vm_image_artist': 'vm_image_artist', 'vm_image_comment': 'vm_image_comment', 'vm_image_hostname': 'vm_image_hostname', 'vm_image_mplay_label': 'vm_image_mplay_label', 'vm_image_mplay_gamma': 'vm_image_mplay_gamma', 'vm_image_jpeg_quality': 'vm_image_jpeg_quality', 'vm_image_tiff_compression': 'vm_image_tiff_compression', 'vm_image_exr_compression': 'vm_image_exr_compression', 'pngtga_alpha_multiplication': 'pngtga_alpha_multiplication', 'tprerender': 'tprerender', 'prerender': 'prerender', 'lprerender': 'lprerender', 'tpreframe': 'tpreframe', 'preframe': 'preframe', 'lpreframe': 'lpreframe', 'tpostframe': 'tpostframe', 'postframe': 'postframe', 'lpostframe': 'lpostframe', 'tpostrender': 'tpostrender', 'postrender': 'postrender', 'lpostrender': 'lpostrender'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
         if node:
             self.node = node
         else:
-            self.node = self.ox_parent.create_node(
-                node_type_name=self.node_type, node_name=node_name
-            )
+            self.node = self.ox_parent.create_node(node_type_name=self.node_type, node_name=node_name)
         self.node_name = self.node.name()
         super().__init__(node=self.node)
-
+        
         # parm vars:
-        self.parm_execute = Parameter(parm=self.node.parm("execute"))
-        self.parm_renderdialog = Parameter(parm=self.node.parm("renderdialog"))
-        self.parm_f1 = Parameter(parm=self.node.parm("f1"))
-        self.parm_f2 = Parameter(parm=self.node.parm("f2"))
-        self.parm_f3 = Parameter(parm=self.node.parm("f3"))
-        self.parm_copswitcher1 = Parameter(parm=self.node.parm("copswitcher1"))
-        self.parm_coppath = Parameter(parm=self.node.parm("coppath"))
-        self.parm_res1 = Parameter(parm=self.node.parm("res1"))
-        self.parm_res2 = Parameter(parm=self.node.parm("res2"))
-        self.parm_mkpath = Parameter(parm=self.node.parm("mkpath"))
-        self.parm_convertcolorspace = Parameter(
-            parm=self.node.parm("convertcolorspace")
-        )
-        self.parm_gamma = Parameter(parm=self.node.parm("gamma"))
-        self.parm_lut = Parameter(parm=self.node.parm("lut"))
-        self.parm_framedepend = Parameter(parm=self.node.parm("framedepend"))
-        self.parm_batchmode = Parameter(parm=self.node.parm("batchmode"))
-        self.parm_batchsize = Parameter(parm=self.node.parm("batchsize"))
-        self.parm_reloadfiles = Parameter(parm=self.node.parm("reloadfiles"))
-        self.parm_pixelcrop1 = Parameter(parm=self.node.parm("pixelcrop1"))
-        self.parm_pixelcrop2 = Parameter(parm=self.node.parm("pixelcrop2"))
-        self.parm_pixelcrop3 = Parameter(parm=self.node.parm("pixelcrop3"))
-        self.parm_pixelcrop4 = Parameter(parm=self.node.parm("pixelcrop4"))
-        self.parm_uvcrop1 = Parameter(parm=self.node.parm("uvcrop1"))
-        self.parm_uvcrop2 = Parameter(parm=self.node.parm("uvcrop2"))
-        self.parm_uvcrop3 = Parameter(parm=self.node.parm("uvcrop3"))
-        self.parm_uvcrop4 = Parameter(parm=self.node.parm("uvcrop4"))
-        self.parm_limitcanvaspixels = Parameter(
-            parm=self.node.parm("limitcanvaspixels")
-        )
-        self.parm_canvaspixels = Parameter(parm=self.node.parm("canvaspixels"))
-        self.parm_limitcanvaspercent = Parameter(
-            parm=self.node.parm("limitcanvaspercent")
-        )
-        self.parm_canvaspercent = Parameter(parm=self.node.parm("canvaspercent"))
-        self.parm_vm_image_artist = Parameter(parm=self.node.parm("vm_image_artist"))
-        self.parm_vm_image_comment = Parameter(parm=self.node.parm("vm_image_comment"))
-        self.parm_vm_image_hostname = Parameter(
-            parm=self.node.parm("vm_image_hostname")
-        )
-        self.parm_vm_image_mplay_label = Parameter(
-            parm=self.node.parm("vm_image_mplay_label")
-        )
-        self.parm_vm_image_mplay_gamma = Parameter(
-            parm=self.node.parm("vm_image_mplay_gamma")
-        )
-        self.parm_vm_image_jpeg_quality = Parameter(
-            parm=self.node.parm("vm_image_jpeg_quality")
-        )
-        self.parm_tprerender = Parameter(parm=self.node.parm("tprerender"))
-        self.parm_tpreframe = Parameter(parm=self.node.parm("tpreframe"))
-        self.parm_tpostframe = Parameter(parm=self.node.parm("tpostframe"))
-        self.parm_tpostrender = Parameter(parm=self.node.parm("tpostrender"))
+        self.parm_execute = Parameter(parm=self.node.parm('execute'))
+        self.parm_renderdialog = Parameter(parm=self.node.parm('renderdialog'))
+        self.parm_f1 = Parameter(parm=self.node.parm('f1'))
+        self.parm_f2 = Parameter(parm=self.node.parm('f2'))
+        self.parm_f3 = Parameter(parm=self.node.parm('f3'))
+        self.parm_copswitcher1 = Parameter(parm=self.node.parm('copswitcher1'))
+        self.parm_coppath = Parameter(parm=self.node.parm('coppath'))
+        self.parm_res1 = Parameter(parm=self.node.parm('res1'))
+        self.parm_res2 = Parameter(parm=self.node.parm('res2'))
+        self.parm_mkpath = Parameter(parm=self.node.parm('mkpath'))
+        self.parm_convertcolorspace = Parameter(parm=self.node.parm('convertcolorspace'))
+        self.parm_gamma = Parameter(parm=self.node.parm('gamma'))
+        self.parm_lut = Parameter(parm=self.node.parm('lut'))
+        self.parm_framedepend = Parameter(parm=self.node.parm('framedepend'))
+        self.parm_batchmode = Parameter(parm=self.node.parm('batchmode'))
+        self.parm_batchsize = Parameter(parm=self.node.parm('batchsize'))
+        self.parm_reloadfiles = Parameter(parm=self.node.parm('reloadfiles'))
+        self.parm_pixelcrop1 = Parameter(parm=self.node.parm('pixelcrop1'))
+        self.parm_pixelcrop2 = Parameter(parm=self.node.parm('pixelcrop2'))
+        self.parm_pixelcrop3 = Parameter(parm=self.node.parm('pixelcrop3'))
+        self.parm_pixelcrop4 = Parameter(parm=self.node.parm('pixelcrop4'))
+        self.parm_uvcrop1 = Parameter(parm=self.node.parm('uvcrop1'))
+        self.parm_uvcrop2 = Parameter(parm=self.node.parm('uvcrop2'))
+        self.parm_uvcrop3 = Parameter(parm=self.node.parm('uvcrop3'))
+        self.parm_uvcrop4 = Parameter(parm=self.node.parm('uvcrop4'))
+        self.parm_limitcanvaspixels = Parameter(parm=self.node.parm('limitcanvaspixels'))
+        self.parm_canvaspixels = Parameter(parm=self.node.parm('canvaspixels'))
+        self.parm_limitcanvaspercent = Parameter(parm=self.node.parm('limitcanvaspercent'))
+        self.parm_canvaspercent = Parameter(parm=self.node.parm('canvaspercent'))
+        self.parm_vm_image_artist = Parameter(parm=self.node.parm('vm_image_artist'))
+        self.parm_vm_image_comment = Parameter(parm=self.node.parm('vm_image_comment'))
+        self.parm_vm_image_hostname = Parameter(parm=self.node.parm('vm_image_hostname'))
+        self.parm_vm_image_mplay_label = Parameter(parm=self.node.parm('vm_image_mplay_label'))
+        self.parm_vm_image_mplay_gamma = Parameter(parm=self.node.parm('vm_image_mplay_gamma'))
+        self.parm_vm_image_jpeg_quality = Parameter(parm=self.node.parm('vm_image_jpeg_quality'))
+        self.parm_tprerender = Parameter(parm=self.node.parm('tprerender'))
+        self.parm_tpreframe = Parameter(parm=self.node.parm('tpreframe'))
+        self.parm_tpostframe = Parameter(parm=self.node.parm('tpostframe'))
+        self.parm_tpostrender = Parameter(parm=self.node.parm('tpostrender'))
 
+        
         # parm menu vars:
-        self.parm_trange = TrangeMenu(parm=self.node.parm("trange"))
-        self.parm_take = TakeMenu(parm=self.node.parm("take"))
-        self.parm_tres = TresMenu(parm=self.node.parm("tres"))
-        self.parm_resmenu = ResmenuMenu(parm=self.node.parm("resmenu"))
-        self.parm_copoutput = CopoutputMenu(parm=self.node.parm("copoutput"))
-        self.parm_color = ColorMenu(parm=self.node.parm("color"))
-        self.parm_alpha = AlphaMenu(parm=self.node.parm("alpha"))
-        self.parm_scopeplanes = ScopeplanesMenu(parm=self.node.parm("scopeplanes"))
-        self.parm_outputarea = OutputareaMenu(parm=self.node.parm("outputarea"))
-        self.parm_copaux1 = Copaux1Menu(parm=self.node.parm("copaux1"))
-        self.parm_color1 = Color1Menu(parm=self.node.parm("color1"))
-        self.parm_alpha1 = Alpha1Menu(parm=self.node.parm("alpha1"))
-        self.parm_scopeplanes1 = Scopeplanes1Menu(parm=self.node.parm("scopeplanes1"))
-        self.parm_copaux2 = Copaux2Menu(parm=self.node.parm("copaux2"))
-        self.parm_color2 = Color2Menu(parm=self.node.parm("color2"))
-        self.parm_alpha2 = Alpha2Menu(parm=self.node.parm("alpha2"))
-        self.parm_scopeplanes2 = Scopeplanes2Menu(parm=self.node.parm("scopeplanes2"))
-        self.parm_copaux3 = Copaux3Menu(parm=self.node.parm("copaux3"))
-        self.parm_color3 = Color3Menu(parm=self.node.parm("color3"))
-        self.parm_alpha3 = Alpha3Menu(parm=self.node.parm("alpha3"))
-        self.parm_scopeplanes3 = Scopeplanes3Menu(parm=self.node.parm("scopeplanes3"))
-        self.parm_copaux4 = Copaux4Menu(parm=self.node.parm("copaux4"))
-        self.parm_color4 = Color4Menu(parm=self.node.parm("color4"))
-        self.parm_alpha4 = Alpha4Menu(parm=self.node.parm("alpha4"))
-        self.parm_scopeplanes4 = Scopeplanes4Menu(parm=self.node.parm("scopeplanes4"))
-        self.parm_copaux5 = Copaux5Menu(parm=self.node.parm("copaux5"))
-        self.parm_color5 = Color5Menu(parm=self.node.parm("color5"))
-        self.parm_alpha5 = Alpha5Menu(parm=self.node.parm("alpha5"))
-        self.parm_scopeplanes5 = Scopeplanes5Menu(parm=self.node.parm("scopeplanes5"))
-        self.parm_vm_image_tiff_compression = VmImageTiffCompressionMenu(
-            parm=self.node.parm("vm_image_tiff_compression")
-        )
-        self.parm_vm_image_exr_compression = VmImageExrCompressionMenu(
-            parm=self.node.parm("vm_image_exr_compression")
-        )
-        self.parm_pngtga_alpha_multiplication = PngtgaAlphaMultiplicationMenu(
-            parm=self.node.parm("pngtga_alpha_multiplication")
-        )
-        self.parm_prerender = PrerenderMenu(parm=self.node.parm("prerender"))
-        self.parm_lprerender = LprerenderMenu(parm=self.node.parm("lprerender"))
-        self.parm_preframe = PreframeMenu(parm=self.node.parm("preframe"))
-        self.parm_lpreframe = LpreframeMenu(parm=self.node.parm("lpreframe"))
-        self.parm_postframe = PostframeMenu(parm=self.node.parm("postframe"))
-        self.parm_lpostframe = LpostframeMenu(parm=self.node.parm("lpostframe"))
-        self.parm_postrender = PostrenderMenu(parm=self.node.parm("postrender"))
-        self.parm_lpostrender = LpostrenderMenu(parm=self.node.parm("lpostrender"))
+        self.parm_trange = TrangeMenu(parm=self.node.parm('trange'))
+        self.parm_take = TakeMenu(parm=self.node.parm('take'))
+        self.parm_tres = TresMenu(parm=self.node.parm('tres'))
+        self.parm_resmenu = ResmenuMenu(parm=self.node.parm('resmenu'))
+        self.parm_copoutput = CopoutputMenu(parm=self.node.parm('copoutput'))
+        self.parm_color = ColorMenu(parm=self.node.parm('color'))
+        self.parm_alpha = AlphaMenu(parm=self.node.parm('alpha'))
+        self.parm_scopeplanes = ScopeplanesMenu(parm=self.node.parm('scopeplanes'))
+        self.parm_outputarea = OutputareaMenu(parm=self.node.parm('outputarea'))
+        self.parm_copaux1 = Copaux1Menu(parm=self.node.parm('copaux1'))
+        self.parm_color1 = Color1Menu(parm=self.node.parm('color1'))
+        self.parm_alpha1 = Alpha1Menu(parm=self.node.parm('alpha1'))
+        self.parm_scopeplanes1 = Scopeplanes1Menu(parm=self.node.parm('scopeplanes1'))
+        self.parm_copaux2 = Copaux2Menu(parm=self.node.parm('copaux2'))
+        self.parm_color2 = Color2Menu(parm=self.node.parm('color2'))
+        self.parm_alpha2 = Alpha2Menu(parm=self.node.parm('alpha2'))
+        self.parm_scopeplanes2 = Scopeplanes2Menu(parm=self.node.parm('scopeplanes2'))
+        self.parm_copaux3 = Copaux3Menu(parm=self.node.parm('copaux3'))
+        self.parm_color3 = Color3Menu(parm=self.node.parm('color3'))
+        self.parm_alpha3 = Alpha3Menu(parm=self.node.parm('alpha3'))
+        self.parm_scopeplanes3 = Scopeplanes3Menu(parm=self.node.parm('scopeplanes3'))
+        self.parm_copaux4 = Copaux4Menu(parm=self.node.parm('copaux4'))
+        self.parm_color4 = Color4Menu(parm=self.node.parm('color4'))
+        self.parm_alpha4 = Alpha4Menu(parm=self.node.parm('alpha4'))
+        self.parm_scopeplanes4 = Scopeplanes4Menu(parm=self.node.parm('scopeplanes4'))
+        self.parm_copaux5 = Copaux5Menu(parm=self.node.parm('copaux5'))
+        self.parm_color5 = Color5Menu(parm=self.node.parm('color5'))
+        self.parm_alpha5 = Alpha5Menu(parm=self.node.parm('alpha5'))
+        self.parm_scopeplanes5 = Scopeplanes5Menu(parm=self.node.parm('scopeplanes5'))
+        self.parm_vm_image_tiff_compression = VmImageTiffCompressionMenu(parm=self.node.parm('vm_image_tiff_compression'))
+        self.parm_vm_image_exr_compression = VmImageExrCompressionMenu(parm=self.node.parm('vm_image_exr_compression'))
+        self.parm_pngtga_alpha_multiplication = PngtgaAlphaMultiplicationMenu(parm=self.node.parm('pngtga_alpha_multiplication'))
+        self.parm_prerender = PrerenderMenu(parm=self.node.parm('prerender'))
+        self.parm_lprerender = LprerenderMenu(parm=self.node.parm('lprerender'))
+        self.parm_preframe = PreframeMenu(parm=self.node.parm('preframe'))
+        self.parm_lpreframe = LpreframeMenu(parm=self.node.parm('lpreframe'))
+        self.parm_postframe = PostframeMenu(parm=self.node.parm('postframe'))
+        self.parm_lpostframe = LpostframeMenu(parm=self.node.parm('lpostframe'))
+        self.parm_postrender = PostrenderMenu(parm=self.node.parm('postrender'))
+        self.parm_lpostrender = LpostrenderMenu(parm=self.node.parm('lpostrender'))
+
 
         # input vars:
-        self.input_input_1 = "Input 1"
+        self.input_input_1 = 'Input 1'
 
 
 # parm menu classes:
@@ -518,46 +417,18 @@ class PrerenderMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__hip_render_whit___name__os__f4_exr = (
-            "$HIP/render_white_desert_closeup/$HIPNAME.$OS.$F4.exr",
-            0,
-        )
-        self.menu__hip_tunder_rend___name__os__f4_exr = (
-            "$HIP/tunder_render_closeup/$HIPNAME.$OS.$F4.exr",
-            1,
-        )
-        self.menu__hip_render_gras___name__os__f4_exr = (
-            "$HIP/render_grassy_hills_closeup/$HIPNAME.$OS.$F4.exr",
-            2,
-        )
-        self.menu__hip_render_gras___name__os__f4_exr = (
-            "$HIP/render_grassy_hills/$HIPNAME.$OS.$F4.exr",
-            3,
-        )
-        self.menu__hip_tunder_rend___name__os__f4_exr = (
-            "$HIP/tunder_render/$HIPNAME.$OS.$F4.exr",
-            4,
-        )
-        self.menu_e__art_old_3d_as___field_wind_2_abc = (
-            "E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind_2.abc",
-            5,
-        )
-        self.menu_e__art_old_3d_as___t_field_wind_abc = (
-            "E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind.abc",
-            6,
-        )
-        self.menu_e__renders_houdi___name__os__f4_exr = (
-            "E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr",
-            7,
-        )
-        self.menu_e__renders_houdi___r_magic_prev__f3 = (
-            "E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3",
-            8,
-        )
-        self.menu_e__art_projects____y_first_hdrlight = (
-            "E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight",
-            9,
-        )
+        self.menu__hip_render_part___name__os__f4_exr = ("$HIP/render_particle_stars/$HIPNAME.$OS.$F4.exr", 0)
+        self.menu__hip_render_neb____name__os__f4_exr = ("$HIP/render_neb_full_360/$HIPNAME.$OS.$F4.exr", 1)
+        self.menu__hip_render_whit___name__os__f4_exr = ("$HIP/render_white_desert_closeup/$HIPNAME.$OS.$F4.exr", 2)
+        self.menu__hip_tunder_rend___name__os__f4_exr = ("$HIP/tunder_render_closeup/$HIPNAME.$OS.$F4.exr", 3)
+        self.menu__hip_render_gras___name__os__f4_exr = ("$HIP/render_grassy_hills_closeup/$HIPNAME.$OS.$F4.exr", 4)
+        self.menu__hip_render_gras___name__os__f4_exr = ("$HIP/render_grassy_hills/$HIPNAME.$OS.$F4.exr", 5)
+        self.menu__hip_tunder_rend___name__os__f4_exr = ("$HIP/tunder_render/$HIPNAME.$OS.$F4.exr", 6)
+        self.menu_e__art_old_3d_as___field_wind_2_abc = ("E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind_2.abc", 7)
+        self.menu_e__art_old_3d_as___t_field_wind_abc = ("E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind.abc", 8)
+        self.menu_e__renders_houdi___name__os__f4_exr = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr", 9)
+        self.menu_e__renders_houdi___r_magic_prev__f3 = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3", 10)
+        self.menu_e__art_projects____y_first_hdrlight = ("E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight", 11)
 
 
 class LprerenderMenu(Menu):
@@ -572,46 +443,18 @@ class PreframeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__hip_render_whit___name__os__f4_exr = (
-            "$HIP/render_white_desert_closeup/$HIPNAME.$OS.$F4.exr",
-            0,
-        )
-        self.menu__hip_tunder_rend___name__os__f4_exr = (
-            "$HIP/tunder_render_closeup/$HIPNAME.$OS.$F4.exr",
-            1,
-        )
-        self.menu__hip_render_gras___name__os__f4_exr = (
-            "$HIP/render_grassy_hills_closeup/$HIPNAME.$OS.$F4.exr",
-            2,
-        )
-        self.menu__hip_render_gras___name__os__f4_exr = (
-            "$HIP/render_grassy_hills/$HIPNAME.$OS.$F4.exr",
-            3,
-        )
-        self.menu__hip_tunder_rend___name__os__f4_exr = (
-            "$HIP/tunder_render/$HIPNAME.$OS.$F4.exr",
-            4,
-        )
-        self.menu_e__art_old_3d_as___field_wind_2_abc = (
-            "E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind_2.abc",
-            5,
-        )
-        self.menu_e__art_old_3d_as___t_field_wind_abc = (
-            "E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind.abc",
-            6,
-        )
-        self.menu_e__renders_houdi___name__os__f4_exr = (
-            "E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr",
-            7,
-        )
-        self.menu_e__renders_houdi___r_magic_prev__f3 = (
-            "E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3",
-            8,
-        )
-        self.menu_e__art_projects____y_first_hdrlight = (
-            "E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight",
-            9,
-        )
+        self.menu__hip_render_part___name__os__f4_exr = ("$HIP/render_particle_stars/$HIPNAME.$OS.$F4.exr", 0)
+        self.menu__hip_render_neb____name__os__f4_exr = ("$HIP/render_neb_full_360/$HIPNAME.$OS.$F4.exr", 1)
+        self.menu__hip_render_whit___name__os__f4_exr = ("$HIP/render_white_desert_closeup/$HIPNAME.$OS.$F4.exr", 2)
+        self.menu__hip_tunder_rend___name__os__f4_exr = ("$HIP/tunder_render_closeup/$HIPNAME.$OS.$F4.exr", 3)
+        self.menu__hip_render_gras___name__os__f4_exr = ("$HIP/render_grassy_hills_closeup/$HIPNAME.$OS.$F4.exr", 4)
+        self.menu__hip_render_gras___name__os__f4_exr = ("$HIP/render_grassy_hills/$HIPNAME.$OS.$F4.exr", 5)
+        self.menu__hip_tunder_rend___name__os__f4_exr = ("$HIP/tunder_render/$HIPNAME.$OS.$F4.exr", 6)
+        self.menu_e__art_old_3d_as___field_wind_2_abc = ("E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind_2.abc", 7)
+        self.menu_e__art_old_3d_as___t_field_wind_abc = ("E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind.abc", 8)
+        self.menu_e__renders_houdi___name__os__f4_exr = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr", 9)
+        self.menu_e__renders_houdi___r_magic_prev__f3 = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3", 10)
+        self.menu_e__art_projects____y_first_hdrlight = ("E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight", 11)
 
 
 class LpreframeMenu(Menu):
@@ -626,46 +469,18 @@ class PostframeMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__hip_render_whit___name__os__f4_exr = (
-            "$HIP/render_white_desert_closeup/$HIPNAME.$OS.$F4.exr",
-            0,
-        )
-        self.menu__hip_tunder_rend___name__os__f4_exr = (
-            "$HIP/tunder_render_closeup/$HIPNAME.$OS.$F4.exr",
-            1,
-        )
-        self.menu__hip_render_gras___name__os__f4_exr = (
-            "$HIP/render_grassy_hills_closeup/$HIPNAME.$OS.$F4.exr",
-            2,
-        )
-        self.menu__hip_render_gras___name__os__f4_exr = (
-            "$HIP/render_grassy_hills/$HIPNAME.$OS.$F4.exr",
-            3,
-        )
-        self.menu__hip_tunder_rend___name__os__f4_exr = (
-            "$HIP/tunder_render/$HIPNAME.$OS.$F4.exr",
-            4,
-        )
-        self.menu_e__art_old_3d_as___field_wind_2_abc = (
-            "E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind_2.abc",
-            5,
-        )
-        self.menu_e__art_old_3d_as___t_field_wind_abc = (
-            "E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind.abc",
-            6,
-        )
-        self.menu_e__renders_houdi___name__os__f4_exr = (
-            "E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr",
-            7,
-        )
-        self.menu_e__renders_houdi___r_magic_prev__f3 = (
-            "E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3",
-            8,
-        )
-        self.menu_e__art_projects____y_first_hdrlight = (
-            "E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight",
-            9,
-        )
+        self.menu__hip_render_part___name__os__f4_exr = ("$HIP/render_particle_stars/$HIPNAME.$OS.$F4.exr", 0)
+        self.menu__hip_render_neb____name__os__f4_exr = ("$HIP/render_neb_full_360/$HIPNAME.$OS.$F4.exr", 1)
+        self.menu__hip_render_whit___name__os__f4_exr = ("$HIP/render_white_desert_closeup/$HIPNAME.$OS.$F4.exr", 2)
+        self.menu__hip_tunder_rend___name__os__f4_exr = ("$HIP/tunder_render_closeup/$HIPNAME.$OS.$F4.exr", 3)
+        self.menu__hip_render_gras___name__os__f4_exr = ("$HIP/render_grassy_hills_closeup/$HIPNAME.$OS.$F4.exr", 4)
+        self.menu__hip_render_gras___name__os__f4_exr = ("$HIP/render_grassy_hills/$HIPNAME.$OS.$F4.exr", 5)
+        self.menu__hip_tunder_rend___name__os__f4_exr = ("$HIP/tunder_render/$HIPNAME.$OS.$F4.exr", 6)
+        self.menu_e__art_old_3d_as___field_wind_2_abc = ("E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind_2.abc", 7)
+        self.menu_e__art_old_3d_as___t_field_wind_abc = ("E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind.abc", 8)
+        self.menu_e__renders_houdi___name__os__f4_exr = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr", 9)
+        self.menu_e__renders_houdi___r_magic_prev__f3 = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3", 10)
+        self.menu_e__art_projects____y_first_hdrlight = ("E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight", 11)
 
 
 class LpostframeMenu(Menu):
@@ -680,46 +495,18 @@ class PostrenderMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu__hip_render_whit___name__os__f4_exr = (
-            "$HIP/render_white_desert_closeup/$HIPNAME.$OS.$F4.exr",
-            0,
-        )
-        self.menu__hip_tunder_rend___name__os__f4_exr = (
-            "$HIP/tunder_render_closeup/$HIPNAME.$OS.$F4.exr",
-            1,
-        )
-        self.menu__hip_render_gras___name__os__f4_exr = (
-            "$HIP/render_grassy_hills_closeup/$HIPNAME.$OS.$F4.exr",
-            2,
-        )
-        self.menu__hip_render_gras___name__os__f4_exr = (
-            "$HIP/render_grassy_hills/$HIPNAME.$OS.$F4.exr",
-            3,
-        )
-        self.menu__hip_tunder_rend___name__os__f4_exr = (
-            "$HIP/tunder_render/$HIPNAME.$OS.$F4.exr",
-            4,
-        )
-        self.menu_e__art_old_3d_as___field_wind_2_abc = (
-            "E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind_2.abc",
-            5,
-        )
-        self.menu_e__art_old_3d_as___t_field_wind_abc = (
-            "E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind.abc",
-            6,
-        )
-        self.menu_e__renders_houdi___name__os__f4_exr = (
-            "E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr",
-            7,
-        )
-        self.menu_e__renders_houdi___r_magic_prev__f3 = (
-            "E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3",
-            8,
-        )
-        self.menu_e__art_projects____y_first_hdrlight = (
-            "E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight",
-            9,
-        )
+        self.menu__hip_render_part___name__os__f4_exr = ("$HIP/render_particle_stars/$HIPNAME.$OS.$F4.exr", 0)
+        self.menu__hip_render_neb____name__os__f4_exr = ("$HIP/render_neb_full_360/$HIPNAME.$OS.$F4.exr", 1)
+        self.menu__hip_render_whit___name__os__f4_exr = ("$HIP/render_white_desert_closeup/$HIPNAME.$OS.$F4.exr", 2)
+        self.menu__hip_tunder_rend___name__os__f4_exr = ("$HIP/tunder_render_closeup/$HIPNAME.$OS.$F4.exr", 3)
+        self.menu__hip_render_gras___name__os__f4_exr = ("$HIP/render_grassy_hills_closeup/$HIPNAME.$OS.$F4.exr", 4)
+        self.menu__hip_render_gras___name__os__f4_exr = ("$HIP/render_grassy_hills/$HIPNAME.$OS.$F4.exr", 5)
+        self.menu__hip_tunder_rend___name__os__f4_exr = ("$HIP/tunder_render/$HIPNAME.$OS.$F4.exr", 6)
+        self.menu_e__art_old_3d_as___field_wind_2_abc = ("E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind_2.abc", 7)
+        self.menu_e__art_old_3d_as___t_field_wind_abc = ("E:/ART_OLD/3D_ASSETS/00_my_trees/palm_with_wind_abc/Palm_Coconut_Field_wind.abc", 8)
+        self.menu_e__renders_houdi___name__os__f4_exr = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/$HIPNAME.$OS.$F4.exr", 9)
+        self.menu_e__renders_houdi___r_magic_prev__f3 = ("E:/RENDERS/HOUDINI/TUTORIALS/MAGIC_RENDR/magic_prev.$F3", 10)
+        self.menu_e__art_projects____y_first_hdrlight = ("E:/ART/PROJECTS/00_shared/hdri/my_first_hdrlight", 11)
 
 
 class LpostrenderMenu(Menu):
@@ -728,3 +515,6 @@ class LpostrenderMenu(Menu):
         super().__init__(parm=parm)
         self.menu_hscript = ("hscript", 0)
         self.menu_python = ("python", 1)
+
+
+

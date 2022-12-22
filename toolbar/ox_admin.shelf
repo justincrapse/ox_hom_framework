@@ -266,61 +266,15 @@ for key, value in created_node_dict.items():
   </tool>
 
   <tool name="examples" label="Examples" icon="cat_rainbow">
-    <script scriptType="python"><![CDATA[# autocomplete nodes, parm, menu
-import logging
-import os
-
-import hou
-
+    <script scriptType="python"><![CDATA[import hou
+from ox import OXNode, set_log_level
 from ox import nodes
-from ox.base_objects.ox_node import OXNode
-from ox.constants.ox_conf import sesh_vars
-from ox.utils import session_utils, file_utils
-
-ox_logger = logging.getLogger("ox_logger")
+from ox.helpers import ox_helper
 
 
-# obj_node = hou.node("/obj")
-# geo_node = obj_node.createNode("geo")
-# sphere_node: hou.Node = geo_node.createNode("sphere")
-# sphere_node.parm("scale").set(0.5)
-# freq_parm: hou.Parm = sphere_node.parm("freq")
-# freq_parm.set(1)
-# type_parm: hou.Parm = sphere_node.parm("type")
-# menu_lookup = dict(zip(type_parm.menuLabels(), type_parm.menuItems()))
-# type_parm.set(menu_lookup["Polygon"])
+obj_ox_node = OXNode(hou.node("/obj"))
 
-# new_parm_template = hou.ButtonParmTemplate(
-#     name="my_button", label="My Button", script_callback="print('Test Button 1')", script_callback_language=hou.scriptLanguage.Python
-# )
-# parm_template_group: hou.ParmTemplateGroup = sphere_node.parmTemplateGroup()
-# freq_pt = freq_parm.parmTemplate()
-# parm_template_group.insertAfter(freq_pt, new_parm_template)
-# sphere_node.setParmTemplateGroup(parm_template_group=parm_template_group)
-
-
-obj_node = hou.node("/obj")
-ox_obj_node = OXNode(obj_node)
-ox_geo_node = nodes.obj_nodes.GeoNode(ox_parent=ox_obj_node)
-ox_sphere_node = nodes.geo_nodes.SphereNode(ox_parent=ox_geo_node)
-ox_sphere_node.parm_type.menu_polygon
-ox_geo_node.add_parm_template()
-ox_sphere_node.parm_scale = 0.5
-ox_sphere_node.parm_freq = 1
-
-session_utils.set_session_variable(var_name=sesh_vars.LOAD_USER_PRESETS, value=True)
-load_user_presets = session_utils.get_session_variable(sesh_vars.LOAD_USER_PRESETS)
-if load_user_presets:
-    ox_logger.debug(f"loading user preset: {ox_sphere_node.name}")
-    ox_sphere_node.load_preset()
-
-button_pt = ox_sphere_node.create_button_parm_template(name="my_button", label="My Button", script_callback="print('Test Button 2')")
-ox_sphere_node.add_parm_template(parm_template=button_pt, insert_after_parm=ox_sphere_node.parm_freq.parm)
-
-# folder_path = os.getenv("HIP")
-# contents = file_utils.get_dir_contents(folder_path=folder_path)
-# print(contents)
-]]></script>
+nodes.obj_nodes.HelixNode()]]></script>
   </tool>
 
   <tool name="sandbox" label="SandBox" icon="pearl_icon">
@@ -328,31 +282,13 @@ ox_sphere_node.add_parm_template(parm_template=button_pt, insert_after_parm=ox_s
 from ox import OXNode, set_log_level
 from ox import nodes
 from ox.helpers import ox_helper
-from ox.nodes.obj_nodes import GeoNode
 
 
 obj_ox_node = OXNode(hou.node("/obj"))
 
 
-geo_ox_node: GeoNode = obj_ox_node.ox_child("geo1", GeoNode)
-geo_ox_node.load_preset()
-
-set_log_level(20)
-print('set to 20')
-
-geo_ox_node.load_preset()
-
-set_log_level(10)
-print('set to 10')
-
-
-geo_ox_node.load_preset()
-set_log_level(30)
-
-
 ######################################################################################################################################################
 # get child nodes
-
 # mtlx_matnet_node = obj_ox_node.get_child_node_by_name(child_name='mtlx_matnet')
 # mtlx_matnet_ox_node = nodes.obj_nodes.MatnetNode(mtlx_matnet_node)
 
@@ -363,9 +299,27 @@ set_log_level(30)
 # mtlx_matnet_node = obj_ox_node.child('mtlx_matnet')
 # mtlx_matnet_ox_node = nodes.obj_nodes.MatnetNode(mtlx_matnet_node)
 
-# mtlx_matnet_ox_node = obj_ox_node.ox_child('mtlx_matnet', node_class=nodes.obj_nodes.MatnetNode)
+mtlx_matnet_ox_node = obj_ox_node.ox_child('mtlx_matnet', node_class=nodes.obj_nodes.GeoNode)
 
-# mtlx_matnet_ox_node.get_
+mtlx_matnet_ox_node
+######################################################################################################################################################
+
+######################################################################################################################################################
+# logging
+# geo_ox_node: GeoNode = obj_ox_node.ox_child("geo1", GeoNode)
+# geo_ox_node.load_preset()
+
+# set_log_level(20)
+# print('set to 20')
+
+# geo_ox_node.load_preset()
+
+# set_log_level(10)
+# print('set to 10')
+
+
+# geo_ox_node.load_preset()
+# set_log_level(30)
 ######################################################################################################################################################
 
 

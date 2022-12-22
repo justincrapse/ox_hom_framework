@@ -4,11 +4,13 @@ keep in mind that "node_type" is used instead of "type" as that is a built-in we
 
 from ox.utils import data_lover
 from ox.utils.gen_classes import gen_menu_classes
+from ox import set_log_level
 
 import pathlib
 import logging
 
 ox_logger = logging.getLogger("ox_logger")
+current_logging_level = ox_logger.level
 
 current_path = pathlib.Path(__file__).parent.resolve()
 nodes_path = current_path.parent.parent.joinpath("nodes")
@@ -119,7 +121,9 @@ class {class_name}(OXNode):
         "\t", "    "
     )
     with open(full_file_path, "w") as file:
-        ox_logger.debug(f"writing file: {full_file_path}")
+        set_log_level(20)
+        ox_logger.info(f"writing file: {full_file_path}")
+        set_log_level(current_logging_level)
         file.write(class_string)
 
     import_line = f"from .{file_name_node} import {class_name}"

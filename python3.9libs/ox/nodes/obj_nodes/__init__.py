@@ -6,3 +6,5 @@ from .cam_node import CamNode
 from .rslightdome_node import RslightdomeNode
 
 from .hf_node import HfNode
+
+from .helix_node import HelixNode

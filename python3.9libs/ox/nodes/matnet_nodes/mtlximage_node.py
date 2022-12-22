@@ -44,9 +44,7 @@ class MtlximageNode(OXNode):
         if node:
             self.node = node
         else:
-            self.node = self.ox_parent.create_node(
-                node_type_name=self.node_type, node_name=node_name
-            )
+            self.node = self.ox_parent.create_node(node_type_name=self.node_type, node_name=node_name)
         self.node_name = self.node.name()
         super().__init__(node=self.node)
 
@@ -77,15 +75,11 @@ class MtlximageNode(OXNode):
         # parm menu vars:
         self.parm_signature = SignatureMenu(parm=self.node.parm("signature"))
         self.parm_file = FileMenu(parm=self.node.parm("file"))
-        self.parm_filecolorspace = FilecolorspaceMenu(
-            parm=self.node.parm("filecolorspace")
-        )
+        self.parm_filecolorspace = FilecolorspaceMenu(parm=self.node.parm("filecolorspace"))
         self.parm_uaddressmode = UaddressmodeMenu(parm=self.node.parm("uaddressmode"))
         self.parm_vaddressmode = VaddressmodeMenu(parm=self.node.parm("vaddressmode"))
         self.parm_filtertype = FiltertypeMenu(parm=self.node.parm("filtertype"))
-        self.parm_frameendaction = FrameendactionMenu(
-            parm=self.node.parm("frameendaction")
-        )
+        self.parm_frameendaction = FrameendactionMenu(parm=self.node.parm("frameendaction"))
 
         # input vars:
         self.input_default_color = "Default Color"
@@ -109,10 +103,7 @@ class FileMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_e__art_old_proje___a_sunrise_4k_exr = (
-            "E:/ART_OLD/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr",
-            0,
-        )
+        self.menu_e__art_old_proje___a_sunrise_4k_exr = ("E:/ART_OLD/PROJECTS/00_shared/hdri/umhlanga_sunrise_4k.exr", 0)
         self.menu_e__art_old_proje___s_on_fire_4k_exr = (
             "E:/ART_OLD/PROJECTS/00_shared/hdri/the_sky_is_on_fire_4k.exr",
             1,

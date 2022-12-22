@@ -74,7 +74,8 @@ class ParmTemplate:
         :param as_first: Will insert this parameter as the first in the node.
         :param insert_after_parm: This can be a parm object or the name of a parm after which you insert the new parm template
         :param insert_before_parm: same as insert_after_parm but before.
-        :param return_type: Return types may vary depending on the type of parm template. Add logic as neccisary.
+        :param return_type: Return types may vary depending on the type of parm template. Add logic as neccisary. Options:
+            * 'color'  # for color parm templates
         :param supress_logger: For specific expected error logging that may intentionally be supressed
 
         """
@@ -125,7 +126,7 @@ class ParmTemplate:
         if not new_parm:
             if not supress_logger:
                 ox_logger.error(
-                    f"No new parm created for parm_template: {parm_template}."
+                    f"No new parm created for parm_template: {parm_template}. If a new parm was created, it may need a different return_type value"
                 )
         return new_parm
 

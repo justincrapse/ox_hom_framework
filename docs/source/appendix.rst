@@ -1,5 +1,5 @@
-Appendix
-===============
+Appendix A: Coding Environment
+==============================
 
 VSCode IDE Setup
 ----------------
@@ -37,6 +37,23 @@ https://stackoverflow.com/questions/65908987/how-can-i-open-visual-studio-codes-
 Make sure you adjust the paths above to wherever your Houdini installation lives and also the python3.xlibs path for the ox framework. 
 Note: It was difficult to figure out how to get this to work and I couldn't find how from a single source. This may or may not work for you, but if 
 it does not, search the internet for "houdini hou autocomplete VSCode" or equivalent. 
+
+Flake8 Linter
+^^^^^^^^^^^^^
+
+Python linting in VSCode: https://code.visualstudio.com/docs/python/linting
+
+You may use any linter you'd like, but if you are going to contribute to the framework, I will be enforcing a clean result from Flake8. The Setup can
+be found in the root of the directory as "setup.cfg"
+
+When modifying toolbar scripts, the setup.cfg file may be ignored as it was for me. In this case, you can add command line arguments for flake8 in the
+settings. Go to File>Preferences>Settings and type in linting. Then click on "Python" on the left under "Extensions" as seen in the image below. Add
+as many options as you need. For now this example just has --max-line-length=150.
+
+.. image:: images/appendix/flake8_max_length.jpg
+
+The nodes folders are excluded for now, but most of that is auto-generated and will not be modified directly. 
+
 
 PyCharm IDE Setup
 -----------------

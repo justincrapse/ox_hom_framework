@@ -16,3 +16,6 @@ from .bumpblender_node import BumpblenderNode
 from .materialblender_node import MaterialblenderNode
 from .material_node import MaterialNode
 from .rscolorcorrection_node import RscolorcorrectionNode
+
+from .quixel_redshift_triplanar_node import QuixelRedshiftTriplanarNode
+from .particleattributelookup_node import ParticleattributelookupNode

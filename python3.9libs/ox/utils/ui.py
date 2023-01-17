@@ -101,9 +101,6 @@ def replace_env_var_in_path(selected_path):
 def select_file(title="Select File"):
     file_path = hou.ui.selectFile(title=title)
     file_path = replace_env_var_in_path(selected_path=file_path)
-    # file_path = file_path.replace("$JOB", hou.getenv("JOB"))
-    # file_path = file_path.replace("$HIP", hou.getenv("HIP"))
-    # file_path = file_path.replace("$HOME", hou.getenv("HOME"))
     return file_path
 
 
@@ -112,9 +109,6 @@ def select_folder(title="Select Folder", default_value=None):
         title=title, default_value=default_value, file_type=hou.fileType.Directory
     )
     folder_path = replace_env_var_in_path(selected_path=folder_path)
-    # folder_path = folder_path.replace("$JOB", hou.getenv("JOB"))
-    # folder_path = folder_path.replace("$HIP", hou.getenv("HIP"))
-    # folder_path = folder_path.replace("$HOME", hou.getenv("HOME"))
     return folder_path
 
 

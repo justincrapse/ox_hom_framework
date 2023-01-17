@@ -26,3 +26,5 @@ from .texturesampler_node import TexturesamplerNode
 from .sprite_node import SpriteNode
 from .standardmaterial_node import StandardmaterialNode
 from .rsuserdatascalar_node import RsuserdatascalarNode
+
+from .mtlxgeompropvalue_node import MtlxgeompropvalueNode

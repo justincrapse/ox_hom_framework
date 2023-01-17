@@ -50,6 +50,7 @@ class OXNode(ParmTemplate):  # mixins
         else:
             super().__setattr__(name, value)
 
+
     @staticmethod
     def __clean_parm_key(raw_key):
         """Cleans the parm attribute name to match the key in the child ox node class parm_lookup_dict so that it can get the actual name of the
@@ -286,6 +287,10 @@ class OXNode(ParmTemplate):  # mixins
         planes_clean = [i for i in planes if i]
         ox_logger.debug(f"clean planes returned by get_planse for node {self.name}: {planes}")
         return planes_clean
+
+    def get_heightfield_masks(self):
+        hf_masks = self.get_planes()
+        return hf_masks
 
     def get_displayed_child_node(self) -> hou.Node:
         """Returns displayed child node."""

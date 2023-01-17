@@ -140,6 +140,8 @@ for node in selected_nodes:
     <memberTool name="regenerate_node_classes"/>
     <memberTool name="examples"/>
     <memberTool name="sandbox"/>
+    <memberTool name="pyside"/>
+    <memberTool name="save_as_code"/>
   </toolshelf>
 
   <tool name="regenerate_node_classes" label="Regenerate Node Classes" icon="cat_blue_icon">

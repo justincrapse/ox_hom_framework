@@ -1,4 +1,9 @@
+import logging
+
 import hou
+
+
+ox_logger = logging.getLogger("ox_logger")
 
 
 class Parameter:
@@ -38,3 +43,6 @@ class Parameter:
 
     def lock(self, on=True):
         self.parm.lock(on=on)
+
+    def eval(self):
+        return self.parm.eval()

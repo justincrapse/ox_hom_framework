@@ -230,6 +230,10 @@ class OXNode(ParmTemplate):  # mixins
         children_node_list = self.node.children()
         return children_node_list
 
+    def get_all_items(self):
+        all_items = self.node.allItems()
+        return all_items
+
     def get_child_nodes_by_type(self, node_type, expect_match=False):
         """Returns all child nodes mathcing specified type."""
         matching_nodes = [i for i in self.get_child_nodes() if i.type().name() == node_type]

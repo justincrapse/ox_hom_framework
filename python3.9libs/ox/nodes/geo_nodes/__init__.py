@@ -42,3 +42,5 @@ from .convertheightfield_node import ConvertheightfieldNode
 from .boolean_node import BooleanNode
 from .delete_node import DeleteNode
 from .copnet_node import CopNetNode
+
+from .uvtransform_node import UvtransformNode

@@ -202,6 +202,8 @@ for node in node_class_list:
     # handle dynamic parms:
     if node.node_type == "labs::hf_combine_masks":
         new_node.parm("folder0").set(10)
+    if node.node_type == "add":
+        new_node.parm("points").set(10)
 
     ox_logger.info(new_node.name())
     gen_node_classes.generate_node_class(node=new_node, sub_dir=node_dir)
@@ -223,7 +225,7 @@ for node in node_class_list:
 
     if node.node_type == "collect":
         new_node.setInput(input_index=0, item_to_become_input=extra_node, output_index=0)
-        
+
     ox_logger.info(new_node.name())
     gen_node_classes.generate_node_class(node=new_node, sub_dir=node_dir)
     created_node_dict[node_dir].append(node.node_type)
@@ -283,101 +285,15 @@ nodes.obj_nodes.HelixNode()]]></script>
     <script scriptType="python"><![CDATA[import hou
 from ox import OXNode, set_log_level
 from ox import nodes
+from ox.utils import ui
 from ox.helpers import ox_helper
 
 
 obj_ox_node = OXNode(hou.node("/obj"))
 
 
-######################################################################################################################################################
-# get child nodes
-# mtlx_matnet_node = obj_ox_node.get_child_node_by_name(child_name='mtlx_matnet')
-# mtlx_matnet_ox_node = nodes.obj_nodes.MatnetNode(mtlx_matnet_node)
-
-# #or
-# mtlx_matnet_ox_node = obj_ox_node.get_child_ox_node_by_name('mtlx_matnet', node_class=nodes.obj_nodes.MatnetNode)
-
-# #or
-# mtlx_matnet_node = obj_ox_node.child('mtlx_matnet')
-# mtlx_matnet_ox_node = nodes.obj_nodes.MatnetNode(mtlx_matnet_node)
-
-mtlx_matnet_ox_node = obj_ox_node.ox_child('mtlx_matnet', node_class=nodes.obj_nodes.GeoNode)
-
-mtlx_matnet_ox_node
-######################################################################################################################################################
-
-######################################################################################################################################################
-# logging
-# geo_ox_node: GeoNode = obj_ox_node.ox_child("geo1", GeoNode)
-# geo_ox_node.load_preset()
-
-# set_log_level(20)
-# print('set to 20')
-
-# geo_ox_node.load_preset()
-
-# set_log_level(10)
-# print('set to 10')
-
-
-# geo_ox_node.load_preset()
-# set_log_level(30)
-######################################################################################################################################################
-
-
-######################################################################################################################################################
-# setting parameters
-# mtlx_matnet_ox_node = obj_ox_node.get_child_ox_node_by_name(child_name="mtlx_matnet", node_class=nodes.obj_nodes.GeoNode)
-
-# mtlx_image_ox_node = mtlx_matnet_ox_node.get_child_ox_node_by_type(node_class=nodes.matnet_nodes.MtlximageNode)
-# mtlx_surface_ox_node = mtlx_matnet_ox_node.get_child_ox_node_by_type(node_class=nodes.matnet_nodes.MtlxstandardSurfaceNode)
-
-
-# mtlx_image_ox_node.parm_file = "/some_dir/my_file.png"
-# mtlx_image_ox_node.parm_signature.menu_float
-
-
-# mtlx_image_node: hou.Node = hou.node("/obj/mtlx_matnet/mtlximage1")
-# mtlx_surface_node: hou.Node = hou.node("/obj/mtlx_matnet/mtlxstandard_surface1")
-
-# mtlx_surface_node.setInput(mtlx_surface_node.inputLabels().index("Emission Color"), mtlx_image_node)
-
-
-# mtlx_image_node.parm("file").set("/some_dir/my_file.png")
-# signature_parm = mtlx_image_node.parm("signature")
-# float_menu_index = signature_parm.menuLabels().index("Float")
-# float_menu_value = signature_parm.menuItems()[float_menu_index]
-# signature_parm.set(float_menu_value)
-######################################################################################################################################################
-
-
-######################################################################################################################################################
-# adding a parm template
-
-# obj_ox_node = OXNode(hou.node("/obj"))
-
-# hda_ox_node = obj_ox_node.get_child_ox_node_by_name(child_name="OX_Sandbox")
-
-# color_pt = hda_ox_node.create_color_tuple_parm_template(name="my_color_parm", label="My Color Parm")
-# hda_ox_node.add_parm_template(parm_template=color_pt, insert_after_parm="my_button", return_type="color")
-
-
-# hda_node: hou.Node = hou.node("/obj/OX_Sandbox")
-# color_pt = hou.FloatParmTemplate(
-#     name="my_color_parm",
-#     label="My Color Parm",
-#     num_components=3,
-#     default_value=([1, 1, 1]),
-#     min=0,
-#     max=1,
-#     min_is_strict=False,
-#     look=hou.parmLook.ColorSquare,
-#     naming_scheme=hou.parmNamingScheme.RGBA,
-# )
-# parm_template_group: hou.ParmTemplateGroup = hda_node.parmTemplateGroup()
-# parm_template_group.insertAfter("my_button", color_pt)
-# hda_node.setParmTemplateGroup(parm_template_group=parm_template_group)
-######################################################################################################################################################
-]]></script>
+selected_parm = hou.ui.selectParm()
+parm = hou.parm(selected_parm[0])
+print(parm)]]></script>
   </tool>
 </shelfDocument>

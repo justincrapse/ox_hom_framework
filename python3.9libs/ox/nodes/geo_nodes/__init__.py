@@ -44,3 +44,5 @@ from .delete_node import DeleteNode
 from .copnet_node import CopNetNode
 
 from .uvtransform_node import UvtransformNode
+from .add_node import AddNode
+from .peak_node import PeakNode

@@ -116,12 +116,12 @@ class ParmTemplate:
             f'Added new parm template to "{self.node.name()}" node: {parm_template.name()}'
         )
         if return_type == "color":
-            return_parm_tuple = (
-                self.node.parm(f"{parm_template.name()}r"),
-                self.node.parm(f"{parm_template.name()}g"),
-                self.node.parm(f"{parm_template.name()}b"),
-            )
-            return return_parm_tuple
+            # return_parm_tuple = (
+            #     self.node.parm(f"{parm_template.name()}r"),
+            #     self.node.parm(f"{parm_template.name()}g"),
+            #     self.node.parm(f"{parm_template.name()}b"),
+            # )
+            return self.node.parmTuple(parm_template.name())
         new_parm = self.node.parm(parm_template.name())
         if not new_parm:
             if not supress_logger:
@@ -176,8 +176,12 @@ class ParmTemplate:
 
         :param save_template_group: This parameter lets you hold off on saving the template group, which may behave better when removing many parms
         """
-        result = self.parm_template_group.remove(parm_name)
-        ox_logger.info(f'Remove "{parm_name}" parm template result: {result}')
+        try:
+            result = self.parm_template_group.remove(parm_name)
+            ox_logger.info(f'Remove "{parm_name}" parm template result: {result}')
+        except hou.OperationFailed:
+            ox_logger.info(f'Remove failed for  "{parm_name}" parm template result: {result}')
+            return
         if save_template_group:
             self._save_template_group()
 

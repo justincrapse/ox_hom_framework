@@ -43,6 +43,7 @@ class OXNode(ParmTemplate):  # mixins
         clean_key = self.__clean_parm_key(raw_key=name)
         if clean_key in self.parm_lookup_dict and clean_key not in skip_list and hasattr(self, name):
             hou_parm_string = self.parm_lookup_dict[clean_key]
+            ox_logger.debug(f'Hou parm string: {hou_parm_string}')
             parm = self.node.parm(hou_parm_string)
             parm.deleteAllKeyframes()  # this is for channel referencing. lots of issues with channel referencing otherwise.
             ox_logger.debug(f'Setting parm "{parm}" to value "{value}" of type: "{type(value)}"')
@@ -184,7 +185,7 @@ class OXNode(ParmTemplate):  # mixins
         """Checks for child match by exact name"""
         return bool(self.get_child_node_by_name(child_name=child_name))
 
-    def has_child_with_node_type(self, node_type, expect_match) -> bool:
+    def has_child_with_node_type(self, node_type, expect_match=False) -> bool:
         """Checks for a child match by node type"""
         return bool(self.get_child_by_node_type(node_type=node_type, expect_match=expect_match))
 
@@ -234,16 +235,22 @@ class OXNode(ParmTemplate):  # mixins
         all_items = self.node.allItems()
         return all_items
 
-    def get_child_nodes_by_type(self, node_type, expect_match=False):
+    def get_child_nodes_by_type(self, node_type, substring=None, expect_match=False):
         """Returns all child nodes mathcing specified type."""
-        matching_nodes = [i for i in self.get_child_nodes() if i.type().name() == node_type]
+        if substring:
+            matching_nodes = [i for i in self.get_child_nodes_by_partial_name(substring=substring) if i.type().name() == node_type]
+        else: 
+            matching_nodes = [i for i in self.get_child_nodes() if i.type().name() == node_type]
         if not matching_nodes and expect_match:
             raise ValueError(f'Expected child node of type "{node_type}" but no matches were found')
         return matching_nodes
 
-    def get_child_node_by_type(self, node_type, expect_match=False):
+    def get_child_node_by_type(self, node_type, substring=None, expect_match=False):
         """Returns the first matching child node of node_type parameter"""
-        matching_nodes = self.get_child_nodes_by_type(node_type=node_type, expect_match=expect_match)
+        if substring:
+            matching_nodes = self.get_child_nodes_by_type(node_type=node_type, expect_match=expect_match, substring=substring)
+        else:
+            matching_nodes = self.get_child_nodes_by_type(node_type=node_type, expect_match=expect_match)
         return matching_nodes[0]
 
     def get_child_ox_node_by_type(self, node_class, expect_match=False):
@@ -253,7 +260,7 @@ class OXNode(ParmTemplate):  # mixins
         child_ox_node = node_class(matching_nodes[0])
         return child_ox_node
 
-    def get_child_by_node_type(self, node_type, expect_match=False, only_one_match=True):
+    def get_child_by_node_type(self, node_type, substring=None, expect_match=False, only_one_match=True):
         """WARNING: TO BE DEPRICATED. this is redundant and poorly named. use get_child_node_by_type instead"""
         matching_nodes = self.get_child_nodes_by_type(node_type=node_type, expect_match=expect_match)
         if matching_nodes and len(matching_nodes) > 1 and only_one_match:

@@ -43,6 +43,13 @@ def get_hda_parm_value(parm_name, as_raw_value=False, null_msg=None, allow_null=
     return parm_value
 
 
+def get_hda_parm_color_values(parm_name):
+    r = hou.pwd().parm(f"{parm_name}r").eval()
+    g = hou.pwd().parm(f"{parm_name}g").eval()
+    b = hou.pwd().parm(f"{parm_name}b").eval()
+    return r, g, b
+
+
 def get_hda_parm(parm_name):
     """Returns the hda parm by name"""
     parm = hou.pwd().parm(parm_name)

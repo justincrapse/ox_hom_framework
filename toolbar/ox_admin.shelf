@@ -142,6 +142,7 @@ for node in selected_nodes:
     <memberTool name="sandbox"/>
     <memberTool name="pyside"/>
     <memberTool name="save_as_code"/>
+    <memberTool name="sandbox_2"/>
   </toolshelf>
 
   <tool name="regenerate_node_classes" label="Regenerate Node Classes" icon="cat_blue_icon">
@@ -295,5 +296,27 @@ obj_ox_node = OXNode(hou.node("/obj"))
 selected_parm = hou.ui.selectParm()
 parm = hou.parm(selected_parm[0])
 print(parm)]]></script>
+  </tool>
+
+  <tool name="sandbox_2" label="Sandbox 2" icon="MISC_python">
+    <script scriptType="python"><![CDATA[import hou
+
+from ox import OXNode
+from ox.utils.data_lover import get_str_as_py_var
+
+
+all_crystals_node: hou.Node = hou.node('/obj/all_crystals')
+all_ox_node = OXNode(all_crystals_node)
+
+new_node = all_crystals_node.createNode('OX:Crystal::1.0', node_name='weeee')
+parm = new_node.parm('crystal_menu')
+menu_items = parm.menuItems()
+for index, item in enumerate(menu_items[:100]):
+    item_node_name = get_str_as_py_var(string_in=item)
+    new_node = all_crystals_node.createNode('OX:Crystal::1.0', node_name=f'{item_node_name}_{index}')
+    parm = new_node.parm('crystal_menu')
+    parm.set(item)
+    parm_regen: hou.Parm = new_node.parm('regen_crystal')
+    parm_regen.pressButton()]]></script>
   </tool>
 </shelfDocument>

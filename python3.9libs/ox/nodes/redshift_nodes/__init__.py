@@ -19,3 +19,4 @@ from .rscolorcorrection_node import RscolorcorrectionNode
 
 from .quixel_redshift_triplanar_node import QuixelRedshiftTriplanarNode
 from .particleattributelookup_node import ParticleattributelookupNode
+from .triplanar_node import TriplanarNode

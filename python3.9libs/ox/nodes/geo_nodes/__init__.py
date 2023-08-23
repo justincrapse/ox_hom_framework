@@ -53,3 +53,4 @@ from .group_node import GroupNode
 from .pack_node import PackNode
 from .subnet_node import SubnetNode
 from .meevil_overlap_resolver_node import MeevilOverlapResolverNode
+from .python_node import PythonNode

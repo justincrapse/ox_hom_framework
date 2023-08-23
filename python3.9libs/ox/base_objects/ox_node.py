@@ -192,6 +192,10 @@ class OXNode(ParmTemplate):  # mixins
         """Returns a child ox node matching the child_hame parameter."""
         node_class = node_class if node_class else OXNode
         child_node = self.get_child_node_by_name(child_name=child_name)
+        if not child_node:
+            child_node_names = [i.name() for i in self.get_child_nodes()]
+            child_nodes_str = '\n'.join(child_node_names)
+            raise ValueError(f'"{child_name}" node name not found in child nodes:\n{child_nodes_str}')
         child_ox_node = node_class(child_node)
         return child_ox_node
 

@@ -115,6 +115,9 @@ class OXNode(ParmTemplate):  # mixins
         except ValueError:
             raise ValueError(f"Label: {label}. Was not found in node: {self.path}")
 
+    def get_output_label_index(self, label):
+        pass
+
     def get_input_connections_node_name_list(self):
         """Returns a list of node names of the connected input nodes"""
         connections = self.node.inputConnections()
@@ -194,8 +197,10 @@ class OXNode(ParmTemplate):  # mixins
         child_node = self.get_child_node_by_name(child_name=child_name)
         if not child_node:
             child_node_names = [i.name() for i in self.get_child_nodes()]
-            child_nodes_str = '\n'.join(child_node_names)
-            raise ValueError(f'"{child_name}" node name not found in child nodes:\n{child_nodes_str}')
+            child_nodes_str = "\n".join(child_node_names)
+            raise ValueError(
+                f'"{child_name}" node name not found in child nodes:\n{child_nodes_str}'
+            )
         child_ox_node = node_class(child_node)
         return child_ox_node
 
@@ -389,6 +394,9 @@ class OXNode(ParmTemplate):  # mixins
     def unlock_node(self):
         """Allows editing of node contents."""
         self.node.allowEditingOfContents()
+
+    def lock_node(self):
+        self.node.matchCurrentDefinition()
 
     def get_folder_labels(self):
         """Returns top-level folder labels."""

@@ -54,3 +54,16 @@ from .pack_node import PackNode
 from .subnet_node import SubnetNode
 from .meevil_overlap_resolver_node import MeevilOverlapResolverNode
 from .python_node import PythonNode
+from .gltf_node import GltfNode
+from .fbxcharacterimport_node import FbxcharacterimportNode
+from .parentjoints_node import ParentjointsNode
+from .timeshift_node import TimeshiftNode
+from .attribpromote_node import AttribpromoteNode
+from .rigpose_node import RigposeNode
+from .bonedeform_node import BonedeformNode
+from .deletejoints_node import DeletejointsNode
+from .polyslice_node import PolysliceNode
+from .rop_fbxcharacteroutput_node import RopFbxcharacteroutputNode
+from .rigattribvop_node import RigattribvopNode
+from .creep_node import CreepNode
+from .circle_node import CircleNode

@@ -5,3 +5,5 @@ from .delete_node import DeleteNode
 from .equalize_node import EqualizeNode
 from .bright_node import BrightNode
 from .rop_comp_node import RopCompNode
+
+from .sbs_archive_node import SbsArchiveNode

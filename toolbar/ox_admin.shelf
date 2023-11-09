@@ -106,6 +106,7 @@ node_to_folder_map = {
     "matnet": "matnet_nodes",
     "redshift_vopnet": "redshift_nodes",
     "cop2net": "cop_nodes",
+    "kinefx": "kinefx_nodes"
 }
 
 obj_node = hou.node("/obj")
@@ -115,6 +116,8 @@ selected_nodes = hou.selectedNodes()
 
 for node in selected_nodes:
     parent_type = node.parent().type().name()
+    if "kinefx" in parent_type:
+        parent_type = 'kinefx'
     node_type = node.type().name()
     if node_type == "labs::hf_combine_masks":
         ui.display_confirmation(

@@ -105,8 +105,11 @@ node_to_folder_map = {
     "geo": "geo_nodes",
     "matnet": "matnet_nodes",
     "redshift_vopnet": "redshift_nodes",
+    "rs_usd_material_builder": "redshift_nodes",
     "cop2net": "cop_nodes",
-    "kinefx": "kinefx_nodes"
+    "kinefx": "kinefx_nodes",
+    "lopnet": "lop_nodes",
+    "materiallibrary": "matnet_nodes",
 }
 
 obj_node = hou.node("/obj")
@@ -117,7 +120,7 @@ selected_nodes = hou.selectedNodes()
 for node in selected_nodes:
     parent_type = node.parent().type().name()
     if "kinefx" in parent_type:
-        parent_type = 'kinefx'
+        parent_type = "kinefx"
     node_type = node.type().name()
     if node_type == "labs::hf_combine_masks":
         ui.display_confirmation(
@@ -128,9 +131,7 @@ for node in selected_nodes:
     try:
         sub_dir = node_to_folder_map[parent_type]
     except KeyError:
-        raise KeyError(
-            f"{parent_type} Parent type not found as a key in the node_to_folder_map. You will need to add that folder, then update the map"
-        )
+        raise KeyError(f"{parent_type} Parent type not found as a key in the node_to_folder_map. You will need to add that folder, then update the map")
     set_log_level(20)
     ox_logger.info(f"Generating node class for node type: {node_type}. sub_dir: {sub_dir}")
     set_log_level(current_logging_level)

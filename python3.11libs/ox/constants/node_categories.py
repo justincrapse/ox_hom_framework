@@ -1,0 +1,5 @@
+GEO_NODES = "geo_nodes"
+MATNET_NODES = "matnet_nodes"
+OBJECT_NODES = "obj_nodes"
+REDSHIFT_NODES = "redshift_nodes"
+ROOT_NODES = "root_nodes"

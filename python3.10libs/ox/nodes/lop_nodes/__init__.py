@@ -1,2 +1,3 @@
 
 from .materiallibrary_node import MateriallibraryNode
+from .quicksurfacematerial_node import QuicksurfacematerialNode

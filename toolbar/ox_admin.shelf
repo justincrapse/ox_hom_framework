@@ -110,6 +110,7 @@ node_to_folder_map = {
     "kinefx": "kinefx_nodes",
     "lopnet": "lop_nodes",
     "materiallibrary": "matnet_nodes",
+    "copnet": "copnet_nodes",
 }
 
 obj_node = hou.node("/obj")
@@ -303,24 +304,9 @@ print(parm)]]></script>
   </tool>
 
   <tool name="sandbox_2" label="Sandbox 2" icon="MISC_python">
-    <script scriptType="python"><![CDATA[import hou
-
-from ox import OXNode
-from ox.utils.data_lover import get_str_as_py_var
-
-
-all_crystals_node: hou.Node = hou.node('/obj/all_crystals')
-all_ox_node = OXNode(all_crystals_node)
-
-new_node = all_crystals_node.createNode('OX:Crystal::1.0', node_name='weeee')
-parm = new_node.parm('crystal_menu')
-menu_items = parm.menuItems()
-for index, item in enumerate(menu_items[:100]):
-    item_node_name = get_str_as_py_var(string_in=item)
-    new_node = all_crystals_node.createNode('OX:Crystal::1.0', node_name=f'{item_node_name}_{index}')
-    parm = new_node.parm('crystal_menu')
-    parm.set(item)
-    parm_regen: hou.Parm = new_node.parm('regen_crystal')
-    parm_regen.pressButton()]]></script>
+    <script scriptType="python"><![CDATA[import voptoolutils
+print(kwargs)
+voptoolutils.createMaskedMtlXSubnet(kwargs)
+]]></script>
   </tool>
 </shelfDocument>

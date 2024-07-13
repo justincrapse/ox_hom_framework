@@ -19,7 +19,7 @@ texture_dict = {
     "BASE_COLOR": ["diffuse", "base color", "basecolor", "base_color", "albedo"],
     "METALNESS": ["metallic", "metallicity", "metalness"],
     "SPECULAR": ["specular"],
-    "SPECULAR_ROUGHNESS": ["roughness"],
+    "SPECULAR_ROUGHNESS": ["roughness", "gloss", "glossiness"],
     "NORMAL": ["normal", "bump"],
     "DISPLACEMENT": ["displacement", "height"],
     "EMISSION": ["emissive", "luminance", "emission"],
@@ -29,6 +29,8 @@ texture_dict = {
     "AO": ["ao", "ambient_occlusion", "ambientocclusion", "ambient occlusion"],
     "TRANSPARENCY": ["transparency", "transmission", "refraction", "translucency"],
     "IOR": ["ior", "intex_of_refraction"],
+    "SSS": ["sss", "sub_surface_scattering", "subsurface"],
+    "SSS_COLOR": ["sss_color", "sub_surface_color", "subsurface_color"]
 }
 ALL_SUBSTRINGS = [item for sub_list in texture_dict.values() for item in sub_list]
 

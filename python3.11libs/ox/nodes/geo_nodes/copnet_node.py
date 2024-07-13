@@ -4,9 +4,9 @@ from ox.base_objects.menu import Menu
 # node class version: 0.1
 
 
-class CopNetNode(OXNode):
-    node_type = 'cop2net'
-    parm_lookup_dict = {'usecoppath': 'usecoppath', 'coppath': 'coppath', 'frame': 'frame', 'planemask': 'planemask', 'method': 'method', 'plane': 'plane', 'sampling': 'sampling', 'tx': 'tx', 'ty': 'ty', 'tz': 'tz', 'scale': 'scale', 'visualize': 'visualize', 'visrange1': 'visrange1', 'visrange2': 'visrange2'}
+class CopnetNode(OXNode):
+    node_type = 'copnet'
+    parm_lookup_dict = {'usecoppath': 'usecoppath', 'coppath': 'coppath', 'singleoutput': 'singleoutput', 'output': 'output', 'plane': 'plane', 'docompile': 'docompile', 'outputapexgraph': 'outputapexgraph', 'setres': 'setres', 'res1': 'res1', 'res2': 'res2', 'resmenu': 'resmenu', 'setpixelscale': 'setpixelscale', 'pixelscale': 'pixelscale', 'setborder': 'setborder', 'border': 'border', 'setprecision': 'setprecision', 'precision': 'precision', 'setvistile': 'setvistile', 'vistile': 'vistile'}
 
     def __init__(self, node=None, ox_parent=None, node_name=None):
         self.ox_parent = ox_parent
@@ -20,38 +20,32 @@ class CopNetNode(OXNode):
         # parm vars:
         self.parm_usecoppath = Parameter(parm=self.node.parm('usecoppath'))
         self.parm_coppath = Parameter(parm=self.node.parm('coppath'))
-        self.parm_frame = Parameter(parm=self.node.parm('frame'))
-        self.parm_planemask = Parameter(parm=self.node.parm('planemask'))
-        self.parm_tx = Parameter(parm=self.node.parm('tx'))
-        self.parm_ty = Parameter(parm=self.node.parm('ty'))
-        self.parm_tz = Parameter(parm=self.node.parm('tz'))
-        self.parm_scale = Parameter(parm=self.node.parm('scale'))
-        self.parm_visualize = Parameter(parm=self.node.parm('visualize'))
-        self.parm_visrange1 = Parameter(parm=self.node.parm('visrange1'))
-        self.parm_visrange2 = Parameter(parm=self.node.parm('visrange2'))
+        self.parm_singleoutput = Parameter(parm=self.node.parm('singleoutput'))
+        self.parm_output = Parameter(parm=self.node.parm('output'))
+        self.parm_docompile = Parameter(parm=self.node.parm('docompile'))
+        self.parm_outputapexgraph = Parameter(parm=self.node.parm('outputapexgraph'))
+        self.parm_setres = Parameter(parm=self.node.parm('setres'))
+        self.parm_res1 = Parameter(parm=self.node.parm('res1'))
+        self.parm_res2 = Parameter(parm=self.node.parm('res2'))
+        self.parm_resmenu = Parameter(parm=self.node.parm('resmenu'))
+        self.parm_setpixelscale = Parameter(parm=self.node.parm('setpixelscale'))
+        self.parm_pixelscale = Parameter(parm=self.node.parm('pixelscale'))
+        self.parm_setborder = Parameter(parm=self.node.parm('setborder'))
+        self.parm_setprecision = Parameter(parm=self.node.parm('setprecision'))
+        self.parm_setvistile = Parameter(parm=self.node.parm('setvistile'))
+        self.parm_vistile = Parameter(parm=self.node.parm('vistile'))
 
         
         # parm menu vars:
-        self.parm_method = MethodMenu(parm=self.node.parm('method'))
         self.parm_plane = PlaneMenu(parm=self.node.parm('plane'))
-        self.parm_sampling = SamplingMenu(parm=self.node.parm('sampling'))
+        self.parm_border = BorderMenu(parm=self.node.parm('border'))
+        self.parm_precision = PrecisionMenu(parm=self.node.parm('precision'))
 
 
         # input vars:
 
 
 # parm menu classes:
-class MethodMenu(Menu):
-    def __init__(self, parm):
-        self.parm = parm
-        super().__init__(parm=parm)
-        self.menu_volume_slice = ("volume", 0)
-        self.menu_volume = ("fullvolume", 1)
-        self.menu_mesh = ("mesh", 2)
-        self.menu_points = ("points", 3)
-        self.menu_quad_with_uvs = ("texture", 4)
-
-
 class PlaneMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
@@ -61,12 +55,22 @@ class PlaneMenu(Menu):
         self.menu_zx_plane = ("zx", 2)
 
 
-class SamplingMenu(Menu):
+class BorderMenu(Menu):
     def __init__(self, parm):
         self.parm = parm
         super().__init__(parm=parm)
-        self.menu_center = ("center", 0)
-        self.menu_corner = ("corner", 1)
+        self.menu_constant = ("constant", 0)
+        self.menu_clamp = ("clamp", 1)
+        self.menu_mirror = ("mirror", 2)
+        self.menu_wrap = ("wrap", 3)
+
+
+class PrecisionMenu(Menu):
+    def __init__(self, parm):
+        self.parm = parm
+        super().__init__(parm=parm)
+        self.menu_bit_16 = ("b16", 0)
+        self.menu_bit_32 = ("b32", 1)
 
 
 

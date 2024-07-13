@@ -12,7 +12,6 @@ from .grid_node import GridNode
 from .connectivity_node import ConnectivityNode
 from .color_node import ColorNode
 from .switch_node import SwitchNode
-
 from .heightfield_copylayer_node import HeightfieldCopylayerNode
 from .heightfield_visualize_node import HeightfieldVisualizeNode
 from .heightfield_maskbyfeature_node import HeightfieldMaskbyfeatureNode
@@ -41,8 +40,6 @@ from .heightfield_cutoutbyobject_node import HeightfieldCutoutbyobjectNode
 from .convertheightfield_node import ConvertheightfieldNode
 from .boolean_node import BooleanNode
 from .delete_node import DeleteNode
-from .copnet_node import CopNetNode
-
 from .uvtransform_node import UvtransformNode
 from .add_node import AddNode
 from .peak_node import PeakNode
@@ -72,3 +69,4 @@ from .matnet_node import MatnetNode
 from .copy_node import CopyNode
 from .align_and_distribute_node import AlignAndDistributeNode
 from .groupsfromname_node import GroupsfromnameNode
+from .copnet_node import CopnetNode

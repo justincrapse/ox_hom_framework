@@ -49,3 +49,9 @@ class Parameter:
     
     def set_expression(self, expression: str):
         return self.parm.setExpression(expression=expression)
+    
+    def delete_all_keyframes(self):
+        self.parm.deleteAllKeyframes()
+
+    def clear_reference(self):
+        self.delete_all_keyframes()

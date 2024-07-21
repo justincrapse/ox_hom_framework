@@ -15,6 +15,7 @@ ox_logger = logging.getLogger("ox_logger")
 
 # WARNING: if a texture key is a substring of another key, you'll need to consider that in the for-loops.
 # the dictionary values are not case-sensitive when matching file name, so just do lowercase.
+
 texture_dict = {
     "BASE_COLOR": ["diffuse", "base color", "basecolor", "base_color", "albedo"],
     "METALNESS": ["metallic", "metallicity", "metalness"],

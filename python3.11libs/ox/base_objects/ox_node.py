@@ -131,10 +131,12 @@ class OXNode(ParmTemplate):  # mixins
 
     def create_node(self, node_type_name, node_name=None) -> hou.Node:
         """Creates a child node. It's better to create nodes using the 'nodes' package."""
+        ox_logger.debug(f"create_node: node_type: {node_type_name}, node_name: {node_name}")
         if node_name:
             node_name = node_name.replace(" ", "_")
         try:
             new_node = self.node.createNode(node_type_name, node_name)
+            ox_logger.debug(f"New node: {new_node}")
         except hou.OperationFailed as e:
             ox_logger.error(f"Operation Failed. Node type name: '{node_type_name}', Node Name: '{node_name}'")
             return e
@@ -155,7 +157,7 @@ class OXNode(ParmTemplate):  # mixins
         #         parm.deleteAllKeyframes()
         return child_node
 
-    def create_ox_node(self, ox_node_class, node_name, replace=False, use_existing=False):
+    def create_ox_node(self, ox_node_class, node_name=None, replace=False, use_existing=False):
         if replace:
             existing_node = self.get_child_node_by_name(child_name=node_name)
             if existing_node:
@@ -178,6 +180,8 @@ class OXNode(ParmTemplate):  # mixins
 
     def connect_from(self, ox_node=None, input_index=0, out_index=0, input_label=None, x=0, y=-1):
         """Connects to this node's input from another ox node's output. use input_label over input_index whenever possible."""
+        if isinstance(input_index, str):
+            raise ValueError("You entered a string for an index value. Use input_label instead")
         other_hou_node = ox_node.node
         if input_label:
             input_index = self.get_input_label_index(label=input_label)
@@ -290,9 +294,9 @@ class OXNode(ParmTemplate):  # mixins
 
     def get_child_ox_node_by_type(self, node_class, expect_match=False):
         """Returns the first matching child node as ox node of node_type parameter"""
-        node_type = node_class.node_type
+        node_type = node_class if isinstance(node_class, str) else node_class.node_type
         matching_nodes = self.get_child_nodes_by_type(node_type=node_type, expect_match=expect_match)
-        child_ox_node = node_class(matching_nodes[0])
+        child_ox_node = node_class(matching_nodes[0]) if matching_nodes else None
         return child_ox_node
 
     def get_child_by_node_type(self, node_type, substring=None, expect_match=False, only_one_match=True):
@@ -462,17 +466,23 @@ class OXNode(ParmTemplate):  # mixins
     def copy_node(
         self,
         new_name_postfix=None,
-        destination_node: hou.Node = None,
+        destination_ox_node=None,
         delete_if_exists=False,
         keep_existing_parm_values=False,
         return_ox=True,
         keep_existing_children_parm_values=False,
     ):
         """Copies a node to a destination with optional behaviors"""
+        destination_ox_node: OXNode
         parent_node = self.node.parent()
+        destination_node = destination_ox_node.node if destination_ox_node else parent_node
         parent_ox_node = OXNode(parent_node)
         new_name = f"{self.name}_{new_name_postfix}" if new_name_postfix else self.name
-        has_existing = parent_ox_node.has_child_with_name(child_name=new_name)
+        if not destination_ox_node:
+            has_existing = parent_ox_node.has_child_with_name(child_name=new_name)
+        else:
+            has_existing = destination_ox_node.has_child_with_name(child_name=new_name)
+
         if has_existing and not delete_if_exists:
             raise ValueError(f'Node with name "{new_name}" already exists')
         if has_existing:
@@ -485,7 +495,6 @@ class OXNode(ParmTemplate):  # mixins
             if delete_if_exists:
                 existing_ox_node.destroy_node()
 
-        destination_node = destination_node if destination_node else parent_node
         copied_node = hou.copyNodesTo(nodes=[self.node], destination_node=destination_node)
         copied_ox_node = OXNode(copied_node[0])
         copied_ox_node.set_name(new_name=new_name)
@@ -494,6 +503,9 @@ class OXNode(ParmTemplate):  # mixins
         if has_existing and keep_existing_parm_values:
             copied_ox_node.apply_parms_dict(parms_dict=node_parm_values_dict)
         return copied_ox_node if return_ox else copied_node
+
+    def copy_items_to_network():
+        pass
 
     def recursive_get_child_nodes_by_type(self, node_type, ox_node_to_search=None):
         ox_node_to_search = ox_node_to_search if ox_node_to_search else self
@@ -636,3 +648,15 @@ class OXNode(ParmTemplate):  # mixins
         """Returns the parent Network box this node is contained in."""
         parent_network_box = self.node.parentNetworkBox()
         return parent_network_box
+
+    ##################################################################################################################################################
+    # Utilities:
+
+    def convert_relative_references_to_absolute(self):
+        for parm in self.get_parms():
+            parm: hou.Parm
+            parm_path = parm.path()
+            parm_reference_path = parm.getReferencedParm().path()
+            if parm_path != parm_reference_path:
+                parm.deleteAllKeyframes()
+                parm.setExpression(f'ch("{parm_reference_path}")')

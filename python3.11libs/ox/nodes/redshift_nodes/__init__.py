@@ -22,3 +22,4 @@ from .particleattributelookup_node import ParticleattributelookupNode
 from .triplanar_node import TriplanarNode
 from .sample_ambulance_ao_multiply_node import SampleAmbulanceAoMultiplyNode
 from .redshift_usd_material_node import RedshiftUsdMaterialNode
+from .shadermerge_node import ShadermergeNode

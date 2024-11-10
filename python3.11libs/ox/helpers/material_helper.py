@@ -18,7 +18,7 @@ ox_logger = logging.getLogger("ox_logger")
 
 texture_dict = {
     "BASE_COLOR": ["diffuse", "base color", "basecolor", "base_color", "albedo"],
-    "METALNESS": ["metallic", "metallicity", "metalness"],
+    "METALNESS": ["metallic", "metallicity", "metalness", "metalic"],
     "SPECULAR": ["specular"],
     "SPECULAR_ROUGHNESS": ["roughness", "gloss", "glossiness"],
     "NORMAL": ["normal", "bump"],

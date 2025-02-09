@@ -7,9 +7,13 @@ will let the coder know that there is an overlap and that this particular attrib
 """
 
 from collections import defaultdict
+from collections.abc import Iterable
 import re
 import logging
 from typing import List
+import inspect
+import functools
+import time
 
 import hou
 
@@ -18,6 +22,19 @@ from ox.utils.node_color_lookup import color_lookup_dict
 from ox.constants import parm_template_types
 
 ox_logger = logging.getLogger("ox_logger")
+
+
+def timer(func):
+    @functools.wraps(func)
+    def wrapper_timer(*args, **kwargs):
+        tic = time.perf_counter()
+        value = func(*args, **kwargs)
+        toc = time.perf_counter()
+        elapsed_time = toc - tic
+        print(f"Elapsed time: {elapsed_time:0.4f} seconds: {func.__name__}")
+        return value
+
+    return wrapper_timer
 
 
 class OXNode(ParmTemplate):  # mixins
@@ -178,15 +195,21 @@ class OXNode(ParmTemplate):  # mixins
     def connect_from_subnet_input(self, subnet_node: hou.Node, indirect_input_index, input_index=0):
         self.node.setInput(input_index, subnet_node.indirectInputs()[indirect_input_index])
 
-    def connect_from(self, ox_node=None, input_index=0, out_index=0, input_label=None, x=0, y=-1):
+    def connect_from(self, ox_node, input_index=0, out_index=0, input_label=None, x=0, y=-1, pass_if_connected=False):
         """Connects to this node's input from another ox node's output. use input_label over input_index whenever possible."""
         if isinstance(input_index, str):
             raise ValueError("You entered a string for an index value. Use input_label instead")
         other_hou_node = ox_node.node
         if input_label:
             input_index = self.get_input_label_index(label=input_label)
-        self.node.setInput(input_index=input_index, item_to_become_input=other_hou_node, output_index=out_index)
-        self.move_node_relative_to_other_node(ox_node_to_move=self, ox_node_to_move_relative_to=ox_node, x=x, y=y)
+        is_connected = bool(self.node.inputConnectors()[input_index])
+        if pass_if_connected and is_connected:
+            ox_logger.info(f"Skipped connection to input_label: {input_label}, input_index: {input_index} on node: {self.name}")
+            pass
+        else:
+            ox_logger.debug(f"Attempting node connection: input_index: {input_index}, output_index: {out_index}, other node: {other_hou_node}")
+            self.node.setInput(input_index=input_index, item_to_become_input=other_hou_node, output_index=out_index)
+            self.move_node_relative_to_other_node(ox_node_to_move=self, ox_node_to_move_relative_to=ox_node, x=x, y=y)
 
     def get_child_node_by_name(self, child_name) -> hou.Node:
         """Returns a matching child node, if it exists, else None is returned"""
@@ -276,12 +299,18 @@ class OXNode(ParmTemplate):  # mixins
 
     def get_child_nodes_by_type(self, node_type, substring=None, expect_match=False):
         """Returns all child nodes mathcing specified type."""
-        if substring:
-            matching_nodes = [i for i in self.get_child_nodes_by_partial_name(substring=substring) if i.type().name() == node_type]
-        else:
+        if isinstance(node_type, str):
             matching_nodes = [i for i in self.get_child_nodes() if i.type().name() == node_type]
+        elif inspect.isclass(node_type) and issubclass(node_type, OXNode):
+            matching_nodes = [i for i in self.get_child_nodes() if i.type().name() == node_type.node_type]
+        elif isinstance(node_type, Iterable):
+            matching_nodes = []
+            for i in node_type:
+                matching_nodes.extend([j for j in self.get_child_nodes() if j.type().name() == i.node_type])
         if not matching_nodes and expect_match:
             raise ValueError(f'Expected child node of type "{node_type}" but no matches were found')
+        if substring:
+            matching_nodes = [i for i in matching_nodes if substring in i.name()]
         return matching_nodes
 
     def get_child_node_by_type(self, node_type, substring=None, expect_match=False):

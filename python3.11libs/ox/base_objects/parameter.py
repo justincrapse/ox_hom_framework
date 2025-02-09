@@ -55,3 +55,8 @@ class Parameter:
 
     def clear_reference(self):
         self.delete_all_keyframes()
+
+    def join_with_next(self):
+        parm_template: hou.ParmTemplate = self.parm.parmTemplate()
+        parm_template.setJoinWithNext(True)
+        self.parm.setparm

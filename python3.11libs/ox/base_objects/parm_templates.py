@@ -3,18 +3,31 @@ This is a mix-in class. Meaning: While all this could be written for the OXNode 
 group related code which makes it easier to maintain. 
 """
 
-
 import logging
 from typing import List
+import functools
+import time
 
 import hou
 
 from hou import OperationFailed
-
 from ox.constants import parm_template_types
 
 ox_logger = logging.getLogger("ox_logger")
 
+time_list = []
+def timer(func):
+    @functools.wraps(func)
+    def wrapper_timer(*args, **kwargs):
+        tic = time.perf_counter()
+        value = func(*args, **kwargs)
+        toc = time.perf_counter()
+        elapsed_time = toc - tic
+        print(f"Elapsed time: {elapsed_time:0.4f} seconds: {func.__name__}")
+        # time_list.append()
+        return value
+
+    return wrapper_timer
 
 class ParmTemplate:
     def __init__(self, node):
@@ -32,6 +45,10 @@ class ParmTemplate:
             else:
                 raise e
 
+    def _get_updated_parm_template_group(self):
+        ptg: hou.Node.parmTemplateGroup = self.node.parmTemplateGroup()
+        return ptg
+
     def __create_folder_if_not_exist(self, folder_label, folder_name=None):
         folder_name = folder_name if folder_name else folder_label.replace(" ", "_").lower()
         folder_templates = self.get_parm_templates_by_type(template_type=parm_template_types.FOLDER)
@@ -43,9 +60,17 @@ class ParmTemplate:
         return self.parm_template_group.entries()
 
     def __get_parm_templates(self):
-        parm_templates = self.parm_template_group.parmTemplates()
+        parm_templates = self.node.parmTemplateGroup().parmTemplates()
         ox_logger.debug(f'Getting all parm templates for "{self.node.name()}" parmTemplates: {parm_templates}')
         return parm_templates
+
+    def join_with_next(self, parm, join_with_next=True):
+        orig_pt = parm.parmTemplate()
+        pt: hou.ParmTemplate = parm.parmTemplate()
+        pt.setJoinWithNext(join_with_next)
+        ptg: hou.ParmTemplateGroup = self.parm_template_group
+        ptg.replace(orig_pt, pt)
+        self._save_template_group()
 
     def add_parm_template(
         self,
@@ -56,6 +81,7 @@ class ParmTemplate:
         insert_before_parm=None,
         return_type=None,
         supress_logger=False,
+        save_ptg=True,
     ) -> hou.Parm:
         """
         Adds a parm template to a node. if folder_label is specified, as_first, insert_after_parm, and insert_before_parm are not relavant as those
@@ -73,8 +99,10 @@ class ParmTemplate:
         parm_template: hou.ParmTemplate
         if folder_label:
             ox_logger.debug(f"Appending parm to folder: {folder_label}")
-            self.__create_folder_if_not_exist(folder_label=folder_label)
+            # this causes issues with subfolders
+            # self.__create_folder_if_not_exist(folder_label=folder_label)
             folder = self.parm_template_group.findFolder(folder_label)
+            ox_logger.debug(f"Found folder: {folder_label}")
             self.parm_template_group.appendToFolder(folder, parm_template)
         elif as_first:
             ox_logger.debug("Inserting parm template as first entry")
@@ -96,8 +124,8 @@ class ParmTemplate:
         else:
             ox_logger.debug("No matching strategy. Appending parm template to end")
             self.parm_template_group.append(parm_template)
-        self._save_template_group()
-        ox_logger.info(f'Added new parm template to "{self.node.name()}" node: {parm_template.name()}')
+        self._save_template_group(supress_error=False)
+        ox_logger.debug(f'Added new parm template to "{self.node.name()}" node: {parm_template.name()}')
         if return_type == "color":
             # return_parm_tuple = (
             #     self.node.parm(f"{parm_template.name()}r"),
@@ -139,13 +167,20 @@ class ParmTemplate:
             new_parm.set(original_value)
         return new_parm
 
-    def add_parm_template_if_not_exist(self, parm_template, supress_logger=True, folder_label=None, **kwargs):
-        """Only adds the parm template if it does not already exist"""
+    def add_parm_template_if_not_exist(self, parm_template: hou.ParmTemplate, supress_logger=True, folder_label=None, insert_before_parm=None, **kwargs):
+        """Only adds the parm template if it does not already exist."""
         existing_parm: hou.Parm = self.node.parm(parm_template.name())
         if existing_parm:
             return existing_parm
         else:
-            return self.add_parm_template(parm_template=parm_template, supress_logger=supress_logger, folder_label=folder_label, **kwargs)
+            # we cannot determine if sepparm "seperation parameters" exist becasue they will not be returned by the above code. So we can skip errors here for that type:
+            try:
+                return self.add_parm_template(
+                    parm_template=parm_template, supress_logger=supress_logger, folder_label=folder_label, insert_before_parm=insert_before_parm, **kwargs
+                )
+            except hou.OperationFailed as e:
+                if "already exists" in str(e):
+                    return existing_parm
 
     def add_parm_template_to_sub_folder():
         """TODO: Need to implement this."""

@@ -20,18 +20,18 @@ texture_dict = {
     "BASE_COLOR": ["diffuse", "base color", "basecolor", "base_color", "albedo"],
     "METALNESS": ["metallic", "metallicity", "metalness", "metalic"],
     "SPECULAR": ["specular"],
-    "SPECULAR_ROUGHNESS": ["roughness", "gloss", "glossiness"],
+    "ROUGHNESS": ["roughness", "gloss", "glossiness", "rough"],
     "NORMAL": ["normal", "bump"],
     "DISPLACEMENT": ["displacement", "height"],
     "EMISSION": ["emissive", "luminance", "emission"],
     "EMISSION_COLOR": ["emission_color", "emission color", "emissive_color", "emissive color"],
     "OPACITY": ["opacity", "alpha"],
     "GLOSS": ["gloss", "glossiness"],
-    "AO": ["ao", "ambient_occlusion", "ambientocclusion", "ambient occlusion"],
+    "AO": ["ambient_occlusion", "ambientocclusion", "ambient occlusion", "occlusion", "_ao"],
     "TRANSPARENCY": ["transparency", "transmission", "refraction", "translucency"],
     "IOR": ["ior", "intex_of_refraction"],
     "SSS": ["sss", "sub_surface_scattering", "subsurface"],
-    "SSS_COLOR": ["sss_color", "sub_surface_color", "subsurface_color"]
+    "SSS_COLOR": ["sss_color", "sub_surface_color", "subsurface_color"],
 }
 ALL_SUBSTRINGS = [item for sub_list in texture_dict.values() for item in sub_list]
 
@@ -77,11 +77,11 @@ class MaterialHelper:
                 princepled_shader_ox_node.parm_metallic_texture = image_path
                 princepled_shader_ox_node.parm_metallic_usetexture = 1
 
-            # elif any([i.lower() in image_file for i in texture_dict["SPECULAR"]]) and not any([i.lower() in image_file for i in texture_dict["SPECULAR_ROUGHNESS"]]):
+            # elif any([i.lower() in image_file for i in texture_dict["SPECULAR"]]) and not any([i.lower() in image_file for i in texture_dict["ROUGHNESS"]]):
             #     princepled_shader_ox_node.parm_specular = image_path
             #     princepled_shader_ox_node.parm_occlusion_usetexture = 1
 
-            elif any([i.lower() in image_file for i in texture_dict["SPECULAR_ROUGHNESS"]]):
+            elif any([i.lower() in image_file for i in texture_dict["ROUGHNESS"]]):
                 princepled_shader_ox_node.parm_rough_texture = image_path
                 princepled_shader_ox_node.parm_rough_usetexture = 1
 

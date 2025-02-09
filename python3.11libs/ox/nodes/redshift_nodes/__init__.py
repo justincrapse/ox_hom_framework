@@ -23,3 +23,7 @@ from .triplanar_node import TriplanarNode
 from .sample_ambulance_ao_multiply_node import SampleAmbulanceAoMultiplyNode
 from .redshift_usd_material_node import RedshiftUsdMaterialNode
 from .shadermerge_node import ShadermergeNode
+from .normalmap_node import NormalmapNode
+from .rsramp_node import RsrampNode
+from .rsscalarramp_node import RsscalarrampNode
+from .rsscalarconstant_node import RsscalarconstantNode

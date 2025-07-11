@@ -20,18 +20,18 @@ texture_dict = {
     "BASE_COLOR": ["diffuse", "base color", "basecolor", "base_color", "albedo"],
     "METALNESS": ["metallic", "metallicity", "metalness", "metalic"],
     "SPECULAR": ["specular"],
-    "ROUGHNESS": ["roughness", "gloss", "glossiness", "rough"],
+    "ROUGHNESS": ["roughness", "rough"],
     "NORMAL": ["normal", "bump"],
     "DISPLACEMENT": ["displacement", "height"],
     "EMISSION": ["emissive", "luminance", "emission"],
     "EMISSION_COLOR": ["emission_color", "emission color", "emissive_color", "emissive color"],
     "OPACITY": ["opacity", "alpha"],
-    "GLOSS": ["gloss", "glossiness"],
+    "GLOSS": ["gloss"],
     "AO": ["ambient_occlusion", "ambientocclusion", "ambient occlusion", "occlusion", "_ao"],
     "TRANSPARENCY": ["transparency", "transmission", "refraction", "translucency"],
     "IOR": ["ior", "intex_of_refraction"],
-    "SSS": ["sss", "sub_surface_scattering", "subsurface"],
-    "SSS_COLOR": ["sss_color", "sub_surface_color", "subsurface_color"],
+    "SSS": ["sss", "sub_surface_scattering", "subsurfaceamount"],
+    "SSS_COLOR": ["sss_color", "sub_surface_color", "subsurface_color", "subsurfacecolor"],
 }
 ALL_SUBSTRINGS = [item for sub_list in texture_dict.values() for item in sub_list]
 

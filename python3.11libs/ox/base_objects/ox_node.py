@@ -164,7 +164,7 @@ class OXNode(ParmTemplate):  # mixins
         node_type_name = ox_node_class.node_type if ox_node_class else ox_node_type
         if not node_type_name:
             raise ValueError("Need to specify either ox_node_class or ox_node_type str")
-        child_node = self.get_child_node_by_name(child_name=node_name)
+        child_node = self.get_child_node_by_name(child_name=node_name) if node_name else None
         if not child_node:
             child_node = self.create_node(node_type_name=node_type_name, node_name=node_name)
         # TODO: DELETE THIS
@@ -182,6 +182,8 @@ class OXNode(ParmTemplate):  # mixins
             child_node = self.create_node(node_type_name=ox_node_class.node_type, node_name=node_name)
         else:
             if use_existing:
+                if not node_name:
+                    raise ValueError("use_existing=True, but not value passed in for node_name")
                 return self.create_ox_node_if_not_exists(ox_node_class=ox_node_class, node_name=node_name)
             else:
                 child_node = self.create_node(node_type_name=ox_node_class.node_type, node_name=node_name)
@@ -689,3 +691,5 @@ class OXNode(ParmTemplate):  # mixins
             if parm_path != parm_reference_path:
                 parm.deleteAllKeyframes()
                 parm.setExpression(f'ch("{parm_reference_path}")')
+
+    

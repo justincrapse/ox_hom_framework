@@ -49,7 +49,6 @@ class AttribtransferNode(OXNode):
         self.input_geometry_to_transfer_attributes_to = 'Geometry to transfer attributes to'
         self.input_geometry_to_transfer_attributes_from = 'Geometry to transfer attributes from'
 
-
 # parm menu classes:
 class SrcgrouptypeMenu(Menu):
     def __init__(self, parm):

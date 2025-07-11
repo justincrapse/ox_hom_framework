@@ -14,3 +14,4 @@ from .subnet_node import SubnetNode
 from .constant_node import ConstantNode
 from .remap_node import RemapNode
 from .transformd_node import TransformDNode
+from .rop_image_node import RopImageNode

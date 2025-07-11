@@ -70,3 +70,8 @@ from .copy_node import CopyNode
 from .align_and_distribute_node import AlignAndDistributeNode
 from .groupsfromname_node import GroupsfromnameNode
 from .copnet_node import CopnetNode
+
+from .convexhull_node import ConvexhullNode
+from .polyreduce_node import PolyreduceNode
+from .divide_node import DivideNode
+from .groupdelete_node import GroupdeleteNode

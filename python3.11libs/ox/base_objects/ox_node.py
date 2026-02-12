@@ -116,6 +116,11 @@ class OXNode(ParmTemplate):  # mixins
         labels = self.node.inputLabels()
         return list(labels)
 
+    def get_output_labels(self, other_ox_node=None):
+        """Gets all output labels for the node"""
+        labels = other_ox_node.node.outputLabels() if other_ox_node else self.node.outputLabels()
+        return list(labels)
+
     def get_input_label_index(self, label):
         """Given an input label, returns the input index value"""
         labels = self.get_input_labels()
@@ -125,8 +130,14 @@ class OXNode(ParmTemplate):  # mixins
         except ValueError:
             raise ValueError(f"Label: {label}. Was not found in node: {self.path}")
 
-    def get_output_label_index(self, label):
-        pass
+    def get_output_label_index(self, label, other_ox_node=None):
+        """Given an output label, returns the output index value"""
+        labels = other_ox_node.get_output_labels(other_ox_node=other_ox_node) if other_ox_node else self.get_output_labels()
+        try:
+            index = labels.index(label)
+            return index
+        except ValueError:
+            raise ValueError(f"Label: {label}. Was not found in node: {self.path}")
 
     def get_input_connections_node_name_list(self):
         """Returns a list of node names of the connected input nodes"""
@@ -197,13 +208,15 @@ class OXNode(ParmTemplate):  # mixins
     def connect_from_subnet_input(self, subnet_node: hou.Node, indirect_input_index, input_index=0):
         self.node.setInput(input_index, subnet_node.indirectInputs()[indirect_input_index])
 
-    def connect_from(self, ox_node, input_index=0, out_index=0, input_label=None, x=0, y=-1, pass_if_connected=False):
+    def connect_from(self, ox_node, input_index=0, out_index=0, input_label=None, output_label=None, x=0, y=-1, pass_if_connected=False):
         """Connects to this node's input from another ox node's output. use input_label over input_index whenever possible."""
         if isinstance(input_index, str):
             raise ValueError("You entered a string for an index value. Use input_label instead")
         other_hou_node = ox_node.node
         if input_label:
             input_index = self.get_input_label_index(label=input_label)
+        if output_label:
+            out_index = self.get_output_label_index(label=output_label, other_ox_node=ox_node)
         is_connected = bool(self.node.inputConnectors()[input_index])
         if pass_if_connected and is_connected:
             ox_logger.info(f"Skipped connection to input_label: {input_label}, input_index: {input_index} on node: {self.name}")
@@ -387,7 +400,7 @@ class OXNode(ParmTemplate):  # mixins
         """Auto-layout children"""
         self.node.layoutChildren()
 
-    def move_node_relative_to(self, ox_node, x=0, y=-1, unit_multiplier=1):
+    def move_node_relative_to(self, ox_node, x=0, y=0, unit_multiplier=1):
         """a handy method that will move this node relative to another node. The default moves the node below the relative node"""
         # UNCLEAR. TO BE DEPRICATED
         relative_position_vector = ox_node.node.position()
@@ -496,7 +509,7 @@ class OXNode(ParmTemplate):  # mixins
 
     def copy_node(
         self,
-        new_name_postfix=None,
+        new_name=None,
         destination_ox_node=None,
         delete_if_exists=False,
         keep_existing_parm_values=False,
@@ -508,7 +521,7 @@ class OXNode(ParmTemplate):  # mixins
         parent_node = self.node.parent()
         destination_node = destination_ox_node.node if destination_ox_node else parent_node
         parent_ox_node = OXNode(parent_node)
-        new_name = f"{self.name}_{new_name_postfix}" if new_name_postfix else self.name
+        new_name = new_name if new_name else f"{self.name}_duplicate"
         if not destination_ox_node:
             has_existing = parent_ox_node.has_child_with_name(child_name=new_name)
         else:
@@ -691,5 +704,3 @@ class OXNode(ParmTemplate):  # mixins
             if parm_path != parm_reference_path:
                 parm.deleteAllKeyframes()
                 parm.setExpression(f'ch("{parm_reference_path}")')
-
-    

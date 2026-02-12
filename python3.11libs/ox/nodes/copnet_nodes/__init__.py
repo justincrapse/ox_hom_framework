@@ -15,3 +15,9 @@ from .constant_node import ConstantNode
 from .remap_node import RemapNode
 from .transformd_node import TransformDNode
 from .rop_image_node import RopImageNode
+from .bakegeometrytextures_node import BakegeometrytexturesNode
+from .triplanarhextile_node import TriplanarhextileNode
+from .triplanar_node import TriplanarNode
+from .switch_node import SwitchNode
+from .triplanaruv_node import TriplanaruvNode
+from .mono_node import MonoNode

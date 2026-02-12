@@ -1,6 +1,6 @@
 """
 This is a mix-in class. Meaning: While all this could be written for the OXNode class, we break it out into this other module so that we can easily
-group related code which makes it easier to maintain. 
+group related code which makes it easier to maintain.
 """
 
 import logging
@@ -16,6 +16,8 @@ from ox.constants import parm_template_types
 ox_logger = logging.getLogger("ox_logger")
 
 time_list = []
+
+
 def timer(func):
     @functools.wraps(func)
     def wrapper_timer(*args, **kwargs):
@@ -28,6 +30,7 @@ def timer(func):
         return value
 
     return wrapper_timer
+
 
 class ParmTemplate:
     def __init__(self, node):
